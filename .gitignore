@@ -1,0 +1,8 @@
+*.db
+.env
+.env.production
+node_modules/
+dist/
+__pycache__/
+.vite/
+*.pyc
