@@ -1,29 +1,27 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/stores/user'
+import http from '@/api/index'
 
 const router = useRouter()
 const route = useRoute()
 const userStore = useUserStore()
-
-import { ref, onMounted, watch } from 'vue'
-import http from '@/api/index'
 
 const isAuth = computed(() => userStore.isLoggedIn)
 const role = computed(() => userStore.role || '')
 const unreadNotif = ref(0)
 
 async function fetchUnread() {
-  if (!isAuth.value) return
+  if (!localStorage.getItem('access_token')) return
   try { const r: any = await http.get('/notifications/unread-count'); unreadNotif.value = r?.data?.count || r?.count || 0 } catch {}
 }
 onMounted(fetchUnread)
 watch(isAuth, (v) => { if (v) fetchUnread() })
-setInterval(fetchUnread, 30000)  // poll every 30s
+setInterval(fetchUnread, 30000)
 
-function go(path: string) { router.push(path) }
-function goBack() { router.back() }
+function navTo(path: string) { router.push(path) }
+function goBack() { if (route.path !== '/') { router.back() } else { router.push('/') } }
 function goToLogin() { router.push('/login') }
 
 const quickLinks = computed(() => {
@@ -32,44 +30,45 @@ const quickLinks = computed(() => {
   if (role.value === 'exhibitor') {
     links.push({path:'/exhibitor/dashboard',label:'工作台',icon:'📊'})
     links.push({path:'/exhibitor/micro-booth',label:'微展位',icon:'🏪'})
+    links.push({path:'/exhibitor/poster',label:'海报',icon:'📸'})
   }
   if (role.value === 'buyer') {
     links.push({path:'/buyer/dashboard',label:'采购',icon:'📦'})
+    links.push({path:'/buyer/procurements/create',label:'发布',icon:'✍️'})
   }
   if (role.value === 'organizer' || role.value === 'admin') {
     links.push({path:'/organizer/dashboard',label:'管理',icon:'⚙️'})
+    links.push({path:'/organizer/exhibitions',label:'展会',icon:'🎪'})
   }
-  links.push({path:'/points',label:'积分',icon:'💰'})
-  links.push({path:'/messages',label:'消息',icon:'💬'})
-  return links
+  if (role.value === 'admin') {
+    links.push({path:'/admin/boss',label:'Boss',icon:'📊'})
+  }
+  links.push({path:'/profile',label:'我的',icon:'👤'})
+  return links.slice(0, 7)
 })
 </script>
 
 <template>
   <header class="app-header">
     <div class="header-left">
-      <button v-if="route.path !== '/'" class="back-btn" @click="goBack" aria-label="返回">←</button>
+      <button v-if="route.path !== '/'" class="back-btn" @click="goBack">←</button>
       <span v-else class="header-placeholder"></span>
     </div>
-
     <div class="header-center">
-      <div class="header-search" @click="go('/search')">
-        <span class="search-icon">🔍</span>
-        <span class="search-hint">搜索展会、展商、展品...</span>
-      </div>
+      <span class="header-title" @click="navTo('/')">ExpoHub</span>
     </div>
-
     <div class="header-right">
       <template v-if="isAuth">
-        <div class="header-links">
-          <button v-for="l in quickLinks" :key="l.path" class="hlink" @click="go(l.path)" :title="l.label">
-            {{ l.icon }}
+        <div class="header-icons">
+          <button v-for="l in quickLinks" :key="l.path" class="hicon" @click="navTo(l.path)">
+            <span class="hi-icon">{{ l.icon }}</span>
+            <span class="hi-label">{{ l.label }}</span>
           </button>
-          <button class="hlink notify-btn" @click="go('/notifications')" title="通知">
-            🔔<span class="notify-badge" v-if="unreadNotif > 0">{{ unreadNotif > 99 ? '99+' : unreadNotif }}</span>
+          <button class="hicon" @click="navTo('/notifications')">
+            <span class="hi-icon">🔔</span>
+            <span class="hi-label">通知<span class="notify-badge" v-if="unreadNotif > 0">{{ unreadNotif > 99 ? '99+' : unreadNotif }}</span></span>
           </button>
         </div>
-        <button class="user-btn" @click="go('/profile')">👤</button>
       </template>
       <button v-else class="login-btn" @click="goToLogin">登录</button>
     </div>
@@ -78,22 +77,20 @@ const quickLinks = computed(() => {
 
 <style scoped>
 .app-header {
-  position: fixed; top: 0; left: 0; right: 0; height: 48px;
-  background: #fff; border-bottom: 1px solid var(--color-border-light);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 12px; z-index: 100;
+  position:fixed; top:0; left:0; right:0; height:48px; background:#fff;
+  border-bottom:1px solid var(--color-border-light); display:flex; align-items:center;
+  justify-content:space-between; padding:0 8px; z-index:100;
 }
-.header-left, .header-right { display: flex; align-items: center; gap: 4px; min-width: 120px }
-.header-right { justify-content: flex-end }
-.header-center { flex: 1; text-align: center }
-.header-title { font-size: 17px; font-weight: 700; color: var(--color-primary) }
-.back-btn, .user-btn, .login-btn, .hlink { background: none; border: none; font-size: 18px; cursor: pointer; padding: 4px 8px; border-radius: 6px; color: var(--color-text) }
-.hlink { font-size: 16px; padding: 4px 6px }
-.back-btn:hover, .hlink:hover { background: var(--color-bg-page) }
-.login-btn { font-size: 13px; border: 1px solid var(--color-border); padding: 4px 12px }
-.header-search { display:flex; align-items:center; gap:6px; padding:6px 12px; background:var(--color-bg-page); border-radius:20px; cursor:pointer; max-width:280px; margin:0 auto }
-.search-icon { font-size:14px; flex-shrink:0 }
-.search-hint { font-size:13px; color:var(--color-text-placeholder); overflow:hidden; white-space:nowrap; text-overflow:ellipsis }
-.notify-btn { position:relative }
-.notify-badge { position:absolute; top:-4px; right:-6px; background:#ef4444; color:#fff; font-size:10px; min-width:16px; height:16px; line-height:16px; text-align:center; border-radius:8px; padding:0 4px }
+.header-left,.header-right{display:flex;align-items:center;min-width:80px}
+.header-right{justify-content:flex-end}
+.header-center{text-align:center}
+.header-title{font-size:17px;font-weight:700;color:var(--color-primary);cursor:pointer}
+.back-btn{background:none;border:none;font-size:18px;cursor:pointer;padding:4px 8px;color:var(--color-text)}
+.login-btn{font-size:13px;border:1px solid var(--color-border);padding:4px 12px;border-radius:6px;background:none;cursor:pointer}
+.header-icons{display:flex;gap:2px}
+.hicon{display:flex;flex-direction:column;align-items:center;gap:1px;background:none;border:none;cursor:pointer;padding:2px 5px;border-radius:6px;min-width:40px}
+.hicon:hover{background:var(--color-bg-page)}
+.hi-icon{font-size:16px;line-height:1}
+.hi-label{font-size:9px;color:var(--color-text-secondary);line-height:1;position:relative}
+.notify-badge{position:absolute;top:-6px;right:-10px;background:#ef4444;color:#fff;font-size:8px;min-width:14px;height:14px;line-height:14px;text-align:center;border-radius:7px;padding:0 3px}
 </style>

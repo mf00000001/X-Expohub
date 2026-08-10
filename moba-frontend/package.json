@@ -1,0 +1,13 @@
+{
+  "name": "moba-frontend",
+  "version": "1.0.0",
+  "description": "MOBA Game Frontend - HTML5 Canvas + TypeScript",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "serve": "npx http-server . -p 8080 -c-1"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0"
+  }
+}

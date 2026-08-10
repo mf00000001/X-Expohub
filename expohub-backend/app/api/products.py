@@ -220,12 +220,7 @@ def _orig_get_my_products(
 ):
     """获取当前用户（展商）的展品列表"""
     q = db.query(Product).filter(Product.exhibitor_id == current_user.id)
-    # Filter: only show products from approved exhibitors (unless filtering by own ID)
-    if exhibitor_id is None:
-        q = q.join(User, Product.exhibitor_id == User.id).filter(
-            (User.role != "exhibitor") | (User.organizer_status == None) | (User.organizer_status == "approved")
-        )
-    
+
     total = q.count()
     products = q.order_by(Product.created_at.desc()).offset(
         (page - 1) * page_size

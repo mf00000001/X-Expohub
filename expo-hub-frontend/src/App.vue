@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import AppFooter from '@/components/layout/AppFooter.vue'
+import FloatingPoints from '@/components/FloatingPoints.vue'
 
 const route = useRoute()
 
@@ -23,7 +24,9 @@ const showFooter = computed(() => {
     <router-view />
   </main>
   <AppFooter v-if="showFooter" />
+  <FloatingPoints />
 </template>
+
 
 <style scoped>
 .main-content {

@@ -14,26 +14,20 @@ const allTabs: TabItem[] = [
   { path: '/exhibitions', label: '展会', icon: '📋', roles: [] },
   { path: '/micro-booths', label: '微展位', icon: '🏪', roles: [] },
   { path: '/procurements', label: '采购', icon: '📦', roles: [] },
-  { path: '/points', label: '积分', icon: '💰', roles: [] },
   // 展商
   { path: '/', label: '首页', icon: '🏠', roles: ['exhibitor'] },
   { path: '/exhibitor/dashboard', label: '工作台', icon: '📊', roles: ['exhibitor'] },
-  { path: '/exhibitor/micro-booth', label: '微展位', icon: '🏪', roles: ['exhibitor'] },
-  { path: '/points', label: '积分', icon: '💰', roles: ['exhibitor'] },
-  { path: '/messages', label: '消息', icon: '💬', roles: ['exhibitor'] },
+  { path: '/micro-booths', label: '广场', icon: '🏪', roles: ['exhibitor'] },
+  { path: '/procurements', label: '采购', icon: '📋', roles: ['exhibitor'] },
   // 买家
   { path: '/', label: '首页', icon: '🏠', roles: ['buyer'] },
   { path: '/micro-booths', label: '微展位', icon: '🏪', roles: ['buyer'] },
   { path: '/buyer/dashboard', label: '采购', icon: '📦', roles: ['buyer'] },
   { path: '/favorites', label: '清单', icon: '📋', roles: ['buyer'] },
-  { path: '/points', label: '积分', icon: '💰', roles: ['buyer'] },
-  { path: '/messages', label: '消息', icon: '💬', roles: ['buyer'] },
   // 游客/主办方
   { path: '/', label: '首页', icon: '🏠', roles: ['visitor','organizer','admin'] },
   { path: '/exhibitions', label: '展会', icon: '📋', roles: ['visitor','organizer','admin'] },
   { path: '/micro-booths', label: '微展位', icon: '🏪', roles: ['visitor','buyer'] },
-  { path: '/points', label: '积分', icon: '💰', roles: ['visitor','organizer','admin'] },
-  { path: '/messages', label: '消息', icon: '💬', roles: ['visitor','organizer','admin'] },
   { path: '/profile', label: '我的', icon: '👤', roles: ['visitor','organizer','admin'] },
 ]
 

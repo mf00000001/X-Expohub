@@ -103,9 +103,9 @@ onMounted(async () => {
             <h3 class="font-semibold">创建展会 / Create Exhibition</h3>
             <p class="text-sm text-secondary">Create a new exhibition</p>
           </div>
-          <div class="card card-body cursor-pointer" @click="router.push('/organizer/registrations')">
+          <div class="card card-body cursor-pointer" @click="router.push('/organizer/exhibitions')">
             <h3 class="font-semibold">观展登记 / Registrations</h3>
-            <p class="text-sm text-secondary">View visitor registrations</p>
+            <p class="text-sm text-secondary">选择展会查看报名情况</p>
           </div>
         </div>
       </div>

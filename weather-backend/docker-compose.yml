@@ -1,0 +1,121 @@
+version: "3.9"
+
+# ============================================================
+# 天气查询平台 - Docker Compose 编排
+#
+# 服务:
+#   app      - FastAPI 后端
+#   db       - PostgreSQL 15 + PostGIS
+#   redis    - Redis 缓存
+#   nginx    - Nginx 反向代理
+#   celery   - 定时任务 (可选)
+# ============================================================
+
+services:
+  # ========== FastAPI 后端 ==========
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    image: weather-api:latest
+    container_name: weather-api
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=${APP_NAME:-WeatherHub}
+      - DEBUG=${DEBUG:-true}
+      - DATABASE_URL=postgresql+asyncpg://weather:${DB_PASSWORD:-weather123}@db:5432/weather_db
+      - REDIS_URL=redis://:${REDIS_PASSWORD:-}@redis:6379/0
+      - QWEATHER_API_KEY=${QWEATHER_API_KEY:-}
+      - OWM_API_KEY=${OWM_API_KEY:-}
+      - WAQI_API_TOKEN=${WAQI_API_TOKEN:-}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-dev-secret}
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - weather-network
+
+  # ========== PostgreSQL 15 + PostGIS ==========
+  db:
+    image: postgis/postgis:15-3.4
+    container_name: weather-db
+    environment:
+      POSTGRES_DB: weather_db
+      POSTGRES_USER: weather
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-weather123}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U weather -d weather_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    restart: unless-stopped
+    networks:
+      - weather-network
+
+  # ========== Redis 缓存 ==========
+  redis:
+    image: redis:7-alpine
+    container_name: weather-redis
+    command: >
+      redis-server
+      --appendonly yes
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+      ${REDIS_PASSWORD:+--requirepass ${REDIS_PASSWORD}}
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - weather-network
+
+  # ========== Nginx (生产环境) ==========
+  nginx:
+    image: nginx:alpine
+    container_name: weather-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - app
+    restart: unless-stopped
+    networks:
+      - weather-network
+    profiles:
+      - prod
+
+volumes:
+  pg_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  weather-network:
+    driver: bridge

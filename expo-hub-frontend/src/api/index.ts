@@ -9,11 +9,11 @@ const http: AxiosInstance = axios.create({
   headers: { 'Content-Type': 'application/json' }
 })
 
-// 请求拦截器
+// 请求拦截器 — 直接从localStorage读token，避免Pinia初始化时序问题
 http.interceptors.request.use((config) => {
-  const userStore = useUserStore()
-  if (userStore.token) {
-    config.headers.Authorization = `Bearer ${userStore.token}`
+  const token = localStorage.getItem('access_token')
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
   }
   return config
 })

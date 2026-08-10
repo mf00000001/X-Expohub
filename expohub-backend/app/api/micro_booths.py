@@ -375,3 +375,23 @@ def upgrade_membership(
         "message": f"已从 {old_tier} 升级为 {data.tier}",
         "data": _mb_to_dict(mb, count),
     }
+
+
+@router.delete("/{mb_id}")
+def delete_booth(
+    mb_id: int,
+    current_user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db),
+):
+    """删除微展位"""
+    mb = db.query(MicroBooth).filter(MicroBooth.id == mb_id).first()
+    if not mb:
+        raise NotFound(message="微展位不存在")
+    if mb.exhibitor_id != current_user.id and current_user.role != "admin":
+        raise Forbidden(message="无权删除此微展位")
+    # 清除关联展品的 micro_booth_id
+    from app.models.product import Product
+    db.query(Product).filter(Product.micro_booth_id == mb_id).update({"micro_booth_id": None})
+    db.delete(mb)
+    db.commit()
+    return {"success": True, "code": "OK", "message": "微展位已删除", "data": None}

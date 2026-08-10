@@ -1,0 +1,81 @@
+<script setup lang="ts">
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import http from '@/api/index'
+
+const router = useRouter()
+const balance = ref(0)
+const pos = ref({ x: 0, y: 0 })
+const dragging = ref(false)
+const offset = ref({ x: 0, y: 0 })
+const show = ref(false)
+
+const route = useRoute()
+const hidden = computed(() => ['login','register'].includes(route.name as string))
+
+onMounted(() => {
+  pos.value = { x: window.innerWidth - 70, y: window.innerHeight - 120 }
+  if (hidden.value) return
+  fetchBalance()
+  const timer = setInterval(fetchBalance, 60000)
+  onUnmounted(() => clearInterval(timer))
+})
+
+async function fetchBalance() {
+  if (!localStorage.getItem('access_token')) return
+  try {
+    const r: any = await http.get('/points/balance')
+    balance.value = r?.data?.balance || r?.balance || 0
+  } catch { balance.value = 0 }
+}
+
+function onDown(e: MouseEvent | TouchEvent) {
+  dragging.value = true
+  const p = 'touches' in e ? e.touches[0] : e
+  offset.value = { x: p.clientX - pos.value.x, y: p.clientY - pos.value.y }
+  document.addEventListener('mousemove', onMove)
+  document.addEventListener('mouseup', onUp)
+  document.addEventListener('touchmove', onMove, { passive: false })
+  document.addEventListener('touchend', onUp)
+}
+
+function onMove(e: MouseEvent | TouchEvent) {
+  if (!dragging.value) return
+  e.preventDefault()
+  const p = 'touches' in e ? e.touches[0] : e
+  pos.value = { x: p.clientX - offset.value.x, y: p.clientY - offset.value.y }
+}
+
+function onUp() {
+  dragging.value = false
+  document.removeEventListener('mousemove', onMove)
+  document.removeEventListener('mouseup', onUp)
+  document.removeEventListener('touchmove', onMove)
+  document.removeEventListener('touchend', onUp)
+}
+
+function onClick() {
+  if (!dragging.value) router.push('/points')
+}
+</script>
+
+<template>
+  <div v-if="!hidden" class="float-ball" :style="{ left: pos.x + 'px', top: pos.y + 'px' }"
+       @mousedown="onDown" @touchstart="onDown" @click="onClick">
+    <span class="fb-icon">💰</span>
+    <span class="fb-num">{{ balance }}</span>
+  </div>
+</template>
+
+<style scoped>
+.float-ball {
+  position: fixed; z-index: 9999; width: 56px; height: 56px;
+  border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #ef4444);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  cursor: grab; user-select: none; box-shadow: 0 4px 16px rgba(239,68,68,0.3);
+  transition: transform 0.15s;
+}
+.float-ball:active { cursor: grabbing; transform: scale(1.1) }
+.fb-icon { font-size: 16px; line-height: 1 }
+.fb-num { font-size: 13px; font-weight: 800; color: #fff; line-height: 1 }
+</style>

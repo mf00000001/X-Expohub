@@ -71,7 +71,7 @@ async function fetchData() {
   error.value = ''
   try {
     const [boothRes, prodRes, procRes, msgRes, tierRes, recRes] = await Promise.all([
-      boothApi.getList().catch(() => []),
+      boothApi.getMyBooths().catch(() => []),
       productApi.getMyProducts().catch(() => []),
       procurementApi.getList({ page_size: 100 }).catch(() => []),
       messageApi.getUnreadCount().catch(() => ({ unread_count: 0 })),
@@ -149,10 +149,10 @@ onMounted(fetchData)
 
           <!-- KPI stat row -->
           <div class="stats-grid">
-            <StatsCard icon="&#x1f3e2;" label="我的展位" :value="boothCount" color="#3B82F6" />
-            <StatsCard icon="&#x1f4e6;" label="我的展品" :value="productCount" color="#10B981" />
-            <StatsCard icon="&#x1f91d;" label="采购匹配数" :value="matchCount" color="#6366F1" />
-            <StatsCard icon="&#x1f4ec;" label="未读消息" :value="unreadCount" color="#F59E0B" />
+            <StatsCard icon="&#x1f3e2;" label="我的展位" :value="boothCount" color="#3B82F6" to="/exhibitor/booths" />
+            <StatsCard icon="&#x1f4e6;" label="我的展品" :value="productCount" color="#10B981" to="/exhibitor/products" />
+            <StatsCard icon="&#x1f91d;" label="采购匹配数" :value="matchCount" color="#6366F1" to="/exhibitor/matches" />
+            <StatsCard icon="&#x1f4ec;" label="未读消息" :value="unreadCount" color="#F59E0B" to="/messages" />
             <StatsCard v-if="exhibitorTier" :icon="tierIcon" :label="tierLabel" :value="tierScore" :color="tierColor" />
           </div>
 

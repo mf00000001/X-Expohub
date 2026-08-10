@@ -17,7 +17,9 @@ const hasSearched = ref(false)
 
 onMounted(() => {
   const q = route.query.q as string
-  if (q) { query.value = q; doSearch() }
+  const c = route.query.cat as string
+  if (c) { activeCat.value = c; doSearch() }
+  else if (q) { query.value = q; doSearch() }
 })
 
 const categories = [

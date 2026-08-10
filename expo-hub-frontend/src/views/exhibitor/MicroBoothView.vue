@@ -3,6 +3,8 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { microBoothApi, type MicroBooth } from '@/api/micro-booth'
 import { productApi } from '@/api/product'
+import http from '@/api/index'
+import { validateInput } from '@/utils/validate'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
 
@@ -23,15 +25,16 @@ async function loadData() {
   try {
     const [mb, mp] = await Promise.all([
       microBoothApi.getMy(),
-      productApi.getMyList({ page_size: 100 }),
+      productApi.getMyProducts({ page_size: 100 }).catch(() => ({ list: [] })),
     ])
     booths.value = mb || []
     myProducts.value = (mp as any)?.list || (mp as any)?.items || []
-  } catch { booths.value = [] } finally { loading.value = false }
+  } catch(e) { console.error('加载微展位失败', e); booths.value = [] } finally { loading.value = false }
 }
 
 async function handleCreate() {
   if (!createForm.value.name) return
+  const v3 = validateInput(createForm.value.description || ''); if (!v3.valid) { alert(v3.reason); return }
   saving.value = true
   try {
     await microBoothApi.create(createForm.value)
@@ -43,10 +46,7 @@ async function handleCreate() {
 }
 
 async function handleUpgrade(id: number, tier: string) {
-  try {
-    await microBoothApi.upgrade(id, tier)
-    await loadData()
-  } catch (e: any) { alert(e?.response?.data?.message || '升级失败') }
+  alert('功能开发中，敬请期待')
 }
 
 async function handleAddProduct(boothId: number, productId: number) {
@@ -63,8 +63,10 @@ async function handleRemoveProduct(boothId: number, productId: number) {
   await loadData()
 }
 
-function openBoothDetail(booth: MicroBooth) {
-  router.push(`/exhibitor/micro-booth/${booth.id}`)
+async function handleDelete(id: number, name: string) {
+  if (!confirm(`确定删除微展位"${name}"？此操作不可恢复。`)) return
+  try { await http.delete(`/micro-booths/${id}`); alert('已删除'); await loadData() }
+  catch(e: any) { alert(e?.response?.data?.message || '删除失败') }
 }
 
 const tierLabel: Record<string, string> = { free: '🆓 免费版', regular: '⭐ VIP会员', flagship: '👑 旗舰会员' }
@@ -85,7 +87,7 @@ const tierColor: Record<string, string> = { free: '#6b7280', regular: '#3b82f6',
       <h3 style="margin-bottom:16px">新建微展位</h3>
       <div class="form-group"><label>微展位名称 *</label><input v-model="createForm.name" class="form-input" placeholder="例如：XX科技产品展示" /></div>
       <div class="form-group"><label>简介</label><textarea v-model="createForm.description" class="form-textarea" rows="3" placeholder="简单介绍你的展品和公司" /></div>
-      <div class="form-group"><label>行业领域</label><input v-model="createForm.industry_domain" class="form-input" placeholder="例如：电子及家电" /></div>
+      <div class="form-group"><label>行业领域</label><select v-model="createForm.industry_domain" class="form-input"><option value="">请选择行业</option><option v-for="d in ['电子及家电','照明','车辆及配件','五金工具','机械','建材','化工产品','能源','日用消费品','礼品','纺织服装','鞋类','家居装饰品','办公箱包及休闲用品','食品','医药及医疗保健','AI/科技','综合服务']" :key="d" :value="d">{{ d }}</option></select></div>
       <button class="btn btn-primary" :disabled="saving" @click="handleCreate">{{ saving ? '创建中...' : '创建免费微展位' }}</button>
       <p style="font-size:12px;color:var(--color-text-secondary);margin-top:8px">🎁 免费版可挂1-3个展品，升级会员解锁更多</p>
     </div>
@@ -130,7 +132,7 @@ const tierColor: Record<string, string> = { free: '#6b7280', regular: '#3b82f6',
 
         <!-- 操作按钮 -->
         <div class="booth-actions">
-          <button class="btn btn-sm btn-primary-outline" @click="openBoothDetail(b)">管理展品</button>
+          <button class="btn btn-sm btn-primary-outline" @click="selectedBooth = b; showAddProduct = true">+ 添加展品</button>
           <template v-if="b.membership_tier === 'free'">
             <button class="btn btn-sm btn-default" @click="handleUpgrade(b.id, 'regular')">升级VIP会员</button>
             <button class="btn btn-sm btn-warning" @click="handleUpgrade(b.id, 'flagship')">升级旗舰</button>
@@ -138,6 +140,21 @@ const tierColor: Record<string, string> = { free: '#6b7280', regular: '#3b82f6',
           <template v-if="b.membership_tier === 'regular'">
             <button class="btn btn-sm btn-warning" @click="handleUpgrade(b.id, 'flagship')">升级旗舰</button>
           </template>
+          <button class="btn btn-sm btn-danger" @click="handleDelete(b.id, b.name)">删除</button>
+        </div>
+
+        <!-- 添加展品弹窗 -->
+        <div v-if="showAddProduct && selectedBooth?.id === b.id" class="add-prod-overlay" @click.self="showAddProduct=false">
+          <div class="add-prod-card">
+            <h4>选择展品添加到"{{ b.name }}"</h4>
+            <div v-if="myProducts.length===0" style="padding:20px;color:var(--color-text-secondary)">暂无展品，请先去"添加展品"创建</div>
+            <div v-else class="prod-select-list">
+              <div v-for="p in myProducts" :key="p.id" class="prod-opt" @click="handleAddProduct(b.id, p.id)">
+                <span>{{ p.name }}</span><span class="text-muted">{{ p.category }}</span>
+              </div>
+            </div>
+            <button class="btn btn-sm btn-default" @click="showAddProduct=false" style="margin-top:12px">取消</button>
+          </div>
         </div>
       </div>
     </div>
@@ -160,4 +177,11 @@ const tierColor: Record<string, string> = { free: '#6b7280', regular: '#3b82f6',
 .booth-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 .btn-warning { background: #fef3c7; color: #d97706; border: 1px solid #fcd34d; cursor: pointer; padding: 4px 10px; border-radius: 4px; font-size: 12px; }
 .upgrade-nudge { padding:10px 14px; background:linear-gradient(135deg,#fef3c7,#fef9c3); border-radius:8px; font-size:12px; color:#92400e; line-height:1.5 }
+.add-prod-overlay { position:fixed;inset:0;background:rgba(0,0,0,0.4);display:flex;justify-content:center;align-items:center;z-index:200 }
+.add-prod-card { background:#fff;border-radius:12px;padding:24px;width:400px;max-width:90vw;max-height:70vh;overflow-y:auto }
+.add-prod-card h4 { margin-bottom:12px }
+.prod-select-list { display:flex;flex-direction:column;gap:6px;max-height:300px;overflow-y:auto }
+.prod-opt { padding:10px 12px;background:var(--color-bg-page);border-radius:8px;cursor:pointer;display:flex;justify-content:space-between }
+.prod-opt:hover { background:var(--color-primary-light) }
+.btn-danger { background:var(--color-danger-light);color:var(--color-danger);border:1px solid var(--color-danger-lighter) }
 </style>

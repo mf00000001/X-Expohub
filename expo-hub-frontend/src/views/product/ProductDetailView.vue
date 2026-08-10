@@ -69,9 +69,6 @@ const statusMap: Record<string,string> = { active:'在售', inactive:'下架', d
           <span class="tag" :class="status==='active'?'tag-success':'tag-warning'">{{ statusMap[status] || status }}</span>
         </div>
         <span class="tag tag-info mb-3" v-if="category">{{ category }}</span>
-        <p class="price-block" v-if="price!==undefined && price!==null">
-          ¥{{ price.toLocaleString() }}{{ unit ? ' / '+unit : '' }}
-        </p>
         <p class="desc-text">{{ desc }}</p>
 
         <div class="info-grid" v-if="exhibitorName || boothId">

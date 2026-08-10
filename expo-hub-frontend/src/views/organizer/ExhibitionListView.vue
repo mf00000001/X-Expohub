@@ -112,6 +112,7 @@ function changePage(page: number) {
             <div class="flex gap-2" style="flex-shrink:0">
               <button v-if="exhibition.status==='draft'||exhibition.status==='pending'" class="btn btn-success btn-sm" @click.stop="publishExhibition(exhibition.id)">发布</button>
               <button class="btn btn-outline btn-sm" @click.stop="router.push({name:'organizer-exhibition-edit',params:{id:exhibition.id}})">编辑</button>
+              <button class="btn btn-outline btn-sm" @click.stop="router.push('/organizer/exhibitions/'+exhibition.id+'/registrations')">登记</button>
               <button class="btn btn-danger btn-sm" @click.stop="deleteExhibition(exhibition.id)">删除</button>
             </div>
           </div>

@@ -35,7 +35,9 @@ const profile = ref<UserProfile | null>(loadProfile())
     if (res.refresh_token) {
       localStorage.setItem('refresh_token', res.refresh_token)
     }
-    await fetchProfile()
+    // Use user data from login response directly (includes is_onboarded)
+    if (res.user) { profile.value = res.user; saveProfile(res.user) }
+    else { await fetchProfile() }
   }
 
   async function register(data: { username: string; email: string; password: string; role?: string }) {

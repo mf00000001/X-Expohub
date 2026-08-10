@@ -6,6 +6,7 @@ import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import { procurementApi, type Procurement } from '@/api/procurement'
 import { productApi, type ProductItem, CATEGORY_PARENT_GROUPS } from '@/api/product'
+import { validateInput } from '@/utils/validate'
 
 const router = useRouter()
 const procurements = ref<Procurement[]>([])
@@ -92,10 +93,12 @@ async function handleMatch(procurementId: number) {
   matchingId.value = procurementId
   actionMsg.value = ''
   try {
-    await procurementApi.createMatch(procurementId, {})
+    const msg = prompt('留言（可选）：') || ''
+    if (msg) { const v4 = validateInput(msg); if (!v4.valid) { alert(v4.reason); return } }
+    await procurementApi.createMatch(procurementId, { message: msg })
     actionMsg.value = '响应成功！已向采购方发送匹配通知'
   } catch (e: any) {
-    actionMsg.value = e.response?.data?.detail || e.message || '匹配失败'
+    actionMsg.value = e?.response?.data?.message || e?.response?.data?.detail || e?.message || '匹配失败，请确认该采购仍为待匹配状态'
   } finally {
     matchingId.value = null
   }
@@ -165,6 +168,7 @@ function changePage(page: number) {
           </div>
           <div class="card-footer">
             <button
+              v-if="item.status === 'pending'"
               class="btn btn-primary btn-sm btn-block"
               :disabled="matchingId === item.id"
               @click.stop="handleMatch(item.id)"

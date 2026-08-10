@@ -94,7 +94,7 @@ def for_exhibitor(
             score += 5
 
         # 只要有点关联就返回（降低门槛）
-        if score >= 5:
+        if score > 0:
             scored.append({
                 "id": p.id, "title": p.title, "description": p.description,
                 "category": p.category, "budget_min": p.budget_min,
@@ -146,7 +146,7 @@ def for_buyer(
                 "id": p.id, "name": p.name, "category": p.category,
                 "exhibitor_name": p.exhibitor_name or "",
                 "description": p.description or "",
-                "score": 1, "reasons": ["热门展品"],
+                "score": 1, "reasons": ["最新展品"],
             } for p in hot],
             "message": "请先发布采购需求获取精准匹配，以下是热门展品",
         }
@@ -157,7 +157,7 @@ def for_buyer(
     # 从10000产品中匹配
     products = db.query(Product).filter(
         Product.status == "published"
-    ).order_by(Product.created_at.desc()).limit(500).all()
+    ).order_by(Product.created_at.desc()).limit(2000).all()
 
     scored = []
     for p in products:
@@ -180,7 +180,7 @@ def for_buyer(
             if ks >= 15:
                 reasons.append("关键词高度匹配")
 
-        if score >= 5:
+        if score > 0:
             scored.append({
                 "id": p.id, "name": p.name, "category": p.category,
                 "description": p.description or "",
@@ -199,7 +199,7 @@ def for_buyer(
             "id": p.id, "name": p.name, "category": p.category,
             "exhibitor_name": p.exhibitor_name or "",
             "description": p.description or "",
-            "score": 1, "reasons": ["热门展品"],
+            "score": 1, "reasons": ["最新展品"],
         } for p in hot]
 
     return {

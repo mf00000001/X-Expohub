@@ -79,8 +79,8 @@ def _procurement_to_dict(p: Procurement, match_count: int = 0) -> dict:
         "title": p.title,
         "description": p.description,
         "category": p.category,
-        "budget_min": p.budget_min,
-        "budget_max": p.budget_max,
+        "budget_min": None,  # 撮合平台不透露价格
+        "budget_max": None,
         "deadline": p.deadline,
         "status": p.status,
         "match_count": match_count,
@@ -503,6 +503,14 @@ def create_match(
     db.commit()
     db.refresh(match)
 
+    # V2.9: 通知采购方有展商应标
+    try:
+        from app.models.notification import notify
+        notify(db, p.purchaser_id, "bid",
+               f"📩 {current_user.company or current_user.username} 响应了你的采购「{p.title[:20]}」",
+               f"报价：¥{data.quoted_price or '面议'}", f"/procurements/{procurement_id}")
+    except: pass
+
     # 构建响应（含展商信息）
     result = _match_to_dict(match)
     result["exhibitor_username"] = current_user.username
@@ -603,8 +611,6 @@ def accept_match(
 # 推荐匹配端点
 # ============================================================
 
-@router.get("/{procurement_id}/recommendations")
-
 def _product_to_dict(p) -> dict:
     return {
         "id": p.id, "name": p.name, "description": p.description,
@@ -621,69 +627,49 @@ def get_recommendations(
     limit: int = Query(default=10, ge=1, le=50),
     db: Session = Depends(get_db),
 ):
+    from app.models.category import match_category_score
     proc = db.query(Procurement).filter(Procurement.id == procurement_id).first()
     if not proc:
-        raise NotFound(message=采购需求不存在)
+        raise NotFound(message="采购需求不存在")
 
-    products = db.query(Product).filter(Product.status == "active").all()
-
-    scored = []
+    products = db.query(Product).filter(Product.status == "published").order_by(Product.created_at.desc()).limit(500).all()
     bmin = proc.budget_min
     bmax = proc.budget_max
+    result = []
 
     for p in products:
         score = 0
         reasons = []
-
-        # 1. Category hierarchy matching (standardized Canton Fair categories)
         cat_score = match_category_score(p.category or '', proc.category or '')
-        if cat_score >= 50:
-            score += 50
-            reasons.append('分类完全匹配')
-        elif cat_score >= 30:
-            score += 30
-            reasons.append('同父类分组匹配')
-        elif cat_score >= 20:
-            score += 20
-            reasons.append('关键词重叠匹配')
+        if cat_score >= 50: score += 50; reasons.append('品类精确匹配')
+        elif cat_score >= 30: score += 30; reasons.append('同行业大类')
+        elif cat_score >= 10: score += 10; reasons.append('品类相关')
 
-        # 2. Same exhibition
         if proc.exhibition_id and p.exhibition_id == proc.exhibition_id:
-            score += 15
-            reasons.append('同展会')
+            score += 15; reasons.append('同展会')
 
-        # 3. Price within budget
-        if p.price:
-            in_range = True
-            if bmin is not None and p.price < bmin: in_range = False
-            if bmax is not None and p.price > bmax: in_range = False
-            if in_range:
-                score += 10
-                reasons.append('预算匹配')
+        if p.price and bmin and bmax and bmin <= p.price <= bmax:
+            score += 10; reasons.append('预算匹配')
 
-        # 4. Base score for published products
         score += 5
+        if score > 5:
+            d = _product_to_dict(p)
+            d["match_score"] = score
+            d["match_reasons"] = reasons
+            result.append(d)
 
-        if score > 5:  # Must have at least some match
-            scored.append((score, p, reasons))
+    if not result:
+        products2 = db.query(Product).filter(Product.status == "published").order_by(Product.created_at.desc()).limit(limit).all()
+        for p in products2:
+            d = _product_to_dict(p)
+            d["match_score"] = 1
+            d["match_reasons"] = ["推荐展品"]
+            result.append(d)
+    else:
+        result.sort(key=lambda x: x["match_score"], reverse=True)
+        result = result[:limit]
 
-    # Fallback: return products from same exhibition
-    if not scored and proc.exhibition_id:
-        for p in products:
-            if p.exhibition_id == proc.exhibition_id:
-                scored.append((3, p, ['同展会']) if p.price and bmin and p.price >= bmin else (1, p, ['同展会']))
-
-    scored.sort(key=lambda x: x[0], reverse=True)
-    top = scored[:limit]
-
-    result = []
-    for score, p, reasons in top:
-        d = _product_to_dict(p)
-        d[match_score] = score
-        d[match_reasons] = reasons
-        result.append(d)
-
-    return {success: True, code: OK, message: 获取成功, data: result}
+    return {"success": True, "code": "OK", "message": "获取成功", "data": result}
 
 
 

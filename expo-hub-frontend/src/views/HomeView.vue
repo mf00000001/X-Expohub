@@ -43,7 +43,7 @@ function goToExhibition(id: number) {
   router.push({ name: 'exhibition-detail', params: { id } })
 }
 function goToCategory(cat: string) {
-  router.push({ name: 'exhibition-list', query: { category: cat } })
+  router.push({ name: 'search', query: { cat: cat } })
 }
 function goToAll() {
   router.push({ name: 'exhibition-list' })
@@ -113,7 +113,7 @@ function handleSearch(v: string) {
         <!-- 行业分类 -->
         <section class="section">
           <div class="section-head">
-            <h2>🏷️ 按行业找展会</h2>
+            <h2>🏷️ 按行业找展品</h2>
           </div>
           <CategoryGrid @select="goToCategory" />
         </section>

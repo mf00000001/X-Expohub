@@ -1,0 +1,41 @@
+# ============================================================
+# ExpoHub Staging 环境覆盖配置
+#
+# 使用方式：
+#   docker compose -f docker-compose.yml -f docker-compose.staging.yml up -d
+# ============================================================
+
+services:
+  app:
+    environment:
+      - ENVIRONMENT=staging
+      - DEBUG=false
+      - CORS_ORIGINS=https://staging-admin.expo-hub.dev,https://staging.expo-hub.dev
+      - LOG_LEVEL=DEBUG
+    ports:
+      - "8000:8000"
+
+  db:
+    ports:
+      - "3307:3306"
+
+  redis:
+    ports:
+      - "6380:6379"
+
+  phpmyadmin:
+    image: phpmyadmin:5
+    container_name: expohub-staging-phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      UPLOAD_LIMIT: 64M
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    restart: unless-stopped
+    networks:
+      - expohub-network

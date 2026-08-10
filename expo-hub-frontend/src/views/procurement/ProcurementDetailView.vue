@@ -7,18 +7,21 @@ import ProductCard from '@/components/ProductCard.vue'
 import { procurementApi, type Procurement } from '@/api/procurement'
 import { productApi, type Product } from '@/api/product'
 import { useRouter } from 'vue-router'
+import http from '@/api/index'
+import { validateInput } from '@/utils/validate'
+import { useUserStore } from '@/stores/user'
 
 const route = useRoute()
 const router = useRouter()
 const userStore = useUserStore()
 async function bidOnProcurement() {
   if (!userStore.isLoggedIn) { alert("请先登录"); router.push("/login"); return }
-  const price = prompt("报价金额："); if(!price) return
   const msg = prompt("留言（可选）：") || ""
+  if (msg) { const v2 = validateInput(msg); if (!v2.valid) { alert(v2.reason); return } }
   try {
-    await http.post("/procurements/"+route.params.id+"/matches", {quoted_price: parseFloat(price), message: msg})
-    alert("应标成功！")
-  } catch(e: any) { alert(e?.response?.data?.message||"应标失败") }
+    await http.post("/procurements/"+route.params.id+"/matches", {message: msg})
+    alert("应标成功！买家已收到通知")
+  } catch(e: any) { alert(e?.response?.data?.message||"应标失败，请确认该采购仍为待匹配状态") }
 }
 
 const procurement = ref<Procurement | null>(null)
@@ -84,7 +87,6 @@ async function fetchRecommendations() {
             <div><span class="text-secondary">采购方：</span>{{ procurement.purchaser_name || '未知' }}</div>
             <div v-if="procurement.category"><span class="text-secondary">分类：</span>{{ procurement.category }}</div>
             <div v-if="procurement.quantity"><span class="text-secondary">数量：</span>{{ procurement.quantity }}{{ procurement.unit ? ` ${procurement.unit}` : '' }}</div>
-            <div v-if="procurement.budget"><span class="text-secondary">预算：</span>¥{{ procurement.budget }}</div>
             <div v-if="procurement.deadline"><span class="text-secondary">截止日期：</span>{{ procurement.deadline }}</div>
             <div v-if="procurement.exhibition_title"><span class="text-secondary">关联展会：</span>{{ procurement.exhibition_title }}</div>
           </div>

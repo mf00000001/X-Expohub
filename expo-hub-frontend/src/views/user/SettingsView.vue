@@ -14,6 +14,12 @@ const confirmPassword = ref('')
 const changingPassword = ref(false)
 const errorMsg = ref('')
 const successMsg = ref('')
+const industryDomain = ref('')
+async function saveDomain() {
+  if (!industryDomain.value) return
+  try { await http.put('/exhibitors/domain', { industry_domain: industryDomain.value }); alert('已保存') }
+  catch (e: any) { alert(e?.response?.data?.message || '保存失败') }
+}
 
 async function changePassword() {
   errorMsg.value = ''

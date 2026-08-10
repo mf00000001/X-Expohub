@@ -31,11 +31,17 @@ export const boothApi = {
   getList(params?: { exhibition_id?: number; zone?: string; status?: string }): Promise<BoothItem[]> {
     return http.get('/booths', { params })
   },
+  getMyBooths(): Promise<BoothItem[]> {
+    return http.get('/booths/my')
+  },
   getDetail(id: number): Promise<BoothItem> {
     return http.get(`/booths/${id}`)
   },
   book(boothId: number): Promise<BoothItem> {
     return http.post('/booths/book', { booth_id: boothId })
+  },
+  apply(boothId: number): Promise<any> {
+    return http.post(`/booths/${boothId}/apply`)
   },
   // 主办方接口
   create(data: CreateBoothParams): Promise<BoothItem> {

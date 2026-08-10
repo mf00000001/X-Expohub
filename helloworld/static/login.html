@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - HelloWorld</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 装饰背景 -->
+        <div class="bg-circle bg-circle--top" aria-hidden="true"></div>
+        <div class="bg-circle bg-circle--bottom" aria-hidden="true"></div>
+
+        <div class="card">
+            <!-- 头部 -->
+            <div class="card__header">
+                <div class="logo" aria-hidden="true">🔐</div>
+                <h1 class="card__title">欢迎回来</h1>
+                <p class="card__subtitle">请登录您的账户以继续</p>
+            </div>
+
+            <!-- 登录表单 -->
+            <form class="login-form" id="loginForm" novalidate>
+                <!-- 用户名 -->
+                <div class="form-group">
+                    <label class="form-label" for="username">用户名</label>
+                    <div class="input-wrap">
+                        <span class="input-icon" aria-hidden="true">👤</span>
+                        <input
+                            id="username"
+                            class="form-input"
+                            type="text"
+                            placeholder="请输入用户名"
+                            autocomplete="username"
+                            required
+                        />
+                    </div>
+                    <p class="field-error" id="usernameError"></p>
+                </div>
+
+                <!-- 密码 -->
+                <div class="form-group">
+                    <label class="form-label" for="password">密码</label>
+                    <div class="input-wrap">
+                        <span class="input-icon" aria-hidden="true">🔒</span>
+                        <input
+                            id="password"
+                            class="form-input"
+                            type="password"
+                            placeholder="请输入密码"
+                            autocomplete="current-password"
+                            required
+                        />
+                        <button
+                            type="button"
+                            class="toggle-pwd"
+                            id="togglePwd"
+                            aria-label="切换密码可见性"
+                            tabindex="-1"
+                        >👁️</button>
+                    </div>
+                    <p class="field-error" id="passwordError"></p>
+                </div>
+
+                <!-- 记住我与忘记密码 -->
+                <div class="form-options">
+                    <label class="checkbox-wrap">
+                        <input type="checkbox" id="rememberMe" checked />
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-label">记住我</span>
+                    </label>
+                    <a href="#" class="forgot-link" id="forgotLink">忘记密码？</a>
+                </div>
+
+                <!-- 全局错误提示 -->
+                <div class="error-banner hidden" id="errorBanner" role="alert">
+                    <span class="error-icon" aria-hidden="true">⚠️</span>
+                    <span id="errorText"></span>
+                </div>
+
+                <!-- 提交按钮 -->
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <span class="btn-text" id="btnText">登录</span>
+                    <div class="btn-spinner hidden" id="btnSpinner" aria-hidden="true">
+                        <div class="spinner-dot"></div>
+                        <div class="spinner-dot"></div>
+                        <div class="spinner-dot"></div>
+                    </div>
+                </button>
+            </form>
+
+            <!-- 注册引导 -->
+            <div class="register-guide">
+                <span class="guide-text">还没有账户？</span>
+                <a href="#" class="guide-link" id="registerLink">立即注册</a>
+            </div>
+
+            <!-- 社交登录 -->
+            <div class="social-section">
+                <div class="divider">
+                    <span class="divider-text">或使用以下方式登录</span>
+                </div>
+                <div class="social-btns">
+                    <button type="button" class="social-btn social-btn--wechat" title="微信登录">
+                        <span class="social-icon">💬</span>
+                        <span class="social-name">微信</span>
+                    </button>
+                    <button type="button" class="social-btn social-btn--github" title="GitHub 登录">
+                        <span class="social-icon">🐙</span>
+                        <span class="social-name">GitHub</span>
+                    </button>
+                    <button type="button" class="social-btn social-btn--google" title="Google 登录">
+                        <span class="social-icon">🔴</span>
+                        <span class="social-name">Google</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 底部协议 -->
+            <div class="card__footer">
+                <span class="footer__status">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    <span id="statusText">就绪</span>
+                </span>
+                <span class="footer__version">v1.0.0</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

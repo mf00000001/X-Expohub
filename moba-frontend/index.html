@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOBA - 召唤师峡谷</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --gold: #ffd700;
+            --hp-red: #e74c3c;
+            --mp-blue: #3498db;
+            --cd-gray: #555;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            user-select: none;
+        }
+
+        #game-container {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            border: 2px solid #333;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ==================== HUD 层 ==================== */
+        #hud-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* ----- 底部技能栏 ----- */
+        #skill-bar {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            pointer-events: all;
+        }
+
+        .skill-slot {
+            width: 56px;
+            height: 56px;
+            background: rgba(0, 0, 0, 0.75);
+            border: 2px solid #5a5a3a;
+            border-radius: 6px;
+            position: relative;
+            cursor: pointer;
+            transition: border-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skill-slot:hover {
+            border-color: #aaa;
+        }
+
+        .skill-slot.on-cooldown {
+            border-color: #444;
+        }
+
+        .skill-icon {
+            font-size: 22px;
+            color: #ddd;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .skill-key {
+            position: absolute;
+            top: 3px;
+            left: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 4px #000;
+        }
+
+        .skill-cd-mask {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            pointer-events: none;
+            border-radius: 0 0 4px 4px;
+            transition: height 0.1s linear;
+        }
+
+        .skill-cd-text {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 6px #000;
+            pointer-events: none;
+        }
+
+        /* ----- 左上角 英雄状态 ----- */
+        #hero-status {
+            position: absolute;
+            top: 12px;
+            left: 16px;
+            width: 280px;
+            pointer-events: none;
+        }
+
+        .hero-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 1px 1px 2px #000;
+            margin-bottom: 4px;
+        }
+
+        .hero-level {
+            display: inline-block;
+            background: #222;
+            color: #ffd700;
+            padding: 1px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 4px;
+        }
+
+        .status-bar-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 3px;
+        }
+
+        .status-bar-row .label {
+            width: 22px;
+            font-size: 11px;
+            color: #aaa;
+            text-align: right;
+        }
+
+        .bar-bg {
+            flex: 1;
+            height: 14px;
+            background: #1a1a1a;
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.2s;
+        }
+
+        .bar-fill.hp {
+            background: linear-gradient(180deg, #e74c3c, #c0392b);
+        }
+
+        .bar-fill.mp {
+            background: linear-gradient(180deg, #3498db, #2980b9);
+        }
+
+        .bar-fill.xp {
+            background: linear-gradient(180deg, #9b59b6, #8e44ad);
+        }
+
+        .bar-text {
+            font-size: 10px;
+            color: #fff;
+            text-shadow: 0 0 3px #000;
+            min-width: 70px;
+            text-align: right;
+        }
+
+        /* ----- 右上角 金币/统计 ----- */
+        #gold-display {
+            position: absolute;
+            top: 14px;
+            right: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
+            pointer-events: none;
+        }
+
+        #kda-display {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            font-size: 13px;
+            color: #ccc;
+            text-shadow: 1px 1px 2px #000;
+            pointer-events: none;
+        }
+
+        /* ----- 装备栏 (右上角下方) ----- */
+        #equipment-slots {
+            position: absolute;
+            top: 68px;
+            right: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            pointer-events: none;
+        }
+
+        .equip-slot {
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #5a5a3a;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #888;
+        }
+
+        .equip-slot.filled {
+            border-color: #8a8a5a;
+            color: #ffd700;
+            font-size: 9px;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        /* ----- 商店面板 ----- */
+        #shop-panel {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 460px;
+            max-height: 500px;
+            background: rgba(10, 10, 18, 0.96);
+            border: 2px solid #5a5a3a;
+            border-radius: 8px;
+            padding: 20px;
+            display: none;
+            pointer-events: all;
+            z-index: 100;
+            overflow-y: auto;
+        }
+
+        #shop-panel.open {
+            display: block;
+        }
+
+        #shop-panel h2 {
+            color: #ffd700;
+            font-size: 18px;
+            margin-bottom: 12px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+        }
+
+        .shop-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            margin: 4px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #333;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .shop-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #666;
+        }
+
+        .shop-item-name {
+            color: #ddd;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .shop-item-desc {
+            color: #999;
+            font-size: 11px;
+        }
+
+        .shop-item-cost {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .shop-close {
+            display: block;
+            margin: 14px auto 0;
+            padding: 6px 24px;
+            background: #5a3a3a;
+            color: #ddd;
+            border: 1px solid #8a5a5a;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .shop-close:hover {
+            background: #6a4a4a;
+        }
+
+        /* ----- 小地图 ----- */
+        #minimap {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            width: 180px;
+            height: 180px;
+            border: 2px solid #5a5a3a;
+            border-radius: 50%;
+            overflow: hidden;
+            pointer-events: none;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        #minimap canvas {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        /* ----- 提示文字 ----- */
+        #tooltip {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: #aaa;
+            pointer-events: none;
+            text-shadow: 1px 1px 2px #000;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+
+        <!-- HUD 层 -->
+        <div id="hud-layer">
+            <!-- 英雄状态 -->
+            <div id="hero-status">
+                <div class="hero-name">
+                    ⚔️ 剑圣 <span class="hero-level" id="hero-lv">Lv 1</span>
+                </div>
+                <div class="status-bar-row">
+                    <span class="label">HP</span>
+                    <div class="bar-bg"><div class="bar-fill hp" id="hp-bar" style="width:100%"></div></div>
+                    <span class="bar-text" id="hp-text">600/600</span>
+                </div>
+                <div class="status-bar-row">
+                    <span class="label">MP</span>
+                    <div class="bar-bg"><div class="bar-fill mp" id="mp-bar" style="width:100%"></div></div>
+                    <span class="bar-text" id="mp-text">400/400</span>
+                </div>
+                <div class="status-bar-row">
+                    <span class="label">XP</span>
+                    <div class="bar-bg"><div class="bar-fill xp" id="xp-bar" style="width:0%"></div></div>
+                    <span class="bar-text" id="xp-text">0/100</span>
+                </div>
+            </div>
+
+            <!-- 金币 -->
+            <div id="gold-display">🪙 <span id="gold-amount">500</span></div>
+            <div id="kda-display">
+                K: <span id="kills">0</span> /
+                D: <span id="deaths">0</span> /
+                A: <span id="assists">0</span>
+            </div>
+
+            <!-- 装备栏 -->
+            <div id="equipment-slots">
+                <div class="equip-slot" id="eq-0"></div>
+                <div class="equip-slot" id="eq-1"></div>
+                <div class="equip-slot" id="eq-2"></div>
+                <div class="equip-slot" id="eq-3"></div>
+                <div class="equip-slot" id="eq-4"></div>
+                <div class="equip-slot" id="eq-5"></div>
+            </div>
+
+            <!-- 技能栏 -->
+            <div id="skill-bar">
+                <div class="skill-slot" id="skill-q">
+                    <span class="skill-key">Q</span>
+                    <span class="skill-icon">⚔️</span>
+                    <div class="skill-cd-mask" style="height:0%"></div>
+                    <div class="skill-cd-text"></div>
+                </div>
+                <div class="skill-slot" id="skill-w">
+                    <span class="skill-key">W</span>
+                    <span class="skill-icon">🛡️</span>
+                    <div class="skill-cd-mask" style="height:0%"></div>
+                    <div class="skill-cd-text"></div>
+                </div>
+                <div class="skill-slot" id="skill-e">
+                    <span class="skill-key">E</span>
+                    <span class="skill-icon">💨</span>
+                    <div class="skill-cd-mask" style="height:0%"></div>
+                    <div class="skill-cd-text"></div>
+                </div>
+                <div class="skill-slot" id="skill-r">
+                    <span class="skill-key">R</span>
+                    <span class="skill-icon">🔥</span>
+                    <div class="skill-cd-mask" style="height:0%"></div>
+                    <div class="skill-cd-text"></div>
+                </div>
+            </div>
+
+            <!-- 商店面板 -->
+            <div id="shop-panel">
+                <h2>🛒 装备商店 (按 P 关闭)</h2>
+                <div id="shop-items"></div>
+                <button class="shop-close" onclick="document.getElementById('shop-panel').classList.remove('open')">关闭</button>
+            </div>
+
+            <!-- 小地图 -->
+            <div id="minimap">
+                <canvas id="minimap-canvas" width="180" height="180"></canvas>
+            </div>
+
+            <!-- 操作提示 -->
+            <div id="tooltip">
+                🖱️ 右键移动 | 左键攻击 | QWER 技能 | P 商店 | 空格 镜头居中
+            </div>
+        </div>
+    </div>
+
+    <!-- TypeScript 编译输出 -->
+    <script src="dist/main.js" type="module"></script>
+</body>
+</html>
