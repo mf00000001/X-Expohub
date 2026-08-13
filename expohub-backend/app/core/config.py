@@ -12,6 +12,7 @@ from enum import Enum
 from typing import Optional, List
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import model_validator
 
 
 class AppEnv(str, Enum):
@@ -70,10 +71,31 @@ class Settings(BaseSettings):
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7     # Refresh Token 有效期（天）
 
     # ---- CORS 配置 ----
-    CORS_ORIGINS: List[str] = ["*"]
+    # 开发默认仅允许本地前端(生产必须显式配置白名单,见 _validate_security)
+    CORS_ORIGINS: List[str] = ["http://localhost:5173", "http://127.0.0.1:5173"]
     CORS_CREDENTIALS: bool = True
     CORS_METHODS: List[str] = ["*"]
     CORS_HEADERS: List[str] = ["*"]
+
+    # ---- 生产环境安全校验 ----
+    @model_validator(mode="after")
+    def _validate_security(self):
+        """生产环境强制安全配置:
+        - SECRET_KEY 必须为强随机(≥32 字符,非默认值)
+        - CORS_ORIGINS 必须为明确白名单,禁止通配符 + 凭证组合
+        """
+        if self.APP_ENV == AppEnv.PRODUCTION:
+            if len(self.SECRET_KEY) < 32 or self.SECRET_KEY.startswith("change-me"):
+                raise ValueError(
+                    "生产环境必须通过环境变量设置强随机 SECRET_KEY(≥32 字符)"
+                )
+            if self.CORS_ORIGINS == ["*"] or "*" in self.CORS_ORIGINS:
+                raise ValueError(
+                    "生产环境 CORS_ORIGINS 必须配置明确白名单,禁止通配符 *"
+                )
+            if self.CORS_CREDENTIALS and len(self.CORS_ORIGINS) == 0:
+                raise ValueError("生产环境 CORS_ORIGINS 不能为空")
+        return self
 
     # ---- 分页默认值 ----
     PAGE_DEFAULT: int = 1
