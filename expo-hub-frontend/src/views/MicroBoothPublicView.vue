@@ -275,7 +275,6 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
 .dprod-desc { font-size:12px; color:var(--color-text-secondary) }
 .btn-back { background:none; border:none; color:var(--color-primary); font-size:14px; cursor:pointer; padding:0 }
 .btn-back:hover { text-decoration:underline }
-</style>
 /* V3.4: 展会筛选与所属展会 */
 .exh-filter { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
 .exh-tag { padding:5px 12px; border:1px solid #c7d2fe; border-radius:16px; font-size:12px; background:#eef2ff; color:#4338ca; cursor:pointer; transition:all .2s; max-width:260px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
@@ -288,3 +287,4 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
 .deh-name { font-size:15px; font-weight:700; color:#1f2937; margin-bottom:6px; }
 .deh-meta { display:flex; gap:14px; flex-wrap:wrap; font-size:13px; color:#4b5563; margin-bottom:8px; }
 .deh-link { font-size:13px; color:#4338ca; font-weight:500; }
+</style>
