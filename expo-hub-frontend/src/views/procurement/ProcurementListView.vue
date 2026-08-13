@@ -22,12 +22,12 @@ async function fetchProcurements() {
   try {
     const res = await procurementApi.getList({
       page: currentPage.value,
-      page_size: 12,
+      page_size: 50,
       search: searchKeyword.value || undefined,
       category: activeCategory.value === '全部' ? undefined : activeCategory.value,
     })
     procurements.value = (res as any).list || (res as any).items || (res as any).results || []
-    totalPages.value = (res as any).total_pages || Math.ceil(((res as any).total || 0) / 12) || 1
+    totalPages.value = (res as any).total_pages || Math.ceil(((res as any).total || 0) / 50) || 1
   } catch (err) {
     console.error('Failed to load procurements:', err)
   } finally {
