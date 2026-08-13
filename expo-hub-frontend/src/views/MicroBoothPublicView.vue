@@ -2,6 +2,7 @@
 import { ref, onMounted, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { microBoothApi, type MicroBooth } from '@/api/micro-booth'
+import { exhibitionApi } from '@/api/exhibition'
 import http from '@/api/index'
 import SearchBar from '@/components/SearchBar.vue'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
@@ -16,6 +17,24 @@ const keyword = ref('')
 const activeDomain = ref('')
 const isDetail = ref(false)
 
+// V3.4: 展会筛选(微展位按展会归类)
+const exhibitions = ref<any[]>([])
+const activeExhibition = ref<number | null>(null)
+async function loadExhibitions() {
+  try {
+    const res: any = await exhibitionApi.getList({ page_size: 10 })
+    const list = (res as any).list || (res as any).items || []
+    // 仅正式发布的展会(排除草稿/测试)
+    exhibitions.value = list.filter((e: any) => e.status === 'published' || e.status === 'ongoing')
+  } catch {
+    exhibitions.value = []
+  }
+}
+function selectExhibition(id: number | null) {
+  activeExhibition.value = id
+  fetchList()
+}
+
 const domains = [
   '电子及家电','照明','车辆及配件','五金工具','机械','建材','化工产品','能源',
   '日用消费品','礼品','纺织服装','鞋类','家居装饰品','办公箱包及休闲用品','食品',
@@ -28,6 +47,7 @@ onMounted(async () => {
     isDetail.value = true
     await fetchDetail(Number(id))
   } else {
+    await loadExhibitions()
     await fetchList()
   }
 })
@@ -42,6 +62,7 @@ async function fetchList() {
   try {
     const params: any = { page_size: 50, sort: 'tier' }
     if (activeDomain.value) params.industry_domain = activeDomain.value
+    if (activeExhibition.value) params.exhibition_id = activeExhibition.value
     if (keyword.value) { params.search = keyword.value; activeDomain.value = '' }
     const res: any = await microBoothApi.getList(params)
     booths.value = (res?.list || res?.data?.list || [])
@@ -107,6 +128,17 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
           <p class="detail-domain" v-if="detail.booth?.industry_domain">{{ detail.booth?.industry_domain }}</p>
         </div>
 
+        <!-- V3.4: 所属展会信息 -->
+        <div v-if="detail.booth?.exhibition_info" class="detail-exh" @click="router.push('/exhibitions/' + detail.booth.exhibition_info.id)">
+          <div class="deh-title">🏟️ 所属展会</div>
+          <div class="deh-name">{{ detail.booth.exhibition_info.title }}</div>
+          <div class="deh-meta">
+            <span>📅 {{ (detail.booth.exhibition_info.start_date || '').slice(0,10) }} ~ {{ (detail.booth.exhibition_info.end_date || '').slice(0,10) }}</span>
+            <span>📍 {{ detail.booth.exhibition_info.location }}</span>
+          </div>
+          <div class="deh-link">查看展会详情 →</div>
+        </div>
+
         <p class="detail-desc" v-if="detail.booth?.description">{{ detail.booth?.description }}</p>
 
         <div class="detail-stats">
@@ -162,6 +194,16 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
     <div class="domain-filter">
       <button v-for="d in domains" :key="d" :class="['domain-tag', {active:activeDomain===d}]" @click="selectDomain(d)">{{ d }}</button>
     </div>
+    <!-- V3.4: 展会筛选(微展位按展会归类) -->
+    <div class="exh-filter" v-if="exhibitions.length">
+      <button :class="['exh-tag', {active: activeExhibition === null}]" @click="selectExhibition(null)">全部展会</button>
+      <button
+        v-for="e in exhibitions"
+        :key="e.id"
+        :class="['exh-tag', {active: activeExhibition === e.id}]"
+        @click="selectExhibition(e.id)"
+      >🏟️ {{ (e as any).title || (e as any).name }}</button>
+    </div>
 
     <LoadingSkeleton v-if="loading" :lines="6" />
     <div v-else-if="booths.length===0 && keyword" style="text-align:center;padding:20px;color:var(--color-text-secondary)">
@@ -175,6 +217,10 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
         <div class="mb-top">
           <span class="mb-tier">{{ tierBadge[b.membership_tier] || '🆓' }}</span>
           <h3>{{ b.name }}</h3>
+        </div>
+        <!-- V3.4: 所属展会标签 -->
+        <div v-if="(b as any).exhibition_info" class="mb-exh" @click.stop="router.push('/exhibitions/' + (b as any).exhibition_info.id)">
+          🏟️ {{ (b as any).exhibition_info.title }}
         </div>
         <p class="mb-desc" v-if="b.description">{{ b.description.slice(0,80) }}{{ b.description.length>80?'...':'' }}</p>
         <div class="mb-tags" v-if="b.industry_domain">
@@ -230,3 +276,15 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
 .btn-back { background:none; border:none; color:var(--color-primary); font-size:14px; cursor:pointer; padding:0 }
 .btn-back:hover { text-decoration:underline }
 </style>
+/* V3.4: 展会筛选与所属展会 */
+.exh-filter { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:16px; }
+.exh-tag { padding:5px 12px; border:1px solid #c7d2fe; border-radius:16px; font-size:12px; background:#eef2ff; color:#4338ca; cursor:pointer; transition:all .2s; max-width:260px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.exh-tag.active { background:#4338ca; color:#fff; border-color:#4338ca; font-weight:600; }
+.mb-exh { display:inline-block; margin-bottom:8px; padding:2px 10px; border-radius:10px; background:#eef2ff; color:#4338ca; font-size:12px; cursor:pointer; }
+.mb-exh:hover { background:#e0e7ff; }
+.detail-exh { margin-bottom:16px; padding:14px 16px; border:1px solid #c7d2fe; border-radius:12px; background:#f5f7ff; cursor:pointer; transition:all .2s; }
+.detail-exh:hover { border-color:#818cf8; box-shadow:0 2px 8px rgba(79,70,229,0.12); }
+.deh-title { font-size:12px; color:#6366f1; margin-bottom:6px; }
+.deh-name { font-size:15px; font-weight:700; color:#1f2937; margin-bottom:6px; }
+.deh-meta { display:flex; gap:14px; flex-wrap:wrap; font-size:13px; color:#4b5563; margin-bottom:8px; }
+.deh-link { font-size:13px; color:#4338ca; font-weight:500; }

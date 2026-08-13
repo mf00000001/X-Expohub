@@ -62,7 +62,21 @@ class UpgradeRequest(BaseModel):
 # 辅助函数
 # ============================================================
 
-def _mb_to_dict(mb: MicroBooth, product_count: int = 0) -> dict:
+def _mb_to_dict(mb: MicroBooth, product_count: int = 0, db: Optional[Session] = None) -> dict:
+    # V3.4: 所属展会信息
+    exhibition_info = None
+    if mb.exhibition_id is not None and db is not None:
+        from app.models.exhibition import Exhibition
+        exh = db.query(Exhibition).filter(Exhibition.id == mb.exhibition_id).first()
+        if exh:
+            exhibition_info = {
+                "id": exh.id,
+                "title": exh.title,
+                "status": exh.status,
+                "start_date": exh.start_date,
+                "end_date": exh.end_date,
+                "location": exh.location,
+            }
     return {
         "id": mb.id,
         "exhibitor_id": mb.exhibitor_id,
@@ -77,6 +91,8 @@ def _mb_to_dict(mb: MicroBooth, product_count: int = 0) -> dict:
         "search_appearances": mb.search_appearances,
         "favorite_count": mb.favorite_count,
         "status": mb.status,
+        "exhibition_id": mb.exhibition_id,
+        "exhibition_info": exhibition_info,  # V3.4: 所属展会(标题/时间/地点/状态)
         "created_at": mb.created_at.isoformat() if mb.created_at else None,
         "updated_at": mb.updated_at.isoformat() if mb.updated_at else None,
     }
@@ -122,6 +138,7 @@ def list_public(
     page: int = Query(default=1, ge=1),
     page_size: int = Query(default=20, ge=1, le=100),
     industry_domain: Optional[str] = Query(default=None),
+    exhibition_id: Optional[int] = Query(default=None, description="V3.4: 按所属展会筛选"),
     search: Optional[str] = Query(default=None),
     db: Session = Depends(get_db),
 ):
@@ -129,6 +146,8 @@ def list_public(
     q = db.query(MicroBooth).filter(MicroBooth.status == "active")
     if industry_domain:
         q = q.filter(MicroBooth.industry_domain == industry_domain)
+    if exhibition_id:
+        q = q.filter(MicroBooth.exhibition_id == exhibition_id)
     if search:
         from app.models.category import EXHIBITION_CATEGORIES, get_parent_group
         # 精确匹配
@@ -166,7 +185,7 @@ def list_public(
     result = []
     for mb in items:
         count = _check_product_limit(db, mb.id)
-        result.append(_mb_to_dict(mb, count))
+        result.append(_mb_to_dict(mb, count, db))
 
     return {
         "success": True, "code": "OK", "message": "获取成功",
@@ -188,7 +207,7 @@ def my_booths(
     result = []
     for mb in items:
         count = _check_product_limit(db, mb.id)
-        result.append(_mb_to_dict(mb, count))
+        result.append(_mb_to_dict(mb, count, db))
 
     return {"success": True, "code": "OK", "message": "获取成功", "data": result}
 
@@ -215,7 +234,7 @@ def get_detail(mb_id: int, db: Session = Depends(get_db)):
     return {
         "success": True, "code": "OK", "message": "获取成功",
         "data": {
-            "booth": _mb_to_dict(mb, total_products),
+            "booth": _mb_to_dict(mb, total_products, db),
             "products": [_product_to_dict(p) for p in products],
             "limit_info": {
                 "tier": mb.membership_tier,
@@ -253,7 +272,7 @@ def create_booth(
     db.commit()
     db.refresh(mb)
 
-    return {"success": True, "code": "OK", "message": "微展位创建成功", "data": _mb_to_dict(mb, 0)}
+    return {"success": True, "code": "OK", "message": "微展位创建成功", "data": _mb_to_dict(mb, 0, db)}
 
 
 @router.put("/{mb_id}")
@@ -278,7 +297,7 @@ def update_booth(
     db.refresh(mb)
 
     count = _check_product_limit(db, mb.id)
-    return {"success": True, "code": "OK", "message": "更新成功", "data": _mb_to_dict(mb, count)}
+    return {"success": True, "code": "OK", "message": "更新成功", "data": _mb_to_dict(mb, count, db)}
 
 
 @router.post("/{mb_id}/products")
@@ -314,7 +333,7 @@ def add_product(
     db.commit()
 
     count = _check_product_limit(db, mb.id)
-    return {"success": True, "code": "OK", "message": "展品已添加到微展位", "data": _mb_to_dict(mb, count)}
+    return {"success": True, "code": "OK", "message": "展品已添加到微展位", "data": _mb_to_dict(mb, count, db)}
 
 
 @router.delete("/{mb_id}/products/{product_id}")
@@ -373,7 +392,7 @@ def upgrade_membership(
     return {
         "success": True, "code": "OK",
         "message": f"已从 {old_tier} 升级为 {data.tier}",
-        "data": _mb_to_dict(mb, count),
+        "data": _mb_to_dict(mb, count, db),
     }
 
 
