@@ -63,7 +63,7 @@ async function fetchExhibition() {
       venue_id: data.venue_info?.id || null,
     }
   } catch (e: any) {
-    error.value = e.response?.data?.detail || 'Failed to load exhibition'
+    error.value = e.response?.data?.detail || '加载展会失败'
   } finally {
     loading.value = false
   }
@@ -85,12 +85,12 @@ async function handleSubmit() {
       status: form.value.status,
       venue_id: form.value.venue_id ?? undefined,
     })
-    success.value = 'Exhibition updated successfully!'
+    success.value = '展会更新成功！'
     setTimeout(() => {
       router.push({ name: 'organizer-exhibitions' })
     }, 1500)
   } catch (e: any) {
-    error.value = e.response?.data?.detail || e.message || 'Update failed'
+    error.value = e.response?.data?.detail || e.message || '更新失败，请重试'
   } finally {
     submitting.value = false
   }
@@ -107,11 +107,11 @@ onMounted(fetchExhibition)
   <div>
         <div class="container page-wrapper">
       <div class="flex items-center gap-2 mb-6">
-        <button class="btn btn-outline btn-sm" @click="goBack">&larr; Back</button>
-        <h1 class="page-title" style="margin-bottom:0">Edit Exhibition</h1>
+        <button class="btn btn-outline btn-sm" @click="goBack">← 返回</button>
+        <h1 class="page-title" style="margin-bottom:0">编辑展会</h1>
       </div>
 
-      <div v-if="loading" class="card p-6 text-center">Loading...</div>
+      <div v-if="loading" class="card p-6 text-center">加载中...</div>
 
       <div v-else class="card">
         <div class="card-body">
@@ -120,17 +120,17 @@ onMounted(fetchExhibition)
 
           <form @submit.prevent="handleSubmit">
             <div class="form-group">
-              <label class="form-label">Exhibition Name <span class="text-danger">*</span></label>
-              <input v-model="form.title" class="form-input" type="text" placeholder="Enter exhibition name" />
+              <label class="form-label">展会名称 <span class="text-danger">*</span></label>
+              <input v-model="form.title" class="form-input" type="text" placeholder="请输入展会名称" />
             </div>
 
             <div class="form-group">
-              <label class="form-label">Description</label>
-              <textarea v-model="form.description" class="form-input form-textarea" placeholder="Enter description..."></textarea>
+              <label class="form-label">展会描述</label>
+              <textarea v-model="form.description" class="form-input form-textarea" placeholder="请输入展会描述信息..."></textarea>
             </div>
 
             <div class="form-group">
-              <label class="form-label">Cover Image URL</label>
+              <label class="form-label">封面图片 URL</label>
               <div v-if="form.cover_image" class="cover-preview mb-2">
                 <img :src="form.cover_image" alt="preview" style="max-width:300px;max-height:150px;object-fit:cover;border-radius:8px" />
               </div>
@@ -139,11 +139,11 @@ onMounted(fetchExhibition)
 
             <div class="grid grid-cols-1 grid-cols-2 gap-4">
               <div class="form-group">
-                <label class="form-label">Start Date <span class="text-danger">*</span></label>
+                <label class="form-label">开始日期 <span class="text-danger">*</span></label>
                 <input v-model="form.start_date" class="form-input" type="date" />
               </div>
               <div class="form-group">
-                <label class="form-label">End Date <span class="text-danger">*</span></label>
+                <label class="form-label">结束日期 <span class="text-danger">*</span></label>
                 <input v-model="form.end_date" class="form-input" type="date" />
               </div>
             </div>
@@ -158,32 +158,32 @@ onMounted(fetchExhibition)
             </div>
 
             <div class="form-group">
-              <label class="form-label">Location</label>
-              <input v-model="form.location" class="form-input" type="text" placeholder="e.g. Shanghai National Exhibition Center" />
+              <label class="form-label">举办地点</label>
+              <input v-model="form.location" class="form-input" type="text" placeholder="如：上海国家会展中心" />
             </div>
 
             <div class="form-group">
-              <label class="form-label">Category</label>
+              <label class="form-label">展会品类</label>
               <select v-model="form.category" class="form-input">
-                <option value="">Select category</option>
+                <option value="">请选择品类</option>
                 <option v-for="cat in EXHIBITION_CATEGORIES" :key="cat" :value="cat">{{ cat }}</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label class="form-label">Status</label>
+              <label class="form-label">状态</label>
               <select v-model="form.status" class="form-input">
-                <option value="draft">Draft</option>
-                <option value="pending">Pending</option>
-                <option value="active">Published</option>
+                <option value="draft">草稿</option>
+                <option value="pending">待审批</option>
+                <option value="active">发布</option>
               </select>
             </div>
 
             <div class="flex gap-2 mt-6">
               <button type="submit" class="btn btn-primary btn-lg" :disabled="submitting">
-                {{ submitting ? 'Saving...' : 'Save Changes' }}
+                {{ submitting ? '保存中...' : '保存修改' }}
               </button>
-              <button type="button" class="btn btn-outline btn-lg" @click="goBack">Cancel</button>
+              <button type="button" class="btn btn-outline btn-lg" @click="goBack">取消</button>
             </div>
           </form>
         </div>
