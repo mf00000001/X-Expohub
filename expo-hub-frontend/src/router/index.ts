@@ -59,6 +59,8 @@ const routes: RouteRecordRaw[] = [
 
   // ==================== 主办方 (organizer) ====================
   { path: '/organizer/dashboard', name: 'organizer-dashboard', component: () => import('@/views/organizer/DashboardView.vue'), meta: { title: '主办方工作台', requiresAuth: true, roles: ['organizer','admin'], showFooter: true } },
+  // V3.3: 主办方选馆(汇总对比展馆)
+  { path: '/organizer/venues', name: 'organizer-venue-select', component: () => import('@/views/organizer/VenueSelectView.vue'), meta: { title: '展馆选择', requiresAuth: true, roles: ['organizer','admin'], showFooter: true } },
   { path: '/organizer/exhibitions', name: 'organizer-exhibitions', component: () => import('@/views/organizer/ExhibitionListView.vue'), meta: { title: '展会管理', requiresAuth: true, roles: ['organizer','admin'], showFooter: true } },
   { path: '/organizer/exhibitions/create', name: 'organizer-exhibition-create', component: () => import('@/views/organizer/ExhibitionCreateView.vue'), meta: { title: '创建展会', requiresAuth: true, roles: ['organizer','admin'], showFooter: false } },
   { path: '/organizer/exhibitions/:id/edit', name: 'organizer-exhibition-edit', component: () => import('@/views/organizer/ExhibitionEditView.vue'), meta: { title: '编辑展会', requiresAuth: true, roles: ['organizer','admin'], showFooter: false } },

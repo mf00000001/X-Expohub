@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { exhibitionApi } from '@/api/exhibition'
 import { venueApi, type Venue } from '@/api/venue'
 import { EXHIBITION_CATEGORIES } from '@/api/product'
 
 const router = useRouter()
+const route = useRoute()
 const submitting = ref(false)
 const error = ref('')
 const success = ref('')
@@ -43,7 +44,16 @@ function onVenueChange() {
     form.value.location = `${v.name}（${v.address}）`
   }
 }
-onMounted(loadVenues)
+onMounted(() => {
+  loadVenues()
+  // V3.3: 支持从选馆页带 venue_id 跳转(自动选中并填充)
+  const qid = Number(route.query.venue_id)
+  if (qid) {
+    form.value.venue_id = qid
+    const v = venues.value.find((x) => x.id === qid)
+    if (v) form.value.location = `${v.name}（${v.address}）`
+  }
+})
 
 async function handleSubmit() {
   error.value = ''
