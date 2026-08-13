@@ -310,7 +310,7 @@ def update(
         raise NotFound(message="采购需求不存在")
 
     # 权限检查：仅创建者或管理员可编辑
-    if p.purchaser_id != current_user.id and current_user.role not in ("admin", "organizer"):
+    if p.purchaser_id != current_user.id and current_user.role != "admin":
         raise Forbidden(message="无权编辑此采购需求")
 
     updates = data.model_dump(exclude_unset=True)
@@ -402,12 +402,17 @@ def cancel(
 @router.get("/{procurement_id}/matches")
 def get_matches(
     procurement_id: int,
+    current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
-    """获取采购需求的所有匹配记录（含展商信息）"""
+    """获取采购需求的所有匹配记录（仅需求创建者或管理员）"""
     p = db.query(Procurement).filter(Procurement.id == procurement_id).first()
     if not p:
         raise NotFound(message="采购需求不存在")
+
+    # 归属校验：仅需求创建者或管理员可查看匹配与报价
+    if p.purchaser_id != current_user.id and current_user.role != "admin":
+        raise Forbidden(message="无权查看此采购需求的匹配")
 
     matches = (
         db.query(ProcurementMatch)
@@ -625,12 +630,17 @@ def _product_to_dict(p) -> dict:
 def get_recommendations(
     procurement_id: int,
     limit: int = Query(default=10, ge=1, le=50),
+    current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
     from app.models.category import match_category_score
     proc = db.query(Procurement).filter(Procurement.id == procurement_id).first()
     if not proc:
         raise NotFound(message="采购需求不存在")
+
+    # 归属校验：仅需求创建者或管理员可查看推荐
+    if proc.purchaser_id != current_user.id and current_user.role != "admin":
+        raise Forbidden(message="无权查看此采购需求的推荐")
 
     products = db.query(Product).filter(Product.status == "published").order_by(Product.created_at.desc()).limit(500).all()
     bmin = proc.budget_min

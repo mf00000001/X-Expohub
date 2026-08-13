@@ -21,11 +21,12 @@ from sqlalchemy.orm import Session
 from sqlalchemy import or_
 
 from app.core.exceptions import NotFound, Forbidden, BadRequest, Conflict
+from app.core.permissions import Permission
 from app.models.base import get_db
 from app.models.user import User
 from app.models.booth import Booth
 from app.models.exhibition import Exhibition
-from app.api.deps import get_current_active_user
+from app.api.deps import get_current_active_user, require_permission
 
 router = APIRouter(prefix="/booths", tags=["展位"])
 
@@ -207,12 +208,10 @@ def get_by_id(
 @router.post("")
 def create(
     data: BoothCreate,
-    current_user: User = Depends(get_current_active_user),
+    current_user: User = Depends(require_permission(Permission.BOOTH_CREATE)),
     db: Session = Depends(get_db),
 ):
     """创建展位（主办方/管理员）"""
-    if current_user.role not in ("organizer", "admin"):
-        raise Forbidden(message="仅主办方可创建展位")
 
     # 检查展会是否存在
     exh = db.query(Exhibition).filter(Exhibition.id == data.exhibition_id).first()
@@ -260,10 +259,14 @@ def update(
     if not booth:
         raise NotFound(message="展位不存在")
 
-    # 权限：主办方/管理员 或 展位拥有者
+    # 权限：展位拥有者 / 主办方(仅限自己展会的展位) / 管理员
     is_owner = booth.exhibitor_id == current_user.id
-    is_admin = current_user.role in ("organizer", "admin")
-    if not is_owner and not is_admin:
+    is_admin = current_user.role == "admin"
+    is_own_organizer = False
+    if current_user.role == "organizer" and booth.exhibition_id is not None:
+        exh = db.query(Exhibition).filter(Exhibition.id == booth.exhibition_id).first()
+        is_own_organizer = exh is not None and exh.organizer_id == current_user.id
+    if not (is_owner or is_admin or is_own_organizer):
         raise Forbidden(message="无权编辑此展位")
 
     updates = data.model_dump(exclude_unset=True)
@@ -300,7 +303,13 @@ def delete(
     if not booth:
         raise NotFound(message="展位不存在")
 
-    if current_user.role not in ("organizer", "admin"):
+    # 权限：主办方(仅限自己展会的展位) / 管理员
+    is_admin = current_user.role == "admin"
+    is_own_organizer = False
+    if current_user.role == "organizer" and booth.exhibition_id is not None:
+        exh = db.query(Exhibition).filter(Exhibition.id == booth.exhibition_id).first()
+        is_own_organizer = exh is not None and exh.organizer_id == current_user.id
+    if not (is_admin or is_own_organizer):
         raise Forbidden(message="无权删除展位")
 
     db.delete(booth)
@@ -363,8 +372,11 @@ def book(
     """预订展位（前端 /booths/book 路由）
 
     请求体: { booth_id: number }
-    任何已登录用户均可预订可用展位。
+    仅展商可预订可用展位。
     """
+    if current_user.role != "exhibitor":
+        raise Forbidden(message="仅展商可预订展位")
+
     booth = db.query(Booth).filter(Booth.id == data.booth_id).first()
     if not booth:
         raise NotFound(message="展位不存在")

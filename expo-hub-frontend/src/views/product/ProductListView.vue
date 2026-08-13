@@ -5,7 +5,7 @@ import ProductCard from '@/components/ProductCard.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
-import { productApi, type Product } from '@/api/product'
+import { productApi, type ProductItem as Product } from '@/api/product'
 
 const router = useRouter()
 const products = ref<Product[]>([])
@@ -34,8 +34,8 @@ async function fetchProducts() {
       page_size: 12,
       search: searchKeyword.value || undefined,
     })
-    products.value = res.list || res.items || res.results || []
-    totalPages.value = res.total_pages || Math.ceil((res.total || 0) / 12) || 1
+    products.value = (res as any).list || (res as any).items || (res as any).results || []
+    totalPages.value = (res as any).total_pages || Math.ceil(((res as any).total || 0) / 12) || 1
   } catch (err) {
     console.error('Failed to load products:', err)
   } finally {

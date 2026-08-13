@@ -28,7 +28,7 @@ async function fetchExhibitions() {
   exhibitionsLoading.value = true
   try {
     const res = await exhibitionApi.getList({ page: 1, page_size: 100, status: 'active' })
-    exhibitions.value = res.list || res.items || res.results || []
+    exhibitions.value = (res as any).list || (res as any).items || (res as any).results || []
   } catch (e: any) {
     // ignore — just won't show exhibitions
   } finally {

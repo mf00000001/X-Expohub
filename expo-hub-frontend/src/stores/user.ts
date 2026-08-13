@@ -62,7 +62,18 @@ const profile = ref<UserProfile | null>(loadProfile())
     saveProfile(res)
   }
 
-  function logout() {
+  async function logout() {
+    // 主动退出登录:通知后端撤销令牌(登出后旧 token 立即失效)
+    try {
+      await authApi.logout()
+    } catch {
+      // 即使后端调用失败也继续本地登出
+    }
+    localLogout()
+  }
+
+  function localLogout() {
+    // 仅本地清理(401 拦截器使用):不调后端,避免 token_version 全局失效与拦截器递归
     token.value = null
     profile.value = null
     saveProfile(null)
@@ -81,5 +92,6 @@ const profile = ref<UserProfile | null>(loadProfile())
     fetchProfile,
     updateProfile,
     logout,
+    localLogout,
   }
 })

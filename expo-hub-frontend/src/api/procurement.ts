@@ -45,7 +45,7 @@ export interface MatchProductItem extends ProductItem {
 }
 
 export const procurementApi = {
-  getList(params?: { category?: string; status?: string; keyword?: string; page?: number }): Promise<ProcurementItem[]> {
+  getList(params?: { category?: string; status?: string; keyword?: string; search?: string; page?: number; page_size?: number }): Promise<ProcurementItem[]> {
     return http.get('/procurements', { params })
   },
   getDetail(id: number): Promise<ProcurementItem> {

@@ -19,11 +19,12 @@ from sqlalchemy.orm import Session
 from sqlalchemy import or_
 
 from app.core.exceptions import NotFound, Forbidden, BadRequest
+from app.core.permissions import Permission
 from app.models.base import get_db
 from app.models.user import User
 from app.models.product import Product
 from app.models.booth import Booth
-from app.api.deps import get_current_active_user
+from app.api.deps import get_current_active_user, require_permission
 
 router = APIRouter(prefix="/products", tags=["展品"])
 
@@ -257,15 +258,13 @@ def get_by_id(
 @router.post("")
 def create(
     data: ProductCreate,
-    current_user: User = Depends(get_current_active_user),
+    current_user: User = Depends(require_permission(Permission.PRODUCT_CREATE)),
     db: Session = Depends(get_db),
 ):
     """创建展品（仅展商 exhibitor）
 
     自动设置 exhibitor_id 和 exhibitor_name 为当前用户信息。
     """
-    if current_user.role != "exhibitor":
-        raise Forbidden(message="仅展商可创建展品")
 
     # 如果指定了 booth_id，检查展位是否存在
     if data.booth_id is not None:
@@ -323,7 +322,7 @@ def update(
 
     # 权限：创建者 或 管理员
     is_owner = product.exhibitor_id == current_user.id
-    is_admin = current_user.role in ("organizer", "admin")
+    is_admin = current_user.role == "admin"
     if not is_owner and not is_admin:
         raise Forbidden(message="无权编辑此展品")
 
@@ -365,7 +364,7 @@ def delete(
 
     # 权限：创建者 或 管理员
     is_owner = product.exhibitor_id == current_user.id
-    is_admin = current_user.role in ("organizer", "admin")
+    is_admin = current_user.role == "admin"
     if not is_owner and not is_admin:
         raise Forbidden(message="无权删除此展品")
 

@@ -22,8 +22,8 @@ async function fetchProcurements() {
       page: currentPage.value,
       page_size: 9,
     })
-    procurements.value = res.list || res.items || res.results || []
-    totalPages.value = res.total_pages || Math.ceil((res.total || 0) / 9) || 1
+    procurements.value = (res as any).list || (res as any).items || (res as any).results || []
+    totalPages.value = (res as any).total_pages || Math.ceil(((res as any).total || 0) / 9) || 1
   } catch (e: any) {
     error.value = e.response?.data?.detail || e.message || '加载采购需求失败'
   } finally {

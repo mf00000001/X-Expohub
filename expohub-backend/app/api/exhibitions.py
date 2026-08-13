@@ -26,6 +26,7 @@ from app.core.exceptions import NotFound, BadRequest, Forbidden
 from app.models.base import get_db
 from app.models.user import User
 from app.models.exhibition import Exhibition
+from app.models.venue import Venue
 from app.api.deps import get_current_active_user
 
 router = APIRouter(prefix="/exhibitions", tags=["展会"])
@@ -43,6 +44,7 @@ class ExhibitionCreate(BaseModel):
     start_date: str
     end_date: str
     location: str
+    venue_id: Optional[int] = None  # V3.1: 关联展馆(可选)
     status: Optional[str] = "draft"
 
 
@@ -54,6 +56,7 @@ class ExhibitionUpdate(BaseModel):
     start_date: Optional[str] = None
     end_date: Optional[str] = None
     location: Optional[str] = None
+    venue_id: Optional[int] = None  # V3.2: 关联展馆(可改)
     status: Optional[str] = None
 
 
@@ -63,8 +66,19 @@ class ExhibitionApproveRequest(BaseModel):
     comment: Optional[str] = None
 
 
-def _exhibition_to_dict(exh: Exhibition) -> dict:
+def _exhibition_to_dict(exh: Exhibition, db: Optional[Session] = None) -> dict:
     """将 Exhibition 模型转为前端响应格式"""
+    venue_info = None
+    if exh.venue_id is not None and db is not None:
+        v = db.query(Venue).filter(Venue.id == exh.venue_id).first()
+        if v:
+            venue_info = {
+                "id": v.id,
+                "name": v.name,
+                "city": v.city,
+                "address": v.address,
+                "area": v.area,
+            }
     return {
         "id": exh.id,
         "title": exh.title,
@@ -78,6 +92,7 @@ def _exhibition_to_dict(exh: Exhibition) -> dict:
         "end_date": exh.end_date,
         "location": exh.location,
         "venue": exh.location,  # frontend alias for location
+        "venue_info": venue_info,  # V3.1: 关联展馆信息(可选,含 id/name/city/address/area)
         "city": "",  # placeholder - backend does not separate city
         "address": exh.location,  # frontend field mapped to location
         "short_name": "",  # placeholder
@@ -142,7 +157,7 @@ def get_list(
         "code": "OK",
         "message": "获取成功",
         "data": _paginated_response(
-            [_exhibition_to_dict(e) for e in exhibitions], total, page, page_size
+            [_exhibition_to_dict(e, db) for e in exhibitions], total, page, page_size
         ),
     }
 
@@ -179,7 +194,7 @@ def get_featured(
         "success": True,
         "code": "OK",
         "message": "获取成功",
-        "data": [_exhibition_to_dict(e) for e in featured],
+        "data": [_exhibition_to_dict(e, db) for e in featured],
     }
 
 
@@ -197,7 +212,7 @@ def get_hot(
         "success": True,
         "code": "OK",
         "message": "获取成功",
-        "data": [_exhibition_to_dict(e) for e in hot],
+        "data": [_exhibition_to_dict(e, db) for e in hot],
     }
 
 
@@ -215,7 +230,7 @@ def get_upcoming(
         "success": True,
         "code": "OK",
         "message": "获取成功",
-        "data": [_exhibition_to_dict(e) for e in upcoming],
+        "data": [_exhibition_to_dict(e, db) for e in upcoming],
     }
 
 
@@ -242,7 +257,7 @@ def get_registrations(
         "code": "OK",
         "message": "获取成功",
         "data": _paginated_response(
-            [_exhibition_to_dict(e) for e in exhibitions], total, page, page_size
+            [_exhibition_to_dict(e, db) for e in exhibitions], total, page, page_size
         ),
     }
 
@@ -261,7 +276,7 @@ def get_by_id(
         "success": True,
         "code": "OK",
         "message": "获取成功",
-        "data": _exhibition_to_dict(exh),
+        "data": _exhibition_to_dict(exh, db),
     }
 
 
@@ -275,6 +290,13 @@ def create(
     if current_user.role not in ("organizer", "admin"):
         raise Forbidden(message="仅主办方可创建展会")
 
+    # V3.1: 校验关联展馆存在
+    venue_id = data.venue_id
+    if venue_id is not None:
+        venue = db.query(Venue).filter(Venue.id == venue_id).first()
+        if not venue:
+            raise NotFound(message="展馆不存在")
+
     exh = Exhibition(
         title=data.title,
         description=data.description,
@@ -282,6 +304,7 @@ def create(
         start_date=data.start_date,
         end_date=data.end_date,
         location=data.location,
+        venue_id=venue_id,
         status=data.status or "draft",
         organizer_id=current_user.id,
         organizer_name=current_user.company or current_user.nickname or current_user.username,
@@ -294,7 +317,7 @@ def create(
         "success": True,
         "code": "OK",
         "message": "展会创建成功",
-        "data": _exhibition_to_dict(exh),
+        "data": _exhibition_to_dict(exh, db),
     }
 
 
@@ -311,10 +334,15 @@ def update(
         raise NotFound(message="展会不存在")
 
     # 权限检查：仅创建者或管理员可编辑
-    if exh.organizer_id != current_user.id and current_user.role not in ("admin", "organizer"):
+    if exh.organizer_id != current_user.id and current_user.role != "admin":
         raise Forbidden(message="无权编辑此展会")
 
     updates = data.model_dump(exclude_unset=True)
+    # V3.2: venue_id 变更时校验展馆存在
+    if "venue_id" in updates and updates["venue_id"] is not None:
+        venue = db.query(Venue).filter(Venue.id == updates["venue_id"]).first()
+        if not venue:
+            raise NotFound(message="展馆不存在")
     for field, value in updates.items():
         if hasattr(exh, field):
             setattr(exh, field, value)
@@ -326,7 +354,7 @@ def update(
         "success": True,
         "code": "OK",
         "message": "展会更新成功",
-        "data": _exhibition_to_dict(exh),
+        "data": _exhibition_to_dict(exh, db),
     }
 
 
@@ -409,13 +437,20 @@ def approve(
     current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
-    """审批展会（管理员/主办方）"""
+    """审批展会（管理员，或主办方本人）"""
     if current_user.role not in ("admin", "organizer"):
         raise Forbidden(message="无权审批展会")
+    # 主办方必须已通过入驻审核
+    if current_user.role == "organizer" and current_user.organizer_status != "approved":
+        raise Forbidden(message="主办方入驻审核未通过，无法审批展会")
 
     exh = db.query(Exhibition).filter(Exhibition.id == exhibition_id).first()
     if not exh:
         raise NotFound(message="展会不存在")
+
+    # 归属校验：主办方仅可审批自己创建的展会
+    if current_user.role == "organizer" and exh.organizer_id != current_user.id:
+        raise Forbidden(message="无权审批其他主办方的展会")
 
     if data.approved:
         exh.status = "published"
@@ -429,7 +464,7 @@ def approve(
         "success": True,
         "code": "OK",
         "message": "审批完成" if data.approved else "已驳回",
-        "data": _exhibition_to_dict(exh),
+        "data": _exhibition_to_dict(exh, db),
     }
 
 @router.post("/{exhibition_id}/publish")
@@ -443,8 +478,12 @@ def publish(
     if not exh:
         raise NotFound(message="展会不存在")
 
-    if exh.organizer_id != current_user.id and current_user.role not in ("admin", "organizer"):
+    # 权限：仅展会创建者(主办方本人)或管理员可发布
+    if exh.organizer_id != current_user.id and current_user.role != "admin":
         raise Forbidden(message="无权发布此展会")
+    # 主办方必须已通过入驻审核
+    if current_user.role == "organizer" and current_user.organizer_status != "approved":
+        raise Forbidden(message="主办方入驻审核未通过，无法发布展会")
 
     exh.status = "published"
     db.commit()
@@ -454,7 +493,7 @@ def publish(
         "success": True,
         "code": "OK",
         "message": "展会发布成功",
-        "data": _exhibition_to_dict(exh),
+        "data": _exhibition_to_dict(exh, db),
     }
 
 
@@ -509,7 +548,7 @@ def smart_search(q: str = Query(...), db: Session = Depends(get_db)):
     from app.models.product import Product
     from app.models.booth import Booth
 
-    results['exhibitions'] = [_exhibition_to_dict(e) for e in db.query(Exhibition).filter(
+    results['exhibitions'] = [_exhibition_to_dict(e, db) for e in db.query(Exhibition).filter(
         Exhibition.title.ilike(like)).limit(5).all()]
 
     results['products'] = [_product_to_dict(p) for p in db.query(Product).filter(

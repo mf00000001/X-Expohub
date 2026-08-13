@@ -94,7 +94,7 @@ export const productApi = {
     }>
   },
 
-  getList(params?: { category?: string; exhibition_id?: number; exhibitor_id?: number; status?: string; page?: number; page_size?: number }): Promise<ProductItem[]> {
+  getList(params?: { category?: string; exhibition_id?: number; exhibitor_id?: number; status?: string; search?: string; page?: number; page_size?: number }): Promise<ProductItem[]> {
     return http.get('/products', { params })
   },
   getDetail(id: number): Promise<ProductItem> {

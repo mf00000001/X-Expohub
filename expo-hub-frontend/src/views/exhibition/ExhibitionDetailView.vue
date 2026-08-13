@@ -30,6 +30,8 @@ const cover = computed(() => exhibition.value?.cover_image || exhibition.value?.
 const startDate = computed(() => exhibition.value?.start_date || exhibition.value?.startDate || '')
 const endDate = computed(() => exhibition.value?.end_date || exhibition.value?.endDate || '')
 const location = computed(() => exhibition.value?.location || exhibition.value?.venue || '')
+// V3.1: 关联展馆(可点击跳转展馆信息页)
+const venueId = computed(() => (exhibition.value as any)?.venue_info?.id || null)
 const orgName = computed(() => exhibition.value?.organizer_name || exhibition.value?.organizerName || '')
 const orgId = computed(() => exhibition.value?.organizer_id)
 const desc = computed(() => pick(exhibition.value, 'description') || '')
@@ -110,7 +112,8 @@ const statusClass = computed(() => {
       <h1>{{ title }}</h1>
       <div class="hero-meta">
         <span>📅 {{ startDate }} ~ {{ endDate }}</span>
-        <span>📍 {{ location }}</span>
+        <router-link v-if="venueId" :to="'/venues/' + venueId" class="venue-link">📍 {{ location }} <span class="venue-tag">展馆信息 ›</span></router-link>
+        <span v-else>📍 {{ location }}</span>
         <router-link v-if="orgName && orgId" :to="'/exhibitor/' + orgId" class="organizer-link">👤 {{ orgName }}</router-link>
         <span>🏢 {{ boothCount }} 个展位</span>
       </div>
@@ -125,7 +128,8 @@ const statusClass = computed(() => {
     </div>
     <div class="meta-row">
       <span>📅 {{ startDate }} ~ {{ endDate }}</span>
-      <span>📍 {{ location }}</span>
+      <router-link v-if="venueId" :to="'/venues/' + venueId" class="venue-link">📍 {{ location }} <span class="venue-tag">展馆信息 ›</span></router-link>
+      <span v-else>📍 {{ location }}</span>
       <span v-if="orgName">👤 {{ orgName }}</span>
     </div>
   </div>
@@ -214,5 +218,10 @@ const statusClass = computed(() => {
 .empty-hint { text-align:center; padding:40px; color:#999 }
 .tag-sm { font-size:11px; padding:2px 6px }
 .btn-lg { padding:12px 32px; font-size:16px }
+/* V3.1: 展馆链接 */
+.venue-link { color:inherit; text-decoration:none; border-bottom:1px dashed rgba(255,255,255,0.6); cursor:pointer }
+.meta-row .venue-link { border-bottom-color:#bbb }
+.venue-link:hover { opacity:0.8 }
+.venue-tag { font-size:11px; background:#2563eb; color:#fff; border-radius:4px; padding:1px 6px; margin-left:4px; vertical-align:middle }
 @media(max-width:640px) { .detail-hero { height:200px } .hero-overlay h1 { font-size:20px } }
 </style>

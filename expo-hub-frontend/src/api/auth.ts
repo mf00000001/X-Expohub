@@ -50,6 +50,10 @@ export const authApi = {
   refreshToken(refreshToken: string): Promise<{ access_token: string; token_type: string; expires_in: number }> {
     return http.post('/auth/refresh', { refresh_token: refreshToken })
   },
+  // V3.2: 登出(服务端撤销令牌)
+  logout(): Promise<void> {
+    return http.post('/auth/logout')
+  },
   getMe(): Promise<UserProfile> {
     return http.get('/auth/profile')
   },
@@ -58,6 +62,10 @@ export const authApi = {
   },
   updateProfile(data: Partial<UserProfile>): Promise<UserProfile> {
     return http.put('/auth/profile', data)
+  },
+  // 修改密码(后端 PUT /api/auth/password)
+  changePassword(data: { old_password: string; new_password: string }) {
+    return http.put('/auth/password', data)
   },
   // V2.0: 兴趣引导
   saveInterests(interests: string[]): Promise<UserProfile> {

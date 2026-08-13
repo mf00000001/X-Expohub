@@ -54,6 +54,12 @@ class Exhibition(Base):
         String(300), nullable=False, comment="举办地点"
     )
 
+    # ---- V3.1: 关联展馆（可选,创建展会时选择） ----
+    venue_id: Mapped[Optional[int]] = mapped_column(
+        Integer, ForeignKey("venues.id"), nullable=True, index=True,
+        comment="关联展馆 ID(venues 表)"
+    )
+
     # ---- V2.0: 首页引流字段 ----
     is_featured: Mapped[bool] = mapped_column(
         default=False, comment="是否精选展会（用于首页重磅推荐）"

@@ -27,9 +27,14 @@ http.interceptors.response.use(
   },
   async (error) => {
     if (error.response?.status === 401) {
-      const userStore = useUserStore()
-      userStore.logout()
-      router.push('/login')
+      const url = error.config?.url || ''
+      // 登出接口自身的 401 不递归处理(避免无限循环)
+      if (!url.includes('/auth/logout')) {
+        const userStore = useUserStore()
+        // 仅本地清理:不调后端 logout,避免 token_version 全局递增把新登录 token 也失效
+        userStore.localLogout()
+        router.push('/login')
+      }
     }
     return Promise.reject(error)
   }

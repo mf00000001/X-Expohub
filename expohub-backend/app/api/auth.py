@@ -231,7 +231,7 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
         raise Unauthorized(message="主办方入驻申请已被驳回，请联系平台管理员")
 
     # 生成双令牌
-    token_data = {"sub": user.id, "role": user.role}
+    token_data = {"sub": user.id, "role": user.role, "ver": user.token_version or 0}
     access_token = create_access_token(token_data)
     refresh_token = create_refresh_token(token_data)
 
@@ -298,7 +298,7 @@ def register(data: RegisterRequest, db: Session = Depends(get_db)):
     _welcome_bonus(user, db)
 
     # 注册成功直接生成令牌
-    token_data = {"sub": user.id, "role": user.role}
+    token_data = {"sub": user.id, "role": user.role, "ver": user.token_version or 0}
     access_token = create_access_token(token_data)
     refresh_token = create_refresh_token(token_data)
 
@@ -342,8 +342,16 @@ def refresh(data: RefreshRequest, db: Session = Depends(get_db)):
     if not user:
         raise Unauthorized(message="用户不存在")
 
+    # 状态校验：禁用/封禁用户不允许续期
+    if user.status != "active":
+        raise Unauthorized(message="账号已被禁用或封禁，无法续期")
+
+    # V3.2: 令牌版本校验(登出后旧 refresh token 失效)
+    if payload.get("ver") != (user.token_version or 0):
+        raise Unauthorized(message="令牌已失效，请重新登录")
+
     # 生成新令牌
-    token_data = {"sub": user.id, "role": user.role}
+    token_data = {"sub": user.id, "role": user.role, "ver": user.token_version or 0}
     new_access_token = create_access_token(token_data)
     new_refresh_token = create_refresh_token(token_data)
 
@@ -450,3 +458,13 @@ def update_interests(
         "message": "兴趣保存成功",
         "data": _user_to_profile(current_user),
     }
+
+@router.post("/logout")
+def logout(
+    current_user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db),
+):
+    """登出: 递增令牌版本, 使该用户所有已发 token(含 refresh)立即失效"""
+    current_user.token_version = (current_user.token_version or 0) + 1
+    db.commit()
+    return {"success": True, "code": "OK", "message": "已安全登出", "data": None}

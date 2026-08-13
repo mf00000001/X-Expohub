@@ -103,6 +103,11 @@ onMounted(async () => {
             <h3 class="font-semibold">创建展会 / Create Exhibition</h3>
             <p class="text-sm text-secondary">Create a new exhibition</p>
           </div>
+          <!-- V3.3: 主办方选馆入口 -->
+          <div class="card card-body cursor-pointer" style="border-color:#93c5fd;background:#eff6ff" @click="router.push('/organizer/venues')">
+            <h3 class="font-semibold">🏛️ 展馆选择 / Venue</h3>
+            <p class="text-sm text-secondary">汇总对比全国展馆,挑选办展场地</p>
+          </div>
           <div class="card card-body cursor-pointer" @click="router.push('/organizer/exhibitions')">
             <h3 class="font-semibold">观展登记 / Registrations</h3>
             <p class="text-sm text-secondary">选择展会查看报名情况</p>

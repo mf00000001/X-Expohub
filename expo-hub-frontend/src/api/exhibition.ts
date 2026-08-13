@@ -17,6 +17,8 @@ export const exhibitionApi = {
   create(p:ExhibitionCreatePayload) { return apiClient.post('/exhibitions',p) as Promise<Exhibition> },
   update(id:number,p:ExhibitionUpdatePayload) { return apiClient.put('/exhibitions/'+id,p) as Promise<Exhibition> },
   delete(id:number) { return apiClient.delete('/exhibitions/'+id).catch(()=>{}) as Promise<void> },
+  remove(id:number) { return this.delete(id) },
+  publish(id:number) { return apiClient.post('/exhibitions/'+id+'/publish') as Promise<Exhibition> },
   // V2.0: 首页精选 & 热门
   getFeatured(limit?:number) { return safe(apiClient.get('/exhibitions/featured',{params:{limit:limit||5}}),[]) as Promise<Exhibition[]> },
   getHot(limit?:number) { return safe(apiClient.get('/exhibitions/hot',{params:{limit:limit||10}}),[]) as Promise<Exhibition[]> },

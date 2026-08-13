@@ -5,6 +5,9 @@ import http from '@/api/index'
 import { pointsApi } from '@/api/points'
 import { isLoggedIn } from '@/utils/auth'
 
+// 模板中使用浏览器 alert(显式声明以通过 vue-tsc 类型检查)
+const alert = (msg: string) => window.alert(msg)
+
 const router = useRouter()
 const loggedIn = isLoggedIn()
 function requireLogin(action: string): boolean {

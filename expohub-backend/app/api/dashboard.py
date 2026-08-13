@@ -46,6 +46,9 @@ def _require_admin_or_organizer(current_user: User) -> None:
     """要求当前用户角色为 admin 或 organizer，否则抛出 Forbidden"""
     if current_user.role not in ("admin", "organizer"):
         raise Forbidden(message="仅管理员或主办方可访问")
+    # 主办方必须已通过入驻审核（pending/rejected 均不可执行管理操作）
+    if current_user.role == "organizer" and current_user.organizer_status != "approved":
+        raise Forbidden(message="主办方入驻审核未通过，无法执行管理操作")
 
 
 def _count_by_status(db: Session, model) -> dict:
@@ -483,13 +486,17 @@ def approve_exhibition(
     current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
-    """审批通过展会"""
+    """审批通过展会（管理员，或主办方本人）"""
     _require_admin_or_organizer(current_user)
 
     exhibition = db.query(Exhibition).filter(Exhibition.id == exhibition_id).first()
     if not exhibition:
         from app.core.exceptions import NotFound
         raise NotFound(message="展会不存在")
+
+    # 归属校验：主办方仅可审批自己创建的展会
+    if current_user.role == "organizer" and exhibition.organizer_id != current_user.id:
+        raise Forbidden(message="无权审批其他主办方的展会")
 
     exhibition.status = "published"
     db.commit()
@@ -503,7 +510,7 @@ def reject_exhibition(
     current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
-    """驳回展会"""
+    """驳回展会（管理员，或主办方本人）"""
     _require_admin_or_organizer(current_user)
 
     exhibition = db.query(Exhibition).filter(Exhibition.id == exhibition_id).first()
@@ -511,25 +518,60 @@ def reject_exhibition(
         from app.core.exceptions import NotFound
         raise NotFound(message="展会不存在")
 
+    # 归属校验：主办方仅可驳回自己创建的展会
+    if current_user.role == "organizer" and exhibition.organizer_id != current_user.id:
+        raise Forbidden(message="无权驳回其他主办方的展会")
+
     exhibition.status = "draft"
     db.commit()
 
     return _ok({"message": "展会已被驳回", "exhibition_id": exhibition_id})
 
 @router.get("/teams/{team_id}/members")
-def get_team_members(team_id: int, db: Session = Depends(get_db)):
+def get_team_members(
+    team_id: int,
+    current_user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db),
+):
+    _require_admin_or_organizer(current_user)
     return {"success": True, "code": "OK", "message": "获取成功", "data": {"list": [], "total": 0}}
 
 @router.post("/teams/{team_id}/members")
-def add_team_member(team_id: int, db: Session = Depends(get_db)):
+def add_team_member(
+    team_id: int,
+    current_user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db),
+):
+    _require_admin_or_organizer(current_user)
     return {"success": True, "code": "OK", "message": "添加成功", "data": {}}
 
 @router.delete("/teams/{team_id}/members/{user_id}")
-def remove_team_member(team_id: int, user_id: int, db: Session = Depends(get_db)):
+def remove_team_member(
+    team_id: int,
+    user_id: int,
+    current_user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db),
+):
+    _require_admin_or_organizer(current_user)
     return {"success": True, "code": "OK", "message": "删除成功", "data": None}
 
 @router.get("/exhibitions/{exhibition_id}/registrations")
-def get_exhibition_registrations(exhibition_id: int, db: Session = Depends(get_db)):
+def get_exhibition_registrations(
+    exhibition_id: int,
+    current_user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db),
+):
+    """获取展会报名列表（仅主办方本人或管理员可访问）"""
+    _require_admin_or_organizer(current_user)
+
+    # 归属校验：主办方只能查看自己展会的报名
+    exhibition = db.query(Exhibition).filter(Exhibition.id == exhibition_id).first()
+    if not exhibition:
+        from app.core.exceptions import NotFound
+        raise NotFound(message="展会不存在")
+    if current_user.role == "organizer" and exhibition.organizer_id != current_user.id:
+        raise Forbidden(message="无权查看其他主办方的展会报名")
+
     from app.models.registration import Registration
     from app.models.user import User
     q = db.query(Registration).filter(Registration.exhibition_id == exhibition_id)

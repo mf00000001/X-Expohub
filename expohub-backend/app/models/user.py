@@ -133,6 +133,11 @@ class User(Base):
     last_login_at: Mapped[Optional[datetime]] = mapped_column(
         DateTime, nullable=True, comment="最后登录时间"
     )
+    # V3.2: 令牌版本(登出时 +1,使该用户所有已发 token 失效)
+    token_version: Mapped[int] = mapped_column(
+        Integer, nullable=False, default=0, server_default="0",
+        comment="令牌版本号:登出递增,旧 token 立即失效"
+    )
 
     @property
     def is_organizer_pending(self) -> bool:

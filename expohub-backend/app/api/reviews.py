@@ -204,7 +204,7 @@ def delete(
 
     # 仅创建者或管理员可删除
     is_owner = review.reviewer_id == current_user.id
-    is_admin = current_user.role in ("organizer", "admin")
+    is_admin = current_user.role == "admin"
     if not is_owner and not is_admin:
         raise Forbidden(message="无权删除此评价")
 
