@@ -62,7 +62,13 @@ const profile = ref<UserProfile | null>(loadProfile())
     saveProfile(res)
   }
 
-  function logout() {
+  async function logout() {
+    // V3.2: 通知后端撤销令牌(登出后旧 token 立即失效)
+    try {
+      await authApi.logout()
+    } catch {
+      // 即使后端调用失败也继续本地登出
+    }
     token.value = null
     profile.value = null
     saveProfile(null)

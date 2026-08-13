@@ -62,6 +62,10 @@ async def get_current_user(
     if not user:
         raise Unauthorized(message="用户不存在或已被删除")
 
+    # V3.2: 令牌版本校验(登出后旧 token 立即失效)
+    if payload.get("ver") != (user.token_version or 0):
+        raise Unauthorized(message="令牌已失效，请重新登录")
+
     # 更新最后登录时间
     user.last_login_at = datetime.now(timezone.utc)
     db.commit()

@@ -50,6 +50,10 @@ export const authApi = {
   refreshToken(refreshToken: string): Promise<{ access_token: string; token_type: string; expires_in: number }> {
     return http.post('/auth/refresh', { refresh_token: refreshToken })
   },
+  // V3.2: 登出(服务端撤销令牌)
+  logout(): Promise<void> {
+    return http.post('/auth/logout')
+  },
   getMe(): Promise<UserProfile> {
     return http.get('/auth/profile')
   },
