@@ -12,6 +12,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/exhibitions', name: 'exhibition-list', component: () => import('@/views/exhibition/ExhibitionListView.vue'), meta: { title: '展会列表', requiresAuth: false, showFooter: true } },
   { path: '/exhibitions/:id', name: 'exhibition-detail', component: () => import('@/views/exhibition/ExhibitionDetailView.vue'), meta: { title: '展会详情', requiresAuth: false, showFooter: true } },
   // V3.1: 展馆信息
+  { path: '/venues', name: 'venue-list', component: () => import('@/views/VenueListView.vue'), meta: { title: '展馆名录', requiresAuth: false, showFooter: true } },
   { path: '/venues/:id', name: 'venue-detail', component: () => import('@/views/VenueDetailView.vue'), meta: { title: '展馆信息', requiresAuth: false, showFooter: true } },
   { path: '/booths/:id', name: 'booth-detail', component: () => import('@/views/booth/BoothDetailView.vue'), meta: { title: '展位详情', requiresAuth: false, showFooter: true } },
   { path: '/products', name: 'product-list', component: () => import('@/views/product/ProductListView.vue'), meta: { title: '展品列表', requiresAuth: false, showFooter: true } },
