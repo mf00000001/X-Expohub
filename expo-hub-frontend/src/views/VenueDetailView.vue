@@ -8,6 +8,7 @@ const router = useRouter()
 const venue = ref<Venue | null>(null)
 const loading = ref(true)
 const error = ref('')
+const planZoomed = ref(false)
 
 async function loadVenue() {
   loading.value = true
@@ -67,6 +68,20 @@ function goBack() {
           <p class="text-muted" style="line-height: 1.8; white-space: pre-wrap;">{{ venue.important_info || '暂无' }}</p>
         </div>
 
+        <div class="mb-4">
+          <h3 class="font-bold mb-2" style="border-left: 3px solid var(--primary, #2563eb); padding-left: 8px;">场馆平面图</h3>
+          <div v-if="venue.plan_image" class="plan-wrap">
+            <img :src="venue.plan_image" alt="场馆平面图" class="plan-img" @click="planZoomed = !planZoomed" />
+            <div class="plan-hint">点击图片放大/缩小</div>
+          </div>
+          <p v-else class="text-muted">暂无平面图</p>
+        </div>
+
+        <div v-if="planZoomed" class="plan-overlay" @click="planZoomed = false">
+          <img :src="venue.plan_image" alt="场馆平面图(放大)" class="plan-img-zoomed" />
+          <div class="plan-overlay-hint">点击任意位置关闭</div>
+        </div>
+
         <div>
           <h3 class="font-bold mb-2" style="border-left: 3px solid var(--primary, #2563eb); padding-left: 8px;">荣誉信息</h3>
           <ul v-if="venue.honors && venue.honors.length" class="honor-list">
@@ -113,5 +128,29 @@ function goBack() {
 }
 .honor-badge {
   font-size: 16px;
+}
+/* 平面图 */
+.plan-wrap { cursor: zoom-in; }
+.plan-img {
+  width: 100%;
+  max-width: 640px;
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: 8px;
+  background: #fff;
+}
+.plan-hint { font-size: 12px; color: var(--muted, #64748b); margin-top: 4px; }
+.plan-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(0,0,0,0.75);
+  display: flex; align-items: center; justify-content: center;
+  cursor: zoom-out;
+}
+.plan-img-zoomed {
+  max-width: 92vw; max-height: 88vh;
+  background: #fff; border-radius: 8px;
+}
+.plan-overlay-hint {
+  position: absolute; bottom: 20px; left: 0; right: 0;
+  text-align: center; color: #fff; font-size: 13px; opacity: 0.8;
 }
 </style>

@@ -37,6 +37,11 @@ class Venue(Base):
         Text, nullable=True, comment="荣誉信息列表(JSON 数组字符串,可补充)"
     )
 
+    # ---- 场馆平面图(URL 或 SVG data URI,可选) ----
+    plan_image: Mapped[Optional[str]] = mapped_column(
+        Text, nullable=True, comment="场馆平面图(图片 URL 或 data URI)"
+    )
+
     # ---- 时间戳 ----
     created_at: Mapped[Optional[datetime]] = mapped_column(
         DateTime, server_default=func.now(), comment="创建时间"

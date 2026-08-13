@@ -33,6 +33,7 @@ class VenueCreate(BaseModel):
     area: Optional[float] = None
     important_info: Optional[str] = None
     honors: Optional[list[str]] = None
+    plan_image: Optional[str] = None  # 场馆平面图(URL 或 data URI)
 
 
 class VenueUpdate(BaseModel):
@@ -42,6 +43,7 @@ class VenueUpdate(BaseModel):
     area: Optional[float] = None
     important_info: Optional[str] = None
     honors: Optional[list[str]] = None
+    plan_image: Optional[str] = None
 
 
 def _venue_to_dict(v: Venue) -> dict:
@@ -59,6 +61,7 @@ def _venue_to_dict(v: Venue) -> dict:
         "area": v.area,
         "important_info": v.important_info or "",
         "honors": honors,
+        "plan_image": v.plan_image or "",
         "created_at": v.created_at.isoformat() if v.created_at else None,
     }
 
