@@ -59,6 +59,10 @@ export const authApi = {
   updateProfile(data: Partial<UserProfile>): Promise<UserProfile> {
     return http.put('/auth/profile', data)
   },
+  // 修改密码(后端 PUT /api/auth/password)
+  changePassword(data: { old_password: string; new_password: string }) {
+    return http.put('/auth/password', data)
+  },
   // V2.0: 兴趣引导
   saveInterests(interests: string[]): Promise<UserProfile> {
     return http.put('/auth/interests', { interests })

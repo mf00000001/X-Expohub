@@ -8,6 +8,7 @@ export interface Venue {
   area?: number | null
   important_info?: string
   honors?: string[]
+  plan_image?: string
   created_at?: string
 }
 
