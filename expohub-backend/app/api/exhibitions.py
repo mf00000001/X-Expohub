@@ -311,7 +311,7 @@ def update(
         raise NotFound(message="展会不存在")
 
     # 权限检查：仅创建者或管理员可编辑
-    if exh.organizer_id != current_user.id and current_user.role not in ("admin", "organizer"):
+    if exh.organizer_id != current_user.id and current_user.role != "admin":
         raise Forbidden(message="无权编辑此展会")
 
     updates = data.model_dump(exclude_unset=True)
@@ -409,13 +409,20 @@ def approve(
     current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
-    """审批展会（管理员/主办方）"""
+    """审批展会（管理员，或主办方本人）"""
     if current_user.role not in ("admin", "organizer"):
         raise Forbidden(message="无权审批展会")
+    # 主办方必须已通过入驻审核
+    if current_user.role == "organizer" and current_user.organizer_status != "approved":
+        raise Forbidden(message="主办方入驻审核未通过，无法审批展会")
 
     exh = db.query(Exhibition).filter(Exhibition.id == exhibition_id).first()
     if not exh:
         raise NotFound(message="展会不存在")
+
+    # 归属校验：主办方仅可审批自己创建的展会
+    if current_user.role == "organizer" and exh.organizer_id != current_user.id:
+        raise Forbidden(message="无权审批其他主办方的展会")
 
     if data.approved:
         exh.status = "published"

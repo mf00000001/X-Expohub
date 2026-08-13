@@ -23,6 +23,9 @@ import app.models.analytics  # noqa: F401
 import app.models.points  # noqa: F401
 import app.models.checkin  # noqa: F401
 import app.models.notification  # noqa: F401
+# V3.0: 预约/收藏落库（安全评审 P0-3）
+import app.models.appointment  # noqa: F401
+import app.models.favorite  # noqa: F401
 
 
 @asynccontextmanager

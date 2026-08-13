@@ -16,6 +16,8 @@ from sqlalchemy.orm import Session
 from app.core.config import settings
 from app.core.security import verify_token, hash_password, verify_password
 from app.core.exceptions import Unauthorized, Forbidden
+from app.core.constants import RoleEnum
+from app.core.permissions import Permission, has_permission
 from app.models.base import get_db
 from app.models.user import User
 
@@ -132,3 +134,19 @@ async def get_admin_user(
     if current_user.role != "admin":
         raise Forbidden(message="仅平台管理员可执行此操作")
     return current_user
+
+
+def require_permission(permission: Permission):
+    """统一 RBAC 权限依赖（基于 ROLE_PERMISSIONS 声明表）
+
+    用法:
+        current_user: User = Depends(require_permission(Permission.PRODUCT_CREATE))
+
+    注意: 该依赖只校验"角色是否拥有该权限"，资源归属校验仍需在路由内完成
+    （例如 organizer 编辑展会时校验 exh.organizer_id == current_user.id）。
+    """
+    async def _checker(current_user: User = Depends(get_current_active_user)) -> User:
+        if not has_permission(RoleEnum(current_user.role), permission):
+            raise Forbidden(message="权限不足，无法执行此操作")
+        return current_user
+    return _checker

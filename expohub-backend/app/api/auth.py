@@ -342,6 +342,10 @@ def refresh(data: RefreshRequest, db: Session = Depends(get_db)):
     if not user:
         raise Unauthorized(message="用户不存在")
 
+    # 状态校验：禁用/封禁用户不允许续期
+    if user.status != "active":
+        raise Unauthorized(message="账号已被禁用或封禁，无法续期")
+
     # 生成新令牌
     token_data = {"sub": user.id, "role": user.role}
     new_access_token = create_access_token(token_data)

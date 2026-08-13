@@ -15,15 +15,22 @@ from datetime import datetime, timedelta, timezone
 from typing import Any, Optional
 
 from jose import JWTError, jwt
-from passlib.context import CryptContext
 
 from app.core.config import settings
 
 # ============================================================
 # 密码加密（bcrypt）
 # ============================================================
+# 注:直接使用 bcrypt 库而非 passlib（passlib 1.7.4 与 bcrypt>=4.1 不兼容，
+# bcrypt.__about__ 已被移除导致 verify 时 500）。数据库中的 $2b$ 哈希与
+# bcrypt.checkpw 完全兼容，无需迁移数据。
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+import bcrypt as _bcrypt
+
+
+def _b64_bytes(value: str) -> bytes:
+    """将密码编码为 bytes，并按 bcrypt 72 字节上限截断（与 passlib 旧行为一致）"""
+    return value.encode("utf-8")[:72]
 
 
 def hash_password(password: str) -> str:
@@ -35,7 +42,7 @@ def hash_password(password: str) -> str:
     Returns:
         bcrypt 哈希后的密码字符串
     """
-    return pwd_context.hash(password)
+    return _bcrypt.hashpw(_b64_bytes(password), _bcrypt.gensalt()).decode("utf-8")
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
@@ -48,7 +55,10 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     Returns:
         匹配返回 True，否则 False
     """
-    return pwd_context.verify(plain_password, hashed_password)
+    try:
+        return _bcrypt.checkpw(_b64_bytes(plain_password), hashed_password.encode("utf-8"))
+    except (ValueError, TypeError):
+        return False
 
 
 # ============================================================
