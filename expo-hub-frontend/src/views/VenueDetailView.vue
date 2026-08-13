@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { venueApi, type Venue } from '@/api/venue'
 
@@ -9,6 +9,18 @@ const venue = ref<Venue | null>(null)
 const loading = ref(true)
 const error = ref('')
 const planZoomed = ref(false)
+
+// V3.3: Hero 背景 = 场馆真实图片(有 image_url 时);无图则用蓝色渐变
+const heroStyle = computed(() => {
+  if (venue.value?.image_url) {
+    return {
+      backgroundImage: `linear-gradient(rgba(15, 23, 42, 0.45), rgba(15, 23, 42, 0.55)), url(${venue.value.image_url})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }
+  }
+  return {}
+})
 
 async function loadVenue() {
   loading.value = true
@@ -49,8 +61,9 @@ function goBack() {
     </div>
 
     <template v-else-if="venue">
-      <!-- Hero 头部 -->
-      <div class="venue-hero">
+      <!-- Hero 头部(有实景图时用真实图片作背景) -->
+      <div class="venue-hero" :style="heroStyle">
+        <div class="hero-overlay"></div>
         <div class="hero-inner">
           <button class="hero-back" @click="goBack">← 返回</button>
           <div class="hero-badge">{{ venue.city }}</div>
@@ -81,15 +94,6 @@ function goBack() {
       <div class="section-card">
         <h3 class="section-title">📋 重要信息</h3>
         <p class="section-text">{{ venue.important_info || '暂无' }}</p>
-      </div>
-
-      <!-- 场馆实景(真实图片) -->
-      <div v-if="venue.image_url" class="section-card">
-        <h3 class="section-title">📷 场馆实景</h3>
-        <div class="plan-wrap">
-          <img :src="venue.image_url" :alt="venue.name + ' 实景图'" class="plan-img" @click="planZoomed = !planZoomed" />
-          <div class="plan-hint">点击图片放大 / 缩小</div>
-        </div>
       </div>
 
       <!-- 场馆平面图 -->
@@ -132,21 +136,22 @@ function goBack() {
 .venue-hero {
   background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #3b82f6 100%);
   border-radius: 16px;
-  padding: 32px 28px;
+  padding: 36px 28px;
   color: #fff;
   margin-bottom: 20px;
   position: relative;
   overflow: hidden;
+  min-height: 200px;
+  display: flex;
+  align-items: flex-end;
 }
-.venue-hero::after {
-  content: '';
+.hero-overlay {
   position: absolute;
-  right: -60px; top: -60px;
-  width: 220px; height: 220px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 50%;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15,23,42,0.2) 0%, rgba(15,23,42,0.55) 100%);
+  pointer-events: none;
 }
-.hero-inner { position: relative; z-index: 1; }
+.hero-inner { position: relative; z-index: 1; width: 100%; }
 .hero-back {
   background: rgba(255,255,255,0.15);
   border: none; color: #fff;
