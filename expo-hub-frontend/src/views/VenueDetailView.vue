@@ -83,6 +83,15 @@ function goBack() {
         <p class="section-text">{{ venue.important_info || '暂无' }}</p>
       </div>
 
+      <!-- 场馆实景(真实图片) -->
+      <div v-if="venue.image_url" class="section-card">
+        <h3 class="section-title">📷 场馆实景</h3>
+        <div class="plan-wrap">
+          <img :src="venue.image_url" :alt="venue.name + ' 实景图'" class="plan-img" @click="planZoomed = !planZoomed" />
+          <div class="plan-hint">点击图片放大 / 缩小</div>
+        </div>
+      </div>
+
       <!-- 场馆平面图 -->
       <div class="section-card">
         <h3 class="section-title">🗺️ 场馆平面图</h3>

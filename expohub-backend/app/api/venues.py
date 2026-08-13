@@ -34,6 +34,7 @@ class VenueCreate(BaseModel):
     important_info: Optional[str] = None
     honors: Optional[list[str]] = None
     plan_image: Optional[str] = None  # 场馆平面图(URL 或 data URI)
+    image_url: Optional[str] = None  # 场馆实景图 URL
 
 
 class VenueUpdate(BaseModel):
@@ -44,6 +45,7 @@ class VenueUpdate(BaseModel):
     important_info: Optional[str] = None
     honors: Optional[list[str]] = None
     plan_image: Optional[str] = None
+    image_url: Optional[str] = None
 
 
 def _venue_to_dict(v: Venue) -> dict:
@@ -62,6 +64,7 @@ def _venue_to_dict(v: Venue) -> dict:
         "important_info": v.important_info or "",
         "honors": honors,
         "plan_image": v.plan_image or "",
+        "image_url": v.image_url or "",
         "created_at": v.created_at.isoformat() if v.created_at else None,
     }
 

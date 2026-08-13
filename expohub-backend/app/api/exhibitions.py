@@ -56,6 +56,7 @@ class ExhibitionUpdate(BaseModel):
     start_date: Optional[str] = None
     end_date: Optional[str] = None
     location: Optional[str] = None
+    venue_id: Optional[int] = None  # V3.2: 关联展馆(可改)
     status: Optional[str] = None
 
 
@@ -337,6 +338,11 @@ def update(
         raise Forbidden(message="无权编辑此展会")
 
     updates = data.model_dump(exclude_unset=True)
+    # V3.2: venue_id 变更时校验展馆存在
+    if "venue_id" in updates and updates["venue_id"] is not None:
+        venue = db.query(Venue).filter(Venue.id == updates["venue_id"]).first()
+        if not venue:
+            raise NotFound(message="展馆不存在")
     for field, value in updates.items():
         if hasattr(exh, field):
             setattr(exh, field, value)

@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { exhibitionApi } from '@/api/exhibition'
+import { venueApi, type Venue } from '@/api/venue'
 import { EXHIBITION_CATEGORIES } from '@/api/product'
 
 const route = useRoute()
@@ -21,7 +22,29 @@ const form = ref({
   location: '',
   category: '',
   status: 'draft',
+  venue_id: null as number | null,
 })
+
+// V3.2: 展馆选择
+const venues = ref<Venue[]>([])
+const venuesLoading = ref(false)
+async function loadVenues() {
+  venuesLoading.value = true
+  try {
+    const res = await venueApi.getList()
+    venues.value = res.list || []
+  } catch {
+    venues.value = []
+  } finally {
+    venuesLoading.value = false
+  }
+}
+function onVenueChange() {
+  const v = venues.value.find((x) => x.id === form.value.venue_id)
+  if (v) {
+    form.value.location = `${v.name}（${v.address}）`
+  }
+}
 
 async function fetchExhibition() {
   loading.value = true
@@ -37,6 +60,7 @@ async function fetchExhibition() {
       location: data.location || '',
       category: data.category || '',
       status: data.status || 'draft',
+      venue_id: data.venue_info?.id || null,
     }
   } catch (e: any) {
     error.value = e.response?.data?.detail || 'Failed to load exhibition'
@@ -59,6 +83,7 @@ async function handleSubmit() {
       location: form.value.location.trim(),
       category: form.value.category || undefined,
       status: form.value.status,
+      venue_id: form.value.venue_id ?? undefined,
     })
     success.value = 'Exhibition updated successfully!'
     setTimeout(() => {
@@ -121,6 +146,15 @@ onMounted(fetchExhibition)
                 <label class="form-label">End Date <span class="text-danger">*</span></label>
                 <input v-model="form.end_date" class="form-input" type="date" />
               </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">展馆选择 <span class="text-muted">（选择后自动填充地点）</span></label>
+              <select v-model="form.venue_id" class="form-input" @change="onVenueChange">
+                <option :value="null">请选择展馆（可不选）</option>
+                <option v-for="v in venues" :key="v.id" :value="v.id">{{ v.name }}（{{ v.city }} · {{ v.area }}万㎡）</option>
+              </select>
+              <div v-if="venuesLoading" class="text-muted" style="font-size:12px;margin-top:4px;">展馆加载中...</div>
             </div>
 
             <div class="form-group">
