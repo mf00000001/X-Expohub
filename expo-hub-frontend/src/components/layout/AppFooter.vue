@@ -27,6 +27,7 @@ const allTabs: TabItem[] = [
   // 游客/主办方
   { path: '/', label: '首页', icon: '🏠', roles: ['visitor','organizer','admin'] },
   { path: '/exhibitions', label: '展会', icon: '📋', roles: ['visitor','organizer','admin'] },
+  { path: '/procurements', label: '采购需求', icon: '📦', roles: ['visitor','organizer','admin'] },
   { path: '/micro-booths', label: '微展位', icon: '🏪', roles: ['visitor','buyer'] },
   { path: '/profile', label: '我的', icon: '👤', roles: ['visitor','organizer','admin'] },
 ]

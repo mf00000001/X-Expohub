@@ -6,6 +6,7 @@ import SearchBar from '@/components/SearchBar.vue'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import { procurementApi, type Procurement } from '@/api/procurement'
+import { EXHIBITION_CATEGORIES } from '@/api/product'
 
 const router = useRouter()
 const procurements = ref<Procurement[]>([])
@@ -13,6 +14,8 @@ const loading = ref(true)
 const searchKeyword = ref('')
 const currentPage = ref(1)
 const totalPages = ref(1)
+// V3.3: 分类筛选
+const activeCategory = ref('全部')
 
 async function fetchProcurements() {
   loading.value = true
@@ -21,6 +24,7 @@ async function fetchProcurements() {
       page: currentPage.value,
       page_size: 12,
       search: searchKeyword.value || undefined,
+      category: activeCategory.value === '全部' ? undefined : activeCategory.value,
     })
     procurements.value = (res as any).list || (res as any).items || (res as any).results || []
     totalPages.value = (res as any).total_pages || Math.ceil(((res as any).total || 0) / 12) || 1
@@ -35,6 +39,12 @@ onMounted(fetchProcurements)
 
 function handleSearch(value: string) {
   searchKeyword.value = value
+  currentPage.value = 1
+  fetchProcurements()
+}
+
+function selectCategory(cat: string) {
+  activeCategory.value = cat
   currentPage.value = 1
   fetchProcurements()
 }
@@ -56,6 +66,18 @@ function changePage(page: number) {
       <h1 class="page-title">采购需求</h1>
       <div class="mb-6" style="max-width:500px">
         <SearchBar v-model="searchKeyword" @search="handleSearch" />
+      </div>
+
+      <!-- V3.3: 分类筛选 -->
+      <div class="cat-chips">
+        <button class="chip" :class="{ active: activeCategory === '全部' }" @click="selectCategory('全部')">全部</button>
+        <button
+          v-for="cat in EXHIBITION_CATEGORIES"
+          :key="cat"
+          class="chip"
+          :class="{ active: activeCategory === cat }"
+          @click="selectCategory(cat)"
+        >{{ cat }}</button>
       </div>
 
       <LoadingSkeleton v-if="loading" :lines="6" />
@@ -82,3 +104,13 @@ function changePage(page: number) {
     </div>
   </div>
 </template>
+
+<style scoped>
+.cat-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.chip {
+  border: 1px solid #e2e8f0; background: #fff; border-radius: 999px;
+  padding: 5px 14px; font-size: 13px; color: #475569; cursor: pointer; transition: all .2s;
+}
+.chip:hover { border-color: #93c5fd; color: #2563eb; }
+.chip.active { background: #2563eb; border-color: #2563eb; color: #fff; font-weight: 500; }
+</style>
