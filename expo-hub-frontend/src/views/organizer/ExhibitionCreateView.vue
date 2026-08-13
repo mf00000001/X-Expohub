@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { exhibitionApi } from '@/api/exhibition'
 import { venueApi, type Venue } from '@/api/venue'
@@ -43,6 +43,48 @@ function onVenueChange() {
     // 选择展馆后自动填充举办地点
     form.value.location = `${v.name}（${v.address}）`
   }
+}
+
+// V3.3: 内嵌选馆对比面板(不跳转,避免表单数据丢失)
+const showPicker = ref(false)
+const pickerCity = ref('全部')
+const pickerSort = ref<'area' | 'city'>('area')
+const pickerCities = computed(() => {
+  const set = new Set(venues.value.map((v) => v.city))
+  return ['全部', ...Array.from(set).sort()]
+})
+const pickerList = computed(() => {
+  let list = venues.value
+  if (pickerCity.value !== '全部') {
+    list = list.filter((v) => v.city === pickerCity.value)
+  }
+  const arr = [...list]
+  if (pickerSort.value === 'area') {
+    arr.sort((a, b) => (b.area || 0) - (a.area || 0))
+  } else {
+    arr.sort((a, b) => a.city.localeCompare(b.city, 'zh-CN'))
+  }
+  return arr
+})
+function pickVenue(v: Venue) {
+  form.value.venue_id = v.id
+  form.value.location = `${v.name}（${v.address}）`
+  showPicker.value = false
+}
+function trafficHint(v: Venue): string {
+  const t = v.important_info || ''
+  const idx = t.indexOf('地铁')
+  if (idx >= 0) {
+    const seg = t.slice(idx, idx + 40)
+    return seg.split(/[;；。]/)[0] || seg
+  }
+  const idx2 = t.indexOf('机场')
+  if (idx2 >= 0) return t.slice(idx2, idx2 + 30)
+  return ''
+}
+function currentVenueLabel(): string {
+  const v = venues.value.find((x) => x.id === form.value.venue_id)
+  return v ? `${v.name}（${v.city} · ${v.area ? v.area + '万㎡' : '面积待确认'}）` : ''
 }
 onMounted(() => {
   loadVenues()
@@ -166,11 +208,48 @@ function goBack() {
 
             <div class="form-group">
               <label class="form-label">展馆选择 <span class="text-muted">（选填,选择后自动填充地点）</span></label>
-              <select v-model="form.venue_id" class="form-input" @change="onVenueChange">
-                <option :value="null">请选择展馆（可不选）</option>
-                <option v-for="v in venues" :key="v.id" :value="v.id">{{ v.name }}（{{ v.city }} · {{ v.area }}万㎡）</option>
-              </select>
+              <div class="flex gap-2">
+                <select v-model="form.venue_id" class="form-input" @change="onVenueChange">
+                  <option :value="null">请选择展馆（可不选）</option>
+                  <option v-for="v in venues" :key="v.id" :value="v.id">{{ v.name }}（{{ v.city }} · {{ v.area }}万㎡）</option>
+                </select>
+                <button type="button" class="btn btn-outline" style="white-space:nowrap" @click="showPicker = !showPicker">
+                  {{ showPicker ? '收起对比' : '🔍 对比挑选' }}
+                </button>
+              </div>
+              <div v-if="form.venue_id" class="venue-selected">✅ 已选：{{ currentVenueLabel() }}</div>
               <div v-if="venuesLoading" class="text-muted" style="font-size:12px;margin-top:4px;">展馆加载中...</div>
+
+              <!-- 内嵌选馆对比面板 -->
+              <div v-if="showPicker" class="picker-panel">
+                <div class="picker-toolbar">
+                  <div class="picker-chips">
+                    <button v-for="c in pickerCities" :key="c" class="chip" :class="{ 'chip-active': pickerCity === c }" @click="pickerCity = c">{{ c }}</button>
+                  </div>
+                  <select v-model="pickerSort" class="form-input" style="width:auto">
+                    <option value="area">面积从大到小</option>
+                    <option value="city">按城市</option>
+                  </select>
+                </div>
+                <div class="picker-list">
+                  <div v-for="v in pickerList" :key="v.id" class="picker-row" :class="{ 'picker-row-active': form.venue_id === v.id }" @click="pickVenue(v)">
+                    <div class="pr-main">
+                      <div class="pr-title">
+                        <span class="pr-name">{{ v.name }}</span>
+                        <span class="pr-city">{{ v.city }}</span>
+                      </div>
+                      <div class="pr-meta">
+                        <span>📐 {{ v.area ? v.area + ' 万㎡' : '面积待确认' }}</span>
+                        <span v-if="trafficHint(v)">🚇 {{ trafficHint(v) }}</span>
+                      </div>
+                      <div class="pr-honors">
+                        <span v-for="(h, i) in (v.honors || []).slice(0, 2)" :key="i" class="pr-honor">🏅 {{ h }}</span>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-sm" :class="form.venue_id === v.id ? 'btn-success' : 'btn-outline'" @click.stop="pickVenue(v)">{{ form.venue_id === v.id ? '已选 ✓' : '选择' }}</button>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div class="form-group">
@@ -212,3 +291,50 @@ function goBack() {
     </div>
   </div>
 </template>
+
+<style scoped>
+.venue-selected {
+  margin-top: 6px; font-size: 13px; color: #15803d;
+  background: #f0fdf4; border: 1px solid #bbf7d0;
+  border-radius: 8px; padding: 6px 10px; display: inline-block;
+}
+.picker-panel {
+  margin-top: 10px;
+  border: 1px solid #93c5fd; border-radius: 12px;
+  padding: 12px; background: #f8fafc;
+  max-height: 380px; display: flex; flex-direction: column;
+}
+.picker-toolbar {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 10px; flex-wrap: wrap; margin-bottom: 10px;
+}
+.picker-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip {
+  border: 1px solid #e2e8f0; background: #fff; border-radius: 999px;
+  padding: 4px 12px; font-size: 12px; color: #475569; cursor: pointer; transition: all .2s;
+}
+.chip:hover { border-color: #93c5fd; color: #2563eb; }
+.chip-active { background: #2563eb; border-color: #2563eb; color: #fff; font-weight: 500; }
+.picker-list { overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+.picker-row {
+  display: flex; align-items: center; gap: 12px;
+  background: #fff; border: 1px solid #e2e8f0; border-radius: 10px;
+  padding: 10px 12px; cursor: pointer; transition: all .2s;
+}
+.picker-row:hover { border-color: #93c5fd; }
+.picker-row-active { border-color: #2563eb; background: #eff6ff; }
+.pr-main { flex: 1; min-width: 0; }
+.pr-title { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.pr-name { font-size: 14px; font-weight: 600; color: #1f2937; }
+.pr-city {
+  background: #eff6ff; color: #2563eb; border-radius: 5px;
+  padding: 0 6px; font-size: 11px; font-weight: 600;
+}
+.pr-meta { display: flex; gap: 10px; font-size: 12px; color: #64748b; margin-bottom: 4px; flex-wrap: wrap; }
+.pr-honors { display: flex; gap: 5px; flex-wrap: wrap; }
+.pr-honor {
+  font-size: 11px; color: #b45309; background: #fffbeb;
+  border-radius: 5px; padding: 1px 6px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px;
+}
+</style>
