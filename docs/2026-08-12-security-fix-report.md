@@ -26,8 +26,10 @@
 | `app/api/reviews.py` | DELETE 同上(任何主办方删任意评价 → 仅 owner/admin) |
 | `app/api/procurements.py` | PUT 仅 owner/admin(原误含 organizer) |
 | `app/api/booths.py` | update 允许 owner/所属展会主办方/admin;delete 仅所属展会主办方/admin |
-| `app/api/exhibitions.py` | PUT 仅 owner/admin;approve 增加 organizer_id 归属校验 |
+| `app/api/exhibitions.py` | PUT 仅 owner/admin;approve 增加 organizer_id 归属校验;**publish 同模式修复(第二轮:仅 owner/admin + 审核检查)** |
 | `app/api/dashboard.py` | approve/reject 增加 organizer_id 归属校验 |
+
+> **勘误记录(v1.1 → v1.2)**:v1.1 曾将 `exhibitions.py` publish 误判为"正确范例"(字面含归属校验),实际 `role not in ("admin","organizer")` 豁免使非 owner 主办方依旧放行(HTTP 实测 200)。第二轮修复改为 `exh.organizer_id != current_user.id and role != "admin"`,并补 `organizer_status == "approved"` 审核检查;实测越权 403、owner 发布 200。
 
 ### P0-2b 未过审(pending)主办方限制
 | 文件 | 修复 |
@@ -69,12 +71,13 @@
 |---|---|---|
 | 项目测试 | `pytest tests/test_security_regression.py`(12 用例) | ✅ 12 passed |
 | 权限表验证 | `python scripts/permissions_verify.py`(22 断言) | ✅ ALL PASS |
-| API 隔离回归 | `python scripts/security_verify.py`(11 断言) | ✅ ALL PASS |
+| API 隔离回归 | `python scripts/security_verify.py`(**12 断言,含 publish 越权**) | ✅ ALL PASS |
 | 服务健康 | 后端 :8002 / 前端 :5173 | ✅ 200 / 200 |
 
 ### 隔离验证关键断言(全部通过)
 - 匿名访问报名列表 → **401**
 - organizer 改他人展品 → **403**
+- **organizer 发布他人展会(publish)→ 403(第二轮新增)**;owner 发布自己展会 → 200
 - pending 主办方访问管理统计 / 审批展会 → **403 / 403**
 - buyer 预订展位 → **403**
 - 匿名访问采购匹配(报价)→ **401**

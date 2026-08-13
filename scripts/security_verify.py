@@ -60,6 +60,16 @@ def main():
     else:
         check("organizer:edit-others-product", False, "no product found")
 
+    # 3b. publish 归属(P0-2 修复回归): 主办方发布他人展会 -> 403
+    st, j = req("GET", "/api/exhibitions?page_size=50")
+    exhs = j.get("data", {}).get("list") or j.get("data", {}).get("items") or []
+    other_exh = next((e for e in exhs if e.get("organizer_id") != 2 and e.get("status") != "cancelled"), None)
+    if other_exh:
+        st, _ = req("POST", f"/api/exhibitions/{other_exh['id']}/publish", token=toks["organizer_canton"])
+        check("organizer:publish-others-exhibition", st == 403, f"http={st} (exh={other_exh['id']},owner={other_exh.get('organizer_id')})")
+    else:
+        check("organizer:publish-others-exhibition", False, "no other-organizer exhibition found")
+
     # 4. pending 主办方(P0-2b) -> 403
     st, j = req("POST", "/api/auth/register", body={
         "username": f"org_{TS}", "email": f"org_{TS}@t.com", "password": "tmp123456",

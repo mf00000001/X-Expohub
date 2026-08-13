@@ -450,8 +450,12 @@ def publish(
     if not exh:
         raise NotFound(message="展会不存在")
 
-    if exh.organizer_id != current_user.id and current_user.role not in ("admin", "organizer"):
+    # 权限：仅展会创建者(主办方本人)或管理员可发布
+    if exh.organizer_id != current_user.id and current_user.role != "admin":
         raise Forbidden(message="无权发布此展会")
+    # 主办方必须已通过入驻审核
+    if current_user.role == "organizer" and current_user.organizer_status != "approved":
+        raise Forbidden(message="主办方入驻审核未通过，无法发布展会")
 
     exh.status = "published"
     db.commit()
