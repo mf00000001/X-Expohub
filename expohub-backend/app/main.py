@@ -26,6 +26,8 @@ import app.models.notification  # noqa: F401
 # V3.0: 预约/收藏落库（安全评审 P0-3）
 import app.models.appointment  # noqa: F401
 import app.models.favorite  # noqa: F401
+# V3.1: 展馆
+import app.models.venue  # noqa: F401
 
 
 @asynccontextmanager
@@ -99,6 +101,8 @@ app.include_router(notifications_router, prefix="/api")
 app.include_router(growth_router, prefix="/api")
 app.include_router(favorites_router, prefix="/api")
 app.include_router(appointments_router, prefix="/api")
+from app.api.venues import router as venues_router
+app.include_router(venues_router, prefix="/api")
 app.include_router(recommendations_router, prefix="/api")
 app.include_router(poster_router, prefix="/api")
 

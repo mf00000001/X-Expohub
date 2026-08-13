@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { exhibitionApi } from '@/api/exhibition'
+import { venueApi, type Venue } from '@/api/venue'
 import { EXHIBITION_CATEGORIES } from '@/api/product'
 
 const router = useRouter()
@@ -18,7 +19,31 @@ const form = ref({
   location: '',
   category: '',
   status: 'draft',
+  venue_id: null as number | null,
 })
+
+// V3.1: 展馆选择
+const venues = ref<Venue[]>([])
+const venuesLoading = ref(false)
+async function loadVenues() {
+  venuesLoading.value = true
+  try {
+    const res = await venueApi.getList()
+    venues.value = res.list || []
+  } catch {
+    venues.value = []
+  } finally {
+    venuesLoading.value = false
+  }
+}
+function onVenueChange() {
+  const v = venues.value.find((x) => x.id === form.value.venue_id)
+  if (v) {
+    // 选择展馆后自动填充举办地点
+    form.value.location = `${v.name}（${v.address}）`
+  }
+}
+onMounted(loadVenues)
 
 async function handleSubmit() {
   error.value = ''
@@ -53,6 +78,7 @@ async function handleSubmit() {
       category: form.value.category || undefined,
       status: 'draft',
       total_booths: Number(form.value.total_booths) || 10,
+      venue_id: form.value.venue_id ?? undefined,
     })
     success.value = '展会创建成功！'
     setTimeout(() => {
@@ -126,6 +152,15 @@ function goBack() {
                 <label class="form-label">结束日期 <span class="text-danger">*</span></label>
                 <input v-model="form.end_date" class="form-input" type="date" />
               </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">展馆选择 <span class="text-muted">（选填,选择后自动填充地点）</span></label>
+              <select v-model="form.venue_id" class="form-input" @change="onVenueChange">
+                <option :value="null">请选择展馆（可不选）</option>
+                <option v-for="v in venues" :key="v.id" :value="v.id">{{ v.name }}（{{ v.city }} · {{ v.area }}万㎡）</option>
+              </select>
+              <div v-if="venuesLoading" class="text-muted" style="font-size:12px;margin-top:4px;">展馆加载中...</div>
             </div>
 
             <div class="form-group">
