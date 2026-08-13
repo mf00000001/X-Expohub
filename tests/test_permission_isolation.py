@@ -9,7 +9,6 @@ ExpoHub 权限隔离测试（P0 核心）
 5. 未登录访问需认证接口返回 401
 """
 
-import pytest
 from fastapi import status
 
 
@@ -24,7 +23,7 @@ class TestVisitorAccess:
     def test_visitor_can_get_exhibition_detail(self, client, visitor_headers, sample_exhibition_published):
         """P0 测试：游客可以查看展会详情（公开接口）"""
         response = client.get(f"/api/exhibitions/{sample_exhibition_published.id}",
-                            headers=visitor_headers)
+                              headers=visitor_headers)
         assert response.status_code == status.HTTP_200_OK
 
     def test_visitor_can_register_exhibition(self, client, visitor_headers, sample_exhibition_published):

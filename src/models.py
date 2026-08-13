@@ -11,11 +11,11 @@ ExpoHub 核心数据模型
 
 import enum
 from datetime import datetime
-from typing import Optional, List
+from typing import Optional
 
 from sqlalchemy import (
     String, Integer, DateTime, func, Enum, Boolean,
-    Text, ForeignKey, Float, Date, UniqueConstraint, Index, JSON
+    Text, ForeignKey, Float, UniqueConstraint, Index
 )
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -56,7 +56,7 @@ class BoothStatus(str, enum.Enum):
     AVAILABLE = "available"     # 可预订
     RESERVED = "reserved"       # 已预订
     OCCUPIED = "occupied"       # 已占用
-    MAINTENANCE = "maintenance" # 维护中
+    MAINTENANCE = "maintenance"  # 维护中
 
 
 class ExhibitionStatus(str, enum.Enum):
@@ -462,7 +462,11 @@ class ExhibitionEnrollment(Base):
     )
 
     def __repr__(self) -> str:
-        return f"<ExhibitionEnrollment(user={self.user_id}, exhibition={self.exhibition_id}, type='{self.enrollment_type}')>"
+        return (
+            f"<ExhibitionEnrollment(user={self.user_id}, "
+            f"exhibition={self.exhibition_id}, "
+            f"type='{self.enrollment_type}')>"
+        )
 
 
 # ============================================================

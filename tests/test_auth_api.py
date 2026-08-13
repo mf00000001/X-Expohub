@@ -6,10 +6,7 @@ ExpoHub 认证接口测试（P0 优先级）
 2. 异常路径：重复注册、错误密码、无效令牌
 """
 
-import pytest
 from fastapi import status
-
-from src.models import UserRole
 
 
 class TestRegisterAPI:

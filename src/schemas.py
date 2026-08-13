@@ -8,7 +8,7 @@ import re
 from datetime import datetime
 from typing import Optional, List, Generic, TypeVar
 
-from pydantic import BaseModel, Field, field_validator, EmailStr
+from pydantic import BaseModel, Field, field_validator
 
 from src.models import UserRole, UserStatus, Gender
 

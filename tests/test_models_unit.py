@@ -11,15 +11,13 @@ ExpoHub 数据模型单元测试
 import pytest
 from datetime import datetime, timezone
 
-from sqlalchemy import inspect, UniqueConstraint, Index
-from sqlalchemy.orm import Session
+from sqlalchemy import inspect
 
 from src.models import (
-    User, UserRole, UserStatus, Gender,
+    User, UserRole, UserStatus,
     Exhibition, ExhibitionStatus,
     Booth, BoothStatus,
     VisitorRegistration, AuditLog,
-    Base,
 )
 
 

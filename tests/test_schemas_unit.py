@@ -14,13 +14,12 @@ from datetime import datetime, timezone, timedelta
 from pydantic import ValidationError
 
 from src.schemas import (
-    RegisterRequest, LoginRequest, TokenResponse,
-    ExhibitionCreateRequest, ExhibitionResponse,
-    BoothCreateRequest, BoothBookRequest,
+    RegisterRequest, LoginRequest,
+    ExhibitionCreateRequest,
+    BoothCreateRequest,
     RegistrationCreateRequest, UserUpdateRequest,
-    RefreshTokenRequest,
 )
-from src.models import UserRole, UserStatus, Gender
+from src.models import UserRole, Gender
 
 
 class TestRegisterRequest:

@@ -21,21 +21,21 @@ ExpoHub API 路由
 """
 
 import json
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 from typing import Optional, List
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from sqlalchemy import or_, and_, func, select, text
+from sqlalchemy import or_, and_, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import joinedload, selectinload
+from sqlalchemy.orm import joinedload
 
 from src.database import get_db
 from src.models import (
-    User, UserRole, UserStatus, Exhibition, ExhibitionStatus,
-    Booth, BoothStatus, VisitorRegistration, AuditLog,
+    User, UserStatus, Exhibition, ExhibitionStatus,
+    Booth, BoothStatus, VisitorRegistration,
     ExhibitionEnrollment, EnrollmentStatus,
     ProcurementRequest, ProcurementStatus, ProcurementMatch,
-    Product, ProductStatus, Message, Review,
+    Product,
 )
 from src.schemas import (
     # 认证
@@ -52,22 +52,20 @@ from src.schemas import (
     EnrollmentCreateRequest, EnrollmentResponse, EnrollmentApprovalRequest,
     # 采购
     ProcurementCreateRequest, ProcurementUpdateRequest,
-    ProcurementResponse, ProcurementMatchCreateRequest, ProcurementMatchResponse,
+    ProcurementResponse, ProcurementMatchResponse,
     # 展品
-    ProductCreateRequest, ProductUpdateRequest, ProductResponse,
+    ProductResponse,
     # 展商中心
     ExhibitorCenterResponse, ExhibitorExhibitionGroup,
-    # 通用
-    ErrorResponse, ApiResponse, PaginatedResponse,
 )
 from src.auth import (
     hash_password, verify_password,
     create_access_token, create_refresh_token, refresh_access_token,
-    get_current_user, require_auth,
-    require_role, require_permission, require_visitor, require_buyer,
+    require_auth,
+    require_visitor, require_buyer,
     require_exhibitor, require_organizer, require_boss, require_staff,
     require_visitor_or_buyer,
-    CurrentUser, Permission, UserRole as AuthRole,
+    CurrentUser,
 )
 
 # ============================================================

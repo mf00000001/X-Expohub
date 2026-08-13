@@ -9,16 +9,13 @@ ExpoHub 认证模块单元测试
 5. 角色依赖注入函数
 """
 
-import time
 import pytest
 from datetime import datetime, timezone, timedelta
-from jose import jwt, JWTError
 
 from src.auth import (
     hash_password, verify_password,
     create_access_token, create_refresh_token, decode_token, refresh_access_token,
     check_permission, Permission, ROLE_PERMISSIONS,
-    require_role, require_permission,
     CurrentUser,
 )
 from src.models import UserRole, UserStatus
@@ -150,7 +147,6 @@ class TestJWTTokens:
     def test_decode_expired_token(self):
         """测试：过期令牌解码抛出异常"""
         from src.config import settings
-        import time
         # 创建一个立即过期的令牌
         now = datetime.now(timezone.utc)
         from jose import jwt

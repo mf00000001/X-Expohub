@@ -33,10 +33,10 @@ async def lifespan(app: FastAPI):
     """
     db_path = settings.database_url.replace("sqlite+aiosqlite:///", "")
     print(f"📦 数据库: SQLite + aiosqlite ({db_path})")
-    print(f"🔧 正在创建/检查数据库表...")
+    print("🔧 正在创建/检查数据库表...")
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
-    print(f"✅ 数据库表已就绪")
+    print("✅ 数据库表已就绪")
     yield
 
 

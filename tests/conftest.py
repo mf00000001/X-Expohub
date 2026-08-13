@@ -10,15 +10,12 @@ ExpoHub 测试配置与共享 Fixtures
 
 import pytest
 from datetime import datetime, timezone
-from typing import Generator
-
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
 from src.database import Base, get_db
 from src.main import create_app
-from src.config import settings
 from src.models import User, UserRole, UserStatus, Exhibition, ExhibitionStatus, Booth, BoothStatus
 from src.auth import hash_password, create_access_token, create_refresh_token
 

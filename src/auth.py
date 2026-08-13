@@ -17,7 +17,7 @@ ExpoHub 认证与授权模块
 
 import enum
 from datetime import datetime, timedelta, timezone
-from typing import Optional, List, Callable, Type
+from typing import Optional, Callable
 
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
@@ -443,7 +443,6 @@ async def get_current_user(
         )
 
     user_id = int(payload["sub"])
-    role_str = payload.get("role", "")
 
     # 从数据库获取用户信息（异步 select）
     result = await db.execute(select(User).where(User.id == user_id))
