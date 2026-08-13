@@ -1,17 +1,24 @@
 # ExpoHub 安全修复交付报告
 
+> 版本:v1.2(第二轮:publish 越权修复与勘误)
 > 日期:2026-08-12
-> 依据:《数据隔离与安全评审报告》v1.1(`D:\reasonix work\docs\2026-08-12-expohub-security-review.md`)
+> 依据:《数据隔离与安全评审报告》v1.2(`D:\reasonix work\docs\2026-08-12-expohub-security-review.md`)
 > 范围:expohub-backend(FastAPI 后端)
-> 结论:**P0 全部修复、P1 主要修复、统一 RBAC 依赖落地,三层验证体系全部通过**
+> 结论:**P0 全部修复(含 publish 第二轮修复)、P1 主要修复、统一 RBAC 依赖落地,三层验证体系全部通过**
+> 提交:`900c019`(第一轮)+ `a43d7ec`(第二轮 publish)
 
 ---
 
 ## 1. 修复背景
 
-外部专家对安全评审报告 v1.0 复核后指出:存在**匿名无鉴权接口**、**系统性 organizer 越权**(含未过审 pending 主办方即可越权)、**预约/收藏内存存储**、**登出/封禁闭环失效**等 P0/P1 缺陷。本报告记录针对这些缺陷的修复工作。
+外部专家对安全评审报告 v1.0 复核后指出:存在**匿名无鉴权接口**、**系统性 organizer 越权**(含未过审 pending 主办方即可越权)、**预约/收藏内存存储**、**登出/封禁闭环失效**等 P0/P1 缺陷。第二轮检查进一步发现 **`exhibitions.py` publish 与 PUT 同模式越权**(v1.1 曾误判为正确)。本报告记录两轮修复工作。
 
-## 2. 修复清单(14 个文件,+303/-93)
+## 2. 修复清单(15 个文件,+323/-96)
+
+### 第二轮修复(P0-2 遗漏项)
+| 文件 | 修复 |
+|---|---|
+| `app/api/exhibitions.py` publish | 与 PUT 同模式的越权:**仅展会创建者(主办方本人)或 admin 可发布**,并补 `organizer_status == "approved"` 审核检查;实测越权 403、owner 发布 200 |
 
 ### P0-1 匿名无鉴权接口(`app/api/dashboard.py`)
 | 修复 | 说明 |
@@ -90,8 +97,15 @@
 | 文件 | 说明 |
 |---|---|
 | `expohub-backend/tests/test_security_regression.py` | 角色设置 pytest 用例(12 个):权限映射表/has_permission/require_permission |
-| `scripts/security_verify.py` | API 层隔离回归(11 断言,临时数据自清理) |
+| `scripts/security_verify.py` | API 层隔离回归(**12 断言,含跨主办方 publish 越权**,临时数据自清理) |
 | `scripts/permissions_verify.py` | 权限映射表断言(22 项,纯单元级) |
+
+## 4b. 提交记录
+
+| commit | 内容 |
+|---|---|
+| `900c019` | 第一轮:匿名接口鉴权 / organizer 越权修正 / pending 主办方限制 / 预约收藏落库 / 统一 RBAC 依赖 / 回归测试(20 文件) |
+| `a43d7ec` | 第二轮:publish 越权修复(仅 owner/admin + 审核检查)、security_verify 增至 12 断言、交付报告勘误(4 文件 +20/-3) |
 
 ## 5. 遗留事项
 
