@@ -52,13 +52,17 @@ const statusClass = computed(() => {
 <style scoped>
 .procurement-card {
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.15s, box-shadow 0.15s;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 .procurement-card:hover {
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .procurement-header {
