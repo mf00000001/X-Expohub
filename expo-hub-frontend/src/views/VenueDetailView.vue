@@ -30,14 +30,10 @@ onMounted(loadVenue)
 function goBack() {
   router.back()
 }
-
-function goList() {
-  router.push({ name: 'venue-list' })
-}
 </script>
 
 <template>
-  <div class="page-wrapper" style="max-width: 960px">
+  <div class="container page-wrapper" style="max-width: 960px">
     <!-- 加载状态 -->
     <div v-if="loading" class="card card-body" style="text-align:center; padding:48px">
       <div class="skeleton-line" style="width:60%; margin:0 auto 12px"></div>
@@ -49,7 +45,6 @@ function goList() {
       <div class="form-error">{{ error }}</div>
       <div class="flex gap-2 justify-center mt-4">
         <button class="btn btn-primary" @click="loadVenue">重试</button>
-        <button class="btn btn-outline" @click="goList">浏览全部展馆</button>
       </div>
     </div>
 
@@ -111,7 +106,7 @@ function goList() {
       </div>
 
       <div class="more-row">
-        <button class="btn btn-outline btn-sm" @click="goList">查看更多展馆 →</button>
+        <button class="btn btn-outline btn-sm" @click="goBack">← 返回</button>
       </div>
     </template>
 
