@@ -13,12 +13,17 @@ const show = ref(false)
 const route = useRoute()
 const hidden = computed(() => ['login','register'].includes(route.name as string))
 
+let timer: ReturnType<typeof setInterval> | null = null
+
 onMounted(() => {
   pos.value = { x: window.innerWidth - 70, y: window.innerHeight - 120 }
   if (hidden.value) return
   fetchBalance()
-  const timer = setInterval(fetchBalance, 60000)
-  onUnmounted(() => clearInterval(timer))
+  timer = setInterval(fetchBalance, 60000)
+})
+
+onUnmounted(() => {
+  if (timer) clearInterval(timer)
 })
 
 async function fetchBalance() {

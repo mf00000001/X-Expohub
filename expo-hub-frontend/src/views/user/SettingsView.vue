@@ -53,8 +53,9 @@ async function changePassword() {
   }
 }
 
-function handleLogout() {
-  userStore.logout()
+async function handleLogout() {
+  // 先完成登出(含后端令牌撤销)再跳转,避免路由守卫误判"已登录访问登录页"而重定向到仪表盘
+  await userStore.logout()
   router.push('/login')
 }
 </script>

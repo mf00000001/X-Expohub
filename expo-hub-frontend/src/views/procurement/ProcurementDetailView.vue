@@ -33,19 +33,19 @@ const loading = ref(true)
 onMounted(async () => {
   const id = Number(route.params.id)
   try {
-    const [procRes, matchRes] = await Promise.all([
-      procurementApi.getDetail(id),
-      procurementApi.getMatches(id).catch(() => ({ matches: [] })),
-    ])
-    procurement.value = procRes
-    matches.value = matchRes.matches || matchRes.items || matchRes.results || []
+    procurement.value = await procurementApi.getDetail(id)
+    // V3.4: 仅登录后加载匹配/推荐,避免未登录访客触发 401
+    if (userStore.isLoggedIn) {
+      const matchRes = await procurementApi.getMatches(id).catch(() => ({ matches: [] }))
+      matches.value = matchRes.matches || matchRes.items || matchRes.results || []
+      // Fetch recommendations separately (non-blocking)
+      fetchRecommendations()
+    }
   } catch (err) {
     console.error('Failed to load procurement:', err)
   } finally {
     loading.value = false
   }
-  // Fetch recommendations separately (non-blocking)
-  fetchRecommendations()
 })
 
 function goToProduct(id: number) {
@@ -92,6 +92,11 @@ async function fetchRecommendations() {
           </div>
           <p class="text-secondary" style="line-height:1.8;white-space:pre-wrap;">{{ procurement.description }}</p>
         </div>
+      </div>
+
+      <!-- V3.4: 未登录提示 -->
+      <div v-if="!userStore.isLoggedIn" class="mt-6 card card-body text-center">
+        <p class="text-secondary text-sm">🔒 登录后可查看匹配展商与推荐展品、参与应标</p>
       </div>
 
       <!-- Matched Products -->

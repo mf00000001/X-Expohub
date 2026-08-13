@@ -22,6 +22,10 @@ class MicroBooth(Base):
     exhibitor_id: Mapped[int] = mapped_column(
         Integer, ForeignKey("users.id"), nullable=False, index=True, comment="展商用户ID"
     )
+    # V3.4: 所属展会(微展位分类到展会)
+    exhibition_id: Mapped[Optional[int]] = mapped_column(
+        Integer, ForeignKey("exhibitions.id"), nullable=True, index=True, comment="所属展会ID"
+    )
     name: Mapped[str] = mapped_column(
         String(200), nullable=False, comment="微展位名称"
     )
