@@ -37,6 +37,51 @@ npx vite --host 0.0.0.0 --port 5173
 | 游客 | visitor_chen | visitor123 |
 | 主办方 | organizer_canton | org123 |
 
+## 在另一台电脑运行（一键复现环境）
+
+> 说明：本仓库**不包含**虚拟环境本身（`.venv` 和 `.env` 都被 git 忽略——因为 venv 硬编码了本机路径与系统，直接拷贝到别的电脑通常会报错）。这里提供的是**从零复现**同一套环境的一键方案，保证跨电脑可用。
+
+### 后端（FastAPI + SQLite）
+
+**方式一：一键脚本**
+
+- Windows：双击运行 `scripts\setup_env.bat`
+- macOS / Linux：`./scripts/setup_env.sh`
+
+**方式二：手动**
+
+```bash
+cd expohub-backend
+python -m venv ../.venv
+# Windows          -- activate: ..\.venv\Scripts\activate
+# macOS / Linux    -- activate: source ../.venv/bin/activate
+pip install -r requirements.txt
+```
+
+**启动后端**（http://localhost:8002）：
+
+- Windows：`scripts\run_backend.bat`
+- macOS / Linux：`./scripts/run_backend.sh`
+- 或手动：`cd expohub-backend && python -m uvicorn app.main:app --host 0.0.0.0 --port 8002 --reload`
+
+> 后端依赖为**固定版本**（`expohub-backend/requirements.txt` 由已验证可运行的虚拟环境导出），保证不同电脑上复现结果一致。
+
+### 前端（Vue 3 + Vite）
+
+```bash
+cd expo-hub-frontend
+npm install
+npx vite --host 0.0.0.0 --port 5173
+```
+
+### 环境要求
+
+| 组件 | 要求 |
+|------|------|
+| Python | 3.13（后端，推荐新建干净 venv） |
+| Node.js / npm | 18+（前端） |
+
+
 ## 重建数据库
 ```bash
 cd expohub-backend
