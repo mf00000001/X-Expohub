@@ -22,7 +22,8 @@ services:
       - DATABASE_URL=${DATABASE_URL:-sqlite:////app/data/expohub.db}
       - APP_ENV=${APP_ENV:-production}
       - DEBUG=${DEBUG:-false}
-      - SECRET_KEY=${SECRET_KEY:-change-me-to-a-secure-random-string-in-production}
+      # 生产校验要求 ≥32 字符且不以 change-me 开头；真实部署务必覆盖
+      - SECRET_KEY=${SECRET_KEY:-please-override-expohub-secret-key-0123456789abcdef}
       # AI：默认 mock 降级；接入真实模型时配置
       - AI_PROVIDER=${AI_PROVIDER:-mock}
       - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
