@@ -16,6 +16,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 复制应用代码
 COPY app ./app
 COPY pytest.ini ./
+# 种子脚本（容器内可执行: docker exec expohub-api python seed.py）
+COPY seed.py gen_products.py ./
 
 # 数据库文件目录（SQLite 数据持久化挂载点）
 RUN mkdir -p /app/data

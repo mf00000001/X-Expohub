@@ -38,6 +38,18 @@ from app.models.membership import Membership
 from app.models.analytics import AnalyticsEvent
 from app.models.points import PointsLedger
 from app.models.checkin import CheckIn
+# 全模型注册（与 app.main 保持一致）：Exhibition.venue_id 等外键需要对应表在元数据中，
+# 否则空库 create_all 报 NoReferencedTableError（本地旧库因表已存在而未暴露此缺陷）
+import app.models.venue  # noqa: F401
+import app.models.category  # noqa: F401
+import app.models.notification  # noqa: F401
+import app.models.favorite  # noqa: F401
+import app.models.appointment  # noqa: F401
+import app.core.audit  # noqa: F401  (audit_logs)
+import app.modules.ticketing.models  # noqa: F401  (票务)
+import app.modules.onsite.models  # noqa: F401  (现场)
+import app.modules.ai.models  # noqa: F401  (AI 用量)
+import app.modules.platform.models  # noqa: F401  (平台计费)
 from app.core.security import hash_password
 from sqlalchemy import func
 
