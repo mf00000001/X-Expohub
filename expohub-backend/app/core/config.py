@@ -63,6 +63,21 @@ class Settings(BaseSettings):
     # ---- 调度器（P2：默认关闭，开启后启动 APScheduler 后台任务）----
     SCHEDULER_ENABLED: bool = False
 
+    # ---- AI 原生层（P5）----
+    # provider: mock(默认,无需key) / deepseek / siliconflow / openai-compat
+    AI_PROVIDER: str = "mock"
+    AI_MODEL: str = "deepseek-chat"
+    DEEPSEEK_API_KEY: str = ""
+    DEEPSEEK_BASE_URL: str = "https://api.deepseek.com"
+    SILICONFLOW_API_KEY: str = ""
+    SILICONFLOW_BASE_URL: str = "https://api.siliconflow.cn/v1"
+    OPENAI_COMPAT_API_KEY: str = ""
+    OPENAI_COMPAT_BASE_URL: str = ""
+    # 月度预算护栏（分）；0 = 不限制
+    AI_MONTHLY_BUDGET_CENTS: int = 10000
+    # 计费模型：每 1K 字符费用（分），用于用量记账
+    AI_COST_PER_1K_CHARS_CENTS: float = 0.5
+
     # MySQL 单独配置（可选，作为备选）
     DB_HOST: str = "localhost"
     DB_PORT: int = 3306
