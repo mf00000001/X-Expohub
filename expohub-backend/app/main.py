@@ -32,6 +32,8 @@ import app.models.venue  # noqa: F401
 import app.core.audit  # noqa: F401
 # P3: 票务域模型发现
 import app.modules.ticketing.models  # noqa: F401
+# P4: 现场签到域模型发现
+import app.modules.onsite.models  # noqa: F401
 
 
 @asynccontextmanager
@@ -118,6 +120,8 @@ app.include_router(recommendations_router, prefix="/api")
 app.include_router(poster_router, prefix="/api")
 from app.modules.ticketing.routes import router as ticketing_router
 app.include_router(ticketing_router, prefix="/api")
+from app.modules.onsite.routes import router as onsite_router
+app.include_router(onsite_router, prefix="/api")
 
 
 @app.get("/")
