@@ -1,0 +1,41 @@
+# ExpoHub 后端 Docker Compose（P7 双轨）
+#
+# 用法：
+#   开发/单机（SQLite 落盘卷）：docker compose -f compose.yml up -d --wait api
+#   私有化/生产（自定义 DATABASE_URL，如 MySQL 需先装 pymysql）：
+#     DATABASE_URL=mysql+pymysql://... docker compose -f compose.yml up -d --wait api
+#
+# 服务：
+#   api   - FastAPI（默认 SQLite 持久化到 named volume）
+name: expohub-backend
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: expohub-backend:latest
+    container_name: expohub-api
+    restart: unless-stopped
+    environment:
+      # 默认 SQLite（数据落在 /app/data/expohub.db，走卷持久化）
+      - DATABASE_URL=${DATABASE_URL:-sqlite:////app/data/expohub.db}
+      - APP_ENV=${APP_ENV:-production}
+      - DEBUG=${DEBUG:-false}
+      - SECRET_KEY=${SECRET_KEY:-change-me-to-a-secure-random-string-in-production}
+      # AI：默认 mock 降级；接入真实模型时配置
+      - AI_PROVIDER=${AI_PROVIDER:-mock}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
+    ports:
+      - "8002:8002"
+    volumes:
+      - expohub_data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8002/', timeout=3)"]
+      interval: 30s
+      timeout: 5s
+      start_period: 15s
+      retries: 3
+
+volumes:
+  expohub_data:

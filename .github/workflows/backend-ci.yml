@@ -1,0 +1,36 @@
+# ExpoHub 后端 CI（P7）
+# 触发：main/PR 涉及 expohub-backend 或门禁脚本变更时运行质量门禁
+name: ExpoHub Backend CI
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - "expohub-backend/**"
+      - "scripts/quality_gate.py"
+  pull_request:
+    paths:
+      - "expohub-backend/**"
+
+jobs:
+  quality-gate:
+    name: 测试 + 覆盖率门禁
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: expohub-backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: 安装依赖
+        run: |
+          pip install -r requirements.txt -r requirements-dev.txt pytest-cov
+
+      - name: 运行质量门禁（测试 + 覆盖率 ≥ 基线）
+        run: python ../scripts/quality_gate.py

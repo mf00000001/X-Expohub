@@ -1,0 +1,9 @@
+# 构建上下文排除（expohub-backend/）
+expohub.db
+test_expo_hub.db
+*.db
+tests/
+__pycache__/
+.pytest_cache/
+coverage.json
+.coverage*
