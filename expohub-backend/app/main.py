@@ -36,6 +36,9 @@ import app.modules.ticketing.models  # noqa: F401
 import app.modules.onsite.models  # noqa: F401
 # P5: AI 用量账本模型发现
 import app.modules.ai.models  # noqa: F401
+# P6: 平台运营域模型发现 + 后台任务注册
+import app.modules.platform.models  # noqa: F401
+import app.core.jobs  # noqa: F401
 
 
 @asynccontextmanager
@@ -126,6 +129,8 @@ from app.modules.onsite.routes import router as onsite_router
 app.include_router(onsite_router, prefix="/api")
 from app.modules.ai.routes import router as ai_router
 app.include_router(ai_router, prefix="/api")
+from app.modules.platform.routes import router as platform_router
+app.include_router(platform_router, prefix="/api")
 
 
 @app.get("/")

@@ -62,6 +62,8 @@ class Settings(BaseSettings):
 
     # ---- 调度器（P2：默认关闭，开启后启动 APScheduler 后台任务）----
     SCHEDULER_ENABLED: bool = False
+    # 待支付订单超时自动取消时长（分钟，配合 order-expire 任务）
+    ORDER_EXPIRE_MINUTES: int = 30
 
     # ---- AI 原生层（P5）----
     # provider: mock(默认,无需key) / deepseek / siliconflow / openai-compat

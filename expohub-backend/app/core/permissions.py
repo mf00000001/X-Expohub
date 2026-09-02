@@ -24,6 +24,8 @@ class Permission(str, Enum):
     TICKET_MANAGE = "ticket:manage"        # 票种/票务管理（主办方/管理员）
     # ---- 现场签到 ----
     ONSITE_MANAGE = "onsite:manage"        # 现场核销/撤销/统计（主办方/管理员）
+    # ---- 平台运营 ----
+    PLATFORM_MANAGE = "platform:manage"    # 平台运营（计费档位/导入/总览，仅管理员）
 
     # ---- 用户管理 ----
     USER_VIEW = "user:view"           # 查看个人信息
@@ -224,6 +226,7 @@ ROLE_PERMISSIONS: dict[RoleEnum, set[Permission]] = {
         Permission.SYSTEM_CONFIG,
         Permission.TICKET_MANAGE,
         Permission.ONSITE_MANAGE,
+        Permission.PLATFORM_MANAGE,
     },
 }
 
