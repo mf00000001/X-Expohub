@@ -41,6 +41,10 @@ async function upsert() {
 
 async function assign() {
   message.value = ''
+  if (!plans.value.length || !plans.value.some((p) => p.id === assignPlanId.value)) {
+    message.value = '请先在上方创建档位'
+    return
+  }
   try {
     await platformApi.assignPlan('default', assignPlanId.value)
     message.value = '订阅已更新（租户 default）'
@@ -127,7 +131,7 @@ onMounted(loadAll)
       <select v-model.number="assignPlanId" class="form-select" style="max-width: 240px">
         <option v-for="p in plans" :key="p.id" :value="p.id">{{ p.name }}</option>
       </select>
-      <button class="btn btn-outline ml-sm" @click="assign">分配订阅</button>
+      <button class="btn btn-outline ml-sm" :disabled="!plans.length" @click="assign">分配订阅</button>
     </div>
 
     <div class="card p-md">

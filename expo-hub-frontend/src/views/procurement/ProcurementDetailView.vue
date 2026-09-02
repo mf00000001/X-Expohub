@@ -16,6 +16,7 @@ const router = useRouter()
 const userStore = useUserStore()
 async function bidOnProcurement() {
   if (!userStore.isLoggedIn) { alert("请先登录"); router.push("/login"); return }
+  if (userStore.userRole !== 'exhibitor') { alert("仅展商可应标"); return }
   const msg = prompt("留言（可选）：") || ""
   if (msg) { const v2 = validateInput(msg); if (!v2.valid) { alert(v2.reason); return } }
   try {
@@ -30,15 +31,20 @@ const recommendations = ref<any[]>([])
 const recsLoading = ref(false)
 const loading = ref(true)
 
+// 匹配/推荐仅"需求发布者"或 admin 可见（后端 403 语义，前端同步门控避免无谓请求）
+function canViewPrivate(): boolean {
+  if (!procurement.value) return false
+  const ownerId = (procurement.value as any).visitor_id ?? (procurement.value as any).purchaser_id
+  return userStore.userRole === 'admin' || ownerId === userStore.profile?.id
+}
+
 onMounted(async () => {
   const id = Number(route.params.id)
   try {
     procurement.value = await procurementApi.getDetail(id)
-    // V3.4: 仅登录后加载匹配/推荐,避免未登录访客触发 401
-    if (userStore.isLoggedIn) {
+    if (userStore.isLoggedIn && canViewPrivate()) {
       const matchRes = await procurementApi.getMatches(id).catch(() => ({ matches: [] }))
       matches.value = matchRes.matches || matchRes.items || matchRes.results || []
-      // Fetch recommendations separately (non-blocking)
       fetchRecommendations()
     }
   } catch (err) {
@@ -53,13 +59,13 @@ function goToProduct(id: number) {
 }
 
 async function fetchRecommendations() {
-  if (!procurement.value) return
+  if (!procurement.value || !canViewPrivate()) return
   recsLoading.value = true
   try {
     const data = await procurementApi.getRecommendations(procurement.value.id)
     recommendations.value = data || []
   } catch (err) {
-    console.error('Failed to load recommendations:', err)
+    // 非致命：静默（后端 403 属权限正常路径）
   } finally {
     recsLoading.value = false
   }
@@ -100,7 +106,8 @@ async function fetchRecommendations() {
       </div>
 
       <!-- Matched Products -->
-      <div class="mt-6" v-if="matches.length > 0">
+      <div v-if="userStore.isLoggedIn && procurement && !canViewPrivate()" class="tag tag-info" style="margin-top:12px">匹配与推荐仅需求发布者可查看</div>
+<div class="mt-6" v-if="matches.length > 0">
         <h2 class="text-xl font-bold mb-4">匹配展品</h2>
         <div class="grid grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 gap-4">
           <ProductCard

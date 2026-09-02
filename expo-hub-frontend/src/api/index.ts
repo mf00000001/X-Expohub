@@ -35,6 +35,13 @@ http.interceptors.response.use(
         userStore.localLogout()
         router.push('/login')
       }
+    } else {
+      // 演示监控：仅网络失败/5xx 视为控制台错误；4xx 为业务提示（页面已展示），避免噪音
+      const status = error.response?.status
+      if (!error.response || (status && status >= 500)) {
+        const url = error.config?.url || ''
+        console.error(`[api] ${error.config?.method?.toUpperCase() || 'GET'} ${url} -> ${status || 'ERR'} ${error.message || ''}`.trim())
+      }
     }
     return Promise.reject(error)
   }

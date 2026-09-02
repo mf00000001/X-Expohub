@@ -46,6 +46,10 @@ async function handleApply() {
     router.push({ name: 'login', query: { redirect: route.fullPath } })
     return
   }
+  if (userStore.userRole !== 'exhibitor') {
+    showToast('仅展商可申请展位', 'error')
+    return
+  }
   try {
     await boothApi.apply(Number(route.params.id))
     showToast('申请成功，请等待审核')

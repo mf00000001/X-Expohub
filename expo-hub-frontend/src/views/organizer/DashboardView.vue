@@ -24,14 +24,19 @@ onMounted(async () => {
     stats.value = statsRes?.data || statsRes
     pendingCount.value = pendingRes?.pending_count || pendingRes?.data?.pending_count || 0
     const exhs = exhRes?.list || exhRes?.data?.list || []
+    // 只统计"我的展会"（主办方拉别人的展会报名会 403；管理员看全部）
+    const myId = userStore.profile?.id
+    const myExhs = userStore.userRole === 'admin'
+      ? exhs
+      : exhs.filter((e: any) => e.organizer_id === myId)
     // For each exhibition, get registration count
-    for (const e of exhs.slice(0, 3)) {
+    for (const e of myExhs.slice(0, 3)) {
       try {
         const regRes = await http.get(`/admin/exhibitions/${e.id}/registrations`)
         ;(e as any)._regCount = regRes?.data?.total || regRes?.total || 0
       } catch { (e as any)._regCount = 0 }
     }
-    exhStats.value = exhs.slice(0, 3)
+    exhStats.value = myExhs.slice(0, 3)
   } catch (err) {
     console.error('Failed to load dashboard:', err)
   } finally {

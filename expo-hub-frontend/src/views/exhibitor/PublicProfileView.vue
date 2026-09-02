@@ -30,20 +30,21 @@ onMounted(async () => {
 
 function handleContact() {
   if (!userStore.isLoggedIn) {
-    router.push({ name: 'Login', query: { redirect: route.fullPath } })
+    router.push({ name: 'login', query: { redirect: route.fullPath } })
     return
   }
   if (profile.value?.company?.id) {
-    router.push({ name: 'Conversation', params: { id: profile.value.company.id } })
+    // 路由名应为小写 conversation；用 path 更稳
+    router.push(`/messages/${profile.value.company.id}`)
   }
 }
 
 function goToProduct(id: number) {
-  router.push({ name: 'ProductDetail', params: { id } })
+  router.push({ name: 'product-detail', params: { id } })
 }
 
 function goToBooth(id: number) {
-  router.push({ name: 'BoothDetail', params: { id } })
+  router.push({ name: 'booth-detail', params: { id } })
 }
 </script>
 
