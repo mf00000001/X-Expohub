@@ -127,7 +127,13 @@ async function saveProfile() {
             <button class="btn btn-outline" @click="router.push('/visitor/procurements')">
               我的采购
             </button>
-            <button class="btn btn-outline" @click="router.push('/settings')">
+            <!-- P3-P6 新功能入口 -->
+  <button class="btn btn-outline" @click="router.push('/tickets/my')">🎫 我的票务</button>
+  <button class="btn btn-outline" @click="router.push('/ai/lab')">🤖 AI 实验室</button>
+  <button v-if="profile?.role === 'organizer' || profile?.role === 'admin'" class="btn btn-outline" @click="router.push('/organizer/ticket-types')">🎟️ 票种管理</button>
+  <button v-if="profile?.role === 'organizer' || profile?.role === 'admin'" class="btn btn-outline" @click="router.push('/organizer/onsite')">🎯 现场核销台</button>
+  <button v-if="profile?.role === 'admin'" class="btn btn-outline" @click="router.push('/admin/platform')">🛠️ 平台运营</button>
+  <button class="btn btn-outline" @click="router.push('/settings')">
               账号设置
             </button>
           </div>

@@ -72,6 +72,14 @@ const routes: RouteRecordRaw[] = [
   { path: '/organizer/users', name: 'organizer-users', component: () => import('@/views/organizer/UserManagementView.vue'), meta: { title: '用户管理', requiresAuth: true, roles: ['organizer','admin'], showFooter: true } },
   { path: '/admin/boss', name: 'boss-dashboard', component: () => import('@/views/admin/BossDashboard.vue'), meta: { title: 'Boss看板', requiresAuth: true, roles: ['admin'], showFooter: true } },
 
+  // ==================== P3-P6 新功能（票务/现场/AI/平台） ====================
+  { path: '/exhibitions/:id/tickets', name: 'ticket-shop', component: () => import('@/views/ticketing/TicketShopView.vue'), meta: { title: '购票', requiresAuth: false, showFooter: true } },
+  { path: '/tickets/my', name: 'my-tickets', component: () => import('@/views/ticketing/MyTicketsView.vue'), meta: { title: '我的票务', requiresAuth: true, showFooter: true } },
+  { path: '/organizer/ticket-types', name: 'organizer-ticket-types', component: () => import('@/views/organizer/TicketTypesView.vue'), meta: { title: '票种管理', requiresAuth: true, roles: ['organizer','admin'], showFooter: false } },
+  { path: '/organizer/onsite', name: 'organizer-onsite', component: () => import('@/views/organizer/OnsiteConsoleView.vue'), meta: { title: '现场核销台', requiresAuth: true, roles: ['organizer','admin'], showFooter: false } },
+  { path: '/admin/platform', name: 'admin-platform', component: () => import('@/views/admin/PlatformAdminView.vue'), meta: { title: '平台运营', requiresAuth: true, roles: ['admin'], showFooter: false } },
+  { path: '/ai/lab', name: 'ai-lab', component: () => import('@/views/ai/AiLabView.vue'), meta: { title: 'AI 实验室', requiresAuth: true, showFooter: true } },
+
   // ==================== 404 ====================
   { path: '/:pathMatch(.*)*', name: 'not-found', component: () => import('@/views/NotFoundView.vue'), meta: { title: '页面不存在', requiresAuth: false, showFooter: false } },
 ]
