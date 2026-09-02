@@ -24,11 +24,11 @@ const allTabs: TabItem[] = [
   { path: '/micro-booths', label: '微展位', icon: '🏪', roles: ['buyer'] },
   { path: '/buyer/dashboard', label: '采购', icon: '📦', roles: ['buyer'] },
   { path: '/favorites', label: '清单', icon: '📋', roles: ['buyer'] },
-  // 游客/主办方
+  // 游客/主办方/管理员
   { path: '/', label: '首页', icon: '🏠', roles: ['visitor','organizer','admin'] },
   { path: '/exhibitions', label: '展会', icon: '📋', roles: ['visitor','organizer','admin'] },
   { path: '/procurements', label: '采购需求', icon: '📦', roles: ['visitor','organizer','admin'] },
-  { path: '/micro-booths', label: '微展位', icon: '🏪', roles: ['visitor','buyer'] },
+  { path: '/micro-booths', label: '微展位', icon: '🏪', roles: ['visitor','organizer','admin'] },
   { path: '/profile', label: '我的', icon: '👤', roles: ['visitor','organizer','admin'] },
 ]
 
