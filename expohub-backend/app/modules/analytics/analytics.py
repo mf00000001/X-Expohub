@@ -70,7 +70,7 @@ def track_event(data: TrackEventRequest, db: Session = Depends(get_db)):
     # V2.3: 浏览自动加积分
     if data.source_user_id and data.event_type in ("page_view", "favorite"):
         try:
-            from app.api.points import earn_points
+            from app.modules.identity.points import earn_points
             earn_points(data.source_user_id, f"earn_{data.event_type}", data.entity_type, data.entity_id, db)
         except: pass
     return {"success": True, "code": "OK", "message": "ok"}

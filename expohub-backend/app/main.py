@@ -60,27 +60,27 @@ app.add_middleware(
 register_exception_handlers(app)
 
 # ---- 注册路由 ----
-from app.api.auth import router as auth_router
-from app.api.exhibitions import router as exhibitions_router
-from app.api.booths import router as booths_router
-from app.api.products import router as products_router
-from app.api.procurements import router as procurements_router
-from app.api.messages import router as messages_router
-from app.api.reviews import router as reviews_router
-from app.api.dashboard import router as dashboard_router
-from app.api.exhibitors import router as exhibitors_router
-from app.api.registrations import router as registrations_router
-from app.api.categories import router as categories_router
-from app.api.micro_booths import router as micro_booths_router
-from app.api.analytics import router as analytics_router
-from app.api.exhibitor_analytics import router as exhibitor_analytics_router
-from app.api.points import router as points_router
-from app.api.notifications import router as notifications_router
-from app.api.growth import router as growth_router
-from app.api.favorites import router as favorites_router
-from app.api.appointments import router as appointments_router
-from app.api.recommendations import router as recommendations_router
-from app.api.poster import router as poster_router
+from app.modules.identity.auth import router as auth_router
+from app.modules.expo.exhibitions import router as exhibitions_router
+from app.modules.expo.booths import router as booths_router
+from app.modules.exhibitor.products import router as products_router
+from app.modules.matching.procurements import router as procurements_router
+from app.modules.interaction.messages import router as messages_router
+from app.modules.interaction.reviews import router as reviews_router
+from app.modules.analytics.dashboard import router as dashboard_router
+from app.modules.exhibitor.exhibitors import router as exhibitors_router
+from app.modules.expo.registrations import router as registrations_router
+from app.modules.expo.categories import router as categories_router
+from app.modules.expo.micro_booths import router as micro_booths_router
+from app.modules.analytics.analytics import router as analytics_router
+from app.modules.exhibitor.exhibitor_analytics import router as exhibitor_analytics_router
+from app.modules.identity.points import router as points_router
+from app.modules.interaction.notifications import router as notifications_router
+from app.modules.analytics.growth import router as growth_router
+from app.modules.interaction.favorites import router as favorites_router
+from app.modules.matching.appointments import router as appointments_router
+from app.modules.matching.recommendations import router as recommendations_router
+from app.modules.interaction.poster import router as poster_router
 
 app.include_router(auth_router, prefix="/api")
 app.include_router(exhibitions_router, prefix="/api")
@@ -101,7 +101,7 @@ app.include_router(notifications_router, prefix="/api")
 app.include_router(growth_router, prefix="/api")
 app.include_router(favorites_router, prefix="/api")
 app.include_router(appointments_router, prefix="/api")
-from app.api.venues import router as venues_router
+from app.modules.expo.venues import router as venues_router
 app.include_router(venues_router, prefix="/api")
 app.include_router(recommendations_router, prefix="/api")
 app.include_router(poster_router, prefix="/api")

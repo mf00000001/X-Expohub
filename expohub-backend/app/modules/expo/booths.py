@@ -26,7 +26,7 @@ from app.models.base import get_db
 from app.models.user import User
 from app.models.booth import Booth
 from app.models.exhibition import Exhibition
-from app.api.deps import get_current_active_user, require_permission
+from app.core.deps import get_current_active_user, require_permission
 
 router = APIRouter(prefix="/booths", tags=["展位"])
 

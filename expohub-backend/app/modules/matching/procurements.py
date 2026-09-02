@@ -28,7 +28,7 @@ from app.models.procurement import Procurement
 from app.models.procurement_match import ProcurementMatch
 from app.models.category import match_category_score, EXHIBITION_CATEGORIES
 from app.models.product import Product
-from app.api.deps import get_current_active_user
+from app.core.deps import get_current_active_user
 from app.core.exceptions import NotFound, Forbidden, BadRequest
 
 router = APIRouter(prefix="/procurements", tags=["采购需求"])
@@ -269,7 +269,7 @@ def create(
 
     # V2.2: 发布采购赚积分
     try:
-        from app.api.points import earn_points
+        from app.modules.identity.points import earn_points
         earn_points(current_user.id, "earn_procurement", "procurement", p.id, db)
     except: pass
 

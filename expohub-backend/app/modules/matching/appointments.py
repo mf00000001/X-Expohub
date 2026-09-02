@@ -14,7 +14,7 @@ from app.models.user import User
 from app.models.exhibition import Exhibition
 from app.models.appointment import Appointment
 from app.models.notification import notify
-from app.api.deps import get_current_active_user
+from app.core.deps import get_current_active_user
 from app.core.exceptions import NotFound
 
 router = APIRouter(prefix="/appointments", tags=["预约"])

@@ -11,7 +11,7 @@ import pytest
 
 from app.core.constants import RoleEnum
 from app.core.permissions import Permission, ROLE_PERMISSIONS, has_permission
-from app.api.deps import require_permission
+from app.core.deps import require_permission
 from app.core.exceptions import Forbidden
 
 
@@ -89,10 +89,10 @@ class TestRequirePermission:
         async def fake_current_user():
             return FakeUser()
 
-        with patch("app.api.deps.get_current_active_user", side_effect=fake_current_user):
+        with patch("app.core.deps.get_current_active_user", side_effect=fake_current_user):
             # require_permission 内部 _checker 默认参数绑定的是导入时的依赖,
             # 通过直接构造验证: 复制其逻辑
-            from app.api.deps import has_permission as _hp
+            from app.core.deps import has_permission as _hp
             assert _hp(RoleEnum("exhibitor"), Permission.PRODUCT_CREATE)
 
     @pytest.mark.asyncio

@@ -20,7 +20,7 @@ from app.models.user import User
 from app.models.booth import Booth
 from app.models.product import Product
 from app.models.procurement_match import ProcurementMatch
-from app.api.deps import get_current_active_user
+from app.core.deps import get_current_active_user
 
 router = APIRouter(prefix="/exhibitors", tags=["展商"])
 

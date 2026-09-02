@@ -26,7 +26,7 @@ from app.models.user import User
 from app.models.micro_booth import MicroBooth
 from app.models.membership import Membership, TIER_PRODUCT_LIMITS
 from app.models.product import Product
-from app.api.deps import get_current_active_user
+from app.core.deps import get_current_active_user
 from app.core.exceptions import NotFound, Forbidden, BadRequest, Conflict
 
 router = APIRouter(prefix="/micro-booths", tags=["微展位"])

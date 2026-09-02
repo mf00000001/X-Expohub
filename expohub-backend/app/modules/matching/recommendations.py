@@ -13,7 +13,7 @@ from app.models.user import User
 from app.models.procurement import Procurement
 from app.models.micro_booth import MicroBooth
 from app.models.product import Product
-from app.api.deps import get_current_active_user
+from app.core.deps import get_current_active_user
 
 router = APIRouter(prefix="/recommendations", tags=["智能推荐"])
 

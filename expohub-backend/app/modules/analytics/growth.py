@@ -15,7 +15,7 @@ from app.models.user import User
 from app.models.checkin import CheckIn
 from app.models.points import PointsLedger
 from app.models.membership import Membership, TIER_PRODUCT_LIMITS
-from app.api.deps import get_current_active_user
+from app.core.deps import get_current_active_user
 from app.core.exceptions import BadRequest, NotFound
 
 router = APIRouter(prefix="/growth", tags=["增长"])

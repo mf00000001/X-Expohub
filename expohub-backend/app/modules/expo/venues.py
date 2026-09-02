@@ -21,7 +21,7 @@ from app.core.permissions import Permission
 from app.models.base import get_db
 from app.models.user import User
 from app.models.venue import Venue
-from app.api.deps import get_current_active_user, require_permission
+from app.core.deps import get_current_active_user, require_permission
 
 router = APIRouter(prefix="/venues", tags=["展馆"])
 

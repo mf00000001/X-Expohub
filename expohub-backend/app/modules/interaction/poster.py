@@ -17,7 +17,7 @@ from app.models.booth import Booth
 from app.models.micro_booth import MicroBooth
 from app.models.analytics import AnalyticsEvent
 from app.models.procurement_match import ProcurementMatch
-from app.api.deps import get_current_active_user
+from app.core.deps import get_current_active_user
 from app.core.exceptions import NotFound, Forbidden
 
 router = APIRouter(prefix="/poster", tags=["海报"])

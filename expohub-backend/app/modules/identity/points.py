@@ -13,7 +13,7 @@ from sqlalchemy import func
 from app.models.base import get_db
 from app.models.user import User
 from app.models.points import PointsLedger, POINTS_RULES, REDEEM_CATALOG
-from app.api.deps import get_current_active_user
+from app.core.deps import get_current_active_user
 from app.core.exceptions import BadRequest, NotFound
 
 router = APIRouter(prefix="/points", tags=["积分"])

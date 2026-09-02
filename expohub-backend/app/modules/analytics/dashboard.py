@@ -32,7 +32,7 @@ from app.models.booth import Booth
 from app.models.product import Product
 from app.models.procurement import Procurement
 from app.models.message import Message
-from app.api.deps import get_current_active_user
+from app.core.deps import get_current_active_user
 from app.core.exceptions import Forbidden
 
 router = APIRouter(prefix="/admin", tags=["管理后台"])

@@ -28,7 +28,7 @@ from app.core.security import (
 from app.core.exceptions import BadRequest, Unauthorized, Conflict, NotFound
 from app.models.base import get_db
 from app.models.user import User
-from app.api.deps import get_current_active_user
+from app.core.deps import get_current_active_user
 
 router = APIRouter(prefix="/auth", tags=["认证"])
 

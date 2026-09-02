@@ -1,28 +1,35 @@
 """
-数据库引擎 & 会话管理（SQLite）
+数据库引擎 & 会话管理
 
-使用 SQLAlchemy 同步引擎连接 SQLite 数据库。
+使用 SQLAlchemy 引擎连接数据库：
+- 默认 SQLite（开发零配置）
+- 生产可经 settings.DATABASE_URL 切换 MySQL/PG
 """
 
 from sqlalchemy import create_engine, event
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
-# SQLite 数据库文件路径（相对于项目根目录）
-DATABASE_URL = "sqlite:///./expohub.db"
+from app.core.config import settings
 
-# 创建同步引擎
-engine = create_engine(
-    DATABASE_URL,
-    echo=False,
-    connect_args={"check_same_thread": False},  # SQLite 允许多线程
-)
+# 数据库连接串（配置驱动；默认 sqlite:///./expohub.db）
+DATABASE_URL = settings.DATABASE_URL
+
+engine_kwargs: dict = {"echo": False}
+# SQLite 允许多线程访问
+if DATABASE_URL.startswith("sqlite"):
+    engine_kwargs["connect_args"] = {"check_same_thread": False}
+
+# 创建引擎
+engine = create_engine(DATABASE_URL, **engine_kwargs)
 
 # 启用 SQLite 外键约束
-@event.listens_for(engine, "connect")
-def _set_sqlite_pragma(dbapi_connection, connection_record):
-    cursor = dbapi_connection.cursor()
-    cursor.execute("PRAGMA foreign_keys=ON")
-    cursor.close()
+if DATABASE_URL.startswith("sqlite"):
+
+    @event.listens_for(engine, "connect")
+    def _set_sqlite_pragma(dbapi_connection, connection_record):
+        cursor = dbapi_connection.cursor()
+        cursor.execute("PRAGMA foreign_keys=ON")
+        cursor.close()
 
 
 # 会话工厂

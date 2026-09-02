@@ -27,7 +27,7 @@ from sqlalchemy import or_, func, and_
 from app.models.base import get_db
 from app.models.user import User
 from app.models.message import Message, Conversation
-from app.api.deps import get_current_active_user
+from app.core.deps import get_current_active_user
 from app.core.exceptions import NotFound, Forbidden, BadRequest
 
 router = APIRouter(prefix="/messages", tags=["消息"])

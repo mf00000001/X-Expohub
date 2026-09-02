@@ -19,7 +19,7 @@ from app.core.exceptions import NotFound, Forbidden, BadRequest
 from app.models.base import get_db
 from app.models.user import User
 from app.models.review import Review
-from app.api.deps import get_current_active_user
+from app.core.deps import get_current_active_user
 
 router = APIRouter(prefix="/reviews", tags=["评价"])
 

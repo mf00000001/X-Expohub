@@ -6,7 +6,7 @@ from sqlalchemy import func
 from app.models.base import get_db
 from app.models.user import User
 from app.models.notification import Notification
-from app.api.deps import get_current_active_user
+from app.core.deps import get_current_active_user
 
 router = APIRouter(prefix="/notifications", tags=["通知"])
 

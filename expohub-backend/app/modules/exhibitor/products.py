@@ -24,7 +24,7 @@ from app.models.base import get_db
 from app.models.user import User
 from app.models.product import Product
 from app.models.booth import Booth
-from app.api.deps import get_current_active_user, require_permission
+from app.core.deps import get_current_active_user, require_permission
 
 router = APIRouter(prefix="/products", tags=["展品"])
 

@@ -18,7 +18,7 @@ from app.models.base import get_db
 from app.models.user import User
 from app.models.exhibition import Exhibition
 from app.models.registration import Registration
-from app.api.deps import get_current_active_user
+from app.core.deps import get_current_active_user
 from app.core.exceptions import NotFound, BadRequest, Conflict
 
 router = APIRouter(prefix="/registrations", tags=["展会报名"])
@@ -123,7 +123,7 @@ def register(
 
     # V2.2: 报名赚积分
     try:
-        from app.api.points import earn_points
+        from app.modules.identity.points import earn_points
         earn_points(current_user.id, "earn_registration", "registration", registration.id, db)
     except: pass
 
