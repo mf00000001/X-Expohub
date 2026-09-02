@@ -28,6 +28,8 @@ import app.models.appointment  # noqa: F401
 import app.models.favorite  # noqa: F401
 # V3.1: 展馆
 import app.models.venue  # noqa: F401
+# P2: 审计日志模型发现
+import app.core.audit  # noqa: F401
 
 
 @asynccontextmanager
@@ -35,9 +37,12 @@ async def lifespan(app: FastAPI):
     """应用生命周期管理"""
     # 启动时：创建所有数据库表
     Base.metadata.create_all(bind=engine)
+    # P2: 后台调度（默认关闭，开启才启动）
+    from app.core.scheduler import start_scheduler_if_enabled, shutdown_scheduler
+    start_scheduler_if_enabled()
     yield
     # 关闭时：清理资源
-    pass
+    shutdown_scheduler()
 
 
 app = FastAPI(
@@ -55,6 +60,10 @@ app.add_middleware(
     allow_methods=settings.CORS_METHODS,
     allow_headers=settings.CORS_HEADERS,
 )
+
+# ---- P2: 写操作审计中间件（默认开启；纯观测，不影响业务）----
+from app.core.audit import AuditMiddleware
+app.add_middleware(AuditMiddleware)
 
 # ---- 全局异常处理器 ----
 register_exception_handlers(app)

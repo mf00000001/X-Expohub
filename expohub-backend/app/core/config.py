@@ -49,6 +49,20 @@ class Settings(BaseSettings):
     # 默认 SQLite（零配置），生产环境设置 DATABASE_URL 为 MySQL 连接串
     DATABASE_URL: str = "sqlite:///./expohub.db"
 
+    # ---- 多租户（P2：默认单租户模式，X-Tenant-Id 缺省回落默认租户）----
+    TENANT_DEFAULT: str = "default"
+    # 是否强制校验 X-Tenant-Id（False = 向后兼容，不传即默认租户）
+    TENANT_REQUIRED: bool = False
+
+    # ---- 审计日志（P2）----
+    # 中间件记录所有写操作（POST/PUT/PATCH/DELETE），默认开启
+    AUDIT_ENABLED: bool = True
+    # 请求体过大时不落库（0 = 不记录请求体）
+    AUDIT_BODY_MAX: int = 512
+
+    # ---- 调度器（P2：默认关闭，开启后启动 APScheduler 后台任务）----
+    SCHEDULER_ENABLED: bool = False
+
     # MySQL 单独配置（可选，作为备选）
     DB_HOST: str = "localhost"
     DB_PORT: int = 3306
