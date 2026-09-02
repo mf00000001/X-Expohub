@@ -9,6 +9,10 @@ const pos = ref({ x: 0, y: 0 })
 const dragging = ref(false)
 const offset = ref({ x: 0, y: 0 })
 const show = ref(false)
+// 拖动判定：记录按下起点与累计位移，超过阈值视为拖动，抑制随后的 click 跳转
+let moved = false
+let startPt = { x: 0, y: 0 }
+const DRAG_THRESHOLD = 5 // px
 
 const route = useRoute()
 const hidden = computed(() => ['login','register'].includes(route.name as string))
@@ -36,7 +40,9 @@ async function fetchBalance() {
 
 function onDown(e: MouseEvent | TouchEvent) {
   dragging.value = true
+  moved = false
   const p = 'touches' in e ? e.touches[0] : e
+  startPt = { x: p.clientX, y: p.clientY }
   offset.value = { x: p.clientX - pos.value.x, y: p.clientY - pos.value.y }
   document.addEventListener('mousemove', onMove)
   document.addEventListener('mouseup', onUp)
@@ -48,6 +54,9 @@ function onMove(e: MouseEvent | TouchEvent) {
   if (!dragging.value) return
   e.preventDefault()
   const p = 'touches' in e ? e.touches[0] : e
+  const dx = p.clientX - startPt.x
+  const dy = p.clientY - startPt.y
+  if (Math.abs(dx) + Math.abs(dy) > DRAG_THRESHOLD) moved = true
   pos.value = { x: p.clientX - offset.value.x, y: p.clientY - offset.value.y }
 }
 
@@ -60,7 +69,9 @@ function onUp() {
 }
 
 function onClick() {
-  if (!dragging.value) router.push('/points')
+  // 拖动结束后浏览器仍会派发 click：位移超过阈值则忽略，避免误跳转
+  if (moved) { moved = false; return }
+  router.push('/points')
 }
 </script>
 
