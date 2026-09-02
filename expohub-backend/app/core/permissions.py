@@ -20,6 +20,9 @@ class Permission(str, Enum):
     - operation: 操作类型（create / view / edit / delete / approve 等）
     """
 
+    # ---- 票务管理 ----
+    TICKET_MANAGE = "ticket:manage"        # 票种/票务管理（主办方/管理员）
+
     # ---- 用户管理 ----
     USER_VIEW = "user:view"           # 查看个人信息
     USER_EDIT = "user:edit"           # 编辑个人信息
@@ -170,6 +173,7 @@ ROLE_PERMISSIONS: dict[RoleEnum, set[Permission]] = {
         Permission.STATS_VIEW_GLOBAL,
         Permission.STATS_EXPORT,
         Permission.AUDIT_VIEW,
+        Permission.TICKET_MANAGE,
     },
 
     # ---- 平台管理员 (admin)：审核主办方 + 全局管理 ----
@@ -215,6 +219,7 @@ ROLE_PERMISSIONS: dict[RoleEnum, set[Permission]] = {
         Permission.TEAM_DELETE,
         Permission.TEAM_MEMBER_MANAGE,
         Permission.SYSTEM_CONFIG,
+        Permission.TICKET_MANAGE,
     },
 }
 

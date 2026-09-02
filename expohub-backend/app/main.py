@@ -30,6 +30,8 @@ import app.models.favorite  # noqa: F401
 import app.models.venue  # noqa: F401
 # P2: 审计日志模型发现
 import app.core.audit  # noqa: F401
+# P3: 票务域模型发现
+import app.modules.ticketing.models  # noqa: F401
 
 
 @asynccontextmanager
@@ -114,6 +116,8 @@ from app.modules.expo.venues import router as venues_router
 app.include_router(venues_router, prefix="/api")
 app.include_router(recommendations_router, prefix="/api")
 app.include_router(poster_router, prefix="/api")
+from app.modules.ticketing.routes import router as ticketing_router
+app.include_router(ticketing_router, prefix="/api")
 
 
 @app.get("/")
