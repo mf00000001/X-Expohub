@@ -77,6 +77,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/tickets/my', name: 'my-tickets', component: () => import('@/views/ticketing/MyTicketsView.vue'), meta: { title: '我的票务', requiresAuth: true, showFooter: true } },
   { path: '/organizer/ticket-types', name: 'organizer-ticket-types', component: () => import('@/views/organizer/TicketTypesView.vue'), meta: { title: '票种管理', requiresAuth: true, roles: ['organizer','admin'], showFooter: false } },
   { path: '/organizer/onsite', name: 'organizer-onsite', component: () => import('@/views/organizer/OnsiteConsoleView.vue'), meta: { title: '现场核销台', requiresAuth: true, roles: ['organizer','admin'], showFooter: false } },
+  { path: '/admin/venues', name: 'admin-venues', component: () => import('@/views/admin/VenueManageView.vue'), meta: { title: '展馆管理', requiresAuth: true, roles: ['admin'], showFooter: false } },
   { path: '/admin/platform', name: 'admin-platform', component: () => import('@/views/admin/PlatformAdminView.vue'), meta: { title: '平台运营', requiresAuth: true, roles: ['admin'], showFooter: false } },
   { path: '/ai/lab', name: 'ai-lab', component: () => import('@/views/ai/AiLabView.vue'), meta: { title: 'AI 实验室', requiresAuth: true, showFooter: true } },
 

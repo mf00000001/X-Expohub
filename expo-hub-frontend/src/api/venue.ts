@@ -17,10 +17,13 @@ export interface Venue {
 const safe = <T>(p: Promise<T>, fb: T): Promise<T> => p.catch(() => fb)
 
 export const venueApi = {
-  getList(params?: { city?: string; q?: string }) {
+  getList(params?: { city?: string; q?: string; page?: number; page_size?: number }) {
     return safe(apiClient.get('/venues', { params }), { list: [], total: 0 }) as Promise<{ list: Venue[]; total: number }>
   },
   getDetail(id: number) {
     return safe(apiClient.get('/venues/' + id), null) as Promise<Venue | null>
   },
+  create(data: Partial<Venue>) { return apiClient.post('/venues', data) as Promise<Venue> },
+  update(id: number, data: Partial<Venue>) { return apiClient.put('/venues/' + id, data) as Promise<Venue> },
+  remove(id: number) { return apiClient.delete('/venues/' + id).catch(() => {}) as Promise<void> },
 }
