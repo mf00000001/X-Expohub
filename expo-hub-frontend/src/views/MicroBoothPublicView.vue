@@ -75,6 +75,13 @@ async function fetchDetail(id: number) {
   try {
     const res: any = await microBoothApi.getDetail(id)
     detail.value = res?.data || res
+    // 收藏状态回填：登录用户访问时读取 GET /favorites/status（此前只有点过收藏才更新）
+    if (localStorage.getItem('access_token') && detail.value?.booth?.id) {
+      http.get(`/favorites/status?entity_type=micro_booth&entity_id=${detail.value.booth.id}`).then((r2: any) => {
+        const st = r2?.data || r2
+        mbFaved.value = !!(st?.favorited ?? st?.is_favorite ?? st?.faved)
+      }).catch(() => {})
+    }
     http.post('/analytics/event', { event_type: 'page_view', entity_type: 'micro_booth', entity_id: id, source_user_id: detail.value?.booth?.exhibitor_id }).catch(()=>{})
   } catch { detail.value = null }
   finally { loading.value = false }
