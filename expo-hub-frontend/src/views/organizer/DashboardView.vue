@@ -86,10 +86,10 @@ onMounted(async () => {
         <!-- 展会统计 -->
         <div class="card mt-6" v-if="exhStats.length > 0" style="padding:16px">
           <h3 style="margin-bottom:12px">📊 各展会统计</h3>
-          <div v-for="e in exhStats" :key="e.id" class="exh-stat-row">
+          <div v-for="e in exhStats" :key="e.id" class="exh-stat-row" style="cursor:pointer" @click="router.push('/organizer/exhibitions/' + e.id + '/registrations')" title="查看/导出报名名单">
             <span class="es-name">{{ e.title || e.name }}</span>
             <span class="es-stat">🏢 {{ e.total_booths || 0 }}展位</span>
-            <span class="es-stat">📋 {{ (e as any)._regCount || 0 }}报名</span>
+            <span class="es-stat">📋 {{ (e as any)._regCount || 0 }}报名 ›</span>
             <span class="es-stat">📅 {{ e.start_date?.slice(0,10) }}</span>
           </div>
         </div>

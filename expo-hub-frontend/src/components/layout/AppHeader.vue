@@ -11,10 +11,12 @@ const userStore = useUserStore()
 const isAuth = computed(() => userStore.isLoggedIn)
 const role = computed(() => userStore.role || '')
 const unreadNotif = ref(0)
+const unreadMsg = ref(0)
 
 async function fetchUnread() {
   if (!localStorage.getItem('access_token')) return
   try { const r: any = await http.get('/notifications/unread-count'); unreadNotif.value = r?.data?.count || r?.count || 0 } catch {}
+  try { const m: any = await http.get('/messages/unread-count'); unreadMsg.value = m?.data?.count || m?.count || 0 } catch {}
 }
 onMounted(fetchUnread)
 watch(isAuth, (v) => { if (v) fetchUnread() })
@@ -63,6 +65,10 @@ const quickLinks = computed(() => {
           <button v-for="l in quickLinks" :key="l.path" class="hicon" @click="navTo(l.path)">
             <span class="hi-icon">{{ l.icon }}</span>
             <span class="hi-label">{{ l.label }}</span>
+          </button>
+          <button class="hicon" @click="navTo('/messages')">
+            <span class="hi-icon">💬</span>
+            <span class="hi-label">消息<span class="notify-badge" v-if="unreadMsg > 0">{{ unreadMsg > 99 ? '99+' : unreadMsg }}</span></span>
           </button>
           <button class="hicon" @click="navTo('/notifications')">
             <span class="hi-icon">🔔</span>
