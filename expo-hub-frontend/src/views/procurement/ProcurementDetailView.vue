@@ -5,6 +5,7 @@ import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import StatusTag from '@/components/StatusTag.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import { procurementApi, type Procurement, type ProcurementMatch } from '@/api/procurement'
+import { aiApi } from '@/api/ai'
 import { productApi, type Product } from '@/api/product'
 import { useRouter } from 'vue-router'
 import http from '@/api/index'
@@ -30,6 +31,9 @@ const matches = ref<ProcurementMatch[]>([])
 const recommendations = ref<any[]>([])
 const recsLoading = ref(false)
 const loading = ref(true)
+const aiNote = ref('')
+const aiLoading = ref(false)
+const aiProvider = ref('')
 
 function fmtMatchTime(s?: string) {
   return s ? String(s).slice(0, 16).replace('T', ' ') : ''
@@ -72,6 +76,26 @@ async function fetchRecommendations() {
     // 非致命：静默（后端 403 属权限正常路径）
   } finally {
     recsLoading.value = false
+  }
+}
+
+// AI 推荐说明：把推荐理由交给人话化（AI 实验室 reason 能力；未配密钥时后端 mock 降级并如实标注）
+async function genAiNote() {
+  if (!procurement.value || aiLoading.value) return
+  aiLoading.value = true
+  aiNote.value = ''
+  try {
+    const top = recommendations.value.slice(0, 3).map((r: any) =>
+      `《${r.name}》(展商:${r.exhibitor_name || '未知'};理由:${(r.match_reasons || []).join('、') || '推荐'})`
+    ).join('；')
+    const prompt = `采购需求「${procurement.value.title}」属于${procurement.value.category || '未分类'}。已推荐以下展品：${top}。请用3-4句话向买家说明这些展品为何值得重点对接，中文、口语化、给出对接建议。`
+    const r: any = await aiApi.generate({ capability: 'reason', prompt })
+    aiNote.value = r?.content || '（无返回内容）'
+    aiProvider.value = r?.provider || ''
+  } catch (e: any) {
+    aiNote.value = 'AI 生成失败：' + (e?.response?.data?.message || '请稍后再试')
+  } finally {
+    aiLoading.value = false
   }
 }
 </script>
@@ -127,7 +151,14 @@ async function fetchRecommendations() {
 
       <!-- Recommended Products -->
       <div class="mt-6" v-if="recommendations.length > 0">
-        <h2 class="text-xl font-bold mb-4">推荐展品</h2>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <h2 class="text-xl font-bold" style="margin:0">推荐展品</h2>
+          <button class="btn btn-sm btn-outline" :disabled="aiLoading" @click="genAiNote">{{ aiLoading ? '生成中...' : '✨ AI 生成推荐说明' }}</button>
+        </div>
+        <div v-if="aiNote" class="card card-body mb-4" style="border-left:3px solid #4f6ef7">
+          <p style="margin:0;line-height:1.8;white-space:pre-wrap">{{ aiNote }}</p>
+          <p v-if="aiProvider" style="margin:8px 0 0;font-size:12px;color:var(--color-text-placeholder)">via {{ aiProvider }}{{ aiProvider === 'mock' ? '（未配置真实模型，内容为示例占位）' : '' }}</p>
+        </div>
         <div class="grid grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 gap-4">
           <div v-for="item in recommendations" :key="item.id" class="recommendation-item">
             <ProductCard
