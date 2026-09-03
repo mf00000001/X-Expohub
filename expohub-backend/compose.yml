@@ -26,6 +26,9 @@ services:
       - SECRET_KEY=${SECRET_KEY:-please-override-expohub-secret-key-0123456789abcdef}
       # AI：默认 mock 降级；接入真实模型时配置
       - AI_PROVIDER=${AI_PROVIDER:-mock}
+      - AI_MODEL=${AI_MODEL:-deepseek-chat}
+      - OPENAI_COMPAT_API_KEY=${OPENAI_COMPAT_API_KEY:-}
+      - OPENAI_COMPAT_BASE_URL=${OPENAI_COMPAT_BASE_URL:-}
       - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
     ports:
       - "8002:8002"
