@@ -39,6 +39,20 @@ function fmtMatchTime(s?: string) {
   return s ? String(s).slice(0, 16).replace('T', ' ') : ''
 }
 
+// 买家接受应标：后端置本单 is_accepted=True 并完成采购（其余应标自动落选）
+async function acceptMatch(m: ProcurementMatch) {
+  if (!procurement.value) return
+  if (!confirm('确定接受「' + (m.exhibitor_company || m.exhibitor_username || '该展商') + '」的应标？接受后采购将完成，其余应标自动落选')) return
+  try {
+    const res: any = await procurementApi.acceptMatch(procurement.value.id, m.id)
+    if (res?.procurement?.status) procurement.value.status = res.procurement.status
+    matches.value = matches.value.map((x) => ({ ...x, is_accepted: x.id === m.id }))
+    alert('✅ 已接受该应标，采购需求已完结')
+  } catch (e: any) {
+    alert(e?.response?.data?.message || '操作失败')
+  }
+}
+
 // 匹配/推荐仅"需求发布者"或 admin 可见"需求发布者"或 admin 可见（后端 403 语义，前端同步门控避免无谓请求）
 function canViewPrivate(): boolean {
   if (!procurement.value) return false
@@ -145,6 +159,14 @@ async function genAiNote() {
             </div>
             <p v-if="m.message" class="text-sm text-secondary mt-1">{{ m.message }}</p>
             <p class="text-xs text-secondary mt-1">{{ fmtMatchTime(m.created_at) }}</p>
+            <div class="mt-2" v-if="procurement && (procurement.status === 'pending' || procurement.status === 'matched')">
+              <button v-if="!m.is_accepted" class="btn btn-sm btn-success" @click="acceptMatch(m)">🤝 接受此应标</button>
+              <span v-else class="tag tag-success">✅ 已接受</span>
+            </div>
+            <div class="mt-2" v-else-if="procurement && procurement.status === 'completed'">
+              <span v-if="m.is_accepted" class="tag tag-success">✅ 已成交</span>
+              <span v-else class="tag tag-info">未选中</span>
+            </div>
           </div>
         </div>
       </div>
