@@ -1,4 +1,6 @@
 import http from './index'
+import type { ListResp } from './paged'
+import { normList } from './paged'
 
 export interface Review {
   id: number; exhibition_id?: number; booth_id?: number; reviewer_id: number
@@ -7,8 +9,11 @@ export interface Review {
 }
 
 export const reviewApi = {
-  getList(params?: any) { return http.get('/reviews', { params }) },
-  create(data: any) { return http.post('/reviews', data) },
-  update(id: number, data: any) { return http.put(`/reviews/${id}`, data) },
-  delete(id: number) { return http.delete(`/reviews/${id}`) },
+  async getList(params?: any): Promise<ListResp<Review>> {
+    const res: any = await http.get('/reviews', { params })
+    return normList<Review>(res)
+  },
+  create(data: any) { return http.post('/reviews', data) as Promise<Review> },
+  update(id: number, data: any) { return http.put(`/reviews/${id}`, data) as Promise<Review> },
+  delete(id: number) { return http.delete(`/reviews/${id}`) as Promise<void> },
 }

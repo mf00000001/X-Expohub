@@ -81,6 +81,23 @@ export interface CategoryResponse {
   grouped: Record<string, string[]>
 }
 
+import type { ListResp } from './paged'
+import { normList } from './paged'
+
+export type Product = ProductItem
+
+export interface ProductListParams {
+  category?: string
+  exhibition_id?: number
+  exhibitor_id?: number
+  booth_id?: number
+  status?: string
+  search?: string
+  keyword?: string
+  page?: number
+  page_size?: number
+}
+
 export const productApi = {
   /** Get the full standard category list from the backend */
   getCategories() {
@@ -94,23 +111,25 @@ export const productApi = {
     }>
   },
 
-  getList(params?: { category?: string; exhibition_id?: number; exhibitor_id?: number; status?: string; search?: string; page?: number; page_size?: number }): Promise<ProductItem[]> {
-    return http.get('/products', { params })
+  async getList(params?: ProductListParams): Promise<ListResp<ProductItem>> {
+    const res: any = await http.get('/products', { params })
+    return normList<ProductItem>(res)
   },
   getDetail(id: number): Promise<ProductItem> {
-    return http.get('/products/' + id)
+    return http.get('/products/' + id) as Promise<ProductItem>
   },
   create(data: CreateProductParams): Promise<ProductItem> {
-    return http.post('/products', data)
+    return http.post('/products', data) as Promise<ProductItem>
   },
   update(id: number, data: Partial<CreateProductParams>): Promise<ProductItem> {
-    return http.put('/products/' + id, data)
+    return http.put('/products/' + id, data) as Promise<ProductItem>
   },
   delete(id: number): Promise<void> {
-    return http.delete('/products/' + id)
+    return http.delete('/products/' + id) as Promise<void>
   },
   /** Current exhibitor's own products */
-  getMyProducts(params?: { status?: string; page?: number; page_size?: number }): Promise<ProductItem[]> {
-    return http.get('/products/my', { params })
+  async getMyProducts(params?: { status?: string; page?: number; page_size?: number }): Promise<ListResp<ProductItem>> {
+    const res: any = await http.get('/products/my', { params })
+    return normList<ProductItem>(res)
   }
 }

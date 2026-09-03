@@ -16,7 +16,7 @@ const loading = ref(true)
 
 onMounted(async () => {
   try {
-    const [statsRes, pendingRes, exhRes] = await Promise.all([
+    const [statsRes, pendingRes, exhRes]: any[] = await Promise.all([
       http.get('/admin/stats/overview'),
       http.get('/admin/users/pending-count'),
       http.get('/exhibitions', { params: { page_size: 10 } }),
@@ -32,7 +32,7 @@ onMounted(async () => {
     // For each exhibition, get registration count
     for (const e of myExhs.slice(0, 3)) {
       try {
-        const regRes = await http.get(`/admin/exhibitions/${e.id}/registrations`)
+        const regRes: any = await http.get(`/admin/exhibitions/${e.id}/registrations`)
         ;(e as any)._regCount = regRes?.data?.total || regRes?.total || 0
       } catch { (e as any)._regCount = 0 }
     }

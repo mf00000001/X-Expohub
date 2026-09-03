@@ -1,5 +1,7 @@
 import http from './index'
-import type { ExhibitionItem } from './exhibition'
+import type { Exhibition } from './exhibition'
+import type { ListResp } from './paged'
+import { normList } from './paged'
 
 export interface RegistrationItem {
   id: number
@@ -10,7 +12,10 @@ export interface RegistrationItem {
   ticket_code?: string
   check_in_at?: string
   created_at: string
-  exhibition?: ExhibitionItem
+  // 主办方报名管理端点附带的访客信息（后端 join users 填充）
+  username?: string
+  email?: string
+  exhibition?: Exhibition | null
 }
 
 export interface PaginatedResponse<T> {
@@ -23,43 +28,23 @@ export interface PaginatedResponse<T> {
 
 export const registrationApi = {
   register(data: { exhibition_id: number; is_favorite?: boolean; is_registered?: boolean }): Promise<RegistrationItem> {
-    return http.post('/registrations', data)
+    return http.post('/registrations', data) as Promise<RegistrationItem>
   },
 
-  async getMyRegistrations(params?: { page?: number; page_size?: number }): Promise<PaginatedResponse<RegistrationItem>> {
-    const res = await http.get('/registrations/my', { params })
-    // Backend returns { list, total, page, pageSize, totalPages }
-    // If backend returns flat array (legacy), wrap it
-    if (Array.isArray(res)) {
-      return { list: res, total: res.length, page: 1, pageSize: res.length, totalPages: 1 }
-    }
-    return {
-      list: res.list || res.items || res.results || [],
-      total: res.total || 0,
-      page: res.page || 1,
-      pageSize: res.pageSize || res.list?.length || 20,
-      totalPages: res.totalPages || res.total_pages || 1,
-    }
+  async getMyRegistrations(params?: { page?: number; page_size?: number }): Promise<ListResp<RegistrationItem>> {
+    const res: any = await http.get('/registrations/my', { params })
+    return normList<RegistrationItem>(res)
   },
 
   cancel(exhibitionId: number): Promise<void> {
-    return http.delete(`/registrations/${exhibitionId}`)
+    return http.delete(`/registrations/${exhibitionId}`) as Promise<void>
   },
 
-  // 获取展会报名列表（通过 exhibitions 端点，主办方视角）
-  async getList(params?: { exhibition_id?: number; page?: number; page_size?: number }): Promise<PaginatedResponse<RegistrationItem>> {
-    const res = await http.get('/exhibitions/registrations', { params })
-    if (Array.isArray(res)) {
-      return { list: res, total: res.length, page: 1, pageSize: res.length, totalPages: 1 }
-    }
-    return {
-      list: res.list || res.items || res.results || [],
-      total: res.total || 0,
-      page: res.page || 1,
-      pageSize: res.pageSize || res.list?.length || 20,
-      totalPages: res.totalPages || res.total_pages || 1,
-    }
-  }
+  // 主办方/管理员查看某展会的报名列表（后端 GET /registrations?exhibition_id=）
+  async getList(params?: { exhibition_id?: number; page?: number; page_size?: number }): Promise<ListResp<RegistrationItem>> {
+    const res: any = await http.get('/registrations', { params })
+    return normList<RegistrationItem>(res)
+  },
 }
 
 export type Registration = RegistrationItem

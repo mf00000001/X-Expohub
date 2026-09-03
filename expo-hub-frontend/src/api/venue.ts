@@ -9,6 +9,8 @@ export interface Venue {
   important_info?: string
   honors?: string[]
   plan_image?: string
+  image_url?: string
+  cover_image?: string
   created_at?: string
 }
 

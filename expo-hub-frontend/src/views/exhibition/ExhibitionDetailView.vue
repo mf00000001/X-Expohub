@@ -81,6 +81,7 @@ async function applyBooth(bid: number) {
 }
 function goToProduct(id: number) { router.push('/products/'+id) }
 function canRegister(s: string) { return s === 'published' || s === 'ongoing' }
+function goToTickets() { router.push(`/exhibitions/${route.params.id}/tickets`) }
 
 const statusMap: Record<string,string> = {
   draft:'草稿', pending:'待审核', published:'已发布',
@@ -140,6 +141,9 @@ const statusClass = computed(() => {
     <p class="desc-text">{{ desc }}</p>
     <button v-if="canRegister(status)" class="btn btn-primary btn-lg mt-4" @click="handleRegister">
       {{ registered ? '已报名' : '立即报名参展' }}
+    </button>
+    <button v-if="canRegister(status)" class="btn btn-outline btn-lg mt-4 ml-sm" @click="goToTickets" style="margin-left:8px">
+      🎫 购买门票
     </button>
   </div>
 

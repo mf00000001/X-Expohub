@@ -4,9 +4,28 @@ import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { onsiteApi, type OnsiteStats } from '@/api/onsite'
 import { ticketingApi } from '@/api/ticketing'
+import { exhibitionApi } from '@/api/exhibition'
+import { useUserStore } from '@/stores/user'
 
 const route = useRoute()
+const userStore = useUserStore()
 const exhibitionId = ref<number>(Number(route.query.exhibitionId) || 0)
+// 可选展会：admin 看全部；主办方只看自己的
+const myExhs = ref<{ id: number; title: string }[]>([])
+
+async function loadExhibitions() {
+  const res = await exhibitionApi.getList({ page_size: 100 }).catch(() => ({ list: [] }))
+  let rows = (res as any).list || []
+  const me = userStore.profile?.id
+  if (userStore.userRole !== 'admin' && me) {
+    rows = rows.filter((e: any) => e.organizer_id === me)
+  }
+  myExhs.value = rows.map((e: any) => ({ id: e.id, title: e.title || e.name || `展会#${e.id}` }))
+  const q = Number(route.query.exhibitionId) || 0
+  if (myExhs.value.some((x) => x.id === q)) exhibitionId.value = q
+  else exhibitionId.value = myExhs.value[0]?.id || q || 0
+  await loadStats()
+}
 
 const message = ref('')
 const lastResult = ref('')
@@ -87,7 +106,7 @@ function reset() {
   qrRaw.value = ''
 }
 
-onMounted(loadStats)
+onMounted(loadExhibitions)
 </script>
 
 <template>
@@ -98,8 +117,12 @@ onMounted(loadStats)
     </div>
 
     <div class="flex items-center gap-sm mb-md">
-      <label class="form-label mb-0">展会 ID：</label>
-      <input v-model.number="exhibitionId" class="form-input" type="number" style="max-width: 120px" />
+      <label class="form-label mb-0">选择展会：</label>
+      <select v-model.number="exhibitionId" class="form-input" style="max-width: 360px" @change="loadStats">
+        <option :value="0" disabled>— 请选择展会 —</option>
+        <option v-for="e in myExhs" :key="e.id" :value="e.id">{{ e.title }}</option>
+      </select>
+      <button v-if="!myExhs.length" class="btn btn-outline btn-sm" @click="loadExhibitions">刷新展会</button>
       <button class="btn btn-outline btn-sm" @click="loadStats">加载统计</button>
     </div>
 

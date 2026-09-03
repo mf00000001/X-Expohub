@@ -41,7 +41,7 @@ const profile = ref<UserProfile | null>(loadProfile())
   }
 
   async function register(data: { username: string; email: string; password: string; role?: string }) {
-    const res = await authApi.register(data)
+    const res = await authApi.register({ ...data, role: data.role || 'visitor' })
     token.value = res.access_token
     localStorage.setItem('access_token', res.access_token)
     if (res.refresh_token) {

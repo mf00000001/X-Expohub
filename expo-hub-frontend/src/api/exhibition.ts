@@ -1,18 +1,38 @@
 import apiClient from './client'
+import type { ListResp } from './paged'
+import { normList } from './paged'
 
 export interface Exhibition {
   id: number; title: string; name?: string; description: string
   cover_image?: string; cover_url?: string; cover_image_url?: string
   start_date: string; end_date: string; location: string; venue?: string
   status: string; total_booths: number; organizer_id: number; organizer_name?: string
+  visitor_count?: number
+  startDate?: string
+  endDate?: string
+  category?: string
+  venue_id?: number | null
   created_at: string; updated_at: string
 }
-export interface ExhibitionCreatePayload { title: string; description: string; cover_image?: string; start_date: string; end_date: string; location: string; total_booths: number }
+
+export type ExhibitionItem = Exhibition
+export interface ExhibitionCreatePayload {
+  title: string
+  description?: string
+  cover_image?: string
+  start_date: string
+  end_date: string
+  location: string
+  total_booths?: number
+  category?: string
+  venue_id?: number | null
+  status?: string
+}
 export type ExhibitionUpdatePayload = Partial<ExhibitionCreatePayload> & { status?: string }
 const safe = <T>(p: Promise<T>, fb: T): Promise<T> => p.catch(() => fb)
 export const exhibitionApi = {
-  getList(params?: any) { return safe(apiClient.get('/exhibitions',{params}),{list:[],total:0}) as Promise<{list:Exhibition[];total:number}> },
-  getMyExhibitions(oid:number,params?:any) { return safe(apiClient.get('/exhibitions',{params:{organizer_id:oid,...params}}),{list:[],total:0}) as Promise<{list:Exhibition[];total:number}> },
+  async getList(params?: any): Promise<ListResp<Exhibition>> { return normList<Exhibition>(await apiClient.get('/exhibitions',{params})) },
+  async getMyExhibitions(oid:number,params?:any): Promise<ListResp<Exhibition>> { return normList<Exhibition>(await apiClient.get('/exhibitions',{params:{organizer_id:oid,...params}})) },
   getDetail(id:number) { return safe(apiClient.get('/exhibitions/'+id),null) as Promise<Exhibition|null> },
   create(p:ExhibitionCreatePayload) { return apiClient.post('/exhibitions',p) as Promise<Exhibition> },
   update(id:number,p:ExhibitionUpdatePayload) { return apiClient.put('/exhibitions/'+id,p) as Promise<Exhibition> },

@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import StatusTag from '@/components/StatusTag.vue'
 import ProductCard from '@/components/ProductCard.vue'
-import { procurementApi, type Procurement } from '@/api/procurement'
+import { procurementApi, type Procurement, type ProcurementMatch } from '@/api/procurement'
 import { productApi, type Product } from '@/api/product'
 import { useRouter } from 'vue-router'
 import http from '@/api/index'
@@ -26,12 +26,16 @@ async function bidOnProcurement() {
 }
 
 const procurement = ref<Procurement | null>(null)
-const matches = ref<Product[]>([])
+const matches = ref<ProcurementMatch[]>([])
 const recommendations = ref<any[]>([])
 const recsLoading = ref(false)
 const loading = ref(true)
 
-// 匹配/推荐仅"需求发布者"或 admin 可见（后端 403 语义，前端同步门控避免无谓请求）
+function fmtMatchTime(s?: string) {
+  return s ? String(s).slice(0, 16).replace('T', ' ') : ''
+}
+
+// 匹配/推荐仅"需求发布者"或 admin 可见"需求发布者"或 admin 可见（后端 403 语义，前端同步门控避免无谓请求）
 function canViewPrivate(): boolean {
   if (!procurement.value) return false
   const ownerId = (procurement.value as any).visitor_id ?? (procurement.value as any).purchaser_id
@@ -43,8 +47,8 @@ onMounted(async () => {
   try {
     procurement.value = await procurementApi.getDetail(id)
     if (userStore.isLoggedIn && canViewPrivate()) {
-      const matchRes = await procurementApi.getMatches(id).catch(() => ({ matches: [] }))
-      matches.value = matchRes.matches || matchRes.items || matchRes.results || []
+      const matchRes = await procurementApi.getMatches(id).catch(() => ({ list: [], matches: [], items: [], results: [], total: 0 }))
+      matches.value = matchRes.list || matchRes.matches || []
       fetchRecommendations()
     }
   } catch (err) {
@@ -62,8 +66,8 @@ async function fetchRecommendations() {
   if (!procurement.value || !canViewPrivate()) return
   recsLoading.value = true
   try {
-    const data = await procurementApi.getRecommendations(procurement.value.id)
-    recommendations.value = data || []
+    const data: any = await procurementApi.getRecommendations(procurement.value.id)
+    recommendations.value = data?.list || data?.recommendations || (Array.isArray(data) ? data : [])
   } catch (err) {
     // 非致命：静默（后端 403 属权限正常路径）
   } finally {
@@ -90,11 +94,10 @@ async function fetchRecommendations() {
             <StatusTag :status="procurement.status" />
           </div>
           <div class="grid grid-cols-1 grid-cols-2 grid-cols-3 gap-4 text-sm mb-4">
-            <div><span class="text-secondary">采购方：</span>{{ procurement.purchaser_name || '未知' }}</div>
+            <div><span class="text-secondary">采购方：</span>{{ (procurement as any).visitor_username || '匿名买家' }}</div>
             <div v-if="procurement.category"><span class="text-secondary">分类：</span>{{ procurement.category }}</div>
-            <div v-if="procurement.quantity"><span class="text-secondary">数量：</span>{{ procurement.quantity }}{{ procurement.unit ? ` ${procurement.unit}` : '' }}</div>
             <div v-if="procurement.deadline"><span class="text-secondary">截止日期：</span>{{ procurement.deadline }}</div>
-            <div v-if="procurement.exhibition_title"><span class="text-secondary">关联展会：</span>{{ procurement.exhibition_title }}</div>
+            <div v-if="procurement.status"><span class="text-secondary">状态：</span>{{ {pending:'待匹配',matched:'已匹配',cancelled:'已取消'}[procurement.status] || procurement.status }}</div>
           </div>
           <p class="text-secondary" style="line-height:1.8;white-space:pre-wrap;">{{ procurement.description }}</p>
         </div>
@@ -108,14 +111,17 @@ async function fetchRecommendations() {
       <!-- Matched Products -->
       <div v-if="userStore.isLoggedIn && procurement && !canViewPrivate()" class="tag tag-info" style="margin-top:12px">匹配与推荐仅需求发布者可查看</div>
 <div class="mt-6" v-if="matches.length > 0">
-        <h2 class="text-xl font-bold mb-4">匹配展品</h2>
-        <div class="grid grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 gap-4">
-          <ProductCard
-            v-for="product in matches"
-            :key="product.id"
-            :product="product"
-            @click="goToProduct(product.id)"
-          />
+        <h2 class="text-xl font-bold mb-4">应标展商（{{ matches.length }}）</h2>
+        <div class="flex flex-col gap-2">
+          <div v-for="m in matches" :key="m.id" class="card card-body">
+            <div class="flex justify-between items-center">
+              <strong>{{ m.exhibitor_company || m.exhibitor_username || ('展商#'+m.exhibitor_id) }}</strong>
+              <span v-if="m.quoted_price" class="tag tag-info">报价 ¥{{ m.quoted_price }}</span>
+              <span v-else class="tag tag-warning">待议价</span>
+            </div>
+            <p v-if="m.message" class="text-sm text-secondary mt-1">{{ m.message }}</p>
+            <p class="text-xs text-secondary mt-1">{{ fmtMatchTime(m.created_at) }}</p>
+          </div>
         </div>
       </div>
 

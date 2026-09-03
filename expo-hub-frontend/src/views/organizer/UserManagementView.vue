@@ -18,7 +18,7 @@ onMounted(() => {
 async function fetchUsers() {
   loading.value = true
   try {
-    const res = await http.get('/admin/users', {
+    const res: any = await http.get('/admin/users', {
       params: { role: roleFilter.value || undefined },
     })
     users.value = res?.list || res?.results || []

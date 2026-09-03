@@ -10,6 +10,13 @@ import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import { exhibitionApi, type Exhibition } from '@/api/exhibition'
 import http from '@/api/index'
+import { useUserStore } from '@/stores/user'
+
+function tierIcon(t?: string) {
+  return ({ free: '🆓', regular: '⭐', flagship: '👑' } as Record<string, string>)[t || 'free'] || '🆓'
+}
+
+const userStore = useUserStore()
 
 const router = useRouter()
 const featured = ref<Exhibition[]>([])
@@ -66,6 +73,13 @@ function handleSearch(v: string) {
           <SearchBar v-model="searchKeyword" placeholder="搜索展会、展商、展品..." @search="handleSearch" />
         </div>
 
+        <!-- AI 实验室入口（登录可见） -->
+        <router-link v-if="userStore.isLoggedIn" to="/ai/lab" class="ai-lab-entry">
+          <span class="ai-lab-icon">✨</span>
+          <span class="ai-lab-text"><strong>AI 实验室</strong> 文案生成 · 翻译 · 采购匹配建议</span>
+          <span class="ai-lab-go">›</span>
+        </router-link>
+
         <!-- V2.9: 双钩子引流 -->
         <div class="dual-cta">
           <div class="cta-card exhibitor-cta" @click="$router.push('/register')">
@@ -87,7 +101,7 @@ function handleSearch(v: string) {
           <div class="section-head"><h2>🔥 热门微展位</h2><span class="section-sub">这些展商正在获得买家关注</span></div>
           <div class="hotmb-row">
             <div v-for="mb in hotMB.slice(0,4)" :key="mb.id" class="hotmb-card" @click="$router.push('/micro-booths/'+mb.id)">
-              <span class="hotmb-tier">{{ {free:'🆓',regular:'⭐',flagship:'👑'}[mb.membership_tier] }}</span>
+              <span class="hotmb-tier">{{ tierIcon(mb.membership_tier) }}</span>
               <strong>{{ mb.name?.slice(0,20) }}</strong>
               <div class="hotmb-stats"><span>👀{{ mb.view_count }}</span><span>❤️{{ mb.favorite_count }}</span><span>📦{{ mb.product_count }}展品</span></div>
             </div>
@@ -237,4 +251,18 @@ function handleSearch(v: string) {
   .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 20px; }
   .stat-item strong { font-size: 22px; }
 }
+
+.ai-lab-entry {
+  display:flex; align-items:center; gap:10px; margin-bottom:16px;
+  padding:10px 14px; border-radius:12px;
+  background:linear-gradient(90deg, rgba(99,102,241,.12), rgba(168,85,247,.10));
+  border:1px solid rgba(99,102,241,.28); color:var(--foreground);
+  text-decoration:none; transition:box-shadow .15s;
+}
+.ai-lab-entry:hover { box-shadow:0 2px 10px rgba(99,102,241,.18) }
+.ai-lab-icon { font-size:18px }
+.ai-lab-text { flex:1; font-size:14px; color:var(--muted-foreground) }
+.ai-lab-text strong { color:var(--foreground); margin-right:6px }
+.ai-lab-go { color:var(--accent); font-size:18px }
+
 </style>

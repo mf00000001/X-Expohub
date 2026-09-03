@@ -45,6 +45,10 @@ async function handleCreate() {
   } finally { saving.value = false }
 }
 
+function openBoothDetail(b: MicroBooth) {
+  router.push('/micro-booths/' + b.id)
+}
+
 async function handleUpgrade(id: number, tier: string) {
   alert('功能开发中，敬请期待')
 }

@@ -20,6 +20,7 @@ const form = ref({
   location: '',
   category: '',
   status: 'draft',
+  total_booths: 10,
   venue_id: null as number | null,
 })
 
@@ -120,7 +121,7 @@ async function handleSubmit() {
 
   submitting.value = true
   try {
-    await exhibitionApi.create({
+    const payload: Record<string, any> = {
       title: form.value.title.trim(),
       description: form.value.description.trim() || undefined,
       cover_image: form.value.cover_image || undefined,
@@ -131,7 +132,8 @@ async function handleSubmit() {
       status: 'draft',
       total_booths: Number(form.value.total_booths) || 10,
       venue_id: form.value.venue_id ?? undefined,
-    })
+    }
+    await exhibitionApi.create(payload as any)
     success.value = '展会创建成功！'
     setTimeout(() => {
       router.push({ name: 'organizer-exhibitions' })

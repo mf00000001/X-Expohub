@@ -24,7 +24,7 @@ async function fetchRegistrations() {
       page_size: pageSize,
     })
     registrations.value = res.list
-    totalPages.value = res.totalPages
+    totalPages.value = res.totalPages ?? Math.max(1, Math.ceil((res.total || 0) / pageSize))
   } catch (e: any) {
     error.value = e.response?.data?.detail || e.message || '加载报名记录失败'
   } finally {
