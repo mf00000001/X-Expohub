@@ -594,7 +594,7 @@ def accept_match(
         notify(db, match.exhibitor_id, "match",
                f"恭喜！您的应标已被买家接受：{p.title}",
                f"买家已接受您的投标" + (f"（报价 {match.quoted_price} 元）" if match.quoted_price else "") + "，采购需求已完结，请尽快与买家对接。",
-               "/exhibitor/procurement-matches")
+               "/exhibitor/matches")
     except Exception:
         pass
 
