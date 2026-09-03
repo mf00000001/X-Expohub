@@ -19,7 +19,7 @@ from app.models.user import User
 from app.models.exhibition import Exhibition
 from app.models.registration import Registration
 from app.core.deps import get_current_active_user
-from app.core.exceptions import NotFound, BadRequest, Conflict
+from app.core.exceptions import NotFound, BadRequest, Conflict, Forbidden
 
 router = APIRouter(prefix="/registrations", tags=["展会报名"])
 
@@ -226,6 +226,51 @@ def get_registrations(
 
     return {"success": True, "code": "OK", "message": "获取成功",
             "data": {"list": items, "total": total, "page": page, "pageSize": page_size, "totalPages": (total+page_size-1)//page_size}}
+
+
+@router.get("/export")
+def export_registrations_csv(
+    exhibition_id: int = Query(...),
+    current_user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db),
+):
+    """导出某展会报名名单 CSV（主办方/管理员；带 BOM，Excel 直接打开不乱码）"""
+    import csv
+    import io
+    from fastapi.responses import Response
+
+    exhibition = db.query(Exhibition).filter(Exhibition.id == exhibition_id).first()
+    if not exhibition:
+        raise NotFound(message="展会不存在")
+    if exhibition.organizer_id != current_user.id and current_user.role not in ("admin",):
+        raise Forbidden(message="无权导出该展会的报名")
+
+    regs = (
+        db.query(Registration)
+        .filter(Registration.exhibition_id == exhibition_id)
+        .order_by(Registration.created_at.desc())
+        .all()
+    )
+    buf = io.StringIO()
+    writer = csv.writer(buf)
+    writer.writerow(["序号", "用户名", "邮箱", "公司", "报名时间", "票码", "签到时间"])
+    for i, reg in enumerate(regs, 1):
+        user = db.query(User).filter(User.id == reg.visitor_id).first()
+        writer.writerow([
+            i,
+            user.username if user else reg.visitor_id,
+            user.email if user else "",
+            user.company if user and user.company else "",
+            reg.created_at.strftime("%Y-%m-%d %H:%M") if reg.created_at else "",
+            reg.ticket_code or "",
+            reg.check_in_at.strftime("%Y-%m-%d %H:%M") if reg.check_in_at else "",
+        ])
+    csv_text = buf.getvalue()
+    return Response(
+        content="\ufeff" + csv_text,  # UTF-8 BOM：Excel 兼容
+        media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition": f'attachment; filename="registrations_{exhibition_id}.csv"'},
+    )
 
 
 @router.get("/favorites")
