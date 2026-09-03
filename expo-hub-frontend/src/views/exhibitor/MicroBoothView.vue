@@ -17,6 +17,7 @@ const saving = ref(false)
 const selectedBooth = ref<MicroBooth | null>(null)
 const myProducts = ref<any[]>([])
 const showAddProduct = ref(false)
+const attached = ref<any[]>([])
 
 onMounted(async () => { await loadData() })
 
@@ -62,9 +63,24 @@ async function handleAddProduct(boothId: number, productId: number) {
 }
 
 async function handleRemoveProduct(boothId: number, productId: number) {
-  if (!confirm('确定移除此展品？')) return
-  await microBoothApi.removeProduct(boothId, productId)
-  await loadData()
+  if (!confirm('确定从微展位移除此展品？')) return
+  try {
+    await microBoothApi.removeProduct(boothId, productId)
+    attached.value = attached.value.filter((x: any) => x.id !== productId)
+    await loadData()
+    alert('已移除')
+  } catch (e: any) { alert(e?.response?.data?.message || '移除失败') }
+}
+
+// 展品管理弹窗：挂载列表 + 可添加池
+async function openManage(b: MicroBooth) {
+  selectedBooth.value = b
+  attached.value = []
+  showAddProduct.value = true
+  try {
+    const d: any = await microBoothApi.getDetail(b.id)
+    attached.value = d?.products || []
+  } catch { attached.value = [] }
 }
 
 async function handleDelete(id: number, name: string) {
@@ -136,7 +152,7 @@ const tierColor: Record<string, string> = { free: '#6b7280', regular: '#3b82f6',
 
         <!-- 操作按钮 -->
         <div class="booth-actions">
-          <button class="btn btn-sm btn-primary-outline" @click="selectedBooth = b; showAddProduct = true">+ 添加展品</button>
+          <button class="btn btn-sm btn-primary-outline" @click="openManage(b)">🗂️ 管理展品 ({{ b.product_count }})</button>
           <template v-if="b.membership_tier === 'free'">
             <button class="btn btn-sm btn-default" @click="handleUpgrade(b.id, 'regular')">升级VIP会员</button>
             <button class="btn btn-sm btn-warning" @click="handleUpgrade(b.id, 'flagship')">升级旗舰</button>
@@ -150,8 +166,17 @@ const tierColor: Record<string, string> = { free: '#6b7280', regular: '#3b82f6',
         <!-- 添加展品弹窗 -->
         <div v-if="showAddProduct && selectedBooth?.id === b.id" class="add-prod-overlay" @click.self="showAddProduct=false">
           <div class="add-prod-card">
-            <h4>选择展品添加到"{{ b.name }}"</h4>
-            <div v-if="myProducts.length===0" style="padding:20px;color:var(--color-text-secondary)">暂无展品，请先去"添加展品"创建</div>
+            <h4>展品管理：{{ b.name }}</h4>
+            <p style="font-size:12px;color:var(--color-text-secondary);margin:6px 0">已挂载（{{ attached.length }}）：</p>
+            <div v-if="attached.length===0" style="color:var(--color-text-placeholder);font-size:12px;padding:4px 0 10px">暂无展品</div>
+            <div v-else class="prod-select-list">
+              <div v-for="p in attached" :key="p.id" class="prod-opt" style="justify-content:space-between">
+                <span>{{ p.name }}</span>
+                <button class="btn btn-sm btn-danger" @click="handleRemoveProduct(b.id, p.id)">移除</button>
+              </div>
+            </div>
+            <p style="font-size:12px;color:var(--color-text-secondary);margin:10px 0 4px">添加展品（{{ myProducts.length }} 可选）：</p>
+            <div v-if="myProducts.length===0" style="padding:6px 0 12px;color:var(--color-text-secondary)">暂无可用展品，请先在产品页创建</div>
             <div v-else class="prod-select-list">
               <div v-for="p in myProducts" :key="p.id" class="prod-opt" @click="handleAddProduct(b.id, p.id)">
                 <span>{{ p.name }}</span><span class="text-muted">{{ p.category }}</span>
