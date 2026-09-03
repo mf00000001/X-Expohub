@@ -588,6 +588,16 @@ def accept_match(
     db.commit()
     db.refresh(match)
 
+    # 通知中标展商（撮合成功消息；notify 自提交，失败不影响主流程）
+    try:
+        from app.models.notification import notify
+        notify(db, match.exhibitor_id, "match",
+               f"恭喜！您的应标已被买家接受：{p.title}",
+               f"买家已接受您的投标" + (f"（报价 {match.quoted_price} 元）" if match.quoted_price else "") + "，采购需求已完结，请尽快与买家对接。",
+               "/exhibitor/procurement-matches")
+    except Exception:
+        pass
+
     # 构建响应（含展商信息）
     result = _match_to_dict(match)
     exhibitor = db.query(User).filter(User.id == match.exhibitor_id).first()

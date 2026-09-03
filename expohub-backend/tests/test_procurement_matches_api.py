@@ -13,6 +13,7 @@ from app.models.base import SessionLocal
 from app.models.procurement import Procurement
 from app.models.procurement_match import ProcurementMatch
 from app.models.product import Product
+from app.models.notification import Notification
 from app.models.user import User
 
 
@@ -104,6 +105,14 @@ def test_exhibitor_bids_then_buyer_accepts(ctx):
     # 重复接受 → 400（已被接受）
     r = c.post(f"/api/procurements/{proc.id}/matches/{match_id}/accept", headers=_auth(ctx["buyer"]))
     assert r.status_code == 400
+
+    # 中标展商应收到撮合成功通知
+    db.expire_all()
+    notif = db.query(Notification).filter(
+        Notification.user_id == ctx["exhibitor"].id,
+        Notification.type == "match").first()
+    assert notif is not None
+    assert "应标已被买家接受" in notif.title
 
 
 def test_accept_rejects_sibling_matches(ctx):
