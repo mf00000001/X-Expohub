@@ -1,17 +1,13 @@
-<template>
-  <div id="app">
-    <router-view />
-  </div>
-</template>
-
 <script setup lang="ts">
-// Root component — layout is delegated to child views
+import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
+onLaunch(() => {
+  console.log("App Launch");
+});
+onShow(() => {
+  console.log("App Show");
+});
+onHide(() => {
+  console.log("App Hide");
+});
 </script>
-
-<style>
-#app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-</style>
+<style></style>
