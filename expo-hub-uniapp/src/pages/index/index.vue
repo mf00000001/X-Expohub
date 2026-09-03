@@ -4,6 +4,7 @@
       <text class="brand">ExpoHub 小程序</text>
       <view v-if="!user" class="btn-login" @click="goLogin">登录</view>
       <view v-else class="user-chip">
+        <text class="bell" @click="goNotify">🔔{{ unreadN > 0 ? '(' + (unreadN > 99 ? '99+' : unreadN) + ')' : '' }}</text>
         <text>{{ user.username }}（{{ roleLabel }}）</text>
         <text class="logout" @click="doLogout">退出</text>
       </view>
@@ -43,6 +44,7 @@ import { request, getToken, logoutLocal } from '@/utils/request'
 
 const exhibitions = ref<any[]>([])
 const user = ref<any>(null)
+const unreadN = ref(0)
 const roleLabelMap: Record<string, string> = { admin: '管理员', organizer: '主办方', exhibitor: '展商', buyer: '买家', visitor: '游客' }
 const roleLabel = computed(() => roleLabelMap[user.value?.role] || user.value?.role || '')
 const isStaff = computed(() => user.value && (user.value.role === 'organizer' || user.value.role === 'admin'))
@@ -52,7 +54,20 @@ onShow(() => {
   const raw = uni.getStorageSync('expo_user') as string
   user.value = raw ? JSON.parse(raw) : null
   load()
+  loadUnread()
 })
+
+async function loadUnread() {
+  if (!getToken()) return
+  try {
+    const r: any = await request({ url: '/notifications/unread-count' })
+    unreadN.value = r?.count || r?.unread || 0
+  } catch {}
+}
+
+function goNotify() {
+  uni.navigateTo({ url: '/pages/notify/list' })
+}
 
 async function load() {
   try {
