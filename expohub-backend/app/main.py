@@ -131,6 +131,9 @@ from app.modules.ai.routes import router as ai_router
 app.include_router(ai_router, prefix="/api")
 from app.modules.platform.routes import router as platform_router
 app.include_router(platform_router, prefix="/api")
+# ---- 演示监控：前端控制台回传（要求调试头，生产不可达语义 404）----
+from app.core.console_capture import router as console_capture_router
+app.include_router(console_capture_router, prefix="/api")
 
 
 @app.get("/")
