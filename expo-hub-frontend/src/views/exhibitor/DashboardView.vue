@@ -6,6 +6,7 @@ import { boothApi } from '@/api/booth'
 import { productApi } from '@/api/product'
 import { procurementApi } from '@/api/procurement'
 import { messageApi } from '@/api/message'
+import { exhibitorAnalyticsApi } from '@/api/analytics'
 import http from '@/api/index'
 
 const router = useRouter()
@@ -26,6 +27,16 @@ const tierColor = ref('#6b7280')
 
 // AI推荐
 const recommendations = ref<any[]>([])
+
+// 数据洞察（exhibitor analytics）
+const analyticsOv = ref<any>(null)
+const topProds = ref<any[]>([])
+
+const matchRate = computed(() => {
+  const m = analyticsOv.value?.matches
+  if (!m || !m.total) return 0
+  return Math.round((m.accepted / m.total) * 100)
+})
 
 function toList(res: any): any[] {
   if (Array.isArray(res)) return res
@@ -94,6 +105,13 @@ async function fetchData() {
     }
     const rdata = (recRes as any)?.data || recRes
     recommendations.value = Array.isArray(rdata) ? rdata : (rdata?.list || [])
+    // 数据洞察（孤儿端点接通，失败不影响主数据）
+    const [ovRes, topRes] = await Promise.all([
+      exhibitorAnalyticsApi.overview().catch(() => null),
+      exhibitorAnalyticsApi.topProducts(5).catch(() => null),
+    ])
+    analyticsOv.value = (ovRes as any)?.data || ovRes || null
+    topProds.value = Array.isArray(topRes) ? topRes : ((topRes as any)?.data?.list || (topRes as any)?.data || (topRes as any)?.list || [])
   } catch (e: any) {
     error.value = e.response?.data?.detail || e.response?.data?.message || e.message || '加载仪表盘数据失败'
   } finally {
@@ -239,6 +257,66 @@ onMounted(fetchData)
                   <span style="font-size:12px;color:var(--color-text-secondary)">{{ r.category }} · {{ r.reasons?.join('，') }}</span>
                 </div>
                 <router-link :to="'/procurements/'+r.id" class="btn btn-sm btn-primary-outline">查看详情</router-link>
+              </div>
+            </div>
+          </div>
+
+          <!-- 数据洞察 -->
+          <div class="card" v-if="analyticsOv" style="margin-bottom:20px">
+            <div class="card-title-row">
+              <h3 style="margin-bottom:12px">📊 数据洞察</h3>
+              <router-link to="/exhibitor/micro-booth" class="btn btn-sm btn-outline">管理微展位 &rarr;</router-link>
+            </div>
+            <p style="font-size:12px;color:var(--color-text-secondary);margin-bottom:12px">真实数据聚合：浏览量/收藏/搜索曝光 · 撮合成交转化</p>
+            <div class="insight-grid">
+              <div class="insight-card">
+                <div class="insight-head"><span class="insight-icon">👁️</span><span>浏览量</span></div>
+                <div class="insight-nums">
+                  <div><strong>{{ analyticsOv.total?.views ?? 0 }}</strong><span>累计</span></div>
+                  <div class="today-num"><strong>{{ analyticsOv.today?.views ?? 0 }}</strong><span>今日</span></div>
+                </div>
+              </div>
+              <div class="insight-card">
+                <div class="insight-head"><span class="insight-icon">🔍</span><span>搜索曝光</span></div>
+                <div class="insight-nums">
+                  <div><strong>{{ analyticsOv.total?.searches ?? 0 }}</strong><span>累计</span></div>
+                  <div class="today-num"><strong>{{ analyticsOv.today?.searches ?? 0 }}</strong><span>今日</span></div>
+                </div>
+              </div>
+              <div class="insight-card">
+                <div class="insight-head"><span class="insight-icon">❤️</span><span>被收藏</span></div>
+                <div class="insight-nums">
+                  <div><strong>{{ analyticsOv.total?.favorites ?? 0 }}</strong><span>累计</span></div>
+                  <div class="today-num"><strong>{{ analyticsOv.today?.favorites ?? 0 }}</strong><span>今日</span></div>
+                </div>
+              </div>
+              <div class="insight-card">
+                <div class="insight-head"><span class="insight-icon">🤝</span><span>采购撮合</span></div>
+                <div class="insight-nums">
+                  <div><strong>{{ analyticsOv.matches?.total ?? 0 }}</strong><span>应标总数</span></div>
+                  <div class="today-num" :class="{ 'rate-hot': matchRate >= 50 }"><strong>{{ matchRate }}%</strong><span>成交率</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="insight-bottom">
+              <div class="insight-mb" v-if="(analyticsOv.total?.views ?? 0) > 0">
+                <span>🏪 微展位表现</span>
+                <span style="font-size:12px;color:var(--color-text-secondary)">累计 {{ analyticsOv.total?.views }} 次浏览 / {{ analyticsOv.total?.favorites }} 次收藏
+                  <template v-if="(analyticsOv.products ?? 0) > 0"> · {{ analyticsOv.products }} 个展品</template>
+                </span>
+              </div>
+              <div class="insight-top" v-if="topProds.length > 0">
+                <span style="font-weight:600;font-size:13px">🔥 热销展品 Top{{ topProds.length }}</span>
+                <ol class="top-prod-list">
+                  <li v-for="(p, i) in topProds" :key="p.id">
+                    <span class="top-rank" :class="'rank-'+(i+1)">{{ i + 1 }}</span>
+                    <span class="top-name">{{ p.name }}</span>
+                    <template v-if="p.price !== undefined && p.price !== null">
+                      <span class="top-price">¥{{ typeof p.price === 'number' ? p.price.toLocaleString() : p.price }}</span>
+                    </template>
+                    <router-link :to="'/products/'+p.id" class="top-link">查看</router-link>
+                  </li>
+                </ol>
               </div>
             </div>
           </div>
@@ -539,4 +617,29 @@ onMounted(fetchData)
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* 数据洞察 */
+.insight-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.insight-card { border: 1px solid var(--color-border-lighter); border-radius: 10px; padding: 12px 14px; background: var(--color-bg-page); }
+.insight-head { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--color-text-secondary); margin-bottom: 8px; }
+.insight-icon { font-size: 15px; }
+.insight-nums { display: flex; align-items: baseline; gap: 14px; }
+.insight-nums strong { font-size: 22px; color: var(--color-text); }
+.insight-nums span { font-size: 11px; color: var(--color-text-secondary); }
+.today-num strong { font-size: 16px; color: var(--color-primary); }
+.today-num.rate-hot strong { color: #10b981; }
+.insight-bottom { margin-top: 12px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; }
+.insight-mb { display: flex; flex-direction: column; gap: 2px; font-size: 13px; }
+.insight-top { min-width: 280px; flex: 1; }
+.top-prod-list { list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-direction: column; gap: 4px; }
+.top-prod-list li { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 6px; font-size: 13px; }
+.top-prod-list li:nth-child(odd) { background: var(--color-bg-page); }
+.top-rank { width: 18px; height: 18px; border-radius: 50%; background: #e5e7eb; color: #6b7280; font-size: 11px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; flex: none; }
+.top-rank.rank-1 { background: #fef3c7; color: #d97706; }
+.top-rank.rank-2 { background: #e5e7eb; color: #4b5563; }
+.top-rank.rank-3 { background: #fde8e8; color: #dc2626; }
+.top-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.top-price { color: var(--color-text-secondary); font-size: 12px; }
+.top-link { font-size: 12px; color: var(--color-primary); }
+@media (max-width: 900px) { .insight-grid { grid-template-columns: repeat(2, 1fr); } }
 </style>
