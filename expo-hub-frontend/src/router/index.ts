@@ -35,7 +35,7 @@ const routes: RouteRecordRaw[] = [
 
   // ==================== 观众 (visitor) ====================
   { path: '/visitor/registrations', name: 'visitor-registrations', component: () => import('@/views/visitor/MyRegistrationsView.vue'), meta: { title: '我的登记', requiresAuth: true, roles: ['visitor','buyer','exhibitor','organizer','admin'], showFooter: true } },
-  { path: '/visitor/procurements', name: 'visitor-procurements', component: () => import('@/views/visitor/MyProcurementsView.vue'), meta: { title: '我的采购', requiresAuth: true, roles: ['visitor','buyer','exhibitor','organizer','admin'], showFooter: true } },
+  { path: '/visitor/procurements', name: 'visitor-procurements', component: () => import('@/views/visitor/MyProcurementsView.vue'), meta: { title: '我的采购', requiresAuth: true, roles: ['visitor','buyer'], showFooter: true } },
   { path: '/visitor/procurements/create', name: 'visitor-procurement-create', component: () => import('@/views/visitor/ProcurementCreateView.vue'), meta: { title: '发布采购需求', requiresAuth: true, roles: ['visitor'], showFooter: false } },
 
   // ==================== 买家 (buyer) ====================

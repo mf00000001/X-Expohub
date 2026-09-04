@@ -32,6 +32,14 @@ function cancelEdit() {
   editing.value = false
 }
 
+// 按角色分流到正确的"我的"页面(旧实现全角色指 visitor 版, 其内"发布"仅放行 visitor → 其他角色被守卫弹回工作台)
+function goMyRegistrations() {
+  router.push(profile.value?.role === 'buyer' ? '/buyer/registrations' : '/visitor/registrations')
+}
+function goMyProcurements() {
+  router.push(profile.value?.role === 'buyer' ? '/buyer/procurements' : '/visitor/procurements')
+}
+
 async function saveProfile() {
   saving.value = true
   errorMsg.value = ''
@@ -121,10 +129,10 @@ async function saveProfile() {
             <button v-if="profile?.role === 'organizer'" class="btn btn-outline" @click="router.push('/organizer/dashboard')">
               管理后台
             </button>
-            <button class="btn btn-outline" @click="router.push('/visitor/registrations')">
+            <button v-if="['visitor','buyer'].includes(profile?.role || '')" class="btn btn-outline" @click="goMyRegistrations()">
               我的报名
             </button>
-            <button class="btn btn-outline" @click="router.push('/visitor/procurements')">
+            <button v-if="['visitor','buyer'].includes(profile?.role || '')" class="btn btn-outline" @click="goMyProcurements()">
               我的采购
             </button>
             <!-- P3-P6 新功能入口 -->

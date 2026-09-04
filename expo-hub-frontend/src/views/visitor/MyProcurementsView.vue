@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 import ProcurementCard from '@/components/ProcurementCard.vue'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
@@ -37,7 +38,15 @@ function goToDetail(id: number) {
   router.push({ name: 'procurement-detail', params: { id } })
 }
 
+const userStore = useUserStore()
+const canPublish = computed(() => ['visitor', 'buyer'].includes(userStore.role))
+
 function goToCreate() {
+  // 本页兼容 visitor 与 buyer；buyer 必须走 buyer 专属创建页(否则守卫弹回工作台)
+  if (userStore.role === 'buyer') {
+    router.push({ name: 'buyer-procurement-create' })
+    return
+  }
   router.push({ name: 'visitor-procurement-create' })
 }
 
@@ -68,7 +77,7 @@ async function handleCancel(item: any) {
         <div class="container page-wrapper">
       <div class="flex justify-between items-center mb-6">
         <h1 class="page-title" style="margin-bottom:0">我的采购需求</h1>
-        <button class="btn btn-primary" @click="goToCreate">+ 发布采购</button>
+        <button v-if="canPublish" class="btn btn-primary" @click="goToCreate">+ 发布采购</button>
       </div>
 
       <div v-if="loading" class="loading-container">
@@ -81,7 +90,7 @@ async function handleCancel(item: any) {
       </div>
 
       <EmptyState v-else-if="procurements.length === 0" message="暂未发布采购需求" icon="📦">
-        <button class="btn btn-primary mt-4" @click="goToCreate">立即发布</button>
+        <button v-if="canPublish" class="btn btn-primary mt-4" @click="goToCreate">立即发布</button>
       </EmptyState>
 
       <div v-else class="grid grid-cols-1 grid-cols-2 grid-cols-3 gap-6">
