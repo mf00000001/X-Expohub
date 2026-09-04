@@ -50,8 +50,48 @@ function openBoothDetail(b: MicroBooth) {
   router.push('/micro-booths/' + b.id)
 }
 
-async function handleUpgrade(id: number, tier: string) {
-  alert('功能开发中，敬请期待')
+// ---- 会员升级弹窗 ----
+const upgradeBooth = ref<MicroBooth | null>(null)
+const targetTier = ref<'regular' | 'flagship'>('regular')
+const upgrading = ref(false)
+const showUpgrade = ref(false)
+
+// 档位权益（展品上限与后端 TIER_PRODUCT_LIMITS 对齐：free=3/regular=8/flagship=50）
+const tierPerks: Record<string, { name: string; icon: string; price: string; limitLabel: string; color: string; perks: string[] }> = {
+  free: {
+    name: '免费版', icon: '🆓', price: '¥0 永久', limitLabel: '3 个展品', color: '#6b7280',
+    perks: ['微展位广场展示', '基础搜索曝光', '浏览/收藏数据看板'],
+  },
+  regular: {
+    name: 'VIP 会员', icon: '⭐', price: '¥299/年', limitLabel: '8 个展品', color: '#3b82f6',
+    perks: ['搜索加权排序', '展品展示优先', '🔖 VIP 专属标识', '升级解锁更多展品位'],
+  },
+  flagship: {
+    name: '旗舰会员', icon: '👑', price: '¥999/年', limitLabel: '50 个展品', color: '#f59e0b',
+    perks: ['🏠 首页推荐位曝光', '搜索置顶推荐', '👑 旗舰专属标识', '专属运营顾问支持', '展品展示不设限'],
+  },
+}
+
+function openUpgrade(b: MicroBooth, tier: 'regular' | 'flagship') {
+  upgradeBooth.value = b
+  targetTier.value = tier
+  showUpgrade.value = true
+}
+
+async function confirmUpgrade() {
+  if (!upgradeBooth.value || upgrading.value) return
+  upgrading.value = true
+  try {
+    const resp: any = await microBoothApi.upgrade(upgradeBooth.value.id, targetTier.value)
+    const tierName = tierPerks[targetTier.value].name
+    const msg = resp?.message || `已升级为 ${tierName}`
+    showUpgrade.value = false
+    upgradeBooth.value = null
+    alert(`🎉 升级成功！${msg}\n（演示环境 Mock 结算，未实际扣款）`)
+    await loadData()
+  } catch (e: any) {
+    alert(e?.response?.data?.message || '升级失败，请稍后再试')
+  } finally { upgrading.value = false }
 }
 
 async function handleAddProduct(boothId: number, productId: number) {
@@ -154,13 +194,54 @@ const tierColor: Record<string, string> = { free: '#6b7280', regular: '#3b82f6',
         <div class="booth-actions">
           <button class="btn btn-sm btn-primary-outline" @click="openManage(b)">🗂️ 管理展品 ({{ b.product_count }})</button>
           <template v-if="b.membership_tier === 'free'">
-            <button class="btn btn-sm btn-default" @click="handleUpgrade(b.id, 'regular')">升级VIP会员</button>
-            <button class="btn btn-sm btn-warning" @click="handleUpgrade(b.id, 'flagship')">升级旗舰</button>
+            <button class="btn btn-sm btn-default" @click="openUpgrade(b, 'regular')">升级VIP会员</button>
+            <button class="btn btn-sm btn-warning" @click="openUpgrade(b, 'flagship')">升级旗舰</button>
           </template>
           <template v-if="b.membership_tier === 'regular'">
-            <button class="btn btn-sm btn-warning" @click="handleUpgrade(b.id, 'flagship')">升级旗舰</button>
+            <button class="btn btn-sm btn-warning" @click="openUpgrade(b, 'flagship')">升级旗舰</button>
           </template>
           <button class="btn btn-sm btn-danger" @click="handleDelete(b.id, b.name)">删除</button>
+        </div>
+
+        <!-- 升级会员弹窗 -->
+        <div v-if="showUpgrade && upgradeBooth" class="add-prod-overlay" @click.self="showUpgrade=false">
+          <div class="upgrade-card">
+            <h4 style="display:flex;justify-content:space-between;align-items:center">
+              <span>⬆️ 升级「{{ upgradeBooth.name }}」</span>
+              <span class="tag" :style="{background:tierColor[upgradeBooth.membership_tier]+'20', color:tierColor[upgradeBooth.membership_tier]}">当前 {{ tierLabel[upgradeBooth.membership_tier] }}</span>
+            </h4>
+            <p style="font-size:12px;color:var(--color-text-secondary);margin:6px 0 12px">当前已用 {{ upgradeBooth.product_count }}/{{ upgradeBooth.product_limit || '∞' }} 个展品位 · 升级后立即生效</p>
+            <div class="tier-grid">
+              <div v-for="(t, key) in (['free','regular','flagship'] as const)" :key="key"
+                   class="tier-opt"
+                   :class="{ current: upgradeBooth.membership_tier === t, selected: targetTier === t && upgradeBooth.membership_tier !== t }"
+                   :style="upgradeBooth.membership_tier === t ? { borderColor: tierColor[t] } : {}"
+                   @click="upgradeBooth.membership_tier !== t && (targetTier = t as 'regular'|'flagship')">
+                <div class="tier-head">
+                  <span class="tier-icon">{{ tierPerks[t].icon }}</span>
+                  <div>
+                    <strong :style="{color:tierColor[t]}">{{ tierPerks[t].name }}</strong>
+                    <span class="tier-price">{{ tierPerks[t].price }}</span>
+                  </div>
+                  <span v-if="upgradeBooth.membership_tier === t" class="tier-badge current-badge">当前档位</span>
+                  <span v-else-if="targetTier === t" class="tier-badge">已选 ✓</span>
+                </div>
+                <ul class="tier-perks">
+                  <li v-for="(pp, i) in tierPerks[t].perks" :key="i">{{ pp }}</li>
+                </ul>
+                <div class="tier-limit">📦 展品位：<strong>{{ tierPerks[t].limitLabel }}</strong></div>
+              </div>
+            </div>
+            <div class="upgrade-actions">
+              <button class="btn btn-sm btn-default" @click="showUpgrade=false">取消</button>
+              <button class="btn btn-sm" :disabled="upgrading || upgradeBooth.membership_tier === targetTier"
+                      :style="{ background: tierColor[targetTier], borderColor: tierColor[targetTier], color:'#fff' }"
+                      @click="confirmUpgrade">
+                {{ upgrading ? '升级中...' : `确认升级 ${tierPerks[targetTier].icon} ${tierPerks[targetTier].name}（${tierPerks[targetTier].price}）` }}
+              </button>
+            </div>
+            <p style="font-size:11px;color:var(--color-text-placeholder);margin-top:10px">💡 演示环境走 Mock 结算通道，不会产生真实扣款；升级后免费版入口将隐藏</p>
+          </div>
         </div>
 
         <!-- 添加展品弹窗 -->
@@ -213,4 +294,22 @@ const tierColor: Record<string, string> = { free: '#6b7280', regular: '#3b82f6',
 .prod-opt { padding:10px 12px;background:var(--color-bg-page);border-radius:8px;cursor:pointer;display:flex;justify-content:space-between }
 .prod-opt:hover { background:var(--color-primary-light) }
 .btn-danger { background:var(--color-danger-light);color:var(--color-danger);border:1px solid var(--color-danger-lighter) }
+.upgrade-card { background:#fff;border-radius:12px;padding:24px;width:680px;max-width:92vw;max-height:85vh;overflow-y:auto }
+.upgrade-card h4 { margin-bottom:4px }
+.tier-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px }
+.tier-opt { border:2px solid var(--color-border-lighter);border-radius:10px;padding:12px;cursor:pointer;transition:all .15s;background:#fff }
+.tier-opt:hover { transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08) }
+.tier-opt.current { background:var(--color-bg-page);opacity:.92;cursor:default }
+.tier-opt.selected { border-color:var(--color-primary);background:var(--color-primary-light) }
+.tier-head { display:flex;align-items:flex-start;gap:8px;position:relative }
+.tier-icon { font-size:22px;line-height:1 }
+.tier-head strong { display:block;font-size:15px }
+.tier-price { font-size:11px;color:var(--color-text-secondary) }
+.tier-badge { margin-left:auto;font-size:10px;padding:2px 6px;border-radius:10px;background:var(--color-primary);color:#fff;white-space:nowrap }
+.tier-badge.current-badge { background:#9ca3af }
+.tier-perks { list-style:none;padding:0;margin:8px 0 6px;display:flex;flex-direction:column;gap:3px }
+.tier-perks li { font-size:11.5px;color:var(--color-text-secondary);padding-left:14px;position:relative }
+.tier-perks li::before { content:'✓';position:absolute;left:0;color:#10b981;font-weight:700 }
+.tier-limit { font-size:11.5px;border-top:1px dashed var(--color-border-lighter);padding-top:6px;color:var(--color-text-secondary) }
+.upgrade-actions { display:flex;justify-content:flex-end;gap:10px;margin-top:16px }
 </style>
