@@ -5,6 +5,7 @@ import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import StatusTag from '@/components/StatusTag.vue'
 import { useI18n } from '@/composables/useI18n'
 import { useUserStore } from '@/stores/user'
+import { messageApi } from '@/api/message'
 import http from '@/api/index'
 
 const route = useRoute()
@@ -15,6 +16,7 @@ const userStore = useUserStore()
 const loading = ref(true)
 const profile = ref<any>(null)
 const activeTab = ref<string>('products')
+const contacting = ref(false)
 
 onMounted(async () => {
   const id = Number(route.params.id)
@@ -28,14 +30,26 @@ onMounted(async () => {
   }
 })
 
-function handleContact() {
+// 发起会话：先复用与该用户的现有会话，没有则发首条消息自动建会话（后端 POST /messages 语义），
+// 成功后携带真实 conversation_id 跳转（旧实现把 user_id 当会话 id 跳，会进错会话）
+async function handleContact() {
   if (!userStore.isLoggedIn) {
     router.push({ name: 'login', query: { redirect: route.fullPath } })
     return
   }
-  if (profile.value?.company?.id) {
-    // 路由名应为小写 conversation；用 path 更稳
-    router.push(`/messages/${profile.value.company.id}`)
+  const uid = profile.value?.company?.id
+  if (!uid || contacting.value) return
+  contacting.value = true
+  try {
+    const conv: any = await messageApi.startConversation(uid)
+    const cid = conv?.id ?? conv?.conversation_id
+    if (!cid) throw new Error('no conversation id')
+    router.push('/messages/' + cid)
+  } catch (e: any) {
+    console.error('Failed to start conversation:', e)
+    alert(e?.response?.data?.message || '发起会话失败，请稍后再试')
+  } finally {
+    contacting.value = false
   }
 }
 
@@ -149,7 +163,9 @@ function goToBooth(id: number) {
       </div>
 
       <div class="text-center mt-6">
-        <button class="btn btn-primary btn-lg" @click="handleContact">{{ t('startConversation') }}</button>
+        <button class="btn btn-primary btn-lg" @click="handleContact" :disabled="contacting">
+          {{ contacting ? t('startingConversation') || '发起会话中…' : t('startConversation') }}
+        </button>
       </div>
     </div>
   </div>

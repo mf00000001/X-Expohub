@@ -85,7 +85,18 @@ export const messageApi = {
   getUnreadCount(): Promise<{ count: number }> {
     return safe(apiClient.get('/messages/unread-count'), { count: 0 }) as Promise<{ count: number }>
   },
-  startConversation(uid: number, eid?: number): Promise<Conversation> {
-    return apiClient.post('/messages/conversations', { user_id: uid, exhibition_id: eid }) as Promise<Conversation>
+  // 与指定用户建立/复用会话，返回含会话 id 的对象。
+  // 真实契约：GET /conversations 已有会话则复用；否则 POST /messages {receiver_id, content}（后端自动建会话）拿 message.conversation_id。
+  // （旧实现 POST {user_id, exhibition_id} 与后端 StartConversationRequest 不符，必 400——已废弃）
+  async startConversation(uid: number, firstMessage = '你好，看到你的信息，希望有机会合作！'): Promise<Conversation> {
+    try {
+      const convs = await messageApi.getConversations({ page_size: 100 })
+      const found = (convs.list || []).find((c: any) =>
+        (c.participants || []).some((p: any) => Number(p.id) === Number(uid)))
+      if (found) return found
+    } catch { /* 列表查询失败不阻断：直接尝试建会话 */ }
+    const res: any = await apiClient.post('/messages', { receiver_id: uid, content: firstMessage })
+    const msg = res?.data ?? res
+    return { id: msg?.conversation_id, conversation_id: msg?.conversation_id } as unknown as Conversation
   },
 }
