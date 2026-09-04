@@ -66,7 +66,7 @@ onMounted(loadUsage)
           <input v-model="prompt" class="form-input" />
         </div>
         <div class="flex items-end">
-          <button class="btn btn-primary" :disabled="loading" @click="run">{{ loading ? '生成中…' : '生成' }}</button>
+          <button class="btn btn-primary" :disabled="loading" @click="run">{{ loading ? 'AI 生成中(约10–30秒,请耐心等待)…' : '✨ 生成' }}</button>
         </div>
       </div>
 

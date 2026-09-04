@@ -175,7 +175,7 @@ async function genAiNote() {
       <div class="mt-6" v-if="recommendations.length > 0">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
           <h2 class="text-xl font-bold" style="margin:0">推荐展品</h2>
-          <button class="btn btn-sm btn-outline" :disabled="aiLoading" @click="genAiNote">{{ aiLoading ? '生成中...' : '✨ AI 生成推荐说明' }}</button>
+          <button class="btn btn-sm btn-outline" :disabled="aiLoading" @click="genAiNote">{{ aiLoading ? 'AI 生成中(约10–30秒,请耐心等待)...' : '✨ AI 生成推荐说明' }}</button>
         </div>
         <div v-if="aiNote" class="card card-body mb-4" style="border-left:3px solid #4f6ef7">
           <p style="margin:0;line-height:1.8;white-space:pre-wrap">{{ aiNote }}</p>
