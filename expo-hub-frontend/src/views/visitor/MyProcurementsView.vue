@@ -46,6 +46,21 @@ function changePage(page: number) {
   fetchProcurements()
   window.scrollTo(0, 0)
 }
+
+function canCancel(p: any): boolean {
+  return ['pending', 'open', 'published', 'matched'].includes(p.status)
+}
+
+async function handleCancel(item: any) {
+  if (!confirm(`确定取消采购需求"${item.title}"？取消后展商将无法继续应标。`)) return
+  try {
+    await procurementApi.cancel(item.id)
+    alert('✅ 采购需求已取消')
+    await fetchProcurements()
+  } catch (e: any) {
+    alert(e?.response?.data?.message || '取消失败，请稍后再试')
+  }
+}
 </script>
 
 <template>
@@ -70,12 +85,13 @@ function changePage(page: number) {
       </EmptyState>
 
       <div v-else class="grid grid-cols-1 grid-cols-2 grid-cols-3 gap-6">
-        <ProcurementCard
-          v-for="item in procurements"
-          :key="item.id"
-          :procurement="item"
-          @click="goToDetail(item.id)"
-        />
+        <div v-for="item in procurements" :key="item.id" class="proc-wrap">
+          <ProcurementCard
+            :procurement="item"
+            @click="goToDetail(item.id)"
+          />
+          <button v-if="canCancel(item)" class="btn btn-sm proc-cancel" @click="handleCancel(item)">✖ 取消需求</button>
+        </div>
       </div>
 
       <div v-if="totalPages > 1" class="pagination">
@@ -91,3 +107,9 @@ function changePage(page: number) {
     </div>
   </div>
 </template>
+
+<style scoped>
+.proc-wrap { display: flex; flex-direction: column; gap: 6px; }
+.proc-cancel { align-self: flex-end; background: #fff; color: #dc2626; border: 1px solid #fecaca; }
+.proc-cancel:hover { background: #fef2f2; }
+</style>
