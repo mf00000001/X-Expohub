@@ -50,6 +50,37 @@ function openBoothDetail(b: MicroBooth) {
   router.push('/micro-booths/' + b.id)
 }
 
+// ---- 编辑微展位弹窗 ----
+const showEdit = ref(false)
+const editBooth = ref<MicroBooth | null>(null)
+const editForm = ref({ name: '', description: '', industry_domain: '' })
+const editSaving = ref(false)
+
+function openEdit(b: MicroBooth) {
+  editBooth.value = b
+  editForm.value = { name: b.name || '', description: b.description || '', industry_domain: b.industry_domain || '' }
+  showEdit.value = true
+}
+
+async function confirmEdit() {
+  if (!editBooth.value || editSaving.value) return
+  if (!editForm.value.name.trim()) { alert('请输入微展位名称'); return }
+  editSaving.value = true
+  try {
+    await microBoothApi.update(editBooth.value.id, {
+      name: editForm.value.name.trim(),
+      description: editForm.value.description.trim() || undefined,
+      industry_domain: editForm.value.industry_domain || undefined,
+    })
+    showEdit.value = false
+    editBooth.value = null
+    alert('✅ 微展位资料已更新')
+    await loadData()
+  } catch (e: any) {
+    alert(e?.response?.data?.message || '保存失败，请稍后再试')
+  } finally { editSaving.value = false }
+}
+
 // ---- 会员升级弹窗 ----
 const upgradeBooth = ref<MicroBooth | null>(null)
 const targetTier = ref<'regular' | 'flagship'>('regular')
@@ -193,6 +224,7 @@ const tierColor: Record<string, string> = { free: '#6b7280', regular: '#3b82f6',
         <!-- 操作按钮 -->
         <div class="booth-actions">
           <button class="btn btn-sm btn-primary-outline" @click="openManage(b)">🗂️ 管理展品 ({{ b.product_count }})</button>
+          <button class="btn btn-sm btn-default" @click="openEdit(b)">✏️ 编辑</button>
           <template v-if="b.membership_tier === 'free'">
             <button class="btn btn-sm btn-default" @click="openUpgrade(b, 'regular')">升级VIP会员</button>
             <button class="btn btn-sm btn-warning" @click="openUpgrade(b, 'flagship')">升级旗舰</button>
@@ -201,6 +233,21 @@ const tierColor: Record<string, string> = { free: '#6b7280', regular: '#3b82f6',
             <button class="btn btn-sm btn-warning" @click="openUpgrade(b, 'flagship')">升级旗舰</button>
           </template>
           <button class="btn btn-sm btn-danger" @click="handleDelete(b.id, b.name)">删除</button>
+        </div>
+
+        <!-- 编辑微展位弹窗 -->
+        <div v-if="showEdit && editBooth" class="add-prod-overlay" @click.self="showEdit=false">
+          <div class="add-prod-card" style="width:460px">
+            <h4>✏️ 编辑微展位</h4>
+            <p style="font-size:12px;color:var(--color-text-secondary);margin:6px 0 12px">修改资料将立即在微展位广场生效</p>
+            <div class="form-group"><label>微展位名称 *</label><input v-model="editForm.name" class="form-input" placeholder="例如：XX科技产品展示" /></div>
+            <div class="form-group"><label>简介</label><textarea v-model="editForm.description" class="form-textarea" rows="3" placeholder="简单介绍你的展品和公司" /></div>
+            <div class="form-group"><label>行业领域</label><select v-model="editForm.industry_domain" class="form-input"><option value="">请选择行业</option><option v-for="d in ['电子及家电','照明','车辆及配件','五金工具','机械','建材','化工产品','能源','日用消费品','礼品','纺织服装','鞋类','家居装饰品','办公箱包及休闲用品','食品','医药及医疗保健','AI/科技','综合服务']" :key="d" :value="d">{{ d }}</option></select></div>
+            <div class="upgrade-actions">
+              <button class="btn btn-sm btn-default" @click="showEdit=false">取消</button>
+              <button class="btn btn-sm btn-primary" :disabled="editSaving" @click="confirmEdit">{{ editSaving ? '保存中...' : '💾 保存修改' }}</button>
+            </div>
+          </div>
         </div>
 
         <!-- 升级会员弹窗 -->
