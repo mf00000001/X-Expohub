@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>ExpoHub 展会撮合平台 · 科技感产品海报</title>
+<style>
+  :root{
+    --bg0:#0b1120; --bg1:#1e3a8a; --accent:#4f6bff; --warm:#f59e0b;
+    --ink:#eef2ff; --muted:#94a3c2; --card:#ffffff12; --stroke:#ffffff1f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"Segoe UI","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    color:var(--ink); background:radial-gradient(1200px 800px at 20% -10%, #1e2a5c, transparent),
+                       radial-gradient(1000px 700px at 100% 0%, #12265f, transparent),
+                       #0b0f1e;
+    display:grid; place-items:center; padding:24px; min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  .poster{
+    position:relative; width:min(100%, 720px); aspect-ratio:3/4;
+    border-radius:22px; overflow:hidden;
+    background:
+      radial-gradient(700px 460px at 72% 8%, #3b5bd666, transparent 60%),
+      radial-gradient(600px 600px at 12% 100%, #2b1b66, transparent 60%),
+      linear-gradient(160deg,#0a1020 0%, #13254f 55%, #0c1633 100%);
+    border:1px solid #ffffff24; box-shadow:0 30px 80px rgba(0,0,0,.5);
+    display:flex; flex-direction:column;
+  }
+  /* subtle top sheen */
+  .poster::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,#ffffff10,transparent 22%);}
+  .top{position:relative;z-index:3;padding:26px 30px 0}
+  .eyebrow{display:flex;justify-content:space-between;align-items:center;
+    font-size:12px;letter-spacing:3px;color:var(--muted);text-transform:uppercase}
+  .eyebrow .pill{border:1px solid var(--stroke);background:var(--card);
+    padding:5px 12px;border-radius:999px;letter-spacing:1px}
+  .title{font-size:clamp(46px,9vw,84px);font-weight:800;letter-spacing:-1px;line-height:.95;
+    margin-top:12px;
+    background:linear-gradient(120deg,#ffffff 20%,#c7d2ff 60%,#8ea2ff);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 6px 30px #4f6bff33}
+  .subtitle{font-size:clamp(16px,3vw,22px);font-weight:600;color:var(--muted);margin-top:8px;letter-spacing:2px}
+  .scene{position:relative;flex:1;z-index:1;margin-top:4px}
+  svg{width:100%;height:100%;display:block}
+  .panel{position:absolute;top:14%;right:7%;background:linear-gradient(180deg,#ffffff2e,#ffffff12);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border:1px solid #ffffff2e;border-radius:14px;padding:12px 14px;min-width:150px;
+    box-shadow:0 10px 32px rgba(0,0,0,.35)}
+  .panel .pn{font-size:11px;color:var(--muted);letter-spacing:1px}
+  .panel .pv{font-size:24px;font-weight:800}
+  .panel .row{display:flex;justify-content:space-between;gap:16px;margin-top:8px;font-size:11px}
+  .panel .row span{color:var(--muted)}
+  .panel .row b{color:#e6f98f}
+  .dots{position:absolute;inset:0;background-image:radial-gradient(#ffffff22 1px,transparent 1px);
+    background-size:26px 26px;opacity:.5}
+  .bottom{position:relative;z-index:3;padding:0 30px 28px;color:var(--ink)}
+  .chips{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+  .chip{flex:1;min-width:130px;border:1px solid var(--stroke);background:var(--card);
+    backdrop-filter:blur(8px);border-radius:14px;padding:13px 14px}
+  .chip .ic{font-size:18px;margin-bottom:6px}
+  .chip .t{font-size:14px;font-weight:700;margin-bottom:3px}
+  .chip .d{font-size:11px;color:var(--muted);line-height:1.5}
+  .slogan{display:flex;align-items:center;justify-content:space-between;
+    border-top:1px solid var(--stroke);padding-top:16px;gap:12px}
+  .slogan .s{font-size:15px;font-weight:600;letter-spacing:1px}
+  .slogan .s b{color:#8ea2ff}
+  .slogan .price{font-size:13px;color:var(--muted);white-space:nowrap}
+  .slogan .price b{color:var(--warm);font-size:16px}
+</style>
+</head>
+<body>
+  <div class="poster">
+    <div class="top">
+      <div class="eyebrow">
+        <span>SAAS · 展会撮合平台</span>
+        <span class="pill">EXPO TECH</span>
+      </div>
+      <div class="title">ExpoHub</div>
+      <div class="subtitle">展会撮合平台</div>
+    </div>
+
+    <div class="scene">
+      <div class="dots"></div>
+      <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="lg" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#4f6bff"/><stop offset="1" stop-color="#8ea2ff"/>
+          </linearGradient>
+          <radialGradient id="gf" cx="50%" cy="40%" r="70%">
+            <stop offset="0" stop-color="#6d86ff"/><stop offset="1" stop-color="#1e3a8a"/>
+          </radialGradient>
+        </defs>
+        <!-- ground glow -->
+        <ellipse cx="200" cy="240" rx="190" ry="60" fill="url(#gf)" opacity="0.35"/>
+        <!-- connection lines -->
+        <path d="M60 210 C 120 170, 200 150, 300 90" stroke="url(#lg)" stroke-width="2" fill="none" opacity="0.9"/>
+        <path d="M60 225 C 130 200, 210 180, 320 120" stroke="url(#lg)" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <path d="M60 195 C 140 150, 230 120, 280 70" stroke="url(#lg)" stroke-width="1.5" fill="none" opacity="0.4"/>
+        <circle cx="60" cy="215" r="7" fill="#e6f98f"/>
+        <circle cx="60" cy="215" r="12" fill="#e6f98f" opacity="0.25"/>
+        <circle cx="305" cy="95" r="7" fill="#8ea2ff"/>
+        <circle cx="305" cy="95" r="14" fill="#8ea2ff" opacity="0.22"/>
+      </svg>
+      <!-- 3D booth grid -->
+      <div class="panel">
+        <div class="pn">今日撮合</div>
+        <div class="pv">1,024</div>
+        <div class="row"><span>意向</span><b>+38%</b></div>
+        <div class="row"><span>成交</span><b>+12%</b></div>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="chips">
+        <div class="chip"><div class="ic">🧩</div><div class="t">四方角色闭环</div><div class="d">游客 · 展商 · 主办方 · 老板</div></div>
+        <div class="chip"><div class="ic">🔗</div><div class="t">采购撮合</div><div class="d">需求发布 · 精准匹配</div></div>
+        <div class="chip"><div class="ic">📊</div><div class="t">数据报表</div><div class="d">团队管理 · ROI 看板</div></div>
+      </div>
+      <div class="slogan">
+        <div class="s">轻量 <b>·</b> 低价 <b>·</b> 让展会成交更简单</div>
+        <div class="price">低至 <b>¥2000</b>/场</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
