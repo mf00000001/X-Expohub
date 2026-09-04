@@ -46,6 +46,17 @@ function goShop() {
   router.push('/exhibitions')
 }
 
+async function handleCancelOrder(o: OrderItem) {
+  if (!confirm(`确定取消订单 ${o.order_no}？名额将立即释放。`)) return
+  try {
+    await ticketingApi.cancelOrder(o.order_no)
+    alert('✅ 订单已取消，名额已释放')
+    await load()
+  } catch (e: any) {
+    alert(e?.response?.data?.message || '取消失败，请稍后再试')
+  }
+}
+
 onMounted(load)
 </script>
 
@@ -89,6 +100,12 @@ onMounted(load)
             class="btn btn-primary btn-sm"
             @click="router.push(`/exhibitions/${o.exhibition_id}/tickets`)"
           >去支付</button>
+          <button
+            v-if="o.status === 'pending'"
+            class="btn btn-sm"
+            style="background:#fef2f2;color:#dc2626;border:1px solid #fecaca"
+            @click="handleCancelOrder(o)"
+          >取消订单</button>
         </div>
       </div>
     </div>
