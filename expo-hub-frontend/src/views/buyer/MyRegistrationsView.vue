@@ -47,6 +47,18 @@ function goToExhibition(id: number) {
 function goToMarket() {
   router.push('/exhibitions')
 }
+
+async function handleCancelReg(reg: any) {
+  const name = reg.exhibition?.title || `展会#${reg.exhibition_id}`
+  if (!confirm(`确定取消报名"${name}"？取消后报名记录将被移除。`)) return
+  try {
+    await registrationApi.cancel(reg.exhibition_id)
+    alert('✅ 已取消报名')
+    await fetchRegistrations()
+  } catch (e: any) {
+    alert(e?.response?.data?.message || '取消失败，请稍后再试')
+  }
+}
 </script>
 
 <template>
@@ -104,6 +116,9 @@ function goToMarket() {
                 🎫 {{ reg.ticket_code }}
               </span>
             </div>
+            <div class="reg-cancel-row" v-if="reg.is_registered">
+              <button class="btn btn-sm reg-cancel" @click.stop="handleCancelReg(reg)">取消报名</button>
+            </div>
           </div>
         </div>
       </div>
@@ -140,4 +155,9 @@ function goToMarket() {
   height: 100%;
   object-fit: cover;
 }
+
+.reg-cancel-row { display: flex; justify-content: flex-end; margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--border-lighter, #e2e8f0); }
+.reg-cancel { background: #fff; color: #dc2626; border: 1px solid #fecaca; }
+.reg-cancel:hover { background: #fef2f2; }
+
 </style>
