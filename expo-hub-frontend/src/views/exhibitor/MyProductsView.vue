@@ -40,6 +40,22 @@ function goToCreate() {
   router.push({ name: 'exhibitor-product-create' })
 }
 
+function goToEdit(id: number) {
+  router.push({ name: 'exhibitor-product-edit', params: { id } })
+}
+
+async function handleDelete(id: number) {
+  const name = products.value.find(p => p.id === id)?.name || `#${id}`
+  if (!confirm(`确定删除展品"${name}"？此操作不可恢复。`)) return
+  try {
+    await productApi.delete(id)
+    alert('展品已删除')
+    await fetchProducts()
+  } catch (e: any) {
+    alert(e?.response?.data?.message || e?.response?.data?.detail || '删除失败')
+  }
+}
+
 function changePage(page: number) {
   currentPage.value = page
   fetchProducts()
@@ -78,7 +94,10 @@ function changePage(page: number) {
           v-for="product in products"
           :key="product.id"
           :product="product"
+          manageable
           @click="goToDetail(product.id)"
+          @manage-edit="goToEdit"
+          @manage-delete="handleDelete"
         />
       </div>
 

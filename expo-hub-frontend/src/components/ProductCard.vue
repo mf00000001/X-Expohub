@@ -3,7 +3,8 @@ import { computed, ref } from 'vue'
 import { useI18n } from '@/composables/useI18n'
 
 import http from '@/api/index'
-const props = defineProps<{ product: Record<string, any> }>()
+const props = defineProps<{ product: Record<string, any>; manageable?: boolean }>()
+const emit = defineEmits<{ (e: 'click', id: number): void; (e: 'manage-edit', id: number): void; (e: 'manage-delete', id: number): void }>()
 const faved = ref(false)
 function toggleFav(e: Event) {
   e.stopPropagation()
@@ -25,7 +26,15 @@ const price = computed(() => props.product.price || 0)
 const status = computed(() => props.product.status || '')
 
 const statusLabelMap: Record<string, string> = {
-  active: '在售', inactive: '下架', draft: '草稿',
+  active: '在售', inactive: '下架', draft: '草稿', published: '已上架', ongoing: '售卖中',
+}
+function onEdit(e: Event) {
+  e.stopPropagation()
+  emit('manage-edit', id.value)
+}
+function onDelete(e: Event) {
+  e.stopPropagation()
+  emit('manage-delete', id.value)
 }
 </script>
 
@@ -42,6 +51,10 @@ const statusLabelMap: Record<string, string> = {
         <span class="product-status tag" :class="status === 'active' ? 'tag-success' : 'tag-warning'">
           {{ statusLabelMap[status] || status }}
         </span>
+      </div>
+      <div v-if="manageable" class="manage-actions" @click.stop>
+        <button class="btn btn-sm btn-outline" @click="onEdit">✏️ 编辑</button>
+        <button class="btn btn-sm btn-danger" @click="onDelete">删除</button>
       </div>
     </div>
   </div>
@@ -109,4 +122,5 @@ const statusLabelMap: Record<string, string> = {
   color: var(--danger);
 }
 .fav-btn{background:none;border:none;cursor:pointer;font-size:14px;float:right;opacity:0.5}.fav-btn:hover{opacity:1}
+.manage-actions { display: flex; gap: 8px; margin-top: 2px; }
 </style>
