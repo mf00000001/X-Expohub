@@ -9,7 +9,17 @@ const faved = ref(false)
 function toggleFav(e: Event) {
   e.stopPropagation()
   if (!localStorage.getItem('access_token')) { alert('请先登录'); return }
-  http.post('/favorites/toggle', {entity_type:'product',entity_id:props.product.id}).then((r:any)=>{ faved.value = r?.data?.favorited || r?.favorited || false }).catch(()=>{})
+  http.post('/favorites/toggle', {entity_type:'product',entity_id:props.product.id}).then((r:any)=>{
+    faved.value = r?.data?.favorited || r?.favorited || false
+    // 收藏埋点：仅新增收藏时计（后端给展品收藏数 +1 并给展商加积分）
+    if (faved.value) {
+      import('@/api/analytics').then(m => m.analyticsApi.trackEvent({
+        event_type: 'favorite', entity_type: 'product',
+        entity_id: props.product.id,
+        source_user_id: props.product.exhibitor_id,
+      }))
+    }
+  }).catch(()=>{})
 }
 const { pick } = useI18n()
 

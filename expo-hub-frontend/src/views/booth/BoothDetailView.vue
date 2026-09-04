@@ -6,6 +6,7 @@ import StatusTag from '@/components/StatusTag.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import { boothApi, type Booth } from '@/api/booth'
+import { analyticsApi } from '@/api/analytics'
 import { productApi, type Product } from '@/api/product'
 import { reviewApi, type Review } from '@/api/review'
 import { useUserStore } from '@/stores/user'
@@ -34,6 +35,14 @@ onMounted(async () => {
     booth.value = boothRes
     products.value = productRes.items || productRes.results || productRes.data || []
     reviews.value = reviewRes.items || reviewRes.results || reviewRes.data || []
+    // 浏览埋点：给展商计 view（后端去重 + 同步展位计数）
+    if (booth.value?.id) {
+      analyticsApi.trackEvent({
+        event_type: 'page_view', entity_type: 'booth',
+        entity_id: booth.value.id,
+        source_user_id: (booth.value as any).exhibitor_id,
+      })
+    }
   } catch (err) {
     console.error('Failed to load booth detail:', err)
   } finally {

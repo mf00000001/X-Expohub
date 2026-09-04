@@ -114,7 +114,17 @@ async function confirmAppt() {
 const mbFaved = ref(false)
 function toggleMbFav() {
   if (!localStorage.getItem('access_token')) { alert('请先登录'); return }
-  http.post('/favorites/toggle', {entity_type:'micro_booth',entity_id:detail.value?.booth?.id}).then((r:any)=>{ mbFaved.value = r?.data?.favorited || r?.favorited || false }).catch(()=>{})
+  http.post('/favorites/toggle', {entity_type:'micro_booth',entity_id:detail.value?.booth?.id}).then((r:any)=>{
+    mbFaved.value = r?.data?.favorited || r?.favorited || false
+    // 收藏埋点：仅新增收藏时计（后端给微展位收藏数 +1 并给展商加积分）
+    if (mbFaved.value && detail.value?.booth?.exhibitor_id) {
+      import('@/api/analytics').then(m => m.analyticsApi.trackEvent({
+        event_type: 'favorite', entity_type: 'micro_booth',
+        entity_id: detail.value!.booth!.id,
+        source_user_id: detail.value!.booth!.exhibitor_id,
+      }))
+    }
+  }).catch(()=>{})
 }
 const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP', flagship:'👑 旗舰' }
 </script>

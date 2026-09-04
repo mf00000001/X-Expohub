@@ -4,6 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import ImageGallery from '@/components/ImageGallery.vue'
 import { productApi } from '@/api/product'
+import { analyticsApi } from '@/api/analytics'
 import { useUserStore } from '@/stores/user'
 import { useI18n } from '@/composables/useI18n'
 
@@ -33,6 +34,14 @@ const specs = computed(() => product.value?.specs)
 onMounted(async () => {
   try {
     product.value = await productApi.getDetail(Number(route.params.id))
+    // 浏览埋点：给展商计 view（后端去重 + 同步展品计数）
+    if (product.value?.id) {
+      analyticsApi.trackEvent({
+        event_type: 'page_view', entity_type: 'product',
+        entity_id: product.value.id,
+        source_user_id: (product.value as any).exhibitor_id,
+      })
+    }
   } catch (err) { console.error('Failed to load product:', err) }
   finally { loading.value = false }
 })

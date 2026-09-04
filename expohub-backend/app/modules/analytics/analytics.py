@@ -26,6 +26,20 @@ class TrackEventRequest(BaseModel):
 @router.post("/event")
 def track_event(data: TrackEventRequest, db: Session = Depends(get_db)):
     """上报用户行为事件（无需登录）"""
+    # 一人一天只算一次浏览（去重）——先查再加：命中则整条丢弃。
+    # 埋点端未登录为主，浏览者 user_id 恒为 None：即「全平台同实体同事件当天只记 1 次」，防止刷新刷爆计数
+    from datetime import datetime, timezone
+    today = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
+    already = db.query(AnalyticsEvent).filter(
+        AnalyticsEvent.event_type == data.event_type,
+        AnalyticsEvent.entity_type == data.entity_type,
+        AnalyticsEvent.entity_id == data.entity_id,
+        AnalyticsEvent.user_id.is_(None),
+        AnalyticsEvent.created_at >= today,
+    ).count()
+    if already > 0:
+        return {"success": True, "code": "OK", "message": "dedup"}
+
     event = AnalyticsEvent(
         event_type=data.event_type,
         entity_type=data.entity_type,
@@ -34,20 +48,6 @@ def track_event(data: TrackEventRequest, db: Session = Depends(get_db)):
         extra_data=data.metadata,
     )
     db.add(event)
-
-    # 一人一天只算一次浏览（去重）
-    from datetime import datetime, timezone
-    today = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
-    already = db.query(AnalyticsEvent).filter(
-        AnalyticsEvent.event_type == data.event_type,
-        AnalyticsEvent.entity_type == data.entity_type,
-        AnalyticsEvent.entity_id == data.entity_id,
-        AnalyticsEvent.user_id == event.user_id,
-        AnalyticsEvent.created_at >= today,
-    ).count()
-    if already > 1:
-        db.commit()
-        return {"success": True, "code": "OK", "message": "dedup"}
 
     # 同步更新微展位/展品计数
     if data.event_type in ("page_view", "search_impression", "favorite"):

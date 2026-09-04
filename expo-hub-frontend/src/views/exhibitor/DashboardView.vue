@@ -31,12 +31,18 @@ const recommendations = ref<any[]>([])
 // 数据洞察（exhibitor analytics）
 const analyticsOv = ref<any>(null)
 const topProds = ref<any[]>([])
+const trendData = ref<any[]>([])
 
 const matchRate = computed(() => {
   const m = analyticsOv.value?.matches
   if (!m || !m.total) return 0
   return Math.round((m.accepted / m.total) * 100)
 })
+
+const trendMax = ref(1)
+function trendH(v: number): string {
+  return Math.max(4, Math.round((v / trendMax.value) * 72)) + 'px'
+}
 
 function toList(res: any): any[] {
   if (Array.isArray(res)) return res
@@ -106,12 +112,16 @@ async function fetchData() {
     const rdata = (recRes as any)?.data || recRes
     recommendations.value = Array.isArray(rdata) ? rdata : (rdata?.list || [])
     // 数据洞察（孤儿端点接通，失败不影响主数据）
-    const [ovRes, topRes] = await Promise.all([
+    const [ovRes, topRes, trendRes] = await Promise.all([
       exhibitorAnalyticsApi.overview().catch(() => null),
       exhibitorAnalyticsApi.topProducts(5).catch(() => null),
+      exhibitorAnalyticsApi.trend(7).catch(() => null),
     ])
     analyticsOv.value = (ovRes as any)?.data || ovRes || null
     topProds.value = Array.isArray(topRes) ? topRes : ((topRes as any)?.data?.list || (topRes as any)?.data || (topRes as any)?.list || [])
+    const trendRaw = (trendRes as any)?.data || trendRes
+    trendData.value = Array.isArray(trendRaw) ? trendRaw : []
+    trendMax.value = Math.max(1, ...trendData.value.map((d: any) => d.views || 0))
   } catch (e: any) {
     error.value = e.response?.data?.detail || e.response?.data?.message || e.message || '加载仪表盘数据失败'
   } finally {
@@ -318,6 +328,19 @@ onMounted(fetchData)
                   </li>
                 </ol>
               </div>
+            </div>
+            <div class="insight-trend" v-if="trendData.length > 0">
+              <div class="trend-head">
+                <span style="font-weight:600;font-size:13px">📈 近 7 日浏览量</span>
+                <span style="font-size:12px;color:var(--color-text-secondary)">累计 {{ trendData.reduce((s: number, d: any) => s + (d.views || 0), 0) }} 次</span>
+              </div>
+              <div class="trend-bars">
+                <div v-for="d in trendData" :key="d.date" class="trend-col">
+                  <div class="trend-bar" :style="{ height: trendH(d.views) }" :title="d.date + ': ' + (d.views || 0) + ' 次'"></div>
+                  <span class="trend-date">{{ d.date }}</span>
+                </div>
+              </div>
+              <p v-if="trendData.every((d: any) => !(d.views || 0))" class="trend-empty">还没有浏览数据——买家访问你的展位/展品后会在这里呈现趋势</p>
             </div>
           </div>
 
@@ -642,4 +665,11 @@ onMounted(fetchData)
 .top-price { color: var(--color-text-secondary); font-size: 12px; }
 .top-link { font-size: 12px; color: var(--color-primary); }
 @media (max-width: 900px) { .insight-grid { grid-template-columns: repeat(2, 1fr); } }
+.insight-trend { margin-top: 14px; border-top: 1px solid var(--color-border-lighter); padding-top: 12px; }
+.trend-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.trend-bars { display: flex; align-items: flex-end; gap: 8px; height: 92px; }
+.trend-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; height: 100%; }
+.trend-bar { width: 70%; max-width: 26px; min-height: 4px; background: linear-gradient(180deg, #60a5fa, #3b82f6); border-radius: 4px 4px 0 0; transition: height .3s; }
+.trend-date { font-size: 10px; color: var(--color-text-secondary); }
+.trend-empty { font-size: 12px; color: var(--color-text-placeholder); padding: 6px 0 2px; }
 </style>
