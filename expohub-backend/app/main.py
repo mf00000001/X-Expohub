@@ -49,6 +49,29 @@ async def lifespan(app: FastAPI):
     # P2: 后台调度（默认关闭，开启才启动）
     from app.core.scheduler import start_scheduler_if_enabled, shutdown_scheduler
     start_scheduler_if_enabled()
+
+    # 匹配工作流：后台线程预热语料索引（分词/IDF/倒排），首屏推荐即毫秒级；
+    # 失败静默（工作流首访惰性构建，不影响启动）。
+    def _warm_match_corpus():
+        try:
+            from app.models.base import SessionLocal
+            from app.modules.matching.workflow import get_corpus
+            _db = SessionLocal()
+            try:
+                get_corpus(_db)
+            finally:
+                _db.close()
+        except Exception:
+            pass
+
+    try:
+        import sys as _sys
+        import threading
+        if "pytest" not in _sys.modules:  # 测试环境跳过预热，避免后台线程与用例数据竞争
+            threading.Thread(target=_warm_match_corpus, daemon=True).start()
+    except Exception:
+        pass
+
     yield
     # 关闭时：清理资源
     shutdown_scheduler()

@@ -13,6 +13,8 @@ export interface ListResp<T> {
   pageSize?: number
   total_pages?: number
   totalPages?: number
+  /** 匹配工作流/其他端点的附加元信息（原样透传） */
+  pipeline?: any
 }
 
 export function normList<T>(raw: any): ListResp<T> {
@@ -27,6 +29,7 @@ export function normList<T>(raw: any): ListResp<T> {
   const src = (body && typeof body === 'object') ? body : {}
   const arr: T[] = (src.list ?? src.items ?? src.results ?? src.data ?? src.matches ?? src.recommendations ?? []) as T[]
   return {
+    ...src,  // 透传附加字段（如 pipeline 工作流摘要）
     list: arr, items: arr, results: arr, data: arr,
     matches: arr, recommendations: arr,
     total: src.total ?? src.count ?? arr.length,

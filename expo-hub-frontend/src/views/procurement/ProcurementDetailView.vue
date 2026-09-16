@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import StatusTag from '@/components/StatusTag.vue'
@@ -30,10 +30,22 @@ const procurement = ref<Procurement | null>(null)
 const matches = ref<ProcurementMatch[]>([])
 const recommendations = ref<any[]>([])
 const recsLoading = ref(false)
+const recPipeline = ref<any>(null)
 const loading = ref(true)
 const aiNote = ref('')
 const aiLoading = ref(false)
 const aiProvider = ref('')
+
+// 本地解读（匹配工作流即时生成，零云依赖、零等待）
+const localNote = computed(() => {
+  if (!recommendations.value.length) return ''
+  const top = recommendations.value.slice(0, 3)
+  const t = top[0]
+  const rs = (t?.match_reasons || t?.reasons || []).join('、') || '综合匹配'
+  const recalled = recPipeline.value?.recalled
+  const n = recommendations.value.length
+  return `匹配工作流${recalled ? `从 ${recalled} 个候选中` : ''}筛选出 ${n} 个展品；最高匹配为《${t?.name ?? '-'}》（${t?.match_score ?? '-'}%）：${rs}。建议优先对接 Top${Math.min(3, n)} 展商。`
+})
 
 function fmtMatchTime(s?: string) {
   return s ? String(s).slice(0, 16).replace('T', ' ') : ''
@@ -86,6 +98,7 @@ async function fetchRecommendations() {
   try {
     const data: any = await procurementApi.getRecommendations(procurement.value.id)
     recommendations.value = data?.list || data?.recommendations || (Array.isArray(data) ? data : [])
+    recPipeline.value = data?.pipeline || null
   } catch (err) {
     // 非致命：静默（后端 403 属权限正常路径）
   } finally {
@@ -93,21 +106,24 @@ async function fetchRecommendations() {
   }
 }
 
-// AI 推荐说明：把推荐理由交给人话化（AI 实验室 reason 能力；未配密钥时后端 mock 降级并如实标注）
+// AI 推荐说明：把推荐理由交给人话化（AI 实验室 reason 能力；未配密钥时后端 mock 降级并如实标注）。
+// 匹配主链路不依赖云端 —— AI 失败/超时时自动降级为本地工作流解读。
 async function genAiNote() {
   if (!procurement.value || aiLoading.value) return
   aiLoading.value = true
   aiNote.value = ''
   try {
     const top = recommendations.value.slice(0, 3).map((r: any) =>
-      `《${r.name}》(展商:${r.exhibitor_name || '未知'};理由:${(r.match_reasons || []).join('、') || '推荐'})`
+      `《${r.name}》(展商:${r.exhibitor_name || '未知'};理由:${(r.match_reasons || r.reasons || []).join('、') || '推荐'})`
     ).join('；')
     const prompt = `采购需求「${procurement.value.title}」属于${procurement.value.category || '未分类'}。已推荐以下展品：${top}。请用3-4句话向买家说明这些展品为何值得重点对接，中文、口语化、给出对接建议。`
     const r: any = await aiApi.generate({ capability: 'reason', prompt })
     aiNote.value = r?.content || '（无返回内容）'
     aiProvider.value = r?.provider || ''
   } catch (e: any) {
-    aiNote.value = 'AI 生成失败：' + (e?.response?.data?.message || '请稍后再试')
+    // 云端 AI 不可用 → 降级为本地工作流解读（主链路零依赖）
+    aiNote.value = `（AI 服务暂不可用，以下为本地匹配工作流解读）\n${localNote.value}`
+    aiProvider.value = 'local-fallback'
   } finally {
     aiLoading.value = false
   }
@@ -171,15 +187,23 @@ async function genAiNote() {
         </div>
       </div>
 
-      <!-- Recommended Products -->
+      <!-- Recommended Products（本地匹配工作流） -->
       <div class="mt-6" v-if="recommendations.length > 0">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
           <h2 class="text-xl font-bold" style="margin:0">推荐展品</h2>
           <button class="btn btn-sm btn-outline" :disabled="aiLoading" @click="genAiNote">{{ aiLoading ? 'AI 生成中(约10–30秒,请耐心等待)...' : '✨ AI 生成推荐说明' }}</button>
         </div>
+        <p class="pipeline-hint" v-if="recPipeline">
+          ⚡ 本地匹配工作流（零云依赖）· 候选 {{ recPipeline.recalled ?? '—' }} → 打分 {{ recPipeline.scored ?? '—' }} → 展示 {{ recPipeline.returned ?? recommendations.length }} · 用时 {{ recPipeline.total_ms ?? '—' }}ms
+        </p>
         <div v-if="aiNote" class="card card-body mb-4" style="border-left:3px solid #4f6ef7">
           <p style="margin:0;line-height:1.8;white-space:pre-wrap">{{ aiNote }}</p>
-          <p v-if="aiProvider" style="margin:8px 0 0;font-size:12px;color:var(--color-text-placeholder)">via {{ aiProvider }}{{ aiProvider === 'mock' ? '（未配置真实模型，内容为示例占位）' : '' }}</p>
+          <p v-if="aiProvider && aiProvider !== 'local-fallback'" style="margin:8px 0 0;font-size:12px;color:var(--color-text-placeholder)">via {{ aiProvider }}{{ aiProvider === 'mock' ? '（未配置真实模型，内容为示例占位）' : '' }}</p>
+          <p v-else style="margin:8px 0 0;font-size:12px;color:var(--color-text-placeholder)">via 本地匹配工作流（零云依赖）</p>
+        </div>
+        <div v-else class="card card-body mb-4" style="border-left:3px solid #10b981">
+          <p style="margin:0;line-height:1.8">⚡ <strong>本地解读</strong>：{{ localNote }}</p>
+          <p style="margin:8px 0 0;font-size:12px;color:var(--color-text-placeholder)">由匹配工作流即时生成（零等待、零云依赖）· 需要更口语化的版本可点右上「AI 生成推荐说明」</p>
         </div>
         <div class="grid grid-cols-1 grid-cols-2 grid-cols-3 grid-cols-4 gap-4">
           <div v-for="item in recommendations" :key="item.id" class="recommendation-item">
@@ -188,7 +212,7 @@ async function genAiNote() {
               @click="goToProduct(item.id)"
             />
             <div class="match-badge" v-if="item.match_score">
-              <span class="match-score">{{ item.match_score }}% 匹配</span>
+              <span class="match-score" :class="item.match_level === 'high' ? 'score-high' : (item.match_level === 'medium' ? 'score-medium' : 'score-low')">{{ item.match_score }}% 匹配</span>
               <span class="match-reasons" v-if="item.match_reasons && item.match_reasons.length">
                 {{ item.match_reasons.join(' / ') }}
               </span>
@@ -226,6 +250,15 @@ async function genAiNote() {
   border-radius: 3px;
   font-weight: 600;
   font-size: 11px;
+}
+.match-score.score-high { background: #16a34a; }
+.match-score.score-medium { background: #2563eb; }
+.match-score.score-low { background: #9ca3af; }
+
+.pipeline-hint {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
 }
 
 .match-reasons {

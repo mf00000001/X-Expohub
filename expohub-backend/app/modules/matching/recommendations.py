@@ -1,42 +1,37 @@
 """
-V2.3: 智能匹配推荐
-关键词+品类双重匹配，直接匹配10000+产品池
+V3.5: 智能推荐（匹配工作流接入版）
+
+智能推荐不再是散落的规则函数，而是统一走 `app.modules.matching.workflow`
+的多阶段匹配工作流（S0 画像装配 → S1 多路召回 → S2 过滤 → S3 多信号打分 →
+S4 排序截断 → S5 解释生成），全链路本地运行、毫秒级、零云依赖。
+
+端点：
+- GET /recommendations/for-exhibitor           展商 ← 采购需求（Top-K 推荐）
+- GET /recommendations/for-buyer               买家 ← 展品（最新待匹配需求驱动）
+- GET /recommendations/score-procurements      对指定采购需求实时打分（列表页匹配度徽章）
+
+响应约定（兼容旧契约）：
+- data 仍为列表；条目保留旧字段（score/reasons/...），新增 match_score(0-100)、
+  match_level(high/medium/low)、match_reasons（展品侧）
+- 顶层新增 pipeline 字段：工作流阶段 trace（名称/耗时/进出数量/说明），
+  供前端展示「本地匹配工作流」运行摘要
 """
 
-import json
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
-from sqlalchemy import func, or_
 
+from app.core.deps import get_current_active_user
 from app.models.base import get_db
 from app.models.user import User
-from app.models.procurement import Procurement
-from app.models.micro_booth import MicroBooth
-from app.models.product import Product
-from app.core.deps import get_current_active_user
+from app.modules.matching.workflow import (
+    hot_products_fallback,
+    latest_pending_procurement,
+    match_procurements_for_exhibitor,
+    match_products_for_procurement,
+    score_procurements_for_exhibitor,
+)
 
 router = APIRouter(prefix="/recommendations", tags=["智能推荐"])
-
-
-def _keyword_score(query: str, text: str) -> int:
-    """简单关键词匹配：query中每个字在text中出现就加分"""
-    if not query or not text:
-        return 0
-    q_chars = set(query.replace(" ", ""))
-    t_chars = set(text.replace(" ", ""))
-    overlap = len(q_chars & t_chars)
-    return min(overlap * 3, 30)
-
-
-def _category_fuzzy_match(cat1: str, cat2: str) -> int:
-    """模糊品类匹配"""
-    if not cat1 or not cat2:
-        return 0
-    if cat1 == cat2:
-        return 50
-    # 检查是否在同一父组
-    from app.models.category import match_category_score
-    return match_category_score(cat1, cat2)
 
 
 @router.get("/for-exhibitor")
@@ -45,81 +40,13 @@ def for_exhibitor(
     db: Session = Depends(get_db),
     limit: int = Query(default=10, ge=1, le=50),
 ):
-    """给展商推荐匹配的采购需求"""
-    domain = current_user.industry_domain or ""
-
-    # 也查展商的产品品类作为额外匹配条件
-    product_cats = set()
-    if current_user.role == "exhibitor":
-        cats = db.query(Product.category).filter(
-            Product.exhibitor_id == current_user.id, Product.status == "published"
-        ).distinct().limit(20).all()
-        product_cats = {c[0] for c in cats if c[0]}
-
-    all_cats = {domain} | product_cats
-    all_cats.discard("")
-
-    procurements = db.query(Procurement).filter(
-        Procurement.status == "pending"
-    ).order_by(Procurement.created_at.desc()).limit(200).all()
-
-    scored = []
-    for p in procurements:
-        score = 0
-        reasons = []
-
-        # 品类匹配
-        for cat in all_cats:
-            s = _category_fuzzy_match(cat, p.category or "")
-            if s >= 50:
-                score += 50
-                reasons.append(f"品类精确匹配：{p.category}")
-                break
-            elif s >= 30:
-                score += 30
-                reasons.append(f"同行业大类：{p.category}")
-                break
-            elif s >= 10:
-                score += 10
-
-        # 关键词匹配（标题中包含品类词）
-        for cat in all_cats:
-            ks = _keyword_score(cat, p.title or "")
-            if ks > 0:
-                score += ks
-                reasons.append(f"关键词匹配")
-
-        # 预算加分
-        if p.budget_max:
-            score += 5
-
-        # 只要有点关联就返回（降低门槛）
-        if score > 0:
-            scored.append({
-                "id": p.id, "title": p.title, "description": p.description,
-                "category": p.category, "budget_min": p.budget_min,
-                "budget_max": p.budget_max, "status": p.status,
-                "purchaser_name": p.purchaser_name,
-                "score": score, "reasons": reasons[:3],
-                "created_at": p.created_at.isoformat() if p.created_at else None,
-            })
-
-    scored.sort(key=lambda x: x["score"], reverse=True)
-    if not scored:
-        # 兜底：返回最新采购需求
-        latest = procurements[:limit]
-        scored = [{
-            "id": p.id, "title": p.title, "description": p.description,
-            "category": p.category, "status": p.status,
-            "purchaser_name": p.purchaser_name,
-            "score": 1, "reasons": ["最新发布"],
-            "created_at": p.created_at.isoformat() if p.created_at else None,
-        } for p in latest]
-
+    """给展商推荐匹配的采购需求（工作流：画像→召回→打分→排序→解释）"""
+    outcome = match_procurements_for_exhibitor(db, current_user, limit=limit)
     return {
         "success": True, "code": "OK",
-        "data": scored[:limit],
-        "message": f"为你找到{len(scored[:limit])}条匹配的采购需求",
+        "data": outcome.items,
+        "pipeline": outcome.as_payload(),
+        "message": f"为你找到{len(outcome.items)}条匹配的采购需求",
     }
 
 
@@ -129,81 +56,45 @@ def for_buyer(
     db: Session = Depends(get_db),
     limit: int = Query(default=10, ge=1, le=50),
 ):
-    """给买家推荐匹配的展商和产品"""
-    procurement = db.query(Procurement).filter(
-        Procurement.purchaser_id == current_user.id,
-        Procurement.status == "pending",
-    ).order_by(Procurement.created_at.desc()).first()
-
+    """给买家推荐匹配的展品（以最新一条待匹配采购需求为查询）"""
+    procurement = latest_pending_procurement(db, current_user.id)
     if not procurement:
-        # 兜底：返回热门产品
-        hot = db.query(Product).filter(
-            Product.status == "published"
-        ).order_by(Product.created_at.desc()).limit(limit).all()
+        data = hot_products_fallback(db, limit)
         return {
             "success": True, "code": "OK",
-            "data": [{
-                "id": p.id, "name": p.name, "category": p.category,
-                "exhibitor_name": p.exhibitor_name or "",
-                "description": p.description or "",
-                "score": 1, "reasons": ["最新展品"],
-            } for p in hot],
+            "data": data,
+            "pipeline": {"engine": "match-workflow-local", "version": "1.0",
+                         "mode": "fallback-hot", "returned": len(data), "stages": []},
             "message": "请先发布采购需求获取精准匹配，以下是热门展品",
         }
 
-    cat = procurement.category or ""
-    keywords = procurement.title or ""
-
-    # 从10000产品中匹配
-    products = db.query(Product).filter(
-        Product.status == "published"
-    ).order_by(Product.created_at.desc()).limit(2000).all()
-
-    scored = []
-    for p in products:
-        score = 0
-        reasons = []
-
-        # 品类匹配
-        s = _category_fuzzy_match(cat, p.category or "")
-        if s >= 50:
-            score += 50
-            reasons.append(f"品类精确匹配")
-        elif s >= 30:
-            score += 30
-            reasons.append(f"同行业大类")
-
-        # 关键词匹配（标题+描述）
-        ks = _keyword_score(keywords, (p.name or "") + (p.description or ""))
-        if ks > 0:
-            score += ks
-            if ks >= 15:
-                reasons.append("关键词高度匹配")
-
-        if score > 0:
-            scored.append({
-                "id": p.id, "name": p.name, "category": p.category,
-                "description": p.description or "",
-                "exhibitor_name": p.exhibitor_name or "",
-                "exhibitor_id": p.exhibitor_id,
-                "score": score, "reasons": reasons,
-            })
-
-    scored.sort(key=lambda x: x["score"], reverse=True)
-    if not scored:
-        # 兜底：全品类热门
-        hot = db.query(Product).filter(
-            Product.status == "published"
-        ).order_by(Product.created_at.desc()).limit(limit).all()
-        scored = [{
-            "id": p.id, "name": p.name, "category": p.category,
-            "exhibitor_name": p.exhibitor_name or "",
-            "description": p.description or "",
-            "score": 1, "reasons": ["最新展品"],
-        } for p in hot]
-
+    outcome = match_products_for_procurement(db, procurement, limit=limit)
     return {
         "success": True, "code": "OK",
-        "data": scored[:limit],
-        "message": f"根据'{cat}'为你匹配{len(scored[:limit])}个展品",
+        "data": outcome.items,
+        "pipeline": outcome.as_payload(),
+        "message": f"根据'{procurement.category or '需求'}'为你匹配{len(outcome.items)}个展品",
+    }
+
+
+@router.get("/score-procurements")
+def score_procurements(
+    ids: str = Query(..., description="逗号分隔的采购需求 ID，最多 100 个"),
+    current_user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db),
+):
+    """对指定采购需求实时打分（列表页「匹配度」徽章/排序用）"""
+    id_list: list[int] = []
+    for part in ids.split(","):
+        part = part.strip()
+        if part.isdigit():
+            id_list.append(int(part))
+        if len(id_list) >= 100:
+            break
+    scores, meta = score_procurements_for_exhibitor(db, current_user, id_list)
+    return {
+        "success": True, "code": "OK",
+        "data": scores,
+        "pipeline": meta,
+        "message": "评分完成",
     }

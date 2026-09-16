@@ -15,6 +15,7 @@ const myProcurements = ref<any[]>([])
 const myRegistrations = ref<any[]>([])
 const unreadCount = ref(0)
 const buyerRecs = ref<any[]>([])
+const recPipeline = ref<any>(null)
 
 function toList(res: any): any[] {
   if (Array.isArray(res)) return res
@@ -83,6 +84,7 @@ async function fetchData() {
     unreadCount.value = (msgRes as any)?.unread_count ?? (msgRes as any)?.unreadCount ?? 0
     const rd = (recRes as any)?.data || recRes
     buyerRecs.value = Array.isArray(rd) ? rd : []
+    recPipeline.value = (recRes as any)?.pipeline || null
   } catch (e: any) {
     error.value = e.response?.data?.detail || e.response?.data?.message || e.message || '加载仪表盘数据失败'
   } finally {
@@ -192,16 +194,20 @@ onMounted(fetchData)
             </div>
           </div>
 
-          <!-- AI推荐 -->
+          <!-- AI推荐（本地匹配工作流） -->
           <div class="card" v-if="buyerRecs.length > 0" style="margin-bottom:20px">
             <h3 style="margin-bottom:8px">🤖 为你推荐展品</h3>
             <div class="rec-list">
               <div v-for="r in buyerRecs.slice(0,5)" :key="r.id" class="rec-item" @click="router.push('/products/'+r.id)" style="cursor:pointer">
                 <span class="rec-name">{{ r.name }}</span>
                 <span class="rec-cat">{{ r.category }}</span>
+                <span v-if="r.match_score > 1" class="rec-score">{{ r.match_score }}%</span>
                 <span class="rec-reason">{{ r.reasons?.[0] || '' }}</span>
               </div>
             </div>
+            <p class="pipeline-hint">
+              ⚡ 本地匹配工作流（零云依赖）· 候选 {{ recPipeline?.recalled ?? '—' }} → 展示 {{ buyerRecs.length }} · 用时 {{ recPipeline?.total_ms ?? '—' }}ms
+            </p>
           </div>
 
           <!-- Quick actions -->
@@ -476,4 +482,13 @@ onMounted(fetchData)
     grid-template-columns: repeat(2, 1fr);
   }
 }
+/* 推荐展品卡片（匹配度展示） */
+.rec-list { display: flex; flex-direction: column; gap: 8px; }
+.rec-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; background: var(--color-bg-page); border-radius: 8px; transition: background .15s; }
+.rec-item:hover { background: var(--color-border-lighter); }
+.rec-name { font-weight: 600; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rec-cat { font-size: 12px; color: var(--color-text-secondary); flex-shrink: 0; }
+.rec-score { font-size: 11px; font-weight: 700; color: #1d4ed8; background: #dbeafe; border-radius: 999px; padding: 1px 8px; flex-shrink: 0; }
+.rec-reason { margin-left: auto; font-size: 12px; color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 42%; }
+.pipeline-hint { margin: 10px 0 0; font-size: 11px; color: var(--color-text-secondary); border-top: 1px dashed var(--color-border-lighter); padding-top: 8px; }
 </style>

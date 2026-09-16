@@ -273,21 +273,17 @@ def create(
         earn_points(current_user.id, "earn_procurement", "procurement", p.id, db)
     except: pass
 
-    # V2.4: 通知匹配展商
+    # V3.5: 通知匹配展商（匹配工作流逐展商打分，达到阈值的 Top5）
     try:
         from app.models.notification import notify
-        from app.models.user import User
-        from app.models.category import match_category_score
-        exhibitors = db.query(User).filter(User.role == "exhibitor", User.industry_domain.isnot(None)).all()
-        for exh in exhibitors:
-            if exh.industry_domain and p.category:
-                s = match_category_score(exh.industry_domain, p.category)
-                if s >= 20:
-                    notify(db, exh.id, "match",
-                           f"🔔 新采购需求匹配：{p.title[:30]}",
-                           f"品类：{p.category}，与你的行业领域「{exh.industry_domain}」匹配",
-                           f"/procurements/{p.id}")
-    except: pass
+        from app.modules.matching.workflow import notify_exhibitor_matches
+        for hit in notify_exhibitor_matches(db, p):
+            notify(db, hit["user_id"], "match",
+                   f"🔔 新采购需求匹配（{int(hit['score'])}%）：{p.title[:30]}",
+                   f"品类：{p.category}，{hit['reason']}",
+                   f"/procurements/{p.id}")
+    except Exception:
+        pass
 
     return {
         "success": True,
@@ -626,16 +622,6 @@ def accept_match(
 # 推荐匹配端点
 # ============================================================
 
-def _product_to_dict(p) -> dict:
-    return {
-        "id": p.id, "name": p.name, "description": p.description,
-        "category": p.category, "price": p.price, "unit": p.unit,
-        "status": p.status, "exhibitor_id": p.exhibitor_id,
-        "exhibitor_name": p.exhibitor_name, "images": p.images,
-        "booth_id": p.booth_id, "exhibition_id": p.exhibition_id,
-        "specs": p.specs, "created_at": p.created_at.isoformat() if p.created_at else None,
-    }
-
 @router.get("/{procurement_id}/recommendations")
 def get_recommendations(
     procurement_id: int,
@@ -643,53 +629,25 @@ def get_recommendations(
     current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
-    from app.models.category import match_category_score
+    """推荐匹配展品（匹配工作流：需求画像→多路召回→多信号打分→排序→解释）
+
+    归属校验：仅需求创建者或管理员可查看推荐。
+    """
+    from app.modules.matching.workflow import match_products_for_procurement
+
     proc = db.query(Procurement).filter(Procurement.id == procurement_id).first()
     if not proc:
         raise NotFound(message="采购需求不存在")
 
-    # 归属校验：仅需求创建者或管理员可查看推荐
     if proc.purchaser_id != current_user.id and current_user.role != "admin":
         raise Forbidden(message="无权查看此采购需求的推荐")
 
-    products = db.query(Product).filter(Product.status == "published").order_by(Product.created_at.desc()).limit(500).all()
-    bmin = proc.budget_min
-    bmax = proc.budget_max
-    result = []
-
-    for p in products:
-        score = 0
-        reasons = []
-        cat_score = match_category_score(p.category or '', proc.category or '')
-        if cat_score >= 50: score += 50; reasons.append('品类精确匹配')
-        elif cat_score >= 30: score += 30; reasons.append('同行业大类')
-        elif cat_score >= 10: score += 10; reasons.append('品类相关')
-
-        if proc.exhibition_id and p.exhibition_id == proc.exhibition_id:
-            score += 15; reasons.append('同展会')
-
-        if p.price and bmin and bmax and bmin <= p.price <= bmax:
-            score += 10; reasons.append('预算匹配')
-
-        score += 5
-        if score > 5:
-            d = _product_to_dict(p)
-            d["match_score"] = score
-            d["match_reasons"] = reasons
-            result.append(d)
-
-    if not result:
-        products2 = db.query(Product).filter(Product.status == "published").order_by(Product.created_at.desc()).limit(limit).all()
-        for p in products2:
-            d = _product_to_dict(p)
-            d["match_score"] = 1
-            d["match_reasons"] = ["推荐展品"]
-            result.append(d)
-    else:
-        result.sort(key=lambda x: x["match_score"], reverse=True)
-        result = result[:limit]
-
-    return {"success": True, "code": "OK", "message": "获取成功", "data": result}
+    outcome = match_products_for_procurement(db, proc, limit=limit)
+    return {
+        "success": True, "code": "OK", "message": "获取成功",
+        "data": outcome.items,
+        "pipeline": outcome.as_payload(),
+    }
 
 
 

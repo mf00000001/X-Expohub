@@ -25,8 +25,15 @@ const tierLabel = ref('')
 const tierIcon = ref('⭐')
 const tierColor = ref('#6b7280')
 
-// AI推荐
+// AI推荐（匹配工作流）
 const recommendations = ref<any[]>([])
+const recPipeline = ref<any>(null)
+
+function levelClass(level?: string): string {
+  if (level === 'high') return 'match-pill-high'
+  if (level === 'medium') return 'match-pill-medium'
+  return 'match-pill-low'
+}
 
 // 数据洞察（exhibitor analytics）
 const analyticsOv = ref<any>(null)
@@ -111,6 +118,7 @@ async function fetchData() {
     }
     const rdata = (recRes as any)?.data || recRes
     recommendations.value = Array.isArray(rdata) ? rdata : (rdata?.list || [])
+    recPipeline.value = (recRes as any)?.pipeline || null
     // 数据洞察（孤儿端点接通，失败不影响主数据）
     const [ovRes, topRes, trendRes] = await Promise.all([
       exhibitorAnalyticsApi.overview().catch(() => null),
@@ -256,19 +264,34 @@ onMounted(fetchData)
             </div>
           </div>
 
-          <!-- AI推荐 -->
+          <!-- AI推荐（本地匹配工作流） -->
           <div class="card" v-if="recommendations.length > 0" style="margin-bottom:20px">
-            <h3 style="margin-bottom:12px">🤖 智能匹配推荐</h3>
-            <p style="font-size:12px;color:var(--color-text-secondary);margin-bottom:12px">根据你的行业领域，为你找到以下采购需求：</p>
+            <div class="card-title-row">
+              <h3 style="margin-bottom:0">🤖 智能匹配推荐</h3>
+              <router-link to="/exhibitor/matches" class="btn btn-sm btn-outline">全部采购需求 &rarr;</router-link>
+            </div>
+            <p style="font-size:12px;color:var(--color-text-secondary);margin:8px 0 12px">
+              根据你的行业领域与展品关键词，多阶段匹配工作流为你找到以下采购需求：
+            </p>
             <div class="rec-list">
               <div class="rec-item" v-for="r in recommendations.slice(0,3)" :key="r.id">
                 <div class="rec-info">
                   <strong>{{ r.title }}</strong>
-                  <span style="font-size:12px;color:var(--color-text-secondary)">{{ r.category }} · {{ r.reasons?.join('，') }}</span>
+                  <span style="font-size:12px;color:var(--color-text-secondary)">
+                    {{ r.category }} · {{ r.reasons?.join('，') }}
+                  </span>
                 </div>
-                <router-link :to="'/procurements/'+r.id" class="btn btn-sm btn-primary-outline">查看详情</router-link>
+                <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+                  <span class="match-pill" :class="levelClass(r.match_level)" :title="(r.reasons || []).join('\n')">
+                    {{ r.match_score }}% 匹配
+                  </span>
+                  <router-link :to="'/procurements/'+r.id" class="btn btn-sm btn-primary-outline">查看详情</router-link>
+                </div>
               </div>
             </div>
+            <p v-if="recPipeline" class="pipeline-hint">
+              ⚡ 本地匹配工作流（零云依赖）· 候选 {{ recPipeline.recalled ?? 0 }} → 打分 {{ recPipeline.scored ?? 0 }} → 展示 {{ recPipeline.returned ?? 0 }} · 用时 {{ recPipeline.total_ms ?? 0 }}ms
+            </p>
           </div>
 
           <!-- 数据洞察 -->
@@ -672,4 +695,9 @@ onMounted(fetchData)
 .trend-bar { width: 70%; max-width: 26px; min-height: 4px; background: linear-gradient(180deg, #60a5fa, #3b82f6); border-radius: 4px 4px 0 0; transition: height .3s; }
 .trend-date { font-size: 10px; color: var(--color-text-secondary); }
 .trend-empty { font-size: 12px; color: var(--color-text-placeholder); padding: 6px 0 2px; }
+.match-pill { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; border: 1px solid transparent; }
+.match-pill-high { background: #dcfce7; color: #15803d; border-color: #86efac; }
+.match-pill-medium { background: #dbeafe; color: #1d4ed8; border-color: #93c5fd; }
+.match-pill-low { background: #f3f4f6; color: #6b7280; border-color: #e5e7eb; }
+.pipeline-hint { margin: 10px 0 0; font-size: 11px; color: var(--color-text-secondary); border-top: 1px dashed var(--color-border-lighter); padding-top: 8px; }
 </style>

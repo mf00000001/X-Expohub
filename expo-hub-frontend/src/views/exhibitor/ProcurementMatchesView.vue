@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import ProcurementCard from '@/components/ProcurementCard.vue'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
@@ -7,6 +7,7 @@ import EmptyState from '@/components/EmptyState.vue'
 import { procurementApi, type Procurement } from '@/api/procurement'
 import { productApi, type ProductItem, CATEGORY_PARENT_GROUPS } from '@/api/product'
 import { validateInput } from '@/utils/validate'
+import http from '@/api/index'
 
 const router = useRouter()
 const procurements = ref<Procurement[]>([])
@@ -20,6 +21,41 @@ const myProducts = ref<ProductItem[]>([])
 const myCategories = ref<Set<string>>(new Set())
 const selectedCategory = ref('')
 const allCategories = ref<string[]>([])
+// 匹配工作流：每条需求的实时匹配度评分（服务端多阶段打分）
+const matchScores = ref<Record<number, { match_score: number; match_level: string; reasons: string[] }>>({})
+const sortByMatch = ref(false)
+
+function scoreOf(p: Procurement): { match_score: number; match_level: string; reasons: string[] } {
+  return matchScores.value[p.id] || { match_score: 0, match_level: 'low', reasons: [] }
+}
+
+const displayProcurements = computed(() => {
+  const list = [...procurements.value]
+  if (sortByMatch.value) {
+    list.sort((a, b) => scoreOf(b).match_score - scoreOf(a).match_score)
+  }
+  return list
+})
+
+function scoreTagClass(level: string): string {
+  if (level === 'high') return 'tag-success'
+  if (level === 'medium') return 'tag-info'
+  return 'tag-warning'
+}
+
+async function fetchMatchScores() {
+  const ids = procurements.value.map((p) => p.id)
+  if (!ids.length) {
+    matchScores.value = {}
+    return
+  }
+  try {
+    const res: any = await http.get('/recommendations/score-procurements', { params: { ids: ids.join(',') } })
+    matchScores.value = res?.data || {}
+  } catch {
+    matchScores.value = {}  // 打分失败不阻塞列表（徽章隐藏）
+  }
+}
 
 async function fetchProcurements() {
   loading.value = true
@@ -35,6 +71,7 @@ async function fetchProcurements() {
     const res = await procurementApi.getList(params)
     procurements.value = res.list || res.items || res.results || []
     totalPages.value = res.total_pages || Math.ceil((res.total || 0) / 9) || 1
+    fetchMatchScores()  // 异步补匹配度徽章（不阻塞列表渲染）
   } catch (e: any) {
     error.value = e.response?.data?.detail || e.message || '加载采购需求失败'
   } finally {
@@ -133,6 +170,11 @@ function changePage(page: number) {
             {{ cat }}（精准匹配）
           </option>
         </select>
+        <label class="sort-toggle">
+          <input type="checkbox" v-model="sortByMatch" />
+          按匹配度排序（本页）
+        </label>
+        <span class="workflow-badge" title="评分由多阶段匹配工作流本地实时计算，零云依赖">⚡ 匹配工作流实时打分</span>
       </div>
 
       <div v-if="actionMsg" class="tag tag-green mb-4 p-3" style="display:block;">{{ actionMsg }}</div>
@@ -150,7 +192,7 @@ function changePage(page: number) {
 
       <div v-else class="grid grid-cols-1 grid-cols-2 grid-cols-3 gap-6">
         <div
-          v-for="item in procurements"
+          v-for="item in displayProcurements"
           :key="item.id"
           class="card"
         >
@@ -159,7 +201,14 @@ function changePage(page: number) {
               :procurement="item"
               @click="goToDetail(item.id)"
             />
-            <span v-if="getCategoryMatchLevel(item) > 0"
+            <span v-if="scoreOf(item).match_score > 0"
+                  class="tag"
+                  :class="scoreTagClass(scoreOf(item).match_level)"
+                  :title="(scoreOf(item).reasons || []).join('\n')"
+                  style="position:absolute;top:8px;right:8px;font-size:11px;z-index:1;">
+              {{ scoreOf(item).match_score }}% 匹配
+            </span>
+            <span v-else-if="getCategoryMatchLevel(item) > 0"
                   class="tag"
                   :class="getCategoryMatchLevel(item) === 2 ? 'tag-success' : 'tag-info'"
                   style="position:absolute;top:8px;right:8px;font-size:11px;z-index:1;">
@@ -209,4 +258,6 @@ function changePage(page: number) {
   background: var(--bg-color);
   color: var(--text-primary);
 }
+.sort-toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-secondary); cursor: pointer; user-select: none; }
+.workflow-badge { font-size: 11px; color: var(--color-text-secondary); background: var(--color-bg-page); border: 1px dashed var(--color-border-lighter); border-radius: 999px; padding: 2px 10px; }
 </style>
