@@ -38,7 +38,6 @@ from app.models.procurement import Procurement
 from app.models.procurement_match import ProcurementMatch
 from app.models.product import Product
 from app.models.user import User
-from app.modules.matching import textkit
 from app.modules.matching.textkit import (
     IdfModel,
     build_query,

@@ -68,8 +68,6 @@ STOPWORDS = {
     "万箱", "万份", "万块", "万根", "千台", "千套", "公里", "千米", "立方",
 }
 
-_LATIN_RE = re.compile(r"[a-z0-9][a-z0-9+./#\-]*")
-_CJK_RE = re.compile(r"[\u4e00-\u9fff]+")
 _TOKEN_SCAN_RE = re.compile(r"[a-z0-9][a-z0-9+./#\-]*|[\u4e00-\u9fff]+")
 
 
