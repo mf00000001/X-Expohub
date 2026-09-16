@@ -14,6 +14,7 @@
 
 用法：
     cd expohub-backend && ../.venv/Scripts/python.exe ../scripts/match_eval.py
+    cd expohub-backend && ../.venv/Scripts/python.exe ../scripts/match_eval.py D:/path/to/other.db
 """
 import os
 import shutil
@@ -23,7 +24,8 @@ import time
 BACKEND = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "expohub-backend"))
 sys.path.insert(0, BACKEND)
 
-SRC_DB = os.path.join(BACKEND, "expohub.db")
+# 可传入其他库文件（如演示容器库的副本）；默认开发库 expohub.db
+SRC_DB = sys.argv[1] if len(sys.argv) > 1 else os.path.join(BACKEND, "expohub.db")
 TMP_DB = os.path.join(os.environ.get("TEMP", "."), "match_eval_copy.db")
 shutil.copyfile(SRC_DB, TMP_DB)
 os.environ["DATABASE_URL"] = f"sqlite:///{TMP_DB}"
