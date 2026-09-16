@@ -22,6 +22,7 @@ const unreadCount = ref(0)
 const exhibitorTier = ref('')
 const tierScore = ref(0)
 const tierLabel = ref('')
+const tierHint = ref('')
 const tierIcon = ref('⭐')
 const tierColor = ref('#6b7280')
 
@@ -110,7 +111,10 @@ async function fetchData() {
     if (td?.tier) {
       exhibitorTier.value = td.tier
       tierScore.value = td.score || 0
-      tierLabel.value = td.label || ''
+      // 徽章 emoji 由卡片图标承担，label 里的奖牌前缀去掉避免重复显示
+      const stripMedal = (s: string) => (s || '').replace(/^[🥉🥈🥇💎⭐]\s*/u, '')
+      tierLabel.value = stripMedal(td.label) || '信誉等级'
+      tierHint.value = td.next_tier ? ` · 差${td.points_to_next}分升${stripMedal(td.next_tier).replace(/展商$/, '')}` : ' · 已满级'
       const colors: Record<string, string> = { bronze: '#a16207', silver: '#6b7280', gold: '#f59e0b', diamond: '#6366f1' }
       tierColor.value = colors[td.tier] || '#6b7280'
       const icons: Record<string, string> = { bronze: '🥉', silver: '🥈', gold: '🥇', diamond: '💎' }
@@ -189,7 +193,7 @@ onMounted(fetchData)
             <StatsCard icon="&#x1f4e6;" label="我的展品" :value="productCount" color="#10B981" to="/exhibitor/products" />
             <StatsCard icon="&#x1f91d;" label="采购匹配数" :value="matchCount" color="#6366F1" to="/exhibitor/matches" />
             <StatsCard icon="&#x1f4ec;" label="未读消息" :value="unreadCount" color="#F59E0B" to="/messages" />
-            <StatsCard v-if="exhibitorTier" :icon="tierIcon" :label="tierLabel" :value="tierScore" :color="tierColor" />
+            <StatsCard v-if="exhibitorTier" :icon="tierIcon" :label="tierLabel + tierHint" :value="tierScore" :color="tierColor" />
           </div>
 
           <div class="dashboard-grid">
