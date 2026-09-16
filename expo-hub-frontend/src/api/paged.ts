@@ -24,7 +24,7 @@ export function normList<T>(raw: any): ListResp<T> {
   }
   if (Array.isArray(body)) {
     const arr = body as T[]
-    return { list: arr, items: arr, results: arr, data: arr, total: arr.length, page: 1, page_size: arr.length, pageSize: arr.length, totalPages: 1, total_pages: 1 }
+    return { list: arr, items: arr, results: arr, data: arr, total: arr.length, page: 1, page_size: arr.length, pageSize: arr.length, totalPages: 1, total_pages: 1, pipeline: (arr as any).pipeline }
   }
   const src = (body && typeof body === 'object') ? body : {}
   const arr: T[] = (src.list ?? src.items ?? src.results ?? src.data ?? src.matches ?? src.recommendations ?? []) as T[]

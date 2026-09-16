@@ -39,10 +39,11 @@ function goToDetail(id: number) {
 }
 
 const userStore = useUserStore()
-const canPublish = computed(() => ['visitor', 'buyer'].includes(userStore.role))
+// 发布采购：全角色通用（后端"登录用户即可"，路由已同步放开）
+const canPublish = computed(() => ['visitor', 'buyer', 'exhibitor', 'organizer', 'admin'].includes(userStore.role))
 
 function goToCreate() {
-  // 本页兼容 visitor 与 buyer；buyer 必须走 buyer 专属创建页(否则守卫弹回工作台)
+  // buyer 走 buyer 专属创建页；其他角色走 visitor 版（两版内容一致）
   if (userStore.role === 'buyer') {
     router.push({ name: 'buyer-procurement-create' })
     return

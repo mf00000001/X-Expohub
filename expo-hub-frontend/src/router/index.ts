@@ -35,14 +35,15 @@ const routes: RouteRecordRaw[] = [
 
   // ==================== 观众 (visitor) ====================
   { path: '/visitor/registrations', name: 'visitor-registrations', component: () => import('@/views/visitor/MyRegistrationsView.vue'), meta: { title: '我的登记', requiresAuth: true, roles: ['visitor','buyer','exhibitor','organizer','admin'], showFooter: true } },
-  { path: '/visitor/procurements', name: 'visitor-procurements', component: () => import('@/views/visitor/MyProcurementsView.vue'), meta: { title: '我的采购', requiresAuth: true, roles: ['visitor','buyer'], showFooter: true } },
-  { path: '/visitor/procurements/create', name: 'visitor-procurement-create', component: () => import('@/views/visitor/ProcurementCreateView.vue'), meta: { title: '发布采购需求', requiresAuth: true, roles: ['visitor'], showFooter: false } },
+  // 我的采购 / 发布采购：全角色通用（后端 POST /procurements 明确"登录用户即可"）
+  { path: '/visitor/procurements', name: 'visitor-procurements', component: () => import('@/views/visitor/MyProcurementsView.vue'), meta: { title: '我的采购', requiresAuth: true, roles: ['visitor','buyer','exhibitor','organizer','admin'], showFooter: true } },
+  { path: '/visitor/procurements/create', name: 'visitor-procurement-create', component: () => import('@/views/visitor/ProcurementCreateView.vue'), meta: { title: '发布采购需求', requiresAuth: true, roles: ['visitor','buyer','exhibitor','organizer','admin'], showFooter: false } },
 
   // ==================== 买家 (buyer) ====================
   { path: '/buyer/dashboard', name: 'buyer-dashboard', component: () => import('@/views/buyer/DashboardView.vue'), meta: { title: '买家工作台', requiresAuth: true, roles: ['buyer'], showFooter: true } },
   { path: '/buyer/registrations', name: 'buyer-registrations', component: () => import('@/views/buyer/MyRegistrationsView.vue'), meta: { title: '我的报名', requiresAuth: true, roles: ['visitor','buyer','exhibitor','organizer','admin'], showFooter: true } },
-  { path: '/buyer/procurements', name: 'buyer-procurements', component: () => import('@/views/buyer/MyProcurementsView.vue'), meta: { title: '我的采购', requiresAuth: true, roles: ['buyer'], showFooter: true } },
-  { path: '/buyer/procurements/create', name: 'buyer-procurement-create', component: () => import('@/views/buyer/ProcurementCreateView.vue'), meta: { title: '发布采购需求', requiresAuth: true, roles: ['buyer'], showFooter: false } },
+  { path: '/buyer/procurements', name: 'buyer-procurements', component: () => import('@/views/buyer/MyProcurementsView.vue'), meta: { title: '我的采购', requiresAuth: true, roles: ['visitor','buyer','exhibitor','organizer','admin'], showFooter: true } },
+  { path: '/buyer/procurements/create', name: 'buyer-procurement-create', component: () => import('@/views/buyer/ProcurementCreateView.vue'), meta: { title: '发布采购需求', requiresAuth: true, roles: ['visitor','buyer','exhibitor','organizer','admin'], showFooter: false } },
 
   // ==================== 参展商 (exhibitor) — 具体路由必须在 :id 通配之前 ====================
   { path: '/exhibitor/dashboard', name: 'exhibitor-dashboard', component: () => import('@/views/exhibitor/DashboardView.vue'), meta: { title: '参展商工作台', requiresAuth: true, roles: ['exhibitor'], showFooter: true } },

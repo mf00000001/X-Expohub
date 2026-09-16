@@ -23,7 +23,16 @@ http.interceptors.response.use(
   (response: AxiosResponse) => {
     const body = response.data
     // Unwrap { success, data } envelope from backend
-    return body.data !== undefined ? body.data : body
+    if (body && typeof body === 'object' && body.data !== undefined) {
+      const out = body.data
+      // 附加元信息（如匹配工作流 pipeline 摘要）随 data 一起透传，
+      // 避免被信封解包吞掉（数组也可挂载属性）
+      if (body.pipeline !== undefined && out && typeof out === 'object') {
+        try { (out as any).pipeline = body.pipeline } catch { /* 不可写则忽略 */ }
+      }
+      return out
+    }
+    return body
   },
   async (error) => {
     if (error.response?.status === 401) {

@@ -37,6 +37,11 @@ const quickLinks = computed(() => {
   if (role.value === 'buyer') {
     links.push({path:'/buyer/dashboard',label:'采购',icon:'📦'})
     links.push({path:'/buyer/procurements/create',label:'发布',icon:'✍️'})
+    links.push({path:'/favorites',label:'清单',icon:'📋'})
+  }
+  if (role.value === 'visitor') {
+    links.push({path:'/visitor/procurements',label:'我的采购',icon:'📦'})
+    links.push({path:'/points',label:'积分',icon:'💎'})
   }
   if (role.value === 'organizer' || role.value === 'admin') {
     links.push({path:'/organizer/dashboard',label:'管理',icon:'⚙️'})

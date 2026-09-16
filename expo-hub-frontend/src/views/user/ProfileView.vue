@@ -32,7 +32,7 @@ function cancelEdit() {
   editing.value = false
 }
 
-// 按角色分流到正确的"我的"页面(旧实现全角色指 visitor 版, 其内"发布"仅放行 visitor → 其他角色被守卫弹回工作台)
+// 按角色分流到正确的"我的"页面（两版页面内容一致，仅路径不同；现已全角色开放）
 function goMyRegistrations() {
   router.push(profile.value?.role === 'buyer' ? '/buyer/registrations' : '/visitor/registrations')
 }
@@ -126,13 +126,17 @@ async function saveProfile() {
             <button v-if="profile?.role === 'exhibitor'" class="btn btn-outline" @click="router.push('/exhibitor/dashboard')">
               展商中心
             </button>
-            <button v-if="profile?.role === 'organizer'" class="btn btn-outline" @click="router.push('/organizer/dashboard')">
+            <button v-if="profile?.role === 'buyer'" class="btn btn-outline" @click="router.push('/buyer/dashboard')">
+              买家工作台
+            </button>
+            <button v-if="profile?.role === 'organizer' || profile?.role === 'admin'" class="btn btn-outline" @click="router.push('/organizer/dashboard')">
               管理后台
             </button>
-            <button v-if="['visitor','buyer'].includes(profile?.role || '')" class="btn btn-outline" @click="goMyRegistrations()">
+            <!-- 我的报名 / 我的采购：全角色通用入口 -->
+            <button class="btn btn-outline" @click="goMyRegistrations()">
               我的报名
             </button>
-            <button v-if="['visitor','buyer'].includes(profile?.role || '')" class="btn btn-outline" @click="goMyProcurements()">
+            <button class="btn btn-outline" @click="goMyProcurements()">
               我的采购
             </button>
             <!-- P3-P6 新功能入口 -->
