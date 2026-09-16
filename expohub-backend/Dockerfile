@@ -10,8 +10,9 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1
 
 # 安装运行依赖（固定版本，来源 expohub-backend/requirements.txt）
+# 使用清华镜像：本机直连 pypi.org 慢，镜像国内可达且版本一致
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt
 
 # 复制应用代码
 COPY app ./app
