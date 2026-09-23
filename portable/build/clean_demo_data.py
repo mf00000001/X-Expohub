@@ -5,8 +5,11 @@
 
 清理内容：
   1. 指定的测试账号（默认 222 / 333 / user）及其**级联依赖**
-  2. 指定的垃圾展会（默认 id=6，标题「请问」、日期 0123 年）
+  2. 指定的展会（`JUNK_EXHIBITION_IDS`，**默认空 = 一个都不动**）
   3. 顺带扫掉"孤儿行"——外键指向已不存在父行的记录，页面上本来也渲染不出来
+
+⚠️ 展会**不做任何自动判断**。早先这里挂过一条"日期年份不在 2000–2100
+就当垃圾删掉"的启发式，误删过真实展会。要清哪些由人在常量里显式列。
 
 孤儿扫描是通用的：删完目标记录后反复迭代，直到没有新的孤儿产生。
 比手工列级联表可靠得多（手工列必然漏，实测漏过两次）。
@@ -23,10 +26,13 @@ import sys
 
 # 需要清掉的测试账号（按用户名匹配，比按 id 稳）
 JUNK_USERNAMES = ("222", "333", "user")
-# 需要清掉的垃圾展会（按 id）
-JUNK_EXHIBITION_IDS = (6,)
-# 年份荒谬的展会也一并清掉（测试时手滑输的日期，如 0123 年）
-SANITY_YEAR_MIN, SANITY_YEAR_MAX = 2000, 2100
+
+# 需要清掉的展会（按 id）。**默认留空 —— 展会一律不动。**
+#
+# 背景：早先这里除了显式 id，还挂了一条"日期年份不在 2000–2100 就自动删"的
+# 启发式，结果把一条真实存在的展会当垃圾删了。**任何自动判断都会误伤**，
+# 该留哪些由人来决定。要清就显式写 id，例如 JUNK_EXHIBITION_IDS = (6, 7)。
+JUNK_EXHIBITION_IDS: tuple[int, ...] = ()
 
 
 def main(src: str, dst: str) -> int:
@@ -87,16 +93,11 @@ def main(src: str, dst: str) -> int:
     junk_users = cur.fetchall()
     junk_uids = [r[0] for r in junk_users]
 
-    q = ",".join("?" * len(JUNK_EXHIBITION_IDS))
-    cur.execute(f"SELECT id, title FROM exhibitions WHERE id IN ({q})", JUNK_EXHIBITION_IDS)
-    junk_exhs = cur.fetchall()
-
-    cur.execute("SELECT id, title, start_date FROM exhibitions")
-    for eid, title, start in cur.fetchall():
-        if start and str(start)[:4].isdigit():
-            y = int(str(start)[:4])
-            if not (SANITY_YEAR_MIN <= y <= SANITY_YEAR_MAX):
-                junk_exhs.append((eid, f"{title} [日期异常 {start}]"))
+    junk_exhs: list = []
+    if JUNK_EXHIBITION_IDS:
+        q = ",".join("?" * len(JUNK_EXHIBITION_IDS))
+        cur.execute(f"SELECT id, title FROM exhibitions WHERE id IN ({q})", JUNK_EXHIBITION_IDS)
+        junk_exhs = list(cur.fetchall())
 
     # ---- 删除（先关外键约束，靠随后的孤儿扫描兜底）----
     cur.execute("PRAGMA foreign_keys=OFF")
@@ -107,9 +108,12 @@ def main(src: str, dst: str) -> int:
         print(f"    users: {cur.rowcount} 行  ({', '.join(r[1] for r in junk_users)})")
     else:
         print("    未匹配到测试账号（可能已清理过）")
-    for eid, title in dict(junk_exhs).items():
-        cur.execute("DELETE FROM exhibitions WHERE id=?", (eid,))
-        print(f"    exhibitions: {cur.rowcount} 行  (id={eid} 「{title}」)")
+    if junk_exhs:
+        for eid, title in dict(junk_exhs).items():
+            cur.execute("DELETE FROM exhibitions WHERE id=?", (eid,))
+            print(f"    exhibitions: {cur.rowcount} 行  (id={eid} 「{title}」)")
+    else:
+        print("    exhibitions: 未指定要清理的展会，全部保留")
 
     print("\n[4] 孤儿扫描（迭代到不再产生新孤儿）")
     removed: dict[str, int] = {}
