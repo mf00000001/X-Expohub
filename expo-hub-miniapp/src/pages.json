@@ -1,0 +1,234 @@
+{
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "展会市场"
+      }
+    },
+    {
+      "path": "pages/exhibitions/list",
+      "style": {
+        "navigationBarTitleText": "展会列表"
+      }
+    },
+    {
+      "path": "pages/exhibitions/detail",
+      "style": {
+        "navigationBarTitleText": "展会详情"
+      }
+    },
+    {
+      "path": "pages/booths/detail",
+      "style": {
+        "navigationBarTitleText": "展位详情"
+      }
+    },
+    {
+      "path": "pages/products/list",
+      "style": {
+        "navigationBarTitleText": "产品列表"
+      }
+    },
+    {
+      "path": "pages/products/detail",
+      "style": {
+        "navigationBarTitleText": "产品详情"
+      }
+    },
+    {
+      "path": "pages/procurements/list",
+      "style": {
+        "navigationBarTitleText": "采购需求"
+      }
+    },
+    {
+      "path": "pages/procurements/detail",
+      "style": {
+        "navigationBarTitleText": "采购详情"
+      }
+    },
+    {
+      "path": "pages/procurements/create",
+      "style": {
+        "navigationBarTitleText": "发布采购"
+      }
+    },
+    {
+      "path": "pages/buyer/dashboard",
+      "style": {
+        "navigationBarTitleText": "买家中心"
+      }
+    },
+    {
+      "path": "pages/exhibitor/dashboard",
+      "style": {
+        "navigationBarTitleText": "展商工作台"
+      }
+    },
+    {
+      "path": "pages/exhibitor/booths",
+      "style": {
+        "navigationBarTitleText": "我的展位"
+      }
+    },
+    {
+      "path": "pages/exhibitor/products",
+      "style": {
+        "navigationBarTitleText": "我的展品"
+      }
+    },
+    {
+      "path": "pages/exhibitor/product-edit",
+      "style": {
+        "navigationBarTitleText": "展品编辑"
+      }
+    },
+    {
+      "path": "pages/exhibitor/matches",
+      "style": {
+        "navigationBarTitleText": "采购匹配"
+      }
+    },
+    {
+      "path": "pages/organizer/dashboard",
+      "style": {
+        "navigationBarTitleText": "主办方工作台"
+      }
+    },
+    {
+      "path": "pages/organizer/exhibitions",
+      "style": {
+        "navigationBarTitleText": "展会管理"
+      }
+    },
+    {
+      "path": "pages/organizer/exhibition-edit",
+      "style": {
+        "navigationBarTitleText": "展会编辑"
+      }
+    },
+    {
+      "path": "pages/organizer/booths",
+      "style": {
+        "navigationBarTitleText": "展位管理"
+      }
+    },
+    {
+      "path": "pages/organizer/booth-edit",
+      "style": {
+        "navigationBarTitleText": "新建展位"
+      }
+    },
+    {
+      "path": "pages/organizer/registrations",
+      "style": {
+        "navigationBarTitleText": "报名管理"
+      }
+    },
+    {
+      "path": "pages/organizer/statistics",
+      "style": {
+        "navigationBarTitleText": "数据统计"
+      }
+    },
+    {
+      "path": "pages/search/index",
+      "style": {
+        "navigationBarTitleText": "搜索"
+      }
+    },
+    {
+      "path": "pages/auth/login",
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
+    },
+    {
+      "path": "pages/auth/register",
+      "style": {
+        "navigationBarTitleText": "注册"
+      }
+    },
+    {
+      "path": "pages/messages/list",
+      "style": {
+        "navigationBarTitleText": "消息"
+      }
+    },
+    {
+      "path": "pages/messages/conversation",
+      "style": {
+        "navigationBarTitleText": "对话"
+      }
+    },
+    {
+      "path": "pages/mine/index",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    },
+    {
+      "path": "pages/mine/profile",
+      "style": {
+        "navigationBarTitleText": "个人资料"
+      }
+    },
+    {
+      "path": "pages/mine/settings",
+      "style": {
+        "navigationBarTitleText": "设置"
+      }
+    },
+    {
+      "path": "pages/mine/registrations",
+      "style": {
+        "navigationBarTitleText": "我的报名"
+      }
+    },
+    {
+      "path": "pages/mine/procurements",
+      "style": {
+        "navigationBarTitleText": "我的采购"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "展会市场",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#f5f7fa"
+  },
+  "tabBar": {
+    "color": "#6b7280",
+    "selectedColor": "#3b82f6",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/exhibitions/list",
+        "text": "展会",
+        "iconPath": "static/tabbar/exhibition.png",
+        "selectedIconPath": "static/tabbar/exhibition-active.png"
+      },
+      {
+        "pagePath": "pages/messages/list",
+        "text": "消息",
+        "iconPath": "static/tabbar/message.png",
+        "selectedIconPath": "static/tabbar/message-active.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "static/tabbar/profile.png",
+        "selectedIconPath": "static/tabbar/profile-active.png"
+      }
+    ]
+  }
+}
