@@ -13,6 +13,22 @@
 **整合重构 P0–P7 已全部跑完**（2026-09-02 单日完成），之后转入功能补齐与演示打磨。
 
 ## 上次停在哪
+**2026-09-23：做了「发给领导试用的零安装便携包」**（构建脚本已入库到 `portable/`）。
+FastAPI 改成**同源托管前端**（一个端口同时供页面与 `/api`，零 CORS 零代理），
+Python 3.13.9 embeddable + 裁剪依赖打包，解压双击即用——不装 Python/Node/Docker、不需联网。
+实测首启 4.8s、二次 2s、停止 4.9s；端口被占自动避让；成品 ZIP **35.4MB**（解压后 96MB）。
+一键重建：`powershell -File portable\build\build_portable.ps1 -SkipDeps -SkipFrontend`。
+
+🔴 **刻意不改本仓库源码**：同源托管逻辑放在包内独立的 `server/portable_main.py`，盖在未改动的
+`app.main:app` 之上——这样 git 拉新代码不会与它冲突，`app/` 保持纯净。
+
+⏳ **在线更新未启用**：`检查更新.bat` 与 `update.ps1` 已写好并**用本地 HTTP 源实测通过全链路**
+（含失败回滚），只差把 Gitee 压缩包直链填进包内 `scripts/update-source.txt`。留空则完全不影响使用。
+
+⚠️ **演示数据已清理，但只清在便携包的库副本上**：原库 `expohub-backend/expohub.db` 未动，
+里面仍有测试账号 `222`/`333`/`user` 和垃圾展会「请问」（id=6，日期 0123 年）。
+要清原库需另行确认（数据不可逆）。
+
 **2026-09-16：智能匹配重构为「多阶段匹配工作流」**（详见 `docs/智能匹配工作流.md`）。
 
 用户反馈：原智能匹配"精度不高、依赖云端大模型、经常超时" → 重构为
@@ -101,10 +117,12 @@ canPublish 全角色、pipeline 元信息透传），UI 端到端已实测（证
 | 小程序设计 | `docs/expo-hub-uniapp-frontend-design.md`（1147 行） |
 | 后端 | `expohub-backend/app/` — `core/`（tenant/audit/scheduler/jobs/security/permissions）+ `modules/`（十域）+ `models/` |
 | 前端 Web | `expo-hub-frontend/`（Vue3 + TS + Vite + Pinia） |
-| 小程序 | `expo-hub-uniapp/` |
+| 小程序（旧） | `expo-hub-uniapp/` — 已有现成产物 `dist/build/mp-weixin`，可直接导入微信开发者工具 |
+| 小程序（新） | `expo-hub-miniapp/` — uni-app **源码**工程。必须先在目录内 `npm install` + `npm run dev:mp-weixin` 生成 `dist/dev/mp-weixin`，否则开发者工具会报「未找到 app.json」 |
 | **桌面启动器 / 启动脚本 / 日志** | `desktop/`（用法与 8 条踩坑见 `desktop/README.md`，日志在 `desktop/logs/`） |
 | 质量门禁 / 运维脚本 | `scripts/quality_gate.py` `security_verify.py` `permissions_verify.py` `healthcheck.sh` `backup.sh` |
 | **架构参照蓝本（独立项目）** | `D:\Projects\exhibition-saas\`（NestJS，48 提交，仿 Cvent） |
+| **领导试用便携包** | 构建脚本在 **`portable/`**（本仓库，用法见 `portable/README.md`）；构建产物与工作区在 `D:\Projects\expo-hub-portable\`，`ExpoHub-试用版.zip`（~35MB）就是发出去的包 |
 
 > ⚠️ 方案 §7.1 画的是 `expohub-backend/{core,modules}`，**实际落在 `expohub-backend/app/{core,modules}`**——文档与实现有偏差，以代码为准。
 

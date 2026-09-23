@@ -1,0 +1,10 @@
+# 构建工具目录（python-docx 等，不进仓库）
+.pytools/
+
+# 下载缓存（Python embeddable 等）
+build/downloads/
+
+# 构建过程可能落在仓库内的临时产物
+*.zip
+__pycache__/
+*.pyc

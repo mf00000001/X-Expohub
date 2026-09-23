@@ -1,0 +1,18 @@
+# ExpoHub 更新源配置
+# ---------------------------------------------------------------
+# 在这里填一个「代码压缩包」的直链，检查更新.bat 会下载并替换后端代码。
+#
+# 【留空 = 不启用更新功能】：本包照常使用，不受任何影响。
+#
+# 【怎么填】：把下面示例行前面的 # 去掉，换成你自己的地址。
+#   Gitee  ：https://gitee.com/你的用户名/X-Expohub/repository/archive/master.zip
+#   GitHub ：https://github.com/mf00000001/X-Expohub/archive/refs/heads/master.zip
+#
+# 注意：
+#   1. 本机 github.com 不可直连，推荐用 Gitee。
+#   2. 更新只替换**后端代码**（server\app）。前端页面（server\web）是
+#      编译产物，改动前端需要重新出一份试用包。
+#   3. 更新前会自动备份到 server\app.bak-<时间戳>，失败可回退。
+# ---------------------------------------------------------------
+
+# https://gitee.com/你的用户名/X-Expohub/repository/archive/master.zip
