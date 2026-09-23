@@ -1,41 +1,37 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import ProductCard from '@/components/ProductCard.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 import { productApi, type ProductItem as Product } from '@/api/product'
 
+const PAGE_SIZE_KEY = 'product-list-page-size'
 const router = useRouter()
 const products = ref<Product[]>([])
 const loading = ref(true)
 const searchKeyword = ref('')
 const currentPage = ref(1)
-const totalPages = ref(1)
+const pageSize = ref(Number(localStorage.getItem(PAGE_SIZE_KEY)) || 12)
 const totalItems = ref(0)
-
-const paginateRange = computed(() => {
-  const t = totalPages.value; const c = currentPage.value
-  if (t <= 7) return Array.from({length: t}, (_, i) => i + 1)
-  const r: (number|string)[] = [1]
-  if (c > 3) r.push('...')
-  for (let i = Math.max(2, c-1); i <= Math.min(t-1, c+1); i++) r.push(i)
-  if (c < t-2) r.push('...')
-  r.push(t)
-  return r
-})
+const totalPages = ref(1)
 
 async function fetchProducts() {
   loading.value = true
   try {
     const res = await productApi.getList({
       page: currentPage.value,
-      page_size: 12,
+      page_size: pageSize.value,
       search: searchKeyword.value || undefined,
     })
-    products.value = (res as any).list || (res as any).items || (res as any).results || []
-    totalPages.value = (res as any).total_pages || Math.ceil(((res as any).total || 0) / 12) || 1
+    products.value = res.list || res.items || res.results || []
+    // 真实总数：此前写成 (products as any).total —— 数组上没有 total，
+    // 于是「共 N 件」退化成「总页数 × 每页条数」，末页会虚报条数。
+    totalItems.value = Number(res.total ?? products.value.length) || products.value.length
+    totalPages.value = Number(res.total_pages ?? res.totalPages ?? 0)
+      || Math.max(1, Math.ceil(totalItems.value / pageSize.value))
   } catch (err) {
     console.error('Failed to load products:', err)
   } finally {
@@ -53,12 +49,6 @@ function handleSearch(value: string) {
 
 function goToDetail(id: number) {
   router.push({ name: 'product-detail', params: { id } })
-}
-
-function changePage(page: number) {
-  currentPage.value = page
-  fetchProducts()
-  window.scrollTo(0, 0)
 }
 </script>
 
@@ -81,17 +71,18 @@ function changePage(page: number) {
         />
       </div>
 
-      <div v-if="totalPages > 1" class="paginate">
-        <span class="pag-info">共 {{ (products as any).total || totalPages * 12 }} 件</span>
-        <button :disabled="currentPage <= 1" @click="changePage(1)">首页</button>
-        <button :disabled="currentPage <= 1" @click="changePage(currentPage - 1)">‹</button>
-        <template v-for="p in paginateRange" :key="p">
-          <span v-if="p === '...'" class="pag-dots">…</span>
-          <button v-else :class="{ active: p === currentPage }" @click="changePage(p as number)">{{ p }}</button>
-        </template>
-        <button :disabled="currentPage >= totalPages" @click="changePage(currentPage + 1)">›</button>
-        <button :disabled="currentPage >= totalPages" @click="changePage(totalPages)">末页</button>
-      </div>
+      <PaginationBar
+        v-if="!loading && products.length"
+        v-model:page="currentPage"
+        v-model:page-size="pageSize"
+        :total="totalItems"
+        :total-pages="totalPages"
+        :loading="loading"
+        unit="件展品"
+        :page-size-options="[12, 24, 48, 96]"
+        storage-key="product-list-page-size"
+        @change="fetchProducts"
+      />
     </div>
   </div>
 </template>
@@ -105,11 +96,4 @@ function changePage(page: number) {
 @media (min-width: 640px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 1280px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
-
-.paginate { display:flex; align-items:center; justify-content:center; gap:6px; margin-top:32px; flex-wrap:wrap }
-.paginate button { padding:6px 12px; border:1px solid var(--color-border); border-radius:6px; background:#fff; cursor:pointer; font-size:13px; min-width:36px }
-.paginate button.active { background:var(--color-primary); color:#fff; border-color:var(--color-primary); font-weight:700 }
-.paginate button:disabled { opacity:0.4; cursor:default }
-.pag-info { font-size:13px; color:var(--color-text-secondary); margin-right:12px }
-.pag-dots { padding:0 4px; color:var(--color-text-secondary) }
 </style>

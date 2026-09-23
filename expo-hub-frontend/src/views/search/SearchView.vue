@@ -4,7 +4,9 @@ import { useRouter, useRoute } from 'vue-router'
 import http from '@/api/index'
 import SearchBar from '@/components/SearchBar.vue'
 import ProductCard from '@/components/ProductCard.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 
+const PAGE_SIZE_KEY = 'search-page-size'
 const router = useRouter()
 const route = useRoute()
 const query = ref('')
@@ -13,7 +15,12 @@ const activeCat = ref('')
 const products = ref<any[]>([])
 const exhibitions = ref<any[]>([])
 const totalResults = ref(0)
+const productTotal = ref(0)
 const hasSearched = ref(false)
+// 此前结果被硬编码 page_size=24 截断且没有翻页入口 —— 10027 件展品只能看到 24 件
+const page = ref(1)
+const pageSize = ref(Number(localStorage.getItem(PAGE_SIZE_KEY)) || 24)
+const totalPages = ref(1)
 
 onMounted(() => {
   const q = route.query.q as string
@@ -34,22 +41,30 @@ async function doSearch() {
   searching.value = true; hasSearched.value = true
   try {
     // Search products by category and/or keyword
-    const params: any = { page_size: 24 }
+    const params: any = { page: page.value, page_size: pageSize.value }
     if (activeCat.value) params.category = activeCat.value
     if (q) params.search = q
     const [prodRes, exhRes] = await Promise.all([
       http.get('/products', { params }).catch(() => ({ list: [] })),
       http.get('/exhibitions', { params: { search: q || activeCat.value, page_size: 6 } }).catch(() => ({ list: [] })),
     ])
-    products.value = (prodRes as any)?.list || (prodRes as any)?.data?.list || []
+    const list = (prodRes as any)?.list || (prodRes as any)?.data?.list || []
+    products.value = list
     exhibitions.value = (exhRes as any)?.list || (exhRes as any)?.data?.list || []
-    totalResults.value = products.value.length + exhibitions.value.length
+    productTotal.value = Number((prodRes as any)?.total ?? list.length) || list.length
+    totalPages.value = Number((prodRes as any)?.totalPages ?? (prodRes as any)?.total_pages ?? 0)
+      || Math.max(1, Math.ceil(productTotal.value / pageSize.value))
+    totalResults.value = productTotal.value + exhibitions.value.length
   } catch { products.value = []; exhibitions.value = [] }
   finally { searching.value = false }
 }
 
+// 用户主动搜索/换分类时回到第 1 页；仅翻页时不重置
+function onSearch() { page.value = 1; doSearch() }
+
 function selectCat(cat: string) {
   activeCat.value = activeCat.value === cat ? '' : cat
+  page.value = 1
   doSearch()
 }
 
@@ -63,7 +78,7 @@ function goExhibition(id: number) { router.push('/exhibitions/' + id) }
 
     <!-- 搜索栏 -->
     <div class="search-row">
-      <SearchBar v-model="query" placeholder="搜索展品名称..." @search="doSearch" />
+      <SearchBar v-model="query" placeholder="搜索展品名称..." @search="onSearch" />
       <span v-if="activeCat" class="active-cat-tag">{{ activeCat }} <button @click="selectCat(activeCat)">×</button></span>
     </div>
 
@@ -78,10 +93,21 @@ function goExhibition(id: number) { router.push('/exhibitions/' + id) }
     </div>
 
     <div v-if="products.length > 0" class="result-section">
-      <h3>📦 展品 ({{ products.length }})</h3>
+      <h3>📦 展品（共 {{ productTotal }} 件）</h3>
       <div class="product-grid">
         <ProductCard v-for="p in products" :key="p.id" :product="p" @click="goProduct(p.id)" />
       </div>
+      <PaginationBar
+        v-model:page="page"
+        v-model:page-size="pageSize"
+        :total="productTotal"
+        :total-pages="totalPages"
+        :loading="searching"
+        unit="件展品"
+        :page-size-options="[12, 24, 48, 96]"
+        storage-key="search-page-size"
+        @change="doSearch"
+      />
     </div>
 
     <div v-if="exhibitions.length > 0" class="result-section">

@@ -5,15 +5,20 @@ import ProcurementCard from '@/components/ProcurementCard.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 import { procurementApi, type Procurement } from '@/api/procurement'
 import { EXHIBITION_CATEGORIES } from '@/api/product'
 
+const PAGE_SIZE_KEY = 'procurement-list-page-size'
 const router = useRouter()
 const procurements = ref<Procurement[]>([])
 const loading = ref(true)
 const searchKeyword = ref('')
 const currentPage = ref(1)
 const totalPages = ref(1)
+const total = ref(0)
+// 此前固定 50 条/页看不到总量；改为可选并记住用户偏好
+const pageSize = ref(Number(localStorage.getItem(PAGE_SIZE_KEY)) || 24)
 // V3.3: 分类筛选
 const activeCategory = ref('全部')
 
@@ -22,12 +27,15 @@ async function fetchProcurements() {
   try {
     const res = await procurementApi.getList({
       page: currentPage.value,
-      page_size: 50,
+      page_size: pageSize.value,
       search: searchKeyword.value || undefined,
       category: activeCategory.value === '全部' ? undefined : activeCategory.value,
     })
-    procurements.value = (res as any).list || (res as any).items || (res as any).results || []
-    totalPages.value = (res as any).total_pages || Math.ceil(((res as any).total || 0) / 50) || 1
+    const list = (res as any).list || (res as any).items || (res as any).results || []
+    procurements.value = list
+    total.value = Number((res as any).total ?? list.length) || list.length
+    totalPages.value = Number((res as any).total_pages ?? (res as any).totalPages ?? 0)
+      || Math.max(1, Math.ceil(total.value / pageSize.value))
   } catch (err) {
     console.error('Failed to load procurements:', err)
   } finally {
@@ -51,12 +59,6 @@ function selectCategory(cat: string) {
 
 function goToDetail(id: number) {
   router.push({ name: 'procurement-detail', params: { id } })
-}
-
-function changePage(page: number) {
-  currentPage.value = page
-  fetchProcurements()
-  window.scrollTo(0, 0)
 }
 </script>
 
@@ -88,7 +90,7 @@ function changePage(page: number) {
     <EmptyState v-else-if="procurements.length === 0" message="暂无采购需求" icon="📋" />
     <div v-else class="mb-grid">
       <p v-if="activeCategory !== '全部'" style="grid-column:1/-1;font-size:13px;color:var(--color-text-secondary);margin-bottom:4px">
-        分类"{{ activeCategory }}"的结果（{{ procurements.length }} 条）
+        分类"{{ activeCategory }}"的结果（共 {{ total }} 条）
       </p>
       <ProcurementCard
         v-for="procurement in procurements"
@@ -98,16 +100,18 @@ function changePage(page: number) {
       />
     </div>
 
-    <div v-if="totalPages > 1" class="pagination">
-      <button :disabled="currentPage <= 1" @click="changePage(currentPage - 1)">上一页</button>
-      <button
-        v-for="page in totalPages"
-        :key="page"
-        :class="{ active: page === currentPage }"
-        @click="changePage(page)"
-      >{{ page }}</button>
-      <button :disabled="currentPage >= totalPages" @click="changePage(currentPage + 1)">下一页</button>
-    </div>
+    <PaginationBar
+      v-if="!loading && procurements.length"
+      v-model:page="currentPage"
+      v-model:page-size="pageSize"
+      :total="total"
+      :total-pages="totalPages"
+      :loading="loading"
+      unit="条需求"
+      :page-size-options="[12, 24, 48, 96]"
+      storage-key="procurement-list-page-size"
+      @change="fetchProcurements"
+    />
   </div>
 </template>
 

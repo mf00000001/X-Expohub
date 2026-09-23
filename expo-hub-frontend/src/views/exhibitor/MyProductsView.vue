@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import ProductCard from '@/components/ProductCard.vue'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 import { productApi, type Product } from '@/api/product'
 
 const router = useRouter()
@@ -12,6 +13,9 @@ const loading = ref(true)
 const error = ref('')
 const currentPage = ref(1)
 const totalPages = ref(1)
+const PAGE_SIZE_KEY = 'my-products-page-size'
+const total = ref(0)
+const pageSize = ref(Number(localStorage.getItem(PAGE_SIZE_KEY)) || 9)
 
 async function fetchProducts() {
   loading.value = true
@@ -19,10 +23,12 @@ async function fetchProducts() {
   try {
     const res = await productApi.getMyProducts({
       page: currentPage.value,
-      page_size: 9,
+      page_size: pageSize.value,
     })
     products.value = res.list || res.items || res.results || []
-    totalPages.value = res.total_pages || Math.ceil((res.total || 0) / 9) || 1
+    total.value = Number((res as any).total ?? products.value.length) || products.value.length
+    totalPages.value = Number((res as any).totalPages ?? (res as any).total_pages ?? 0)
+      || Math.max(1, Math.ceil(total.value / pageSize.value))
   } catch (e: any) {
     error.value = e.response?.data?.detail || e.message || '加载展品列表失败'
   } finally {
@@ -54,12 +60,6 @@ async function handleDelete(id: number) {
   } catch (e: any) {
     alert(e?.response?.data?.message || e?.response?.data?.detail || '删除失败')
   }
-}
-
-function changePage(page: number) {
-  currentPage.value = page
-  fetchProducts()
-  window.scrollTo(0, 0)
 }
 </script>
 
@@ -101,16 +101,18 @@ function changePage(page: number) {
         />
       </div>
 
-      <div v-if="totalPages > 1" class="pagination">
-        <button :disabled="currentPage <= 1" @click="changePage(currentPage - 1)">上一页</button>
-        <button
-          v-for="page in totalPages"
-          :key="page"
-          :class="{ active: page === currentPage }"
-          @click="changePage(page)"
-        >{{ page }}</button>
-        <button :disabled="currentPage >= totalPages" @click="changePage(currentPage + 1)">下一页</button>
-      </div>
+      <PaginationBar
+        v-if="!loading && products.length"
+        v-model:page="currentPage"
+        v-model:page-size="pageSize"
+        :total="total"
+        :total-pages="totalPages"
+        :loading="loading"
+        unit="件展品"
+        :page-size-options="[9, 18, 36, 72]"
+        storage-key="my-products-page-size"
+        @change="fetchProducts"
+      />
     </div>
   </div>
 </template>

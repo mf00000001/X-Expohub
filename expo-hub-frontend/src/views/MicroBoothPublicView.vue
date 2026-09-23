@@ -7,6 +7,7 @@ import http from '@/api/index'
 import SearchBar from '@/components/SearchBar.vue'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -16,6 +17,14 @@ const loading = ref(true)
 const keyword = ref('')
 const activeDomain = ref('')
 const isDetail = ref(false)
+
+// 翻页：此前这里是硬编码 page_size=50 且没有任何翻页入口，
+// 1001 个微展位永远只能看到前 50 个（≈5%），是「微展位怎么这么少」的直接原因。
+const PAGE_SIZE_KEY = 'mb-list-page-size'
+const page = ref(1)
+const pageSize = ref(Number(localStorage.getItem(PAGE_SIZE_KEY)) || 24)
+const total = ref(0)
+const totalPages = ref(1)
 
 // V3.4: 展会筛选(微展位按展会归类)
 const exhibitions = ref<any[]>([])
@@ -32,6 +41,7 @@ async function loadExhibitions() {
 }
 function selectExhibition(id: number | null) {
   activeExhibition.value = id
+  page.value = 1
   fetchList()
 }
 
@@ -60,14 +70,21 @@ watch(() => route.params.id, async (id) => {
 async function fetchList() {
   loading.value = true
   try {
-    const params: any = { page_size: 50, sort: 'tier' }
+    const params: any = { page: page.value, page_size: pageSize.value }
     if (activeDomain.value) params.industry_domain = activeDomain.value
     if (activeExhibition.value) params.exhibition_id = activeExhibition.value
     if (keyword.value) { params.search = keyword.value; activeDomain.value = '' }
     const res: any = await microBoothApi.getList(params)
-    booths.value = (res?.list || res?.data?.list || [])
-  } catch { booths.value = [] }
+    const list = res?.list || res?.data?.list || []
+    booths.value = list
+    total.value = Number(res?.total ?? res?.count ?? list.length) || list.length
+    totalPages.value = Number(res?.totalPages ?? res?.total_pages ?? 0) || 1
+  } catch { booths.value = []; total.value = 0; totalPages.value = 1 }
   finally { loading.value = false }
+}
+
+function changePage() {
+  fetchList()
 }
 
 async function fetchDetail(id: number) {
@@ -87,9 +104,10 @@ async function fetchDetail(id: number) {
   finally { loading.value = false }
 }
 
-function handleSearch(v: string) { keyword.value = v; fetchList() }
+function handleSearch(v: string) { keyword.value = v; page.value = 1; fetchList() }
 function selectDomain(d: string) {
   activeDomain.value = activeDomain.value === d ? '' : d
+  page.value = 1
   fetchList()
 }
 function goDetail(id: number) {
@@ -229,7 +247,7 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
     <EmptyState v-else-if="booths.length===0 && !keyword" message="暂无微展位" icon="🏪" />
 
     <div v-else class="mb-grid">
-      <p v-if="keyword" style="grid-column:1/-1;font-size:13px;color:var(--color-text-secondary);margin-bottom:4px">搜索"{{ keyword }}"的结果 ({{ booths.length }}个)</p>
+      <p v-if="keyword" style="grid-column:1/-1;font-size:13px;color:var(--color-text-secondary);margin-bottom:4px">搜索"{{ keyword }}"的结果（共 {{ total }} 个）</p>
       <div v-for="b in booths" :key="b.id" class="mb-card" @click="goDetail(b.id)">
         <div class="mb-top">
           <span class="mb-tier">{{ tierBadge[b.membership_tier] || '🆓' }}</span>
@@ -251,6 +269,19 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
         </div>
       </div>
     </div>
+
+    <PaginationBar
+      v-if="!loading && booths.length"
+      v-model:page="page"
+      v-model:page-size="pageSize"
+      :total="total"
+      :total-pages="totalPages"
+      :loading="loading"
+      unit="个微展位"
+      storage-key="mb-list-page-size"
+      :page-size-options="[12, 24, 48, 96]"
+      @change="changePage"
+    />
   </div>
 </template>
 

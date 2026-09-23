@@ -15,3 +15,8 @@ coverage.json
 .coverage
 .coverage.*
 htmlcov/
+
+# 桌面启动器运行时产物（脚本本身要入库，日志不要）
+desktop/logs/
+desktop/run/
+*.lnk

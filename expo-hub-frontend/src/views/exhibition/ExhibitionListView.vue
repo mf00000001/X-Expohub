@@ -6,8 +6,10 @@ import SearchBar from '@/components/SearchBar.vue'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import StatusTag from '@/components/StatusTag.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 import { exhibitionApi, type Exhibition } from '@/api/exhibition'
 
+const PAGE_SIZE_KEY = 'exhibition-list-page-size'
 const router = useRouter()
 const exhibitions = ref<Exhibition[]>([])
 const loading = ref(true)
@@ -15,6 +17,8 @@ const searchKeyword = ref('')
 const statusFilter = ref('')
 const currentPage = ref(1)
 const totalPages = ref(1)
+const total = ref(0)
+const pageSize = ref(Number(localStorage.getItem(PAGE_SIZE_KEY)) || 9)
 
 // 后端状态值: draft/pending/published/ongoing/ended/cancelled
 const statusOptions = [
@@ -30,12 +34,15 @@ async function fetchExhibitions() {
   try {
     const res = await exhibitionApi.getList({
       page: currentPage.value,
-      page_size: 9,
+      page_size: pageSize.value,
       status: statusFilter.value || undefined,
       search: searchKeyword.value || undefined,
     })
-    exhibitions.value = res.list || res.items || res.results || []
-    totalPages.value = res.total_pages || Math.ceil((res.total || 0) / 9) || 1
+    const list = res.list || res.items || res.results || []
+    exhibitions.value = list
+    total.value = Number((res as any).total ?? list.length) || list.length
+    totalPages.value = Number((res as any).total_pages ?? (res as any).totalPages ?? 0)
+      || Math.max(1, Math.ceil(total.value / pageSize.value))
   } catch (err) {
     console.error('Failed to load exhibitions:', err)
   } finally {
@@ -59,12 +66,6 @@ function handleFilter(status: string) {
 
 function goToDetail(id: number) {
   router.push({ name: 'exhibition-detail', params: { id } })
-}
-
-function changePage(page: number) {
-  currentPage.value = page
-  fetchExhibitions()
-  window.scrollTo(0, 0)
 }
 </script>
 
@@ -98,16 +99,18 @@ function changePage(page: number) {
         />
       </div>
 
-      <div v-if="totalPages > 1" class="pagination">
-        <button :disabled="currentPage <= 1" @click="changePage(currentPage - 1)">上一页</button>
-        <button
-          v-for="page in totalPages"
-          :key="page"
-          :class="{ active: page === currentPage }"
-          @click="changePage(page)"
-        >{{ page }}</button>
-        <button :disabled="currentPage >= totalPages" @click="changePage(currentPage + 1)">下一页</button>
-      </div>
+      <PaginationBar
+        v-if="!loading && exhibitions.length"
+        v-model:page="currentPage"
+        v-model:page-size="pageSize"
+        :total="total"
+        :total-pages="totalPages"
+        :loading="loading"
+        unit="场展会"
+        :page-size-options="[9, 18, 36, 72]"
+        storage-key="exhibition-list-page-size"
+        @change="fetchExhibitions"
+      />
     </div>
   </div>
 </template>

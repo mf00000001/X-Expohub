@@ -43,6 +43,40 @@
   --header-height: 56px;
   --footer-height: 60px;
   --max-width: 1200px;
+
+  /* ============================================
+     --color-* 别名（兼容层）
+     大量既有组件/页面写的是 var(--color-xxx)，但此前从未定义过，
+     这些声明在浏览器里属于「无效值」会被整条丢弃 —— 颜色/背景/边框静默失效。
+     这里只做「别名映射」，不新增视觉语言：改 --color-* 等于改上面那套令牌。
+     ============================================ */
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-danger-light: #FEF2F2;
+  --color-danger-lighter: #FEE2E2;
+  --color-info: var(--info);
+
+  --color-text: var(--text-primary);
+  --color-text-primary: var(--text-primary);
+  --color-text-regular: #374151;
+  --color-text-secondary: var(--text-secondary);
+  --color-text-placeholder: var(--text-hint);
+  --color-text-hint: var(--text-hint);
+
+  --color-border: var(--border-color);
+  --color-border-light: #EEF0F3;
+  --color-border-lighter: #F3F4F6;
+
+  --color-bg: var(--bg-color);
+  --color-bg-page: var(--bg-color);
+  --color-bg-card: var(--bg-white);
+  --color-white: #FFFFFF;
+
+  --shadow: var(--shadow-sm);
 }
 
 /* 全局重置 */
@@ -301,4 +335,61 @@ img {
   .card {
     padding: var(--spacing-md);
   }
+}
+
+/* ============================================
+   分页兜底样式（.pagination）
+   历史遗留：11 个列表页都在写 class="pagination"，但全局从未定义过它，
+   翻页按钮一直以浏览器默认样式裸露渲染。
+   新代码请优先使用 components/PaginationBar.vue（页码窗口化 + 跳页 + 每页条数）；
+   这里保留一份兜底，供尚未迁移的页面与第三方片段使用。
+   ============================================ */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.pagination button {
+  height: 32px;
+  min-width: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-white);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-family: inherit;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.pagination button.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  font-weight: 700;
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 0 4px;
 }

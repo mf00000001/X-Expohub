@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router'
 import StatsCard from '@/components/StatsCard.vue'
 import { boothApi } from '@/api/booth'
 import { productApi } from '@/api/product'
-import { procurementApi } from '@/api/procurement'
 import { messageApi } from '@/api/message'
 import { exhibitorAnalyticsApi } from '@/api/analytics'
 import http from '@/api/index'
@@ -15,7 +14,8 @@ const loading = ref(true)
 const error = ref('')
 const myBooths = ref<any[]>([])
 const myProducts = ref<any[]>([])
-const procurements = ref<any[]>([])
+const boothTotal = ref(0)
+const productTotal = ref(0)
 const unreadCount = ref(0)
 
 // 展商信誉等级
@@ -58,13 +58,14 @@ function toList(res: any): any[] {
   return res.list || res.items || res.results || res.data || []
 }
 
-const boothCount = computed(() => myBooths.value.length)
-const productCount = computed(() => myProducts.value.length)
+// 计数一律用接口返回的 total（列表接口默认一页只回 20 条，用 length 会被截断）
+const boothCount = computed(() => Math.max(boothTotal.value, myBooths.value.length))
+const productCount = computed(() => Math.max(productTotal.value, myProducts.value.length))
+// 采购匹配数 = 匹配工作流打分通过（score>0）的需求条数
 const matchCount = computed(() => {
-  return procurements.value.reduce((sum: number, p: any) => {
-    const mc = p.match_count ?? p.matchCount ?? 0
-    return sum + (typeof mc === 'number' ? mc : 0)
-  }, 0)
+  const m = recPipeline.value
+  if (m && typeof m.scored === 'number') return m.scored
+  return recommendations.value.length
 })
 
 const recentBooths = computed(() => myBooths.value.slice(0, 4))
@@ -95,17 +96,19 @@ async function fetchData() {
   loading.value = true
   error.value = ''
   try {
-    const [boothRes, prodRes, procRes, msgRes, tierRes, recRes] = await Promise.all([
+    const [boothRes, prodRes, msgRes, tierRes, recRes] = await Promise.all([
       boothApi.getMyBooths().catch(() => []),
       productApi.getMyProducts().catch(() => []),
-      procurementApi.getList({ page_size: 100 }).catch(() => []),
       messageApi.getUnreadCount().catch(() => ({ unread_count: 0 })),
       http.get('/growth/tier').catch(() => ({})),
       http.get('/recommendations/for-exhibitor').catch(() => ({})),
     ])
     myBooths.value = toList(boothRes)
     myProducts.value = toList(prodRes)
-    procurements.value = toList(procRes)
+    const bt = (boothRes as any)?.total
+    boothTotal.value = typeof bt === 'number' && bt >= 0 ? bt : myBooths.value.length
+    const pt = (prodRes as any)?.total
+    productTotal.value = typeof pt === 'number' && pt >= 0 ? pt : myProducts.value.length
     unreadCount.value = (msgRes as any)?.unread_count ?? (msgRes as any)?.unreadCount ?? 0
     const td = (tierRes as any)?.data || tierRes
     if (td?.tier) {

@@ -5,6 +5,7 @@ import ExpoCard from '@/components/ExpoCard.vue'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import StatusTag from '@/components/StatusTag.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 import { exhibitionApi, type ExhibitionItem as Exhibition } from '@/api/exhibition'
 import { useUserStore } from '@/stores/user'
 
@@ -14,18 +15,32 @@ const loading = ref(true)
 const error = ref('')
 const currentPage = ref(1)
 const totalPages = ref(1)
+const PAGE_SIZE_KEY = 'org-exhibitions-page-size'
+const total = ref(0)
+const pageSize = ref(Number(localStorage.getItem(PAGE_SIZE_KEY)) || 9)
 
 async function fetchExhibitions() {
   loading.value = true
   error.value = ''
   try {
     const userStore = useUserStore()
-    const res = await exhibitionApi.getList({ page: currentPage.value, page_size: 9 })
-    const all = res.list || res.items || res.results || res.data || []
-    // Filter to show only this organizer's exhibitions
     const organizerId = userStore.profile?.id
+    // 后端已支持 organizer_id 过滤（此前该参数被忽略，只能靠前端过滤 → 分页总数失真）
+    const req: any = { page: currentPage.value, page_size: pageSize.value }
+    const res = organizerId
+      ? await exhibitionApi.getMyExhibitions(organizerId, req)
+      : await exhibitionApi.getList(req)
+    const all = res.list || res.items || res.results || res.data || []
+    // 兼容未升级的后端：若服务端未按主办方过滤，退回前端过滤并退化为单页
     exhibitions.value = organizerId ? all.filter((e: any) => e.organizer_id === organizerId) : all
-    totalPages.value = Math.ceil((res.total || all.length) / 9) || 1
+    const serverFiltered = exhibitions.value.length === all.length
+    total.value = serverFiltered
+      ? (Number((res as any).total ?? all.length) || all.length)
+      : exhibitions.value.length
+    totalPages.value = serverFiltered
+      ? (Number((res as any).totalPages ?? (res as any).total_pages ?? 0)
+         || Math.max(1, Math.ceil(total.value / pageSize.value)))
+      : 1
   } catch (e: any) {
     error.value = e.response?.data?.detail || e.message || '加载展会列表失败'
   } finally {
@@ -60,12 +75,6 @@ function goToDetail(id: number) {
 
 function goToCreate() {
   router.push({ name: 'organizer-exhibition-create' })
-}
-
-function changePage(page: number) {
-  currentPage.value = page
-  fetchExhibitions()
-  window.scrollTo(0, 0)
 }
 </script>
 
@@ -119,16 +128,18 @@ function changePage(page: number) {
         </div>
       </div>
 
-      <div v-if="totalPages > 1" class="pagination">
-        <button :disabled="currentPage <= 1" @click="changePage(currentPage - 1)">上一页</button>
-        <button
-          v-for="page in totalPages"
-          :key="page"
-          :class="{ active: page === currentPage }"
-          @click="changePage(page)"
-        >{{ page }}</button>
-        <button :disabled="currentPage >= totalPages" @click="changePage(currentPage + 1)">下一页</button>
-      </div>
+      <PaginationBar
+        v-if="!loading && exhibitions.length"
+        v-model:page="currentPage"
+        v-model:page-size="pageSize"
+        :total="total"
+        :total-pages="totalPages"
+        :loading="loading"
+        unit="个展会"
+        :page-size-options="[9, 18, 36, 72]"
+        storage-key="org-exhibitions-page-size"
+        @change="fetchExhibitions"
+      />
     </div>
   </div>
 </template>

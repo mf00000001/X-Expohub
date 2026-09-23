@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import ProcurementCard from '@/components/ProcurementCard.vue'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 import { procurementApi, type Procurement } from '@/api/procurement'
 import { productApi, type ProductItem, CATEGORY_PARENT_GROUPS } from '@/api/product'
 import { validateInput } from '@/utils/validate'
@@ -17,6 +18,9 @@ const matchingId = ref<number | null>(null)
 const actionMsg = ref('')
 const currentPage = ref(1)
 const totalPages = ref(1)
+const PAGE_SIZE_KEY = 'proc-matches-page-size'
+const total = ref(0)
+const pageSize = ref(Number(localStorage.getItem(PAGE_SIZE_KEY)) || 9)
 const myProducts = ref<ProductItem[]>([])
 const myCategories = ref<Set<string>>(new Set())
 const selectedCategory = ref('')
@@ -63,14 +67,16 @@ async function fetchProcurements() {
   try {
     const params: any = {
       page: currentPage.value,
-      page_size: 9,
+      page_size: pageSize.value,
     }
     if (selectedCategory.value) {
       params.category = selectedCategory.value
     }
     const res = await procurementApi.getList(params)
     procurements.value = res.list || res.items || res.results || []
-    totalPages.value = res.total_pages || Math.ceil((res.total || 0) / 9) || 1
+    total.value = Number((res as any).total ?? procurements.value.length) || procurements.value.length
+    totalPages.value = Number((res as any).totalPages ?? (res as any).total_pages ?? 0)
+      || Math.max(1, Math.ceil(total.value / pageSize.value))
     fetchMatchScores()  // 异步补匹配度徽章（不阻塞列表渲染）
   } catch (e: any) {
     error.value = e.response?.data?.detail || e.message || '加载采购需求失败'
@@ -143,12 +149,6 @@ async function handleMatch(procurementId: number) {
 
 function goToDetail(id: number) {
   router.push({ name: 'procurement-detail', params: { id } })
-}
-
-function changePage(page: number) {
-  currentPage.value = page
-  fetchProcurements()
-  window.scrollTo(0, 0)
 }
 </script>
 
@@ -228,16 +228,18 @@ function changePage(page: number) {
         </div>
       </div>
 
-      <div v-if="totalPages > 1" class="pagination">
-        <button :disabled="currentPage <= 1" @click="changePage(currentPage - 1)">上一页</button>
-        <button
-          v-for="page in totalPages"
-          :key="page"
-          :class="{ active: page === currentPage }"
-          @click="changePage(page)"
-        >{{ page }}</button>
-        <button :disabled="currentPage >= totalPages" @click="changePage(currentPage + 1)">下一页</button>
-      </div>
+      <PaginationBar
+        v-if="!loading && procurements.length"
+        v-model:page="currentPage"
+        v-model:page-size="pageSize"
+        :total="total"
+        :total-pages="totalPages"
+        :loading="loading"
+        unit="条匹配"
+        :page-size-options="[9, 18, 36, 72]"
+        storage-key="proc-matches-page-size"
+        @change="fetchProcurements"
+      />
     </div>
   </div>
 </template>

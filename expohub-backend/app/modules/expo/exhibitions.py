@@ -130,6 +130,7 @@ def get_list(
     page_size: int = Query(default=20, ge=1, le=100),
     status: Optional[str] = Query(default=None),
     search: Optional[str] = Query(default=None),
+    organizer_id: Optional[int] = Query(default=None, description="按主办方过滤（前端 getMyExhibitions 一直传该参数，此前被忽略导致分页总数失真）"),
     db: Session = Depends(get_db),
 ):
     """获取展会列表（分页 + 筛选 + 搜索）"""
@@ -137,6 +138,9 @@ def get_list(
 
     if status:
         q = q.filter(Exhibition.status == status)
+
+    if organizer_id:
+        q = q.filter(Exhibition.organizer_id == organizer_id)
 
     if search:
         q = q.filter(

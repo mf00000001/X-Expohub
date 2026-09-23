@@ -23,8 +23,25 @@ async function bidOnProcurement() {
   try {
     await http.post("/procurements/"+route.params.id+"/matches", {message: msg})
     alert("应标成功！买家已收到通知")
+    // 状态已变为 matched：刷新详情（按钮随状态隐藏）
+    procurement.value = await procurementApi.getDetail(Number(route.params.id))
   } catch(e: any) { alert(e?.response?.data?.message||"应标失败，请确认该采购仍为待匹配状态") }
 }
+
+// 展商视角：与当前用户展品的匹配度（本地匹配工作流即时打分，零等待）
+const myMatch = ref<any>(null)
+const myMatchLoading = ref(false)
+async function fetchMyMatch() {
+  if (userStore.userRole !== 'exhibitor' || !procurement.value) return
+  myMatchLoading.value = true
+  try {
+    const res: any = await http.get('/recommendations/score-procurements', { params: { ids: String(procurement.value.id) } })
+    const dict = (res && typeof res === 'object' && res.data && typeof res.data === 'object') ? res.data : res
+    myMatch.value = dict?.[String(procurement.value.id)] || null
+  } catch { myMatch.value = null } finally { myMatchLoading.value = false }
+}
+
+const STATUS_LABEL: Record<string, string> = { pending: '待匹配', open: '进行中', published: '已发布', matched: '已匹配', closed: '已截止', completed: '已完成', cancelled: '已取消' }
 
 const procurement = ref<Procurement | null>(null)
 const matches = ref<ProcurementMatch[]>([])
@@ -81,6 +98,8 @@ onMounted(async () => {
       matches.value = matchRes.list || matchRes.matches || []
       fetchRecommendations()
     }
+    // 展商视角：给这条需求算"与你展品的匹配度"
+    fetchMyMatch()
   } catch (err) {
     console.error('Failed to load procurement:', err)
   } finally {
@@ -157,13 +176,35 @@ async function genAiNote() {
         </div>
       </div>
 
+      <!-- 展商视角：与我的匹配度 + 应标（本地匹配工作流即时打分） -->
+      <div v-if="userStore.userRole === 'exhibitor' && procurement && !canViewPrivate()" class="card card-body mt-4" style="border-left:3px solid var(--primary)">
+        <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:10px">
+          <div>
+            <span class="text-secondary text-sm">🎯 与你展品的匹配度：</span>
+            <template v-if="myMatch && (myMatch.match_score || 0) > 0">
+              <span class="match-score" :class="myMatch.match_level === 'high' ? 'score-high' : (myMatch.match_level === 'medium' ? 'score-medium' : 'score-low')">{{ myMatch.match_score }}%</span>
+            </template>
+            <span v-else-if="myMatchLoading" class="text-sm text-secondary">计算中…</span>
+            <span v-else class="text-sm text-secondary">暂无匹配（与你的展品品类/关键词关联较低）</span>
+            <div v-if="myMatch && myMatch.reasons && myMatch.reasons.length" class="match-reasons" style="margin-top:6px">
+              {{ myMatch.reasons.join(' / ') }}
+            </div>
+          </div>
+          <div>
+            <button v-if="procurement.status === 'pending' && !canViewPrivate()" class="btn btn-primary" @click="bidOnProcurement">🤝 立即应标</button>
+            <span v-else-if="!canViewPrivate()" class="tag tag-info">当前状态（{{ STATUS_LABEL[procurement.status] || procurement.status }}）暂不可应标</span>
+          </div>
+        </div>
+        <p style="margin:8px 0 0;font-size:11px;color:var(--color-text-placeholder)">匹配度由本地匹配工作流按你的展品品类与关键词即时计算（零等待、零云依赖）</p>
+      </div>
+
       <!-- V3.4: 未登录提示 -->
       <div v-if="!userStore.isLoggedIn" class="mt-6 card card-body text-center">
-        <p class="text-secondary text-sm">🔒 登录后可查看匹配展商与推荐展品、参与应标</p>
+        <p class="text-secondary text-sm">🔒 登录后展商可查看与该需求的匹配度并应标；需求发布者可查看应标与推荐展品</p>
       </div>
 
       <!-- Matched Products -->
-      <div v-if="userStore.isLoggedIn && procurement && !canViewPrivate()" class="tag tag-info" style="margin-top:12px">匹配与推荐仅需求发布者可查看</div>
+      <div v-if="userStore.isLoggedIn && procurement && !canViewPrivate() && userStore.userRole !== 'exhibitor'" class="tag tag-info" style="margin-top:12px">🔒 应标展商与推荐展品仅需求发布者可查看</div>
 <div class="mt-6" v-if="matches.length > 0">
         <h2 class="text-xl font-bold mb-4">应标展商（{{ matches.length }}）</h2>
         <div class="flex flex-col gap-2">

@@ -5,6 +5,7 @@ import ProcurementCard from '@/components/ProcurementCard.vue'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import StatusTag from '@/components/StatusTag.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 import { procurementApi, type Procurement } from '@/api/procurement'
 
 const router = useRouter()
@@ -13,6 +14,9 @@ const loading = ref(true)
 const error = ref('')
 const currentPage = ref(1)
 const totalPages = ref(1)
+const PAGE_SIZE_KEY = 'my-procurements-page-size'
+const total = ref(0)
+const pageSize = ref(Number(localStorage.getItem(PAGE_SIZE_KEY)) || 9)
 
 async function fetchProcurements() {
   loading.value = true
@@ -20,10 +24,12 @@ async function fetchProcurements() {
   try {
     const res = await procurementApi.getMyProcurements({
       page: currentPage.value,
-      page_size: 9,
+      page_size: pageSize.value,
     })
     procurements.value = res.list || res.items || res.results || []
-    totalPages.value = res.total_pages || Math.ceil((res.total || 0) / 9) || 1
+    total.value = Number((res as any).total ?? procurements.value.length) || procurements.value.length
+    totalPages.value = Number((res as any).totalPages ?? (res as any).total_pages ?? 0)
+      || Math.max(1, Math.ceil(total.value / pageSize.value))
   } catch (e: any) {
     error.value = e.response?.data?.detail || e.message || '加载采购需求失败'
   } finally {
@@ -43,12 +49,6 @@ function goToDetail(id: number) {
 
 function goToCreate() {
   router.push({ name: 'buyer-procurement-create' })
-}
-
-function changePage(page: number) {
-  currentPage.value = page
-  fetchProcurements()
-  window.scrollTo(0, 0)
 }
 
 function canCancel(p: any): boolean {
@@ -109,16 +109,18 @@ async function handleCancel(item: any) {
         </div>
       </div>
 
-      <div v-if="totalPages > 1" class="pagination">
-        <button :disabled="currentPage <= 1" @click="changePage(currentPage - 1)">上一页</button>
-        <button
-          v-for="page in totalPages"
-          :key="page"
-          :class="{ active: page === currentPage }"
-          @click="changePage(page)"
-        >{{ page }}</button>
-        <button :disabled="currentPage >= totalPages" @click="changePage(currentPage + 1)">下一页</button>
-      </div>
+      <PaginationBar
+        v-if="!loading && procurements.length"
+        v-model:page="currentPage"
+        v-model:page-size="pageSize"
+        :total="total"
+        :total-pages="totalPages"
+        :loading="loading"
+        unit="条需求"
+        :page-size-options="[9, 18, 36, 72]"
+        storage-key="my-procurements-page-size"
+        @change="fetchProcurements"
+      />
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 # ExpoHub — 展会撮合平台 · 状态锚点
 
-> **最后更新**：2026-09-16 ｜ **状态**：进行中（智能匹配工作流重构完成）
+> **最后更新**：2026-09-21 ｜ **状态**：进行中（已交付桌面启动器）
 > **规则**：只写代码和文档里**读不出来**的东西。上限 150 行，超了就修剪——细节流到 `docs/`，这里只留指针。
 
 ---
@@ -57,6 +57,18 @@ canPublish 全角色、pipeline 元信息透传），UI 端到端已实测（证
 - 评测脚本：`scripts/match_eval.py`（新 P@5 0.86 / P@10 0.85 vs 老 0.00；展商侧 P@10 1.00 vs 0.84）
 - ⚠️ Docker 镜像需重建才有 jieba + 新代码（缺 jieba 也能跑，只是分词粒度变粗）
 
+### 桌面启动器（2026-09-21）
+
+`desktop/` —— 桌面双击启动 + 实时热更新。形态是**快捷方式 + Edge `--app` 独立窗口**，
+**没有打包成 exe**：PyInstaller 会把代码冻结进二进制，与热更新互斥，这是刻意的取舍。
+
+实测证据：冷启动 **6.9 秒**就绪（双 200）；**幂等**（重复双击 PID 不变、不起第二套）；
+后端探针文件写入后 **0.5 秒**触发 WatchFiles 重载；前端标记注入后 dev server 立即返回新代码。
+
+⚠️ 两个非显然的坑，改 `desktop/` 前必读 `desktop/README.md`：
+`.ps1` 必须 **UTF-8 with BOM**（PS 5.1 按 GBK 读，无 BOM 中文乱码）；
+`WScript.Shell.Run(cmd,0,..)` 的 SW_HIDE 会**连带隐藏进程创建的第一个顶层窗口**（需 P/Invoke 覆盖）。
+
 ### 存量规模（供参考）
 后端 97 个 py / `app/models` 20 个模型 / 前端 111 个 vue+ts / 小程序 8 页 / 测试 13 个文件（86 passed）
 
@@ -90,6 +102,7 @@ canPublish 全角色、pipeline 元信息透传），UI 端到端已实测（证
 | 后端 | `expohub-backend/app/` — `core/`（tenant/audit/scheduler/jobs/security/permissions）+ `modules/`（十域）+ `models/` |
 | 前端 Web | `expo-hub-frontend/`（Vue3 + TS + Vite + Pinia） |
 | 小程序 | `expo-hub-uniapp/` |
+| **桌面启动器 / 启动脚本 / 日志** | `desktop/`（用法与 8 条踩坑见 `desktop/README.md`，日志在 `desktop/logs/`） |
 | 质量门禁 / 运维脚本 | `scripts/quality_gate.py` `security_verify.py` `permissions_verify.py` `healthcheck.sh` `backup.sh` |
 | **架构参照蓝本（独立项目）** | `D:\Projects\exhibition-saas\`（NestJS，48 提交，仿 Cvent） |
 

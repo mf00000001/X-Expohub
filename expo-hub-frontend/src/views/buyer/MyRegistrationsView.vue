@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import StatusTag from '@/components/StatusTag.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 import { registrationApi, type RegistrationItem } from '@/api/registration'
 import { formatDate } from '@/utils/format'
 
@@ -13,7 +14,9 @@ const loading = ref(true)
 const error = ref('')
 const currentPage = ref(1)
 const totalPages = ref(1)
-const pageSize = 9
+const PAGE_SIZE_KEY = 'reg-list-page-size'
+const total = ref(0)
+const pageSize = ref(Number(localStorage.getItem(PAGE_SIZE_KEY)) || 9)
 
 async function fetchRegistrations() {
   loading.value = true
@@ -21,10 +24,12 @@ async function fetchRegistrations() {
   try {
     const res = await registrationApi.getMyRegistrations({
       page: currentPage.value,
-      page_size: pageSize,
+      page_size: pageSize.value,
     })
     registrations.value = res.list
-    totalPages.value = res.totalPages ?? Math.max(1, Math.ceil((res.total || 0) / pageSize))
+    total.value = Number((res as any).total ?? registrations.value.length) || registrations.value.length
+    totalPages.value = Number((res as any).totalPages ?? (res as any).total_pages ?? 0)
+      || Math.max(1, Math.ceil(total.value / pageSize.value))
   } catch (e: any) {
     error.value = e.response?.data?.detail || e.message || '加载报名记录失败'
   } finally {
@@ -33,12 +38,6 @@ async function fetchRegistrations() {
 }
 
 onMounted(fetchRegistrations)
-
-function changePage(page: number) {
-  currentPage.value = page
-  fetchRegistrations()
-  window.scrollTo(0, 0)
-}
 
 function goToExhibition(id: number) {
   router.push({ name: 'exhibition-detail', params: { id } })
@@ -123,16 +122,18 @@ async function handleCancelReg(reg: any) {
         </div>
       </div>
 
-      <div v-if="totalPages > 1" class="pagination">
-        <button :disabled="currentPage <= 1" @click="changePage(currentPage - 1)">上一页</button>
-        <button
-          v-for="page in totalPages"
-          :key="page"
-          :class="{ active: page === currentPage }"
-          @click="changePage(page)"
-        >{{ page }}</button>
-        <button :disabled="currentPage >= totalPages" @click="changePage(currentPage + 1)">下一页</button>
-      </div>
+      <PaginationBar
+        v-if="!loading && registrations.length"
+        v-model:page="currentPage"
+        v-model:page-size="pageSize"
+        :total="total"
+        :total-pages="totalPages"
+        :loading="loading"
+        unit="条报名"
+        :page-size-options="[9, 18, 36, 72]"
+        storage-key="reg-list-page-size"
+        @change="fetchRegistrations"
+      />
     </div>
   </div>
 </template>
