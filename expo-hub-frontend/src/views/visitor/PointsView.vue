@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import http from '@/api/index'
 import { pointsApi } from '@/api/points'
 import { isLoggedIn } from '@/utils/auth'
+import PaginationBar from '@/components/PaginationBar.vue'
 
 // 模板中使用浏览器 alert(显式声明以通过 vue-tsc 类型检查)
 const alert = (msg: string) => window.alert(msg)
@@ -20,6 +21,18 @@ const dailyStats = ref<any>({})
 const history = ref<any[]>([])
 const catalog = ref<any[]>([])
 const loading = ref(true)
+// 积分明细分页
+const histPage = ref(1)
+const histPageSize = ref(10)
+const histTotal = ref(0)
+
+async function fetchHistory() {
+  try {
+    const h: any = await pointsApi.history({ page: histPage.value, page_size: histPageSize.value })
+    history.value = h?.list || []
+    histTotal.value = Number(h?.total ?? history.value.length)
+  } catch (e) { console.error(e) }
+}
 
 // 签到
 const checkedInToday = ref(false)
@@ -43,15 +56,15 @@ const tasks = ref([
 onMounted(async () => {
   if (!isLoggedIn()) { loading.value = false; return }
   try {
-    const [b, ds, h, c] = await Promise.all([
+    const [b, ds, c] = await Promise.all([
       pointsApi.balance(), pointsApi.dailyStats(),
-      pointsApi.history({ page_size: 10 }), pointsApi.catalog(),
+      pointsApi.catalog(),
     ])
     balance.value = (b as any)?.balance || 0
     todayEarned.value = (b as any)?.today_earned || 0
     dailyStats.value = ds || {}
-    history.value = (h as any)?.list || []
     catalog.value = (c as any) || []
+    await fetchHistory()
 
     // 签到状态
     const cs: any = await http.get('/growth/checkin/status').catch(() => ({}))
@@ -198,6 +211,16 @@ function goRedeem() { window.scrollTo({ top: 600, behavior: 'smooth' }) }
           <span class="text-muted">{{ (h as any).created_at?.slice(0,10) }}</span>
         </div>
       </div>
+      <PaginationBar
+        v-model:page="histPage"
+        v-model:page-size="histPageSize"
+        :total="histTotal"
+        unit="条"
+        :show-jump="false"
+        :page-size-options="[10, 20, 50]"
+        storage-key="points-history-page-size"
+        @change="fetchHistory"
+      />
     </div>
   </div>
 </template>

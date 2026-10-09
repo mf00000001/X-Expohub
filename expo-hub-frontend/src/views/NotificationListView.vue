@@ -3,12 +3,16 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import http from '@/api/index'
 import EmptyState from '@/components/EmptyState.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 
 const router = useRouter()
 const items = ref<any[]>([])
 const loading = ref(true)
 const unread = ref(0)
 const filter = ref<'all' | 'deal' | 'other'>('all')
+const page = ref(1)
+const pageSize = ref(20)
+const total = ref(0)
 
 // 类型 → 分组/图标
 const TYPE_META: Record<string, { group: 'deal' | 'other'; icon: string }> = {
@@ -35,9 +39,12 @@ onMounted(fetchList)
 
 async function fetchList() {
   try {
-    const r: any = await http.get('/notifications?page_size=50')
-    items.value = r?.data?.list || r?.list || []
-    unread.value = r?.data?.unread || r?.unread || 0
+    const r: any = await http.get('/notifications', {
+      params: { page: page.value, page_size: pageSize.value },
+    })
+    items.value = r?.list || r?.data?.list || []
+    unread.value = r?.unread || r?.data?.unread || 0
+    total.value = Number(r?.total ?? r?.data?.total ?? items.value.length)
   } catch {} finally { loading.value = false }
 }
 
@@ -82,6 +89,19 @@ async function markAllRead() {
         <div class="n-time">{{ n.created_at?.slice(0,16)?.replace('T',' ') }}<span v-if="n.type" class="n-type">· {{ n.type }}</span></div>
       </div>
     </div>
+
+    <PaginationBar
+      v-if="!loading"
+      v-model:page="page"
+      v-model:page-size="pageSize"
+      :total="total"
+      :total-pages="0"
+      :loading="loading"
+      unit="条通知"
+      :page-size-options="[20, 50, 100]"
+      storage-key="notif-page-size"
+      @change="fetchList"
+    />
   </div>
 </template>
 

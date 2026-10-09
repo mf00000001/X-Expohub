@@ -89,9 +89,14 @@ def get_exhibitor_profile(
         Booth.exhibitor_id == exhibitor_id
     ).order_by(Booth.created_at.desc()).all()
 
+    total_products = db.query(func.count(Product.id)).filter(
+        Product.exhibitor_id == exhibitor_id
+    ).scalar() or 0
+    # V3.6: 主页仅内嵌最近 6 件展品做预览（完整列表走 /products?exhibitor_id= 分页拉取），
+    # 避免大展商（数千展品）首屏返回超大 JSON、前端全量渲染卡顿
     products = db.query(Product).filter(
         Product.exhibitor_id == exhibitor_id
-    ).order_by(Product.created_at.desc()).all()
+    ).order_by(Product.created_at.desc()).limit(6).all()
 
     match_count = db.query(func.count(ProcurementMatch.id)).filter(
         ProcurementMatch.exhibitor_id == exhibitor_id
@@ -129,7 +134,7 @@ def get_exhibitor_profile(
             "booths": [_booth_to_dict(b) for b in booths],
             "products": [_product_to_dict(p) for p in products],
             "stats": {
-                "total_products": len(products),
+                "total_products": total_products,
                 "total_booths": len(booths),
                 "match_count": match_count,
             },

@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 import StatusTag from '@/components/StatusTag.vue'
 import { useI18n } from '@/composables/useI18n'
 import { useUserStore } from '@/stores/user'
@@ -17,18 +18,46 @@ const loading = ref(true)
 const profile = ref<any>(null)
 const activeTab = ref<string>('products')
 const contacting = ref(false)
+// 展品列表分页（主页只内嵌少量预览；完整列表走 /products?exhibitor_id= 分页）
+const products = ref<any[]>([])
+const prodTotal = ref(0)
+const prodPage = ref(1)
+const prodPageSize = ref(12)
+const prodLoading = ref(false)
 
 onMounted(async () => {
   const id = Number(route.params.id)
   try {
     const res = await http.get('/exhibitors/' + id + '/profile')
     profile.value = res
+    await fetchProducts()
   } catch (err) {
     console.error('Failed to load exhibitor profile:', err)
   } finally {
     loading.value = false
   }
 })
+
+/** 展品分页拉取：不再依赖主页内嵌的全量数组，数千展品也能优雅翻页 */
+async function fetchProducts() {
+  const id = Number(route.params.id)
+  if (!Number.isFinite(id) || id <= 0) return
+  prodLoading.value = true
+  try {
+    const r: any = await http.get('/products', {
+      params: { exhibitor_id: id, page: prodPage.value, page_size: prodPageSize.value },
+    })
+    products.value = r?.list || r?.items || r?.data || []
+    prodTotal.value = Number(r?.total ?? products.value.length)
+  } catch (e) {
+    console.error('Failed to load exhibitor products:', e)
+    // 兜底：退回主页内嵌预览（后端已限量），保证页面仍有内容
+    products.value = (profile.value?.products || []).slice(0, prodPageSize.value)
+    prodTotal.value = products.value.length
+  } finally {
+    prodLoading.value = false
+  }
+}
 
 // 发起会话：先复用与该用户的现有会话，没有则发首条消息自动建会话（后端 POST /messages 语义），
 // 成功后携带真实 conversation_id 跳转（旧实现把 user_id 当会话 id 跳，会进错会话）
@@ -118,20 +147,33 @@ function goToBooth(id: number) {
       </div>
 
       <div v-if="activeTab === 'products'" class="mt-4">
-        <div v-if="profile.products.length === 0" class="text-center text-secondary p-6">{{ t('noData') }}</div>
-        <div v-else class="grid grid-cols-1 grid-cols-2 grid-cols-3 gap-4">
-          <div v-for="product in profile.products" :key="product.id" class="card card-body cursor-pointer" @click="goToProduct(product.id)">
-            <div v-if="product.images && product.images.length" class="product-thumb">
-              <img :src="product.images[0]" :alt="pick(product, 'name')" />
-            </div>
-            <h4 class="font-semibold text-truncate">{{ pick(product, 'name') }}</h4>
-            <p class="text-xs text-secondary text-truncate mt-1" v-if="pick(product, 'description')">{{ pick(product, 'description') }}</p>
-            <div class="flex justify-between items-center mt-2">
-              <span class="tag tag-sm tag-primary" v-if="product.category">{{ product.category }}</span>
-              <span class="font-semibold text-sm" v-if="product.price">&yen;{{ product.price }}</span>
+        <div v-if="prodLoading" class="text-center text-secondary p-6">加载中…</div>
+        <template v-else-if="products.length">
+          <div class="grid grid-cols-1 grid-cols-2 grid-cols-3 gap-4">
+            <div v-for="product in products" :key="product.id" class="card card-body cursor-pointer" @click="goToProduct(product.id)">
+              <div v-if="product.images && product.images.length" class="product-thumb">
+                <img :src="product.images[0]" :alt="pick(product, 'name')" />
+              </div>
+              <h4 class="font-semibold text-truncate">{{ pick(product, 'name') }}</h4>
+              <p class="text-xs text-secondary text-truncate mt-1" v-if="pick(product, 'description')">{{ pick(product, 'description') }}</p>
+              <div class="flex justify-between items-center mt-2">
+                <span class="tag tag-sm tag-primary" v-if="product.category">{{ product.category }}</span>
+                <span class="font-semibold text-sm" v-if="product.price">&yen;{{ product.price }}</span>
+              </div>
             </div>
           </div>
-        </div>
+          <PaginationBar
+            v-model:page="prodPage"
+            v-model:page-size="prodPageSize"
+            :total="prodTotal"
+            :loading="prodLoading"
+            unit="件展品"
+            :page-size-options="[12, 24, 48]"
+            storage-key="public-profile-prod-size"
+            @change="fetchProducts"
+          />
+        </template>
+        <div v-else class="text-center text-secondary p-6">{{ t('noData') }}</div>
       </div>
 
       <div v-if="activeTab === 'booths'" class="mt-4">
