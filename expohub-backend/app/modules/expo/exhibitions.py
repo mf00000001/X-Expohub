@@ -19,7 +19,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from sqlalchemy import or_
+from sqlalchemy import func, or_
 
 from app.core.config import settings
 from app.core.exceptions import NotFound, BadRequest, Forbidden
@@ -27,6 +27,9 @@ from app.models.base import get_db
 from app.models.user import User
 from app.models.exhibition import Exhibition
 from app.models.venue import Venue
+from app.models.booth import Booth
+from app.models.micro_booth import MicroBooth
+from app.models.product import Product
 from app.core.deps import get_current_active_user
 
 router = APIRouter(prefix="/exhibitions", tags=["展会"])
@@ -79,6 +82,14 @@ def _exhibition_to_dict(exh: Exhibition, db: Optional[Session] = None) -> dict:
                 "address": v.address,
                 "area": v.area,
             }
+    # 参展展商数（按已占用展位去重；用于列表/详情的"X 家展商"展示）
+    exhibitor_count = 0
+    if db is not None:
+        exhibitor_count = db.query(func.count(func.distinct(Booth.exhibitor_id))).filter(
+            Booth.exhibition_id == exh.id,
+            Booth.exhibitor_id.isnot(None),
+        ).scalar() or 0
+
     return {
         "id": exh.id,
         "title": exh.title,
@@ -99,6 +110,7 @@ def _exhibition_to_dict(exh: Exhibition, db: Optional[Session] = None) -> dict:
         "total_booths": 0,  # placeholder
         "available_booths": 0,  # placeholder
         "visitor_count": exh.visitor_count or 0,
+        "exhibitor_count": exhibitor_count,
         "status": exh.status,
         "organizer_id": exh.organizer_id,
         "organizer_name": exh.organizer_name,
@@ -129,6 +141,10 @@ def get_list(
     page: int = Query(default=1, ge=1),
     page_size: int = Query(default=20, ge=1, le=100),
     status: Optional[str] = Query(default=None),
+    timeline: Optional[str] = Query(
+        default=None,
+        description="时间线筛选: upcoming=即将举办 / ongoing=进行中 / ended=已结束（按日期推导）",
+    ),
     search: Optional[str] = Query(default=None),
     organizer_id: Optional[int] = Query(default=None, description="按主办方过滤（前端 getMyExhibitions 一直传该参数，此前被忽略导致分页总数失真）"),
     db: Session = Depends(get_db),
@@ -142,6 +158,17 @@ def get_list(
     if organizer_id:
         q = q.filter(Exhibition.organizer_id == organizer_id)
 
+    # 时间线筛选：库内日期为 ISO 字符串，同格式下字典序即时间序
+    # （历史脏数据如 '0123-…' 会被自然归入"已结束"）
+    if timeline in ("upcoming", "ongoing", "ended"):
+        now_iso = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        if timeline == "upcoming":
+            q = q.filter(Exhibition.start_date >= now_iso)
+        elif timeline == "ongoing":
+            q = q.filter(Exhibition.start_date <= now_iso, Exhibition.end_date >= now_iso)
+        else:
+            q = q.filter(Exhibition.end_date < now_iso)
+
     if search:
         q = q.filter(
             or_(
@@ -152,7 +179,13 @@ def get_list(
         )
 
     total = q.count()
-    exhibitions = q.order_by(Exhibition.created_at.desc()).offset(
+    if timeline == "upcoming":
+        q = q.order_by(Exhibition.start_date.asc())   # 最近要开的排最前
+    elif timeline == "ended":
+        q = q.order_by(Exhibition.end_date.desc())    # 最近结束的排最前
+    else:
+        q = q.order_by(Exhibition.created_at.desc())
+    exhibitions = q.offset(
         (page - 1) * page_size
     ).limit(page_size).all()
 
@@ -225,9 +258,15 @@ def get_upcoming(
     limit: int = Query(default=6, ge=1, le=20),
     db: Session = Depends(get_db),
 ):
-    """即将开幕的展会（按 start_date 升序）"""
+    """即将开幕的展会（开始日期在未来的已发布展会，按开始时间升序）
+
+    修复：此前实现未过滤日期，已结束的展会也会排在前面
+    （首页"重磅来袭/即将开幕"展示位会被历史展会占据）。
+    """
+    now_iso = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
     upcoming = db.query(Exhibition).filter(
-        Exhibition.status.in_(["published"]),
+        Exhibition.status == "published",
+        Exhibition.start_date >= now_iso,
     ).order_by(Exhibition.start_date.asc()).limit(limit).all()
 
     return {
@@ -281,6 +320,79 @@ def get_by_id(
         "code": "OK",
         "message": "获取成功",
         "data": _exhibition_to_dict(exh, db),
+    }
+
+
+@router.get("/{exhibition_id}/exhibitors")
+def get_exhibition_exhibitors(
+    exhibition_id: int,
+    page: int = Query(default=1, ge=1),
+    page_size: int = Query(default=20, ge=1, le=100),
+    db: Session = Depends(get_db),
+):
+    """展会参展展商名录（供「历史展会 → 查看展商都有谁」功能）
+
+    展商 = booths 中已占用展位对应的用户；同一展商多个展位只列一次
+    （保留展位号最小者）。数量级为数百，去重与分页在 Python 侧完成。
+    """
+    exh = db.query(Exhibition).filter(Exhibition.id == exhibition_id).first()
+    if not exh:
+        raise NotFound(message="展会不存在")
+
+    booths = db.query(Booth).filter(
+        Booth.exhibition_id == exhibition_id,
+        Booth.exhibitor_id.isnot(None),
+    ).order_by(Booth.booth_number.asc()).all()
+
+    seen, unique = set(), []
+    for b in booths:
+        if b.exhibitor_id in seen:
+            continue
+        seen.add(b.exhibitor_id)
+        unique.append(b)
+
+    total = len(unique)
+    start = (page - 1) * page_size
+    page_rows = unique[start:start + page_size]
+
+    ids = [b.exhibitor_id for b in page_rows]
+    users = {}
+    mbs = {}
+    product_counts = {}
+    if ids:
+        users = {u.id: u for u in db.query(User).filter(User.id.in_(ids)).all()}
+        mbs = {m.exhibitor_id: m for m in db.query(MicroBooth).filter(MicroBooth.exhibitor_id.in_(ids)).all()}
+        product_counts = dict(
+            db.query(Product.exhibitor_id, func.count(Product.id))
+            .filter(Product.exhibitor_id.in_(ids))
+            .group_by(Product.exhibitor_id)
+            .all()
+        )
+
+    items = []
+    for b in page_rows:
+        u = users.get(b.exhibitor_id)
+        mb = mbs.get(b.exhibitor_id)
+        items.append({
+            "exhibitor_id": b.exhibitor_id,
+            "username": u.username if u else None,
+            "company": (u.company if u and u.company else None)
+                       or (b.company_name or b.exhibitor_name)
+                       or (u.username if u else ""),
+            "booth_number": b.booth_number,
+            "booth_size": b.size,
+            "location_area": b.location_area,
+            "industry_domain": (u.industry_domain if u else None) or (mb.industry_domain if mb else None),
+            "region": u.region if u else None,
+            "membership_tier": mb.membership_tier if mb else None,
+            "products_count": product_counts.get(b.exhibitor_id, 0),
+        })
+
+    return {
+        "success": True,
+        "code": "OK",
+        "message": "获取成功",
+        "data": _paginated_response(items, total, page, page_size),
     }
 
 

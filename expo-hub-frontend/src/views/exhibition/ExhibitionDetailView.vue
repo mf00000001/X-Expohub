@@ -4,6 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import ExpoCard from '@/components/ExpoCard.vue'
 import ProductCard from '@/components/ProductCard.vue'
+import PaginationBar from '@/components/PaginationBar.vue'
 import { exhibitionApi } from '@/api/exhibition'
 import { boothApi } from '@/api/booth'
 import { productApi } from '@/api/product'
@@ -23,7 +24,38 @@ const products = ref<any[]>([])
 const procurements = ref<any[]>([])
 const loading = ref(true)
 const registered = ref(false)
-const tab = ref<'booths'|'products'|'procurements'>('booths')
+type TabKey = 'booths' | 'products' | 'procurements' | 'exhibitors'
+const tab = ref<TabKey>('booths')
+// 参展展商名录（历史展会回顾：查看该届展会都有哪些展商参展）
+const exhibitors = ref<any[]>([])
+const exhTotal = ref(0)
+const exhPage = ref(1)
+const exhPageSize = ref(12)
+const exhLoading = ref(false)
+const exhLoaded = ref(false)
+
+async function fetchExhibitors() {
+  exhLoading.value = true
+  try {
+    const r: any = await http.get(`/exhibitions/${route.params.id}/exhibitors`, {
+      params: { page: exhPage.value, page_size: exhPageSize.value },
+    })
+    exhibitors.value = r?.list || []
+    exhTotal.value = Number(r?.total ?? exhibitors.value.length)
+    exhLoaded.value = true
+  } catch (e) {
+    console.error('Failed to load exhibition exhibitors:', e)
+  } finally {
+    exhLoading.value = false
+  }
+}
+
+function switchTab(t: TabKey) {
+  tab.value = t
+  if (t === 'exhibitors' && !exhLoaded.value) fetchExhibitors()
+}
+
+function goToExhibitor(id: number) { router.push('/exhibitor/' + id) }
 
 const title = computed(() => pick(exhibition.value, 'title') || exhibition.value?.name || '')
 const cover = computed(() => exhibition.value?.cover_image || exhibition.value?.cover_url || '')
@@ -87,11 +119,26 @@ const statusMap: Record<string,string> = {
   draft:'草稿', pending:'待审核', published:'已发布',
   ongoing:'进行中', ended:'已结束', cancelled:'已取消'
 }
+// 时间线标签：按日期推导，往届展会显示"已结束"而非编辑状态"已发布"
+const timelineLabel = computed(() => {
+  const st = startDate.value ? new Date(startDate.value).getTime() : NaN
+  const en = endDate.value ? new Date(endDate.value).getTime() : NaN
+  if (!Number.isFinite(st) || !Number.isFinite(en)) return ''
+  const now = Date.now()
+  if (now < st) return '即将举办'
+  if (now > en) return '已结束'
+  return '进行中'
+})
 const statusClass = computed(() => {
+  if (timelineLabel.value === '进行中') return 'tag-success'
+  if (timelineLabel.value === '即将举办') return 'tag-warning'
+  if (timelineLabel.value === '已结束') return 'tag-info'
   if (status.value==='published'||status.value==='ongoing') return 'tag-success'
   if (status.value==='pending') return 'tag-warning'
   return 'tag-info'
 })
+// 日期精简显示（YYYY-MM-DD），避免原始 ISO 串进界面
+const fmtDate = (d: string) => (d || '').slice(0, 10)
 </script>
 
 <template>
@@ -109,14 +156,15 @@ const statusClass = computed(() => {
   <div class="detail-hero" v-if="cover">
     <img :src="cover" :alt="title" />
     <div class="hero-overlay">
-      <span class="tag" :class="statusClass">{{ statusMap[status] || status }}</span>
+      <span class="tag" :class="statusClass">{{ timelineLabel || statusMap[status] || status }}</span>
       <h1>{{ title }}</h1>
       <div class="hero-meta">
-        <span>📅 {{ startDate }} ~ {{ endDate }}</span>
+        <span>📅 {{ fmtDate(startDate) }} ~ {{ fmtDate(endDate) }}</span>
         <router-link v-if="venueId" :to="'/venues/' + venueId" class="venue-link">📍 {{ location }} <span class="venue-tag">展馆信息 ›</span></router-link>
         <span v-else>📍 {{ location }}</span>
         <router-link v-if="orgName && orgId" :to="'/exhibitor/' + orgId" class="organizer-link">👤 {{ orgName }}</router-link>
         <span>🏢 {{ boothCount }} 个展位</span>
+        <span v-if="exhibition?.exhibitor_count">🧑‍💼 {{ exhibition.exhibitor_count }} 家展商</span>
       </div>
     </div>
   </div>
@@ -125,10 +173,10 @@ const statusClass = computed(() => {
   <div v-else class="card card-body mb-4">
     <div class="flex justify-between items-start">
       <h1>{{ title }}</h1>
-      <span class="tag" :class="statusClass">{{ statusMap[status] || status }}</span>
+      <span class="tag" :class="statusClass">{{ timelineLabel || statusMap[status] || status }}</span>
     </div>
     <div class="meta-row">
-      <span>📅 {{ startDate }} ~ {{ endDate }}</span>
+      <span>📅 {{ fmtDate(startDate) }} ~ {{ fmtDate(endDate) }}</span>
       <router-link v-if="venueId" :to="'/venues/' + venueId" class="venue-link">📍 {{ location }} <span class="venue-tag">展馆信息 ›</span></router-link>
       <span v-else>📍 {{ location }}</span>
       <span v-if="orgName">👤 {{ orgName }}</span>
@@ -150,9 +198,10 @@ const statusClass = computed(() => {
   <!-- Tabs: Booths / Products -->
   <div class="card mb-4">
     <div class="tab-header">
-      <button :class="['tab-btn', {active:tab==='booths'}]" @click="tab='booths'">🏢 展位 ({{booths.length}})</button>
-      <button :class="['tab-btn', {active:tab==='products'}]" @click="tab='products'">📦 展品 ({{products.length}})</button>
-      <button :class="['tab-btn', {active:tab==='procurements'}]" @click="tab='procurements'">📋 采购需求 ({{procurements.length}})</button>
+      <button :class="['tab-btn', {active:tab==='booths'}]" @click="switchTab('booths')">🏢 展位 ({{booths.length}})</button>
+      <button :class="['tab-btn', {active:tab==='exhibitors'}]" @click="switchTab('exhibitors')">🧑‍💼 参展展商 ({{ exhibition?.exhibitor_count ?? exhTotal }})</button>
+      <button :class="['tab-btn', {active:tab==='products'}]" @click="switchTab('products')">📦 展品 ({{products.length}})</button>
+      <button :class="['tab-btn', {active:tab==='procurements'}]" @click="switchTab('procurements')">📋 采购需求 ({{procurements.length}})</button>
     </div>
 
     <!-- Booths -->
@@ -194,6 +243,38 @@ const statusClass = computed(() => {
         </div>
       </div>
     </div>
+
+    <!-- Exhibitors 参展展商名录（历史回顾） -->
+    <div v-if="tab==='exhibitors'" class="card-body">
+      <div v-if="exhLoading" class="empty-hint">加载中…</div>
+      <div v-else-if="exhibitors.length===0" class="empty-hint">暂无展商名录</div>
+      <template v-else>
+        <div class="exh-grid">
+          <div v-for="e in exhibitors" :key="e.exhibitor_id" class="exh-card" @click="goToExhibitor(e.exhibitor_id)">
+            <div class="exh-name">{{ e.company }}</div>
+            <div class="exh-tags">
+              <span class="tag tag-sm tag-primary">🏷️ {{ e.booth_number }}</span>
+              <span v-if="e.industry_domain" class="tag tag-sm tag-info">{{ e.industry_domain }}</span>
+            </div>
+            <div class="exh-sub">
+              <span v-if="e.region">📍 {{ e.region }}</span>
+              <span v-if="e.products_count">📦 {{ e.products_count }} 件展品</span>
+              <span v-if="e.membership_tier === 'flagship'">🏅 旗舰微展位</span>
+            </div>
+          </div>
+        </div>
+        <PaginationBar
+          v-model:page="exhPage"
+          v-model:page-size="exhPageSize"
+          :total="exhTotal"
+          :loading="exhLoading"
+          unit="家展商"
+          :page-size-options="[12, 24, 48]"
+          storage-key="exhibition-exhibitors-size"
+          @change="fetchExhibitors"
+        />
+      </template>
+    </div>
   </div>
 </div>
 </div>
@@ -221,6 +302,13 @@ const statusClass = computed(() => {
 .product-grid { display:flex; flex-direction:column; gap:8px }
 .empty-hint { text-align:center; padding:40px; color:#999 }
 .tag-sm { font-size:11px; padding:2px 6px }
+/* 参展展商名录（历史展会回顾） */
+.exh-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px }
+.exh-card { padding:14px; border:1px solid #e5e7eb; border-radius:8px; cursor:pointer; transition:all .2s }
+.exh-card:hover { border-color:#2563eb; box-shadow:0 2px 8px rgba(37,99,235,0.1) }
+.exh-name { font-weight:600; font-size:14px; color:#1f2937; margin-bottom:8px; line-height:1.4 }
+.exh-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px }
+.exh-sub { display:flex; gap:12px; font-size:12px; color:#888; flex-wrap:wrap }
 .btn-lg { padding:12px 32px; font-size:16px }
 /* V3.1: 展馆链接 */
 .venue-link { color:inherit; text-decoration:none; border-bottom:1px dashed rgba(255,255,255,0.6); cursor:pointer }

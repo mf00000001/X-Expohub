@@ -14,18 +14,17 @@ const router = useRouter()
 const exhibitions = ref<Exhibition[]>([])
 const loading = ref(true)
 const searchKeyword = ref('')
-const statusFilter = ref('')
+const timelineFilter = ref('')
 const currentPage = ref(1)
 const totalPages = ref(1)
 const total = ref(0)
 const pageSize = ref(Number(localStorage.getItem(PAGE_SIZE_KEY)) || 9)
 
-// 后端状态值: draft/pending/published/ongoing/ended/cancelled
+// 时间线筛选（后端 timeline 参数，按日期推导）: 即将举办/进行中/已结束
 const statusOptions = [
   { label: '全部', value: '' },
+  { label: '即将举办', value: 'upcoming' },
   { label: '进行中', value: 'ongoing' },
-  { label: '已发布', value: 'published' },
-  { label: '即将开始', value: 'draft' },
   { label: '已结束', value: 'ended' },
 ]
 
@@ -35,7 +34,7 @@ async function fetchExhibitions() {
     const res = await exhibitionApi.getList({
       page: currentPage.value,
       page_size: pageSize.value,
-      status: statusFilter.value || undefined,
+      timeline: timelineFilter.value || undefined,
       search: searchKeyword.value || undefined,
     })
     const list = res.list || res.items || res.results || []
@@ -59,7 +58,7 @@ function handleSearch(value: string) {
 }
 
 function handleFilter(status: string) {
-  statusFilter.value = status
+  timelineFilter.value = status
   currentPage.value = 1
   fetchExhibitions()
 }
@@ -82,7 +81,7 @@ function goToDetail(id: number) {
           <button
             v-for="opt in statusOptions"
             :key="opt.value"
-            :class="['btn btn-sm', statusFilter === opt.value ? 'btn-primary' : 'btn-outline']"
+            :class="['btn btn-sm', timelineFilter === opt.value ? 'btn-primary' : 'btn-outline']"
             @click="handleFilter(opt.value)"
           >{{ opt.label }}</button>
         </div>

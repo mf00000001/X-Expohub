@@ -14,6 +14,18 @@ const venue = computed(() => props.exhibition.venue || props.exhibition.location
 const city = computed(() => props.exhibition.city || '')
 const status = computed(() => props.exhibition.status || '')
 const visitorCount = computed(() => props.exhibition.visitor_count || props.exhibition.visitorCount || 0)
+const exhibitorCount = computed(() => Number(props.exhibition.exhibitor_count || 0))
+
+// 时间线标签：按日期推导（即将举办/进行中/已结束），比后台编辑状态更贴近用户视角
+const timelineLabel = computed(() => {
+  const st = startDate.value ? new Date(startDate.value).getTime() : NaN
+  const en = endDate.value ? new Date(endDate.value).getTime() : NaN
+  if (!Number.isFinite(st) || !Number.isFinite(en)) return ''
+  const now = Date.now()
+  if (now < st) return '即将举办'
+  if (now > en) return '已结束'
+  return '进行中'
+})
 
 const statusLabelMap: Record<string, string> = {
   draft: '草稿', pending: '待审核', published: '已发布',
@@ -32,6 +44,9 @@ function formatNumber(n: number): string {
 }
 
 const tagClass = computed(() => {
+  if (timelineLabel.value === '进行中') return 'tag-success'
+  if (timelineLabel.value === '即将举办') return 'tag-warning'
+  if (timelineLabel.value === '已结束') return 'tag-info'
   if (status.value === 'published' || status.value === 'ongoing') return 'tag-success'
   if (status.value === 'pending') return 'tag-warning'
   return 'tag-info'
@@ -43,7 +58,7 @@ const tagClass = computed(() => {
     <div class="expo-cover">
       <img :src="coverUrl || '/placeholder-expo.jpg'" :alt="name" />
       <span class="expo-status tag" :class="tagClass">
-        {{ statusLabelMap[status] || status }}
+        {{ timelineLabel || statusLabelMap[status] || status }}
       </span>
     </div>
     <div class="expo-body">
@@ -54,6 +69,7 @@ const tagClass = computed(() => {
       </div>
       <div class="expo-footer">
         <span class="visitor-count">👁 {{ formatNumber(visitorCount) }} 浏览</span>
+        <span v-if="exhibitorCount" class="exhibitor-count">🧑‍💼 {{ exhibitorCount }} 家展商</span>
       </div>
     </div>
   </div>
@@ -123,5 +139,10 @@ const tagClass = computed(() => {
 .visitor-count {
   font-size: 12px;
   color: var(--text-hint);
+}
+.exhibitor-count {
+  margin-left: 10px;
+  font-size: 12px;
+  color: var(--text-secondary);
 }
 </style>
