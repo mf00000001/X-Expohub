@@ -30,10 +30,27 @@ const tierColor = ref('#6b7280')
 const recommendations = ref<any[]>([])
 const recPipeline = ref<any>(null)
 
+// 本次推荐是否使用了个性化画像（默认 true：兼容旧后端响应、请求失败等取不到标记的情况）
+// 后端 /recommendations/for-exhibitor 在响应**顶层**返回 personalized: true|false，
+// 但 api/index.ts 的响应拦截器只解包 data 并把 pipeline 透传给列表，
+// 其它顶层字段（含 personalized）不会带到页面上；本文件不能改拦截器，
+// 所以优先读 personalized，取不到时用 pipeline.engine 判定：
+// 关闭个性化时后端固定返回 engine='non-personalized-recency'（推荐降级为按最新发布排序）。
+const NON_PERSONALIZED_ENGINE = 'non-personalized-recency'
+const isPersonalized = ref(true)
+
 function levelClass(level?: string): string {
   if (level === 'high') return 'match-pill-high'
   if (level === 'medium') return 'match-pill-medium'
   return 'match-pill-low'
+}
+
+// 个性化推荐关闭时的降级识别（合规：用户可在设置里关掉个性化推荐）。
+// 后端 recommendations.py 此时不打分，统一返回 match_score: 0 + match_level: 'normalized'，
+// 这里的 0 语义是「未参与打分」而不是「撮合失败 0%」，
+// 所以这类条目不再打印百分比，改显示中性标签「最新」（列表按发布时间倒序）。
+function isNonPersonalized(r: any): boolean {
+  return r?.match_level === 'normalized'
 }
 
 // 数据洞察（exhibitor analytics）
@@ -61,7 +78,9 @@ function toList(res: any): any[] {
 // 计数一律用接口返回的 total（列表接口默认一页只回 20 条，用 length 会被截断）
 const boothCount = computed(() => Math.max(boothTotal.value, myBooths.value.length))
 const productCount = computed(() => Math.max(productTotal.value, myProducts.value.length))
-// 采购匹配数 = 匹配工作流打分通过（score>0）的需求条数
+// 采购匹配数 = 匹配工作流打分通过（score>0）的需求条数；
+// 非个性化时后端不打分（pipeline 里没有 scored），回退为「最新需求数」= 实际返回条数，
+// 对应 KPI 标签也会同步改成「最新需求数」，数字本身不因开关而变口径。
 const matchCount = computed(() => {
   const m = recPipeline.value
   if (m && typeof m.scored === 'number') return m.scored
@@ -126,6 +145,14 @@ async function fetchData() {
     const rdata = (recRes as any)?.data || recRes
     recommendations.value = Array.isArray(rdata) ? rdata : (rdata?.list || [])
     recPipeline.value = (recRes as any)?.pipeline || null
+    // 个性化标记：优先用响应顶层 personalized（拦截器若将来透传则直接生效），
+    // 否则退回 pipeline.engine 判定（取不到任何线索时保持默认 true）
+    const pFlag = (recRes as any)?.personalized
+    if (typeof pFlag === 'boolean') {
+      isPersonalized.value = pFlag
+    } else {
+      isPersonalized.value = recPipeline.value?.engine !== NON_PERSONALIZED_ENGINE
+    }
     // 数据洞察（孤儿端点接通，失败不影响主数据）
     const [ovRes, topRes, trendRes] = await Promise.all([
       exhibitorAnalyticsApi.overview().catch(() => null),
@@ -194,7 +221,9 @@ onMounted(fetchData)
           <div class="stats-grid">
             <StatsCard icon="&#x1f3e2;" label="我的展位" :value="boothCount" color="#3B82F6" to="/exhibitor/booths" />
             <StatsCard icon="&#x1f4e6;" label="我的展品" :value="productCount" color="#10B981" to="/exhibitor/products" />
-            <StatsCard icon="&#x1f91d;" label="采购匹配数" :value="matchCount" color="#6366F1" to="/exhibitor/matches" />
+            <!-- 非个性化时这张卡的语义是「最新需求数」（后端不打分，只按发布时间返回），
+                 标签随开关切换，数字不动，避免把「未打分」误读成「撮合数为 0」 -->
+            <StatsCard icon="&#x1f91d;" :label="isPersonalized ? '采购匹配数' : '最新需求数'" :value="matchCount" color="#6366F1" to="/exhibitor/matches" />
             <StatsCard icon="&#x1f4ec;" label="未读消息" :value="unreadCount" color="#F59E0B" to="/messages" />
             <StatsCard v-if="exhibitorTier" :icon="tierIcon" :label="tierLabel + tierHint" :value="tierScore" :color="tierColor" />
           </div>
@@ -277,8 +306,12 @@ onMounted(fetchData)
               <h3 style="margin-bottom:0">🤖 智能匹配推荐</h3>
               <router-link to="/exhibitor/matches" class="btn btn-sm btn-outline">全部采购需求 &rarr;</router-link>
             </div>
-            <p style="font-size:12px;color:var(--color-text-secondary);margin:8px 0 12px">
+            <!-- 说明文字：个性化时讲工作流怎么撮合；关闭后坦白口径是按最新发布排序 -->
+            <p v-if="isPersonalized" style="font-size:12px;color:var(--color-text-secondary);margin:8px 0 12px">
               根据你的行业领域与展品关键词，多阶段匹配工作流为你找到以下采购需求：
+            </p>
+            <p v-else style="font-size:12px;color:var(--color-text-secondary);margin:8px 0 12px">
+              已关闭个性化推荐，按最新发布为你展示采购需求
             </p>
             <div class="rec-list">
               <div class="rec-item" v-for="r in recommendations.slice(0,3)" :key="r.id">
@@ -289,15 +322,25 @@ onMounted(fetchData)
                   </span>
                 </div>
                 <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
-                  <span class="match-pill" :class="levelClass(r.match_level)" :title="(r.reasons || []).join('\n')">
+                  <!-- 个性化关闭时（match_level === 'normalized'）后端 match_score 恒为 0，
+                       0 表示「未按画像打分」而非「0% 匹配」，故不展示百分比，
+                       改显示中性标签「最新」，避免被误读成撮合失败 -->
+                  <span v-if="isNonPersonalized(r)" class="match-pill match-pill-neutral" title="已关闭个性化推荐，按发布时间排序">最新</span>
+                  <span v-else class="match-pill" :class="levelClass(r.match_level)" :title="(r.reasons || []).join('\n')">
                     {{ r.match_score }}% 匹配
                   </span>
                   <router-link :to="'/procurements/'+r.id" class="btn btn-sm btn-primary-outline">查看详情</router-link>
                 </div>
               </div>
             </div>
-            <p v-if="recPipeline" class="pipeline-hint">
+            <!-- 工作流摘要：个性化时展示真实阶段计数；非个性化时后端没有 recalled/scored/total_ms，
+                 照旧渲染会变成「候选 0 → 打分 0 → 用时 0ms」这种误导性数字，
+                 故改为一行中性说明（保留这一行而不是整行隐藏，是为了让用户明确知道当前列表的排序依据） -->
+            <p v-if="isPersonalized && recPipeline" class="pipeline-hint">
               ⚡ 本地匹配工作流（零云依赖）· 候选 {{ recPipeline.recalled ?? 0 }} → 打分 {{ recPipeline.scored ?? 0 }} → 展示 {{ recPipeline.returned ?? 0 }} · 用时 {{ recPipeline.total_ms ?? 0 }}ms
+            </p>
+            <p v-else-if="!isPersonalized" class="pipeline-hint">
+              🗓️ 已关闭个性化推荐 · 按发布时间排序
             </p>
           </div>
 
@@ -706,5 +749,7 @@ onMounted(fetchData)
 .match-pill-high { background: #dcfce7; color: #15803d; border-color: #86efac; }
 .match-pill-medium { background: #dbeafe; color: #1d4ed8; border-color: #93c5fd; }
 .match-pill-low { background: #f3f4f6; color: #6b7280; border-color: #e5e7eb; }
+/* 中性标签：个性化关闭时的「最新」，刻意不用高/中/低三档的绿蓝灰配色语义 */
+.match-pill-neutral { background: #f8fafc; color: #64748b; border-color: #e2e8f0; font-weight: 600; }
 .pipeline-hint { margin: 10px 0 0; font-size: 11px; color: var(--color-text-secondary); border-top: 1px dashed var(--color-border-lighter); padding-top: 8px; }
 </style>

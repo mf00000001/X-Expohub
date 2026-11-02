@@ -255,7 +255,7 @@ def my_tier(
     db: Session = Depends(get_db),
 ):
     """查询当前用户信誉等级（展商专用）"""
-    if current_user.role not in ("exhibitor", "admin", "organizer"):
+    if current_user.role not in ("exhibitor", "admin"):
         return {"success": True, "code": "OK", "data": {"tier": None, "score": 0, "message": "仅展商有信誉等级"}}
 
     score = calculate_exhibitor_score(current_user.id, db)

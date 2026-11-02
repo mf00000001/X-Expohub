@@ -14,7 +14,6 @@ export interface UserProfile {
   bio?: string
   company_name?: string
   business_license?: string
-  organizer_status?: string
   total_points?: number
   created_at?: string
   last_login_at?: string
@@ -41,6 +40,9 @@ export const authApi = {
     email: string
     password: string
     role?: string
+    // 合规：必须显式同意《用户协议》《隐私政策》，后端要求 true
+    privacy_agreed: boolean
+    // 展商资质（选填，仅展商使用）
     company_name?: string
     business_license?: string
   }) {

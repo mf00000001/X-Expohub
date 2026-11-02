@@ -23,7 +23,9 @@ async function handleLogin() {
     await userStore.login(username.value, password.value)
     // V2.0: 新用户引导
     const profile = userStore.profile as any
-    if (profile && !profile.is_onboarded) {
+    // 2026-10-19：平台运营（admin）不需要兴趣引导
+    const needsOnboarding = profile && !profile.is_onboarded && profile.role !== 'admin'
+    if (needsOnboarding) {
       router.push({name:'onboarding'})
     } else {
       const redirect = (route.query.redirect as string) || '/'

@@ -1,0 +1,37 @@
+{
+  "note": "离线夹具：用于验证采集管道的字段白名单 / 联系方式丢弃 / 日期校验 / 去重，不联网。",
+  "items": [
+    {
+      "title": "2027 深圳国际智能制造博览会",
+      "start_date": "2027-03-18",
+      "end_date": "2027-03-20",
+      "location": "深圳国际会展中心（宝安）",
+      "description": "面向工业自动化、机器人、数控机床的年度展会（公开简介摘录）。",
+      "cover_image": "https://example.com/cover1.jpg",
+      "source_url": "https://example.com/expos/1",
+      "contact_phone": "13800000000",
+      "organizer_email": "sales@example.com"
+    },
+    {
+      "title": "2027 上海国际新能源与储能展",
+      "start_date": "2027-05-06T09:00:00",
+      "end_date": "2027-05-08T18:00:00",
+      "location": "国家会展中心（上海）",
+      "description": "光伏、储能、氢能、充电桩全产业链。",
+      "contact": "张经理 13900000000"
+    },
+    {
+      "title": "日期非法的脏数据展会",
+      "start_date": "0123-12-03",
+      "end_date": "0223-12-31",
+      "location": "某地"
+    },
+    {
+      "title": "2027 深圳国际智能制造博览会",
+      "start_date": "2027-03-18",
+      "end_date": "2027-03-20",
+      "location": "深圳国际会展中心（宝安）",
+      "description": "重复条目，应被去重"
+    }
+  ]
+}

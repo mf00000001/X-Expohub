@@ -127,13 +127,13 @@ def register(
         earn_points(current_user.id, "earn_registration", "registration", registration.id, db)
     except: pass
 
-    # V2.4: 通知展会主办方
+    # V2.4: 通知平台运营（展会自营，原「通知主办方」）
     try:
         from app.models.notification import notify
         if exhibition.organizer_id:
             notify(db, exhibition.organizer_id, "system",
                    f"📋 {current_user.nickname or current_user.username} 报名了「{exhibition.title[:20]}」",
-                   link=f"/organizer/exhibitions/{exhibition.id}/registrations")
+                   link=f"/admin/exhibitions/{exhibition.id}/registrations")
     except: pass
 
     return {
@@ -205,11 +205,11 @@ def get_registrations(
     current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
-    # Only organizer of this exhibition or admin can view registrations
+    # 仅平台管理员可查看报名名单（展会自营）
     exhibition = db.query(Exhibition).filter(Exhibition.id == exhibition_id).first()
     if not exhibition:
         raise NotFound(message="展会不存在")
-    if exhibition.organizer_id != current_user.id and current_user.role not in ("admin",):
+    if current_user.role != "admin":
         raise Forbidden(message="无权查看该展会的报名")
 
     q = db.query(Registration).filter(Registration.exhibition_id == exhibition_id)
@@ -234,7 +234,7 @@ def export_registrations_csv(
     current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
-    """导出某展会报名名单 CSV（主办方/管理员；带 BOM，Excel 直接打开不乱码）"""
+    """导出某展会报名名单 CSV（平台管理员；带 BOM，Excel 直接打开不乱码）"""
     import csv
     import io
     from fastapi.responses import Response
@@ -242,7 +242,7 @@ def export_registrations_csv(
     exhibition = db.query(Exhibition).filter(Exhibition.id == exhibition_id).first()
     if not exhibition:
         raise NotFound(message="展会不存在")
-    if exhibition.organizer_id != current_user.id and current_user.role not in ("admin",):
+    if current_user.role != "admin":
         raise Forbidden(message="无权导出该展会的报名")
 
     regs = (

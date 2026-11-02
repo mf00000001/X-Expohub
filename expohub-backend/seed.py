@@ -3,7 +3,7 @@
 ExpoHub 种子数据生成脚本
 
 生成内容：
-- 用户（14个）：1 admin + 3 organizer + 5 exhibitor + 3 buyer + 2 visitor
+- 用户（14个）：4 admin（含 3 个平台运营子账号） + 5 exhibitor + 3 buyer + 2 visitor
 - 展会（3个，published）：广交会、上海进博会、深圳高交会
 - 展位（30个，每展会10个）
 - 展品（15个样本展品）
@@ -81,14 +81,14 @@ try:
             phone="13800000000",
             gender="male",
         ),
-        # --- Organizers（3个，已通过审核） ---
+        # --- 平台运营子账号（原 3 个 organizer，2026-10-19 升级为 admin，负责各自展会品牌） ---
         User(
             username="organizer_canton",
             email="canton@cantonfair.org.cn",
             password_hash=hash_password("org123"),
-            role="organizer",
+            role="admin",
             status="active",
-            organizer_status="approved",
+            organizer_status=None,
             company_name="中国对外贸易中心",
             business_license="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop",
             nickname="广交会主办方",
@@ -99,9 +99,9 @@ try:
             username="organizer_ciie",
             email="ciie@ciie.org",
             password_hash=hash_password("org123"),
-            role="organizer",
+            role="admin",
             status="active",
-            organizer_status="approved",
+            organizer_status=None,
             company_name="中国国际进口博览局",
             business_license="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop",
             nickname="进博会主办方",
@@ -112,9 +112,9 @@ try:
             username="organizer_chtf",
             email="chtf@szonline.net",
             password_hash=hash_password("org123"),
-            role="organizer",
+            role="admin",
             status="active",
-            organizer_status="approved",
+            organizer_status=None,
             company_name="深圳会展中心管理有限公司",
             business_license="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop",
             nickname="高交会主办方",
@@ -282,7 +282,7 @@ try:
             location="北京国家会议中心（朝阳区天辰东路7号）",
             status="published",
             organizer_id=org_canton.id,
-            organizer_name=org_canton.company_name,
+            organizer_name="平台运营（广交会品牌）",
             # V2.0
             is_featured=True,
             hot_score=980,
@@ -297,7 +297,7 @@ try:
             location="上海世博中心（浦东新区世博大道1500号）",
             status="published",
             organizer_id=org_ciie.id,
-            organizer_name=org_ciie.company_name,
+            organizer_name="平台运营（进博会品牌）",
             # V2.0
             is_featured=True,
             hot_score=850,
@@ -312,7 +312,7 @@ try:
             location="深圳国际会展中心（宝安区福海街道展城路1号）",
             status="published",
             organizer_id=org_chtf.id,
-            organizer_name=org_chtf.company_name,
+            organizer_name="平台运营（高交会品牌）",
             # V2.0
             is_featured=True,
             hot_score=720,
@@ -763,7 +763,7 @@ try:
     print("=" * 60)
     print(f"""
 📊 数据统计：
-  👤 用户:       {len(users)} 个（admin×1, organizer×3, exhibitor×5, buyer×3, visitor×2）
+  👤 用户:       {len(users)} 个（admin×4, exhibitor×5, buyer×3, visitor×2）
   🎪 展会:       {len(exhibitions)} 个（广交会、进博会、高交会）
   🏢 展位:       {len(all_booths)} 个（每展会10个）
   📦 展品:       {len(products)} 个

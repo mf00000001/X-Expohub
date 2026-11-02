@@ -5,6 +5,7 @@ import { microBoothApi, type MicroBooth } from '@/api/micro-booth'
 import { exhibitionApi } from '@/api/exhibition'
 import http from '@/api/index'
 import SearchBar from '@/components/SearchBar.vue'
+import CompanyAvatar from '@/components/CompanyAvatar.vue'
 import LoadingSkeleton from '@/components/LoadingSkeleton.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import PaginationBar from '@/components/PaginationBar.vue'
@@ -17,6 +18,8 @@ const loading = ref(true)
 const keyword = ref('')
 const activeDomain = ref('')
 const isDetail = ref(false)
+// 后端在「关键词命中 0 条」时返回的同父组品类建议（用于空态「试试这些品类」）
+const suggestions = ref<string[]>([])
 
 // 翻页：此前这里是硬编码 page_size=50 且没有任何翻页入口，
 // 1001 个微展位永远只能看到前 50 个（≈5%），是「微展位怎么这么少」的直接原因。
@@ -45,11 +48,14 @@ function selectExhibition(id: number | null) {
   fetchList()
 }
 
-const domains = [
-  '电子及家电','照明','车辆及配件','五金工具','机械','建材','化工产品','能源',
-  '日用消费品','礼品','纺织服装','鞋类','家居装饰品','办公箱包及休闲用品','食品',
-  '医药及医疗保健','AI/科技','综合服务'
-]
+// 分类标签来自后端真实统计（/micro-booths/facets），不再写死 18 个旧品类。
+// 名录口径的行业是「医疗器械制造 / 机床工具 / 光电 …」，写死旧品类点了必然 0 条。
+const domains = ref<{ value: string; count: number }[]>([])
+
+async function loadFacets() {
+  const f = await microBoothApi.getFacets()
+  domains.value = (f.industries || []).filter((d) => d.value && d.count > 0)
+}
 
 onMounted(async () => {
   const id = route.params.id
@@ -57,7 +63,7 @@ onMounted(async () => {
     isDetail.value = true
     await fetchDetail(Number(id))
   } else {
-    await loadExhibitions()
+    await Promise.all([loadExhibitions(), loadFacets()])
     await fetchList()
   }
 })
@@ -77,9 +83,11 @@ async function fetchList() {
     const res: any = await microBoothApi.getList(params)
     const list = res?.list || res?.data?.list || []
     booths.value = list
+    // 后端：精确命中 0 条时返回空列表 + 同父组品类建议（旧实现兜底返回全表，空态走不到）
+    suggestions.value = res?.suggestions || res?.data?.suggestions || []
     total.value = Number(res?.total ?? res?.count ?? list.length) || list.length
     totalPages.value = Number(res?.totalPages ?? res?.total_pages ?? 0) || 1
-  } catch { booths.value = []; total.value = 0; totalPages.value = 1 }
+  } catch { booths.value = []; suggestions.value = []; total.value = 0; totalPages.value = 1 }
   finally { loading.value = false }
 }
 
@@ -157,6 +165,13 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
 
       <div class="detail-card">
         <div class="detail-header">
+          <!-- 头像：logo_url 为空（当前 5000 条全空）时按公司名哈希出色块 + 首字 -->
+          <CompanyAvatar
+            class="detail-avatar"
+            :name="detail.booth?.name || ''"
+            :src="detail.booth?.logo_url || ''"
+            :size="76"
+          />
           <span class="detail-tier">{{ tierBadge[detail.booth?.membership_tier] }}</span>
           <h1>{{ detail.booth?.name }} <button class="fav-btn" @click="toggleMbFav()" title="收藏">{{ mbFaved ? '❤️' : '🤍' }} 收藏</button>
           <button class="appt-btn" @click="makeAppointment()" title="预约见面">🎯 预约展会见面</button></h1>
@@ -226,8 +241,14 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
       <SearchBar v-model="keyword" placeholder="搜索微展位名称或行业..." @search="handleSearch" />
     </div>
 
-    <div class="domain-filter">
-      <button v-for="d in domains" :key="d" :class="['domain-tag', {active:activeDomain===d}]" @click="selectDomain(d)">{{ d }}</button>
+    <div class="domain-filter" v-if="domains.length">
+      <button :class="['domain-tag', {active: activeDomain === ''}]" @click="selectDomain('')">全部行业</button>
+      <button
+        v-for="d in domains"
+        :key="d.value"
+        :class="['domain-tag', {active: activeDomain === d.value}]"
+        @click="selectDomain(d.value)"
+      >{{ d.value }}<span class="domain-count">{{ d.count }}</span></button>
     </div>
     <!-- V3.4: 展会筛选(微展位按展会归类) -->
     <div class="exh-filter" v-if="exhibitions.length">
@@ -241,8 +262,10 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
     </div>
 
     <LoadingSkeleton v-if="loading" :lines="6" />
-    <div v-else-if="booths.length===0 && keyword" style="text-align:center;padding:20px;color:var(--color-text-secondary)">
-      <p>🔍 没有精确匹配"{{ keyword }}"，试试换个关键词或浏览分类</p>
+    <div v-else-if="booths.length===0 && keyword" class="mb-empty">
+      <p class="mb-empty-title">🔍 没有匹配"{{ keyword }}"的微展位</p>
+      <p v-if="suggestions.length" class="mb-empty-suggest">试试这些品类：{{ suggestions.join(' / ') }}</p>
+      <p v-else class="mb-empty-hint">换个关键词试试</p>
     </div>
     <EmptyState v-else-if="booths.length===0 && !keyword" message="暂无微展位" icon="🏪" />
 
@@ -250,8 +273,11 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
       <p v-if="keyword" style="grid-column:1/-1;font-size:13px;color:var(--color-text-secondary);margin-bottom:4px">搜索"{{ keyword }}"的结果（共 {{ total }} 个）</p>
       <div v-for="b in booths" :key="b.id" class="mb-card" @click="goDetail(b.id)">
         <div class="mb-top">
-          <span class="mb-tier">{{ tierBadge[b.membership_tier] || '🆓' }}</span>
-          <h3>{{ b.name }}</h3>
+          <CompanyAvatar :name="b.name || ''" :src="b.logo_url || ''" :size="40" />
+          <div class="mb-top-main">
+            <span class="mb-tier">{{ tierBadge[b.membership_tier] || '🆓' }}</span>
+            <h3 :title="b.name">{{ b.name }}</h3>
+          </div>
         </div>
         <!-- V3.4: 所属展会标签 -->
         <div v-if="(b as any).exhibition_info" class="mb-exh" @click.stop="router.push('/exhibitions/' + (b as any).exhibition_info.id)">
@@ -259,7 +285,7 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
         </div>
         <p class="mb-desc" v-if="b.description">{{ b.description.slice(0,80) }}{{ b.description.length>80?'...':'' }}</p>
         <div class="mb-tags" v-if="b.industry_domain">
-          <span class="mb-tag">{{ b.industry_domain }}</span>
+          <span class="mb-tag" @click.stop="selectDomain(b.industry_domain || '')">{{ b.industry_domain }}</span>
         </div>
         <div class="mb-stats">
           <span>👀 {{ b.view_count || 0 }}</span>
@@ -286,6 +312,11 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
 </template>
 
 <style scoped>
+.domain-count {
+  margin-left: 4px;
+  font-size: 11px;
+  opacity: 0.65;
+}
 /* List */
 .domain-filter { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:20px }
 .domain-tag { padding:4px 10px; border:1px solid var(--color-border); border-radius:16px; font-size:12px; background:#fff; cursor:pointer }
@@ -293,17 +324,26 @@ const tierBadge: Record<string,string> = { free:'🆓 免费', regular:'⭐ VIP'
 .mb-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:16px }
 .mb-card { background:#fff; border-radius:12px; padding:20px; box-shadow:0 1px 4px rgba(0,0,0,0.04); cursor:pointer; transition:transform 0.15s }
 .mb-card:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,0.08) }
-.mb-top { display:flex; align-items:center; gap:8px; margin-bottom:8px }
-.mb-top h3 { font-size:16px; font-weight:600 }
+.mb-top { display:flex; align-items:center; gap:10px; margin-bottom:8px }
+/* 头像右侧的文字块：允许收缩，公司名过长时省略而不是把头像挤扁 */
+.mb-top-main { display:flex; flex-direction:column; min-width:0; gap:2px }
+.mb-top h3 { font-size:16px; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
 .mb-tier { font-size:14px }
 .mb-desc { font-size:13px; color:var(--color-text-secondary); margin-bottom:10px; line-height:1.5 }
 .mb-tags { margin-bottom:10px }
 .mb-tag { display:inline-block; padding:2px 8px; border-radius:10px; background:var(--color-primary-light); color:var(--color-primary); font-size:11px }
 .mb-stats { display:flex; gap:12px; font-size:12px; color:var(--color-text-secondary); padding-top:10px; border-top:1px solid var(--color-border-lighter) }
+/* 搜索无结果空态 */
+.mb-empty { text-align:center; padding:28px 20px; background:#fff; border-radius:12px; color:var(--color-text-secondary) }
+.mb-empty-title { font-size:15px; font-weight:600; color:var(--color-text-primary); margin-bottom:8px }
+.mb-empty-suggest { font-size:13px; color:var(--color-primary); line-height:1.7 }
+.mb-empty-hint { font-size:13px }
 
 /* Detail */
 .detail-card { background:#fff; border-radius:16px; padding:32px; box-shadow:0 2px 8px rgba(0,0,0,0.04) }
 .detail-header { text-align:center; margin-bottom:20px }
+/* 详情页头像居中放在等级徽章上方 */
+.detail-avatar { margin: 0 auto 12px; display: flex }
 .detail-tier { display:inline-block; padding:4px 16px; border-radius:16px; background:linear-gradient(135deg,#f59e0b,#ef4444); color:#fff; font-size:13px; font-weight:700; margin-bottom:12px }
 .detail-header h1 { font-size:24px; font-weight:700; margin-bottom:4px }
 .detail-domain { font-size:14px; color:var(--color-text-secondary) }

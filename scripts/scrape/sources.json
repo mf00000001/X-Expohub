@@ -1,0 +1,15 @@
+{
+  "note": "采集来源白名单。默认全部 enabled=false，必须先确认来源的 robots.txt 与使用条款，再逐条启用。",
+  "sources": [
+    {
+      "id": "example_jsonld",
+      "name": "示例：任意带 schema.org Event JSON-LD 的展会站",
+      "enabled": false,
+      "list_url": "https://example.com/expos",
+      "parser": "jsonld",
+      "max_pages": 1,
+      "delay_seconds": 3,
+      "license_note": "只取公开展会标题/时间/地点/简介，禁止采集联系人、电话、邮箱"
+    }
+  ]
+}

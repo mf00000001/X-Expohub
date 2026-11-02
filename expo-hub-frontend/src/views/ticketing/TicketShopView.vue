@@ -98,7 +98,7 @@ onMounted(load)
         <div class="tag tag-success">票号 {{ lastTicket.ticket_no }}</div>
         <code class="tag tag-info" style="word-break: break-all">{{ lastTicket.qr_payload }}</code>
       </div>
-      <p class="mt-sm">出示此载荷（票号+签名）给主办方核销，或在核销台输入。</p>
+      <p class="mt-sm">出示此载荷（票号+签名）由平台现场核销，或在核销台输入。</p>
       <button class="btn btn-outline btn-sm mt-md" @click="router.push('/tickets/my')">查看我的票务</button>
     </div>
   </div>

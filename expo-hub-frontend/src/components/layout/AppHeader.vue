@@ -26,6 +26,11 @@ function navTo(path: string) { router.push(path) }
 function goBack() { if (route.path !== '/') { router.back() } else { router.push('/') } }
 function goToLogin() { router.push('/login') }
 
+/** 公开目录导航的选中态（展商名录 / 展品库） */
+function isCatalogActive(section: 'products' | 'exhibitors'): boolean {
+  return route.path === `/catalog/${section}` || route.path.startsWith(`/catalog/${section}/`)
+}
+
 const quickLinks = computed(() => {
   if (!isAuth.value) return []
   const links: {path:string;label:string;icon:string}[] = []
@@ -43,9 +48,9 @@ const quickLinks = computed(() => {
     links.push({path:'/visitor/procurements',label:'我的采购',icon:'📦'})
     links.push({path:'/points',label:'积分',icon:'💎'})
   }
-  if (role.value === 'organizer' || role.value === 'admin') {
-    links.push({path:'/organizer/dashboard',label:'管理',icon:'⚙️'})
-    links.push({path:'/organizer/exhibitions',label:'展会',icon:'🎪'})
+  if (role.value === 'admin') {
+    links.push({path:'/admin/dashboard',label:'管理',icon:'⚙️'})
+    links.push({path:'/admin/exhibitions',label:'展会',icon:'🎪'})
   }
   if (role.value === 'admin') {
     links.push({path:'/admin/boss',label:'Boss',icon:'📊'})
@@ -63,6 +68,18 @@ const quickLinks = computed(() => {
     </div>
     <div class="header-center">
       <span class="header-title" @click="navTo('/')">ExpoHub</span>
+      <nav class="header-nav" aria-label="公开目录">
+        <router-link
+          class="header-nav-link"
+          :class="{ 'is-active': isCatalogActive('exhibitors') }"
+          :to="{ name: 'catalog-exhibitors' }"
+        >展商名录</router-link>
+        <router-link
+          class="header-nav-link"
+          :class="{ 'is-active': isCatalogActive('products') }"
+          :to="{ name: 'catalog-products' }"
+        >展品库</router-link>
+      </nav>
     </div>
     <div class="header-right">
       <template v-if="isAuth">
@@ -94,8 +111,13 @@ const quickLinks = computed(() => {
 }
 .header-left,.header-right{display:flex;align-items:center;min-width:80px}
 .header-right{justify-content:flex-end}
-.header-center{text-align:center}
+.header-center{display:flex;align-items:center;justify-content:center;gap:14px;min-width:0;text-align:center}
 .header-title{font-size:17px;font-weight:700;color:var(--color-primary);cursor:pointer}
+.header-nav{display:flex;align-items:center;gap:2px}
+.header-nav-link{font-size:var(--font-sm);line-height:1.4;color:var(--ink-500);text-decoration:none;padding:4px 8px;border-radius:6px;white-space:nowrap;transition:color .15s ease,background .15s ease}
+.header-nav-link:hover{color:var(--brand-700);background:var(--brand-50)}
+.header-nav-link.is-active{color:var(--brand-700);font-weight:600;background:var(--brand-50)}
+@media (max-width: 768px){.header-nav{display:none}}
 .back-btn{background:none;border:none;font-size:18px;cursor:pointer;padding:4px 8px;color:var(--color-text)}
 .login-btn{font-size:13px;border:1px solid var(--color-border);padding:4px 12px;border-radius:6px;background:none;cursor:pointer}
 .header-icons{display:flex;gap:2px}

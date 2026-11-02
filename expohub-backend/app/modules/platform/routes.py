@@ -18,6 +18,7 @@ from sqlalchemy.orm import Session
 
 from app.core.config import settings
 from app.core.deps import get_current_active_user, require_permission
+from app.core.constants import PLATFORM_OPERATOR_NAME
 from app.core.exceptions import BadRequest
 from app.core.permissions import Permission
 from app.models.base import get_db, SessionLocal
@@ -166,7 +167,10 @@ def import_exhibitions(
     db: Session = Depends(get_db),
     _: User = Depends(require_permission(Permission.EXHIBITION_CREATE)),
 ):
-    """批量导入展会：标题去重（同租户），逐行校验，失败行报告不阻断其他行"""
+    """批量导入展会：标题去重（同租户），逐行校验，失败行报告不阻断其他行
+
+    2026-10-19：导入的展会统一归属平台自营（organizer_name=平台运营）。
+    """
     existing = {e.title for e in db.query(Exhibition).all()}
     results = []
     ok = 0
@@ -182,6 +186,9 @@ def import_exhibitions(
                 title=row.title, start_date=row.start_date, end_date=row.end_date,
                 location=row.location, status=row.status, description=row.description,
                 cover_image=row.cover_image,
+                # 2026-10-19：取消主办方后，导入的展会归平台自营
+                organizer_id=_.id,
+                organizer_name=PLATFORM_OPERATOR_NAME,
             ))
             db.commit()
             existing.add(row.title)

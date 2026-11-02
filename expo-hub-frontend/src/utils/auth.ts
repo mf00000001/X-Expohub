@@ -61,15 +61,14 @@ export function isLoggedIn(): boolean {
 // ---- 角色首页路由 ----
 
 /**
- * 根据角色返回对应的首页路径（新角色体系：visitor / exhibitor / organizer / boss）
+ * 根据角色返回对应的首页路径（visitor / buyer / exhibitor / admin）
  */
 export function getRoleHomePath(role: string): string {
   const roleHomeMap: Record<string, string> = {
     visitor: '/',
     buyer: '/buyer/dashboard',
     exhibitor: '/exhibitor/dashboard',
-    organizer: '/organizer/dashboard',
-    admin: '/organizer/dashboard',
+    admin: '/admin/dashboard',
   }
   return roleHomeMap[role] || '/'
 }

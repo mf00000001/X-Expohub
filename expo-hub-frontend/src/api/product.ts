@@ -98,6 +98,22 @@ export interface ProductListParams {
   page_size?: number
 }
 
+/** 我的展品排序方式：最新 / 最早 / 价格高→低 / 价格低→高 */
+export type MyProductsSort = 'newest' | 'oldest' | 'price_desc' | 'price_asc'
+
+/** 我的展品列表查询参数（全部可选，不传即后端默认：created_at desc） */
+export interface MyProductsParams {
+  /** 模糊匹配品名 / 描述 */
+  search?: string
+  /** 品类（精确匹配） */
+  category?: string
+  /** 状态（精确匹配）：draft / published / offline */
+  status?: string
+  sort?: MyProductsSort
+  page?: number
+  page_size?: number
+}
+
 export const productApi = {
   /** Get the full standard category list from the backend */
   getCategories() {
@@ -127,8 +143,8 @@ export const productApi = {
   delete(id: number): Promise<void> {
     return http.delete('/products/' + id) as Promise<void>
   },
-  /** Current exhibitor's own products */
-  async getMyProducts(params?: { status?: string; page?: number; page_size?: number }): Promise<ListResp<ProductItem>> {
+  /** Current exhibitor's own products（支持搜索 / 品类 / 状态筛选 / 排序） */
+  async getMyProducts(params?: MyProductsParams): Promise<ListResp<ProductItem>> {
     const res: any = await http.get('/products/my', { params })
     return normList<ProductItem>(res)
   }

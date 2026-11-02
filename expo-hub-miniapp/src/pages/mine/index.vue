@@ -14,7 +14,6 @@ const roleMap: Record<string, string> = {
   visitor: '游客',
   buyer: '采购商',
   exhibitor: '展商',
-  organizer: '主办方',
 }
 
 const roleLabel = computed(() => {
@@ -25,7 +24,6 @@ const roleLabel = computed(() => {
 const roleTagCls = computed(() => {
   const role = userStore.profile?.role || ''
   if (role === 'exhibitor') return 'tag-blue'
-  if (role === 'organizer') return 'tag-yellow'
   if (role === 'buyer') return 'tag-green'
   return 'tag-gray'
 })
@@ -39,7 +37,6 @@ const totalPoints = computed<number | null>(() => {
 
 const role = computed(() => userStore.profile?.role || '')
 const isExhibitor = computed(() => role.value === 'exhibitor')
-const isOrganizer = computed(() => role.value === 'organizer')
 
 onShow(async () => {
   // 已登录才拉取资料+统计；未登录展示「点击登录」入口
@@ -56,7 +53,6 @@ onShow(async () => {
 // 顶部数字卡片统计（按角色取不同数据源）
 const stats = ref({ registrations: 0, procurements: 0, unread: 0 })
 const exStats = ref({ booths: 0, products: 0, matches: 0 })
-const orgStats = ref({ exhibitions: 0, booths: 0, users: 0 })
 
 async function loadStats() {
   if (!userStore.isLoggedIn) return
@@ -67,13 +63,6 @@ async function loadStats() {
         booths: ov.booths || 0,
         products: ov.products || 0,
         matches: ov.matches?.total || 0,
-      }
-    } else if (isOrganizer.value) {
-      const ov = await dashboardApi.getStatsOverview()
-      orgStats.value = {
-        exhibitions: ov.total_exhibitions || 0,
-        booths: ov.total_booths || 0,
-        users: ov.total_users || 0,
       }
     } else {
       const [reg, proc, msg] = await Promise.all([
@@ -146,23 +135,6 @@ function goExMatches() {
   if (requireLogin()) uni.navigateTo({ url: '/pages/exhibitor/matches' })
 }
 
-// 主办方角色入口
-function goOrgDashboard() {
-  if (requireLogin()) uni.navigateTo({ url: '/pages/organizer/dashboard' })
-}
-function goOrgExhibitions() {
-  if (requireLogin()) uni.navigateTo({ url: '/pages/organizer/exhibitions' })
-}
-function goOrgBooths() {
-  if (requireLogin()) uni.navigateTo({ url: '/pages/organizer/booths' })
-}
-function goOrgRegistrations() {
-  if (requireLogin()) uni.navigateTo({ url: '/pages/organizer/registrations' })
-}
-function goOrgStatistics() {
-  if (requireLogin()) uni.navigateTo({ url: '/pages/organizer/statistics' })
-}
-
 function handleLogout() {
   uni.showModal({
     title: '提示',
@@ -233,30 +205,6 @@ function handleLogout() {
           @click="goExMatches"
         />
       </template>
-      <!-- 主办方角色：展会/展位/用户 -->
-      <template v-else-if="isOrganizer">
-        <StatsCard
-          title="展会总数"
-          :value="orgStats.exhibitions"
-          icon="🎪"
-          color="#3b82f6"
-          @click="goOrgExhibitions"
-        />
-        <StatsCard
-          title="展位总数"
-          :value="orgStats.booths"
-          icon="🏠"
-          color="#8b5cf6"
-          @click="goOrgBooths"
-        />
-        <StatsCard
-          title="平台用户"
-          :value="orgStats.users"
-          icon="👥"
-          color="#10b981"
-          @click="goOrgStatistics"
-        />
-      </template>
       <!-- 其他角色：已报名/采购/未读 -->
       <template v-else>
         <StatsCard
@@ -297,51 +245,8 @@ function handleLogout() {
 
     <!-- 快捷入口 -->
     <view class="card menu-card">
-      <!-- 主办方角色菜单 -->
-      <template v-if="isOrganizer">
-        <view class="menu-item" @click="goOrgDashboard">
-          <text class="menu-icon">🏢</text>
-          <view class="menu-body">
-            <text class="menu-title">主办方工作台</text>
-            <text class="menu-desc text-secondary text-sm">数据概览与快捷操作</text>
-          </view>
-          <text class="menu-arrow">›</text>
-        </view>
-        <view class="menu-item" @click="goOrgExhibitions">
-          <text class="menu-icon">🎪</text>
-          <view class="menu-body">
-            <text class="menu-title">展会管理</text>
-            <text class="menu-desc text-secondary text-sm">创建与编辑展会</text>
-          </view>
-          <text class="menu-arrow">›</text>
-        </view>
-        <view class="menu-item" @click="goOrgBooths">
-          <text class="menu-icon">🏠</text>
-          <view class="menu-body">
-            <text class="menu-title">展位管理</text>
-            <text class="menu-desc text-secondary text-sm">新建展位、分配展商</text>
-          </view>
-          <text class="menu-arrow">›</text>
-        </view>
-        <view class="menu-item" @click="goOrgRegistrations">
-          <text class="menu-icon">📋</text>
-          <view class="menu-body">
-            <text class="menu-title">报名管理</text>
-            <text class="menu-desc text-secondary text-sm">查看展会报名情况</text>
-          </view>
-          <text class="menu-arrow">›</text>
-        </view>
-        <view class="menu-item" @click="goOrgStatistics">
-          <text class="menu-icon">📊</text>
-          <view class="menu-body">
-            <text class="menu-title">数据统计</text>
-            <text class="menu-desc text-secondary text-sm">展会状态与数量分布</text>
-          </view>
-          <text class="menu-arrow">›</text>
-        </view>
-      </template>
       <!-- 展商角色菜单 -->
-      <template v-else-if="isExhibitor">
+      <template v-if="isExhibitor">
         <view class="menu-item" @click="goExDashboard">
           <text class="menu-icon">🏠</text>
           <view class="menu-body">
@@ -566,25 +471,6 @@ function handleLogout() {
   font-size: 40rpx;
   color: #cbd5e1;
   flex-shrink: 0;
-}
-
-.web-tip {
-  display: flex;
-  align-items: center;
-  gap: 12rpx;
-  padding: 20rpx 24rpx;
-  margin-bottom: 24rpx;
-}
-
-.web-tip-icon {
-  font-size: 32rpx;
-  flex-shrink: 0;
-}
-
-.web-tip-text {
-  font-size: 26rpx;
-  color: var(--color-text-secondary);
-  flex: 1;
 }
 
 .logout-btn {

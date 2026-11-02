@@ -44,9 +44,9 @@ def ctx(request):
     tag = request.node.name[:22].replace("::", "_").replace("[", "").replace("]", "")
     with TestClient(app) as c:
         db = SessionLocal()
-        org = _seed_user(db, f"{tag}_org", "organizer")
+        org = _seed_user(db, f"{tag}_org", "admin")
         visitor = _seed_user(db, f"{tag}_vis", "visitor")
-        other = _seed_user(db, f"{tag}_oth", "organizer")
+        other = _seed_user(db, f"{tag}_oth", "exhibitor")
         exh = Exhibition(title="导出测试展", start_date="2026-11-01T09:00:00",
                          end_date="2026-11-03T18:00:00", location="广州", status="published",
                          organizer_id=org.id)

@@ -28,7 +28,8 @@ async function fetchProcurements() {
     const res = await procurementApi.getList({
       page: currentPage.value,
       page_size: pageSize.value,
-      search: searchKeyword.value || undefined,
+      // 后端查询参数名是 keyword（原先前端传 search，被后端忽略 → 搜索完全失效）
+      keyword: searchKeyword.value.trim() || undefined,
       category: activeCategory.value === '全部' ? undefined : activeCategory.value,
     })
     const list = (res as any).list || (res as any).items || (res as any).results || []

@@ -21,9 +21,9 @@ class Permission(str, Enum):
     """
 
     # ---- 票务管理 ----
-    TICKET_MANAGE = "ticket:manage"        # 票种/票务管理（主办方/管理员）
+    TICKET_MANAGE = "ticket:manage"        # 票种/票务管理（平台管理员）
     # ---- 现场签到 ----
-    ONSITE_MANAGE = "onsite:manage"        # 现场核销/撤销/统计（主办方/管理员）
+    ONSITE_MANAGE = "onsite:manage"        # 现场核销/撤销/统计（平台管理员）
     # ---- 平台运营 ----
     PLATFORM_MANAGE = "platform:manage"    # 平台运营（计费档位/导入/总览，仅管理员）
 
@@ -77,7 +77,6 @@ class Permission(str, Enum):
     # ---- 审核管理 ----
     AUDIT_VIEW = "audit:view"         # 查看审核日志
     AUDIT_REVIEW = "audit:review"     # 执行审核操作
-    AUDIT_ORGANIZER = "audit:organizer"  # 审核主办方入驻
 
     # ---- 团队管理 ----
     TEAM_CREATE = "team:create"       # 创建团队
@@ -153,35 +152,10 @@ ROLE_PERMISSIONS: dict[RoleEnum, set[Permission]] = {
     },
 
     # ---- 主办方 (organizer) ----
-    RoleEnum.ORGANIZER: {
-        Permission.USER_VIEW,
-        Permission.USER_EDIT,
-        Permission.EXHIBITION_LIST,
-        Permission.EXHIBITION_VIEW,
-        Permission.EXHIBITION_CREATE,
-        Permission.EXHIBITION_EDIT,
-        Permission.EXHIBITION_DELETE,
-        Permission.EXHIBITION_PUBLISH,
-        Permission.BOOTH_LIST,
-        Permission.BOOTH_VIEW,
-        Permission.BOOTH_CREATE,
-        Permission.BOOTH_ASSIGN,
-        Permission.BOOTH_APPROVE,
-        Permission.PRODUCT_LIST,
-        Permission.PRODUCT_VIEW,
-        Permission.PROCUREMENT_LIST,
-        Permission.PROCUREMENT_VIEW,
-        Permission.MESSAGE_SEND,
-        Permission.MESSAGE_VIEW,
-        Permission.STATS_VIEW_SELF,
-        Permission.STATS_VIEW_GLOBAL,
-        Permission.STATS_EXPORT,
-        Permission.AUDIT_VIEW,
-        Permission.TICKET_MANAGE,
-        Permission.ONSITE_MANAGE,
-    },
+    # 2026-10-19 取消：主办方角色已移除，展会自营能力全部并入 admin（见下方 ADMIN）。
+    # 存量 organizer 账号由 scripts/migrate_drop_organizer.py 升级为 admin。
 
-    # ---- 平台管理员 (admin)：审核主办方 + 全局管理 ----
+    # ---- 平台管理员 (admin)：平台运营 + 展会自营（原主办方能力） ----
     RoleEnum.ADMIN: {
         Permission.USER_VIEW,
         Permission.USER_EDIT,
@@ -218,7 +192,6 @@ ROLE_PERMISSIONS: dict[RoleEnum, set[Permission]] = {
         Permission.STATS_EXPORT,
         Permission.AUDIT_VIEW,
         Permission.AUDIT_REVIEW,
-        Permission.AUDIT_ORGANIZER,
         Permission.TEAM_CREATE,
         Permission.TEAM_EDIT,
         Permission.TEAM_DELETE,

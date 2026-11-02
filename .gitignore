@@ -20,3 +20,18 @@ htmlcov/
 desktop/logs/
 desktop/run/
 *.lnk
+
+# 本地虚拟环境 / 一键启动日志（start_all / stop_all 生成）
+.venv/
+logs/
+
+# 数据库迁移前自动备份 / 采集器输出
+*.db.bak-*
+out/
+
+# 运行期日志（console 回传等，含真实用户操作轨迹, 不入库）
+expohub-backend/data/*.jsonl
+
+# 一次性制作产物（PPT 中间件、验收截图），不进版本库
+ppt_work/
+reports/screenshots/

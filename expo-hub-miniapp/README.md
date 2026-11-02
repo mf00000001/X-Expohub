@@ -16,7 +16,6 @@ src/
 │  ├─ auth/              # 登录 / 注册
 │  ├─ messages/          # 会话列表 / 聊天
 │  ├─ exhibitor/         # 展商工作台(展位/展品/撮合)
-│  ├─ organizer/         # 主办方工作台(展会/展位/报名/统计)
 │  ├─ buyer/             # 买家工作台
 │  └─ mine/              # 我的 / 资料 / 设置 / 报名 / 采购
 ├─ components/           # ExpoCard / ProductCard / ProcurementCard / SearchBar ...
@@ -25,6 +24,9 @@ src/
 ├─ utils/request.ts      # uni.request 封装:token 注入 + 自动刷新
 └─ config/index.ts       # BASE_URL 等配置
 ```
+
+> 角色范围：2026-10-19 起后端取消「主办方」角色，平台自营展会由 Web 端 `/admin` 管理；
+> 小程序仅面向观众(游客) / 买家 / 展商。
 
 ## 运行
 
@@ -63,7 +65,7 @@ npm run build:mp-weixin
 - ✅ 双 token 自动刷新、错误提示
 - ✅ tabBar 图标已补齐（`src/static/tabbar/`）
 - ⏳ 微信一键登录：后端接口未接，登录页先走账号密码
-- ⏳ 展商 / 主办方管理端仅有工作台页，完整管理功能留在网页版
+- ⏳ 展商工作台仅有基础页，完整管理功能留在网页版；平台自营展会由 Web 端 `/admin` 管理
 
 ## 页面开发约定
 

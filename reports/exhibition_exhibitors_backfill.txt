@@ -1,0 +1,115 @@
+# 参展关系回填报告（exhibition_exhibitors）
+
+- 目标库：`C:\Users\niu25\Desktop\X_Expo\X-Expohub\expohub-backend\expohub.db`
+- 模式：`APPLY（会写库，写前自动备份）`
+- 映射口径：`layered`
+- 生成时间：2026-10-19 18:07:26
+
+## 1. 展会 ↔ expo_name 映射明细
+
+| expo_name | 名录行数 | 匹配层 | 展会 ID | 说明 |
+|---|---:|---|---:|---|
+| CMEF 中国国际医疗器械博览会 | 13,306 | loose | 9 | loose 唯一命中 |
+| CIOE 中国国际光电博览会 | 3,209 | 未命中 | — | exhibitions 里没有对应展会（strict='cioe中国国际光电博览会' / loose='光电博览会' 均未命中） |
+| CMES 华机展 · 东莞 | 3,070 | strict | 7 | strict 唯一命中 |
+| CMES 华机展 · 上海 | 2,497 | strict | 11 | strict 唯一命中 |
+| 高交会（CHTF） | 1,810 | alias | 10 | alias 唯一命中 |
+| CMES 华机展 · 苏州 | 1,404 | strict | 13 | strict 唯一命中 |
+| CMES 华机展 · 宁波 | 1,230 | strict | 6 | strict 唯一命中 |
+| CMES 华机展 · 天津 | 1,091 | strict | 5 | strict 唯一命中 |
+| CMES 华机展 · 佛山 | 969 | strict | 4 | strict 唯一命中 |
+| CMES 华机展 · 西安 | 860 | strict | 12 | strict 唯一命中 |
+| NHNE 中国国际健康营养博览会 | 760 | loose | 8 | loose 唯一命中 |
+| CMES 华机展 | 522 | 未命中 | — | exhibitions 里没有对应展会（strict='cmes华机展' / loose='华机展' 均未命中） |
+| CMES 华机展 · 青岛 | 522 | 未命中 | — | exhibitions 里没有对应展会（strict='cmes华机展·青岛' / loose='华机展·青岛' 均未命中） |
+| 玉环机床展 | 403 | loose | 14 | loose 唯一命中 |
+| TME台州机床展 | 285 | strict | 15 | strict 唯一命中 |
+
+## 2. 汇总
+
+- 名录展商总数：**31,938**（`catalog_exhibitors`）
+- 名录展品总数：**67,357**（`catalog_products`）
+- distinct `expo_name`：15 个
+- 可映射 `expo_name`：**12** 个 → 覆盖展商 **27,685** 行
+- 无法映射 `expo_name`：3 个 → 涉及展商 4,253 行（不产生关系）
+- 预计生成参展关系：**27,685** 条（每展商按其 expo_name 一条）
+
+## 3. 无法映射的 expo_name（不硬塞）
+
+| expo_name | 行数 | 原因 |
+|---|---:|---|
+| CIOE 中国国际光电博览会 | 3,209 | exhibitions 里没有对应展会（strict='cioe中国国际光电博览会' / loose='光电博览会' 均未命中） |
+| CMES 华机展 | 522 | exhibitions 里没有对应展会（strict='cmes华机展' / loose='华机展' 均未命中） |
+| CMES 华机展 · 青岛 | 522 | exhibitions 里没有对应展会（strict='cmes华机展·青岛' / loose='华机展·青岛' 均未命中） |
+
+合计：4,253 行不产生参展关系（占名录 13.3%）。
+
+## 4. 每场展会（按本轮映射推算）
+
+| 展会 ID | 标题 | 展商数 | 展品数 |
+|---:|---|---:|---:|
+| 4 | CMES 华机展 · 佛山 | 969 | 574 |
+| 5 | CMES 华机展 · 天津 | 1,091 | 499 |
+| 6 | CMES 华机展 · 宁波 | 1,230 | 552 |
+| 7 | CMES 华机展 · 东莞 | 3,070 | 1,529 |
+| 8 | 中国国际健康营养博览会（NHNE） | 760 | 0 |
+| 9 | 第九十四届中国国际医疗器械博览会（CMEF） | 13,306 | 36,999 |
+| 10 | 第二十八届中国国际高新技术成果交易会（高交会） | 1,810 | 4,764 |
+| 11 | CMES 华机展 · 上海 | 2,497 | 2,065 |
+| 12 | CMES 华机展 · 西安 | 860 | 412 |
+| 13 | CMES 华机展 · 苏州 | 1,404 | 949 |
+| 14 | 玉环国际机床展 | 403 | 92 |
+| 15 | TME 台州机床展 | 285 | 608 |
+
+12 场展会中 12 场有关系数据。
+
+## 5. 备份与落库
+
+[OK] 已备份：C:\Users\niu25\Desktop\X_Expo\X-Expohub\expohub-backend\expohub.db.bak-20261019-180726（112.5 MB，integrity_check=ok，catalog_exhibitors=31,938、catalog_products=67,357、exhibitions=12）
+- 备份文件：`C:\Users\niu25\Desktop\X_Expo\X-Expohub\expohub-backend\expohub.db.bak-20261019-180726`
+
+- 本次插入：**0** 行（已存在而被忽略：27,685 行）
+- `exhibition_exhibitors` 当前总行数：**27,685**（推算 27,685，一致）
+- 唯一约束自检：重复 (exhibition_id, catalog_exhibitor_id) 组数 = 0（应为 0）
+- 外键自检（仅本表 `PRAGMA foreign_key_check(exhibition_exhibitors)`）违规 = 0 条（应为 0）
+- 全库外键检查：共 25 条违规，均为历史遗留表（points_ledger / memberships → users），与本表无关
+- `expo_label` 为空的行：0（名录 expo_name 为空的展商为 0，预期为 0）
+
+### 5.1 落库后每场展会实际分布（与第 4 节推算对照）
+
+| 展会 ID | 标题 | 展商数 | 展品数 | 与推算一致 |
+|---:|---|---:|---:|---|
+| 4 | CMES 华机展 · 佛山 | 969 | 574 | 是 |
+| 5 | CMES 华机展 · 天津 | 1,091 | 499 | 是 |
+| 6 | CMES 华机展 · 宁波 | 1,230 | 552 | 是 |
+| 7 | CMES 华机展 · 东莞 | 3,070 | 1,529 | 是 |
+| 8 | 中国国际健康营养博览会（NHNE） | 760 | 0 | 是 |
+| 9 | 第九十四届中国国际医疗器械博览会（CMEF） | 13,306 | 36,999 | 是 |
+| 10 | 第二十八届中国国际高新技术成果交易会（高交会） | 1,810 | 4,764 | 是 |
+| 11 | CMES 华机展 · 上海 | 2,497 | 2,065 | 是 |
+| 12 | CMES 华机展 · 西安 | 860 | 412 | 是 |
+| 13 | CMES 华机展 · 苏州 | 1,404 | 949 | 是 |
+| 14 | 玉环国际机床展 | 403 | 92 | 是 |
+| 15 | TME 台州机床展 | 285 | 608 | 是 |
+
+推算 vs 实际：全部一致
+
+### 关系表全库分布（SQL）
+
+```sql
+SELECT exhibition_id, COUNT(*) FROM exhibition_exhibitors GROUP BY exhibition_id ORDER BY exhibition_id;
+```
+  exhibition_id=4   rows=969
+  exhibition_id=5   rows=1,091
+  exhibition_id=6   rows=1,230
+  exhibition_id=7   rows=3,070
+  exhibition_id=8   rows=760
+  exhibition_id=9   rows=13,306
+  exhibition_id=10  rows=1,810
+  exhibition_id=11  rows=2,497
+  exhibition_id=12  rows=860
+  exhibition_id=13  rows=1,404
+  exhibition_id=14  rows=403
+  exhibition_id=15  rows=285
+
+`SELECT COUNT(*) FROM exhibition_exhibitors;` → 27,685

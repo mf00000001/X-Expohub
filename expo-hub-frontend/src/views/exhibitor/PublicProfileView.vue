@@ -117,6 +117,7 @@ function goToBooth(id: number) {
               <p class="text-secondary mt-1" v-if="profile.company.position">{{ profile.company.position }}</p>
             </div>
             <div class="flex gap-2">
+              <!-- organizer_status 为后端保留字段名，语义是「入驻/账号审核状态」，不可改名 -->
               <StatusTag v-if="profile.company.organizer_status" :status="profile.company.organizer_status" />
               <span class="tag tag-info">{{ profile.company.role }}</span>
             </div>
@@ -199,7 +200,8 @@ function goToBooth(id: number) {
             <tr><td class="info-label">{{ t('company') }}</td><td>{{ profile.company.company_name || profile.company.company || '-' }}</td></tr>
             <tr><td class="info-label">{{ t('position') }}</td><td>{{ profile.company.position || '-' }}</td></tr>
             <tr><td class="info-label">{{ t('bio') }}</td><td>{{ profile.company.bio || '-' }}</td></tr>
-            <tr><td class="info-label">{{ t('status') }}</td><td><StatusTag :status="profile.company.organizer_status || 'active'" /></td></tr>
+            <!-- 标签沿用通用「状态」；organizer_status 即账号审核状态 -->
+            <tr><td class="info-label">{{ t('approvalStatus') }}</td><td><StatusTag :status="profile.company.organizer_status || 'active'" /></td></tr>
           </table>
         </div>
       </div>

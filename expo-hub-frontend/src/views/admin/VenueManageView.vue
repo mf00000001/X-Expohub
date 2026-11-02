@@ -81,7 +81,7 @@ onMounted(load)
 <template>
   <div class="container page-wrapper">
     <h2>🏛️ 展馆管理</h2>
-    <p class="text-secondary text-sm">主办方创建展会时可选择这些展馆（当前 {{ venues.length }} 个）</p>
+    <p class="text-secondary text-sm">平台创建展会时可选择这些展馆（当前 {{ venues.length }} 个）</p>
 
     <p v-if="message" :class="message.includes('成功') ? 'tag tag-success' : 'form-error'">{{ message }}</p>
 

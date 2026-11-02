@@ -46,7 +46,7 @@ function goToDetail(id: number) {
 
 const userStore = useUserStore()
 // 发布采购：全角色通用（后端"登录用户即可"，路由已同步放开）
-const canPublish = computed(() => ['visitor', 'buyer', 'exhibitor', 'organizer', 'admin'].includes(userStore.role))
+const canPublish = computed(() => ['visitor', 'buyer', 'exhibitor', 'admin'].includes(userStore.role))
 
 function goToCreate() {
   // buyer 走 buyer 专属创建页；其他角色走 visitor 版（两版内容一致）

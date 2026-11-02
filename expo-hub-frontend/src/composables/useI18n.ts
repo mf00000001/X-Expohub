@@ -47,6 +47,7 @@ const messages: Record<string, Record<string, string>> = {
   location: { zh: '地点', en: 'Location' },
   date: { zh: '日期', en: 'Date' },
   status: { zh: '状态', en: 'Status' },
+  approvalStatus: { zh: '审核状态', en: 'Review status' },
   role: { zh: '角色', en: 'Role' },
 }
 

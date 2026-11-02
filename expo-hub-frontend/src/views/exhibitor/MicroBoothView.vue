@@ -41,7 +41,8 @@ async function handleCreate() {
     await microBoothApi.create(createForm.value)
     showCreate.value = false
     createForm.value = { name: '', description: '', industry_domain: '' }
-    alert('🎉 微展位创建成功！\n\n已上线微展位广场，预计每天100+买家浏览。\n同类微展位平均：浏览200+ / 收藏15+ / 预约3+')
+    // 文案合规：不写任何未经证实的曝光/收藏/预约数字（广告法风险），只做事实引导
+    alert('🎉 微展位创建成功！\n\n已上线微展位广场，买家可以直接收藏、预约展会见面。\n完善展品与行业领域，曝光与匹配会更准。')
     await loadData()
   } finally { saving.value = false }
 }
@@ -216,9 +217,9 @@ const tierColor: Record<string, string> = { free: '#6b7280', regular: '#3b82f6',
           <div class="mini-stat"><strong>{{ b.favorite_count }}</strong><span>收藏</span></div>
         </div>
 
-        <!-- 升级提示 -->
+        <!-- 升级提示：只展示库里的真实浏览/收藏数，不预测“翻几倍” -->
         <div class="upgrade-nudge" v-if="(b.view_count||0) + (b.favorite_count||0) > 5 && b.membership_tier === 'free'">
-          🎯 已有{{ b.view_count }}人浏览、{{ b.favorite_count }}人收藏！升级会员解锁首页推荐位，浏览量预计翻3倍
+          🎯 已有{{ b.view_count }}人浏览、{{ b.favorite_count }}人收藏！升级会员可解锁更多展品位与展示权益
         </div>
 
         <!-- 操作按钮 -->

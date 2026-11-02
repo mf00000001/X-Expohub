@@ -28,6 +28,10 @@ import app.models.appointment  # noqa: F401
 import app.models.favorite  # noqa: F401
 # V3.1: 展馆
 import app.models.venue  # noqa: F401
+# 展商名录 / 展品库（第三方公开名录快照，只读）
+import app.models.catalog  # noqa: F401
+# 参展关系（展会 ↔ 名录展商，多对多）
+import app.models.exhibition_exhibitor  # noqa: F401
 # P2: 审计日志模型发现
 import app.core.audit  # noqa: F401
 # P3: 票务域模型发现
@@ -103,6 +107,7 @@ register_exception_handlers(app)
 # ---- 注册路由 ----
 from app.modules.identity.auth import router as auth_router
 from app.modules.expo.exhibitions import router as exhibitions_router
+from app.modules.expo.hall_of_fame import router as hall_of_fame_router
 from app.modules.expo.booths import router as booths_router
 from app.modules.exhibitor.products import router as products_router
 from app.modules.matching.procurements import router as procurements_router
@@ -124,6 +129,7 @@ from app.modules.matching.recommendations import router as recommendations_route
 from app.modules.interaction.poster import router as poster_router
 
 app.include_router(auth_router, prefix="/api")
+app.include_router(hall_of_fame_router, prefix="/api")
 app.include_router(exhibitions_router, prefix="/api")
 app.include_router(booths_router, prefix="/api")
 app.include_router(products_router, prefix="/api")
@@ -145,6 +151,8 @@ app.include_router(appointments_router, prefix="/api")
 from app.modules.expo.venues import router as venues_router
 app.include_router(venues_router, prefix="/api")
 app.include_router(recommendations_router, prefix="/api")
+from app.modules.matching.workflow import router as matching_cache_router
+app.include_router(matching_cache_router, prefix="/api")
 app.include_router(poster_router, prefix="/api")
 from app.modules.ticketing.routes import router as ticketing_router
 app.include_router(ticketing_router, prefix="/api")
@@ -154,9 +162,15 @@ from app.modules.ai.routes import router as ai_router
 app.include_router(ai_router, prefix="/api")
 from app.modules.platform.routes import router as platform_router
 app.include_router(platform_router, prefix="/api")
+# ---- 首页公开统计（无需登录；对外数字必须可验证）----
+from app.modules.analytics.public_stats import router as public_stats_router
+app.include_router(public_stats_router, prefix="/api")
 # ---- 演示监控：前端控制台回传（要求调试头，生产不可达语义 404）----
 from app.core.console_capture import router as console_capture_router
 app.include_router(console_capture_router, prefix="/api")
+# ---- 展商名录 / 展品库（第三方公开名录，只读，公开无需登录）----
+from app.modules.catalog.routes import router as catalog_router
+app.include_router(catalog_router, prefix="/api")
 
 
 @app.get("/")

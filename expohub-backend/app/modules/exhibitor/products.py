@@ -11,7 +11,7 @@
 """
 
 import json
-from typing import Optional
+from typing import Literal, Optional
 
 from fastapi import APIRouter, Depends, Query
 from pydantic import BaseModel
@@ -207,23 +207,73 @@ def get_list(
 def get_my_products(
     page: int = Query(default=1, ge=1),
     page_size: int = Query(default=20, ge=1, le=100),
+    # 搜索/筛选/排序参数均为可选，全部不传时行为与旧版完全一致（created_at desc）
+    search: Optional[str] = Query(default=None, description="模糊匹配 name / description"),
+    category: Optional[str] = Query(default=None, description="品类（精确匹配）"),
+    status: Optional[str] = Query(default=None, description="状态（精确匹配）：draft / published / offline"),
+    sort: Literal["newest", "oldest", "price_desc", "price_asc"] = Query(
+        default="newest", description="排序：最新 / 最早 / 价格高→低 / 价格低→高"
+    ),
     current_user = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
     if current_user.role not in ("exhibitor", "admin"):
         return {"success": True, "code": "OK", "message": "非展商用户无展品", "data": {"list": [], "total": 0, "page": 1, "pageSize": 20, "totalPages": 0}}
-    return _orig_get_my_products(page, page_size, current_user, db)
+    return _orig_get_my_products(
+        page, page_size, current_user, db,
+        search=search, category=category, status=status, sort=sort,
+    )
 
 def _orig_get_my_products(
     page: int, page_size: int,
     current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
+    search: Optional[str] = None,
+    category: Optional[str] = None,
+    status: Optional[str] = None,
+    sort: str = "newest",
 ):
-    """获取当前用户（展商）的展品列表"""
+    """获取当前用户（展商）的展品列表（支持搜索 / 品类 / 状态筛选 / 排序）
+
+    - 归属过滤始终生效：只返回 exhibitor_id == current_user.id 的展品
+    - search: 模糊匹配 name 与 description
+    - category / status: 精确匹配
+    - sort: newest(默认) / oldest / price_desc / price_asc
+    """
     q = db.query(Product).filter(Product.exhibitor_id == current_user.id)
 
+    # 品类：精确匹配
+    if category:
+        q = q.filter(Product.category == category)
+
+    # 状态：精确匹配（单值，多值逗号分隔暂不支持）
+    if status:
+        q = q.filter(Product.status == status)
+
+    # 关键词：模糊匹配 name 和 description（写法与公开列表一致）
+    if search and search.strip():
+        like_pattern = f"%{search.strip()}%"
+        q = q.filter(
+            or_(
+                Product.name.ilike(like_pattern),
+                Product.description.ilike(like_pattern),
+            )
+        )
+
+    # 排序：price 可能为 NULL，用 `price IS NULL` 作第一排序键把无价格的排在最后
+    # （SQLite / PostgreSQL 都支持在 ORDER BY 里用该布尔表达式，不必依赖 NULLS LAST 语法）
+    if sort == "oldest":
+        order_by = (Product.created_at.asc(),)
+    elif sort == "price_desc":
+        order_by = (Product.price.is_(None), Product.price.desc(), Product.created_at.desc())
+    elif sort == "price_asc":
+        order_by = (Product.price.is_(None), Product.price.asc(), Product.created_at.desc())
+    else:
+        # 默认（newest / 未知值兜底）：与改动前一致，按创建时间倒序
+        order_by = (Product.created_at.desc(),)
+
     total = q.count()
-    products = q.order_by(Product.created_at.desc()).offset(
+    products = q.order_by(*order_by).offset(
         (page - 1) * page_size
     ).limit(page_size).all()
 

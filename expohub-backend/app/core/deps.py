@@ -4,7 +4,6 @@ API 依赖注入
 提供：
 - get_current_user: 从 Bearer Token 中解析当前用户
 - get_current_active_user: 要求用户状态为 active
-- get_approved_organizer: 要求主办方已通过审核
 """
 
 from datetime import datetime, timezone
@@ -92,35 +91,6 @@ async def get_current_active_user(
     return current_user
 
 
-async def get_approved_organizer(
-    current_user: User = Depends(get_current_active_user),
-) -> User:
-    """要求当前用户为主办方且已通过审核
-
-    Args:
-        current_user: 当前活跃用户
-
-    Returns:
-        已通过审核的主办方用户
-
-    Raises:
-        Forbidden: 非主办方角色或未通过审核
-    """
-    if current_user.role != "organizer":
-        raise Forbidden(message="仅主办方可执行此操作")
-
-    if current_user.organizer_status == "pending":
-        raise Forbidden(message="主办方入驻申请仍在审核中，请耐心等待")
-
-    if current_user.organizer_status == "rejected":
-        raise Forbidden(message="主办方入驻申请已被驳回，请联系平台管理员")
-
-    if current_user.organizer_status != "approved":
-        raise Forbidden(message="主办方入驻申请尚未通过审核")
-
-    return current_user
-
-
 async def get_admin_user(
     current_user: User = Depends(get_current_active_user),
 ) -> User:
@@ -147,10 +117,17 @@ def require_permission(permission: Permission):
         current_user: User = Depends(require_permission(Permission.PRODUCT_CREATE))
 
     注意: 该依赖只校验"角色是否拥有该权限"，资源归属校验仍需在路由内完成
-    （例如 organizer 编辑展会时校验 exh.organizer_id == current_user.id）。
+    （例如编辑展会时校验 exh.organizer_id == current_user.id 或 admin 放行）。
     """
     async def _checker(current_user: User = Depends(get_current_active_user)) -> User:
-        if not has_permission(RoleEnum(current_user.role), permission):
+        # 防御性加固：role 来自数据库，可能存在历史残留值（如已下线的 organizer）
+        # 或其它非法值。RoleEnum(...) 解析失败时降级为“拒绝访问”（403），
+        # 而不是让 ValueError 冒泡成 500。只包住解析这一句，权限判定逻辑不变。
+        try:
+            role = RoleEnum(current_user.role)
+        except (ValueError, TypeError):
+            raise Forbidden(message="账号角色无效，请联系平台管理员")
+        if not has_permission(role, permission):
             raise Forbidden(message="权限不足，无法执行此操作")
         return current_user
     return _checker

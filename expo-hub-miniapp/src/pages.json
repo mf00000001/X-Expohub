@@ -91,48 +91,6 @@
       }
     },
     {
-      "path": "pages/organizer/dashboard",
-      "style": {
-        "navigationBarTitleText": "主办方工作台"
-      }
-    },
-    {
-      "path": "pages/organizer/exhibitions",
-      "style": {
-        "navigationBarTitleText": "展会管理"
-      }
-    },
-    {
-      "path": "pages/organizer/exhibition-edit",
-      "style": {
-        "navigationBarTitleText": "展会编辑"
-      }
-    },
-    {
-      "path": "pages/organizer/booths",
-      "style": {
-        "navigationBarTitleText": "展位管理"
-      }
-    },
-    {
-      "path": "pages/organizer/booth-edit",
-      "style": {
-        "navigationBarTitleText": "新建展位"
-      }
-    },
-    {
-      "path": "pages/organizer/registrations",
-      "style": {
-        "navigationBarTitleText": "报名管理"
-      }
-    },
-    {
-      "path": "pages/organizer/statistics",
-      "style": {
-        "navigationBarTitleText": "数据统计"
-      }
-    },
-    {
       "path": "pages/search/index",
       "style": {
         "navigationBarTitleText": "搜索"

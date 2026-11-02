@@ -51,12 +51,14 @@ const tagClass = computed(() => {
   if (status.value === 'pending') return 'tag-warning'
   return 'tag-info'
 })
+import ExpoCover from '@/components/ExpoCover.vue'
 </script>
 
 <template>
   <div class="expo-card card" @click="$emit('click', id)">
     <div class="expo-cover">
-      <img :src="coverUrl || '/placeholder-expo.jpg'" :alt="name" />
+      <!-- 无封面图时由 ExpoCover 渲染深蓝渐变兜底，不再依赖可能不存在的占位图 -->
+      <ExpoCover class="card-cover" :src="coverUrl" :title="name" ratio="16/9" />
       <span class="expo-status tag" :class="tagClass">
         {{ timelineLabel || statusLabelMap[status] || status }}
       </span>
@@ -94,7 +96,11 @@ const tagClass = computed(() => {
   overflow: hidden;
   background: var(--bg-color);
 }
-.expo-cover img {
+:deep(.card-cover) {
+  width: 100%;
+  height: 100%;
+}
+:deep(.card-cover .cover-img) {
   width: 100%;
   height: 100%;
   object-fit: cover;

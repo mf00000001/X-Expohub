@@ -30,6 +30,11 @@ http.interceptors.response.use(
       if (body.pipeline !== undefined && out && typeof out === 'object') {
         try { (out as any).pipeline = body.pipeline } catch { /* 不可写则忽略 */ }
       }
+      // 顶层个性化标记（推荐接口 personalized: true/false）同样透传，
+      // 否则会被信封解包吞掉，页面只能靠 pipeline.engine 反推（2026-10-19）
+      if (body.personalized !== undefined && out && typeof out === 'object') {
+        try { (out as any).personalized = body.personalized } catch { /* 不可写则忽略 */ }
+      }
       return out
     }
     return body

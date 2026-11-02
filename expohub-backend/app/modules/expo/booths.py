@@ -259,14 +259,10 @@ def update(
     if not booth:
         raise NotFound(message="展位不存在")
 
-    # 权限：展位拥有者 / 主办方(仅限自己展会的展位) / 管理员
+    # 权限：展位拥有者(展商) / 平台管理员（平台自营展会；主办方角色已取消）
     is_owner = booth.exhibitor_id == current_user.id
     is_admin = current_user.role == "admin"
-    is_own_organizer = False
-    if current_user.role == "organizer" and booth.exhibition_id is not None:
-        exh = db.query(Exhibition).filter(Exhibition.id == booth.exhibition_id).first()
-        is_own_organizer = exh is not None and exh.organizer_id == current_user.id
-    if not (is_owner or is_admin or is_own_organizer):
+    if not (is_owner or is_admin):
         raise Forbidden(message="无权编辑此展位")
 
     updates = data.model_dump(exclude_unset=True)
@@ -303,13 +299,8 @@ def delete(
     if not booth:
         raise NotFound(message="展位不存在")
 
-    # 权限：主办方(仅限自己展会的展位) / 管理员
-    is_admin = current_user.role == "admin"
-    is_own_organizer = False
-    if current_user.role == "organizer" and booth.exhibition_id is not None:
-        exh = db.query(Exhibition).filter(Exhibition.id == booth.exhibition_id).first()
-        is_own_organizer = exh is not None and exh.organizer_id == current_user.id
-    if not (is_admin or is_own_organizer):
+    # 权限：仅平台管理员（平台自营展会；主办方角色已取消）
+    if current_user.role != "admin":
         raise Forbidden(message="无权删除展位")
 
     db.delete(booth)
@@ -410,13 +401,13 @@ def assign(
     current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
-    """分配展位给指定展商（主办方/管理员专用）
+    """分配展位给指定展商（平台管理员专用）
 
     URL:   POST /booths/{booth_id}/assign
     请求体: { exhibitor_id: number }
     """
-    if current_user.role not in ("organizer", "admin"):
-        raise Forbidden(message="仅主办方可分配展位")
+    if current_user.role != "admin":
+        raise Forbidden(message="仅平台管理员可分配展位")
 
     booth = db.query(Booth).filter(Booth.id == booth_id).first()
     if not booth:
@@ -426,7 +417,7 @@ def assign(
     if not exhibitor:
         raise NotFound(message="展商用户不存在")
 
-    if exhibitor.role not in ("exhibitor", "admin", "organizer"):
+    if exhibitor.role not in ("exhibitor",):
         raise BadRequest(message="目标用户不是展商")
 
     booth.exhibitor_id = exhibitor.id

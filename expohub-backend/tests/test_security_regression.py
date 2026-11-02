@@ -1,7 +1,7 @@
 """ExpoHub 后端安全回归测试(角色设置)
 
 覆盖:
-1. ROLE_PERMISSIONS 权限映射表(admin 全量 / organizer 边界 / exhibitor / visitor / buyer)
+1. ROLE_PERMISSIONS 权限映射表(admin 全量 / exhibitor / visitor / buyer；organizer 已移除)
 2. has_permission 函数行为
 3. require_permission 依赖工厂(可调用性 + 权限校验逻辑)
 
@@ -24,19 +24,22 @@ class TestPermissionTable:
         missing = all_perms - admin_perms
         assert not missing, f"admin 缺失权限: {sorted(p.value for p in missing)}"
 
-    def test_organizer_exhibition_management(self):
-        org = ROLE_PERMISSIONS[RoleEnum.ORGANIZER]
-        assert Permission.EXHIBITION_EDIT in org
-        assert Permission.EXHIBITION_DELETE in org
-        assert Permission.EXHIBITION_PUBLISH in org
+    def test_organizer_role_removed(self):
+        """2026-10-19：主办方角色取消，管理员接管展会自营能力"""
+        assert "organizer" not in RoleEnum.values()
+        assert set(RoleEnum.values()) == {"visitor", "buyer", "exhibitor", "admin"}
+        assert set(ROLE_PERMISSIONS.keys()) == set(RoleEnum)
 
-    def test_organizer_no_business_write(self):
-        org = ROLE_PERMISSIONS[RoleEnum.ORGANIZER]
-        assert Permission.PRODUCT_EDIT not in org
-        assert Permission.PRODUCT_DELETE not in org
-        assert Permission.PROCUREMENT_EDIT not in org
-        assert Permission.PROCUREMENT_DELETE not in org
-        assert Permission.USER_MANAGE not in org
+    def test_admin_self_run_exhibition_capabilities(self):
+        admin = ROLE_PERMISSIONS[RoleEnum.ADMIN]
+        assert Permission.EXHIBITION_CREATE in admin
+        assert Permission.EXHIBITION_EDIT in admin
+        assert Permission.EXHIBITION_DELETE in admin
+        assert Permission.EXHIBITION_PUBLISH in admin
+        assert Permission.BOOTH_CREATE in admin
+        assert Permission.BOOTH_ASSIGN in admin
+        assert Permission.TICKET_MANAGE in admin
+        assert Permission.ONSITE_MANAGE in admin
 
     def test_exhibitor_product_management(self):
         exh = ROLE_PERMISSIONS[RoleEnum.EXHIBITOR]
@@ -62,8 +65,8 @@ class TestHasPermission:
     def test_visitor_rejected(self):
         assert not has_permission(RoleEnum.VISITOR, Permission.PRODUCT_EDIT)
 
-    def test_organizer_exhibition_edit(self):
-        assert has_permission(RoleEnum.ORGANIZER, Permission.EXHIBITION_EDIT)
+    def test_admin_exhibition_edit(self):
+        assert has_permission(RoleEnum.ADMIN, Permission.EXHIBITION_EDIT)
 
     def test_unknown_role_empty(self):
         assert has_permission("hacker", Permission.USER_VIEW) is False

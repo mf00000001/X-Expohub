@@ -17,7 +17,7 @@
 from datetime import datetime, timezone
 from typing import Optional
 
-from fastapi import APIRouter, Depends, Query
+from fastapi import BackgroundTasks, APIRouter, Depends, Query
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
@@ -143,10 +143,22 @@ def get_list(
     category: Optional[str] = Query(default=None),
     status: Optional[str] = Query(default=None),
     keyword: Optional[str] = Query(default=None),
+    exhibition_id: Optional[int] = Query(
+        default=None,
+        description="按展会过滤；详情页传该参数。此前该参数被忽略，"
+                    "导致每场展会都显示全平台采购需求（与会展对不上）",
+    ),
     db: Session = Depends(get_db),
 ):
-    """获取采购需求列表（分页 + 筛选 + 搜索）"""
+    """获取采购需求列表（分页 + 筛选 + 搜索）
+
+    exhibition_id 传入时只返回挂在该展会下的需求；该展会没有需求 → 空列表 +
+    total=0（不拿别的展会的需求凑数）。库内需求未挂展会时不会被任何展会命中。
+    """
     q = db.query(Procurement)
+
+    if exhibition_id is not None:
+        q = q.filter(Procurement.exhibition_id == exhibition_id)
 
     if category:
         q = q.filter(Procurement.category == category)
@@ -248,6 +260,7 @@ def get_by_id(
 @router.post("")
 def create(
     data: ProcurementCreate,
+    background: BackgroundTasks,
     current_user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db),
 ):
@@ -273,17 +286,32 @@ def create(
         earn_points(current_user.id, "earn_procurement", "procurement", p.id, db)
     except: pass
 
-    # V3.5: 通知匹配展商（匹配工作流逐展商打分，达到阈值的 Top5）
-    try:
-        from app.models.notification import notify
-        from app.modules.matching.workflow import notify_exhibitor_matches
-        for hit in notify_exhibitor_matches(db, p):
-            notify(db, hit["user_id"], "match",
-                   f"🔔 新采购需求匹配（{int(hit['score'])}%）：{p.title[:30]}",
-                   f"品类：{p.category}，{hit['reason']}",
-                   f"/procurements/{p.id}")
-    except Exception:
-        pass
+    # V3.5: 通知匹配展商——改为后台任务。
+    # 原因：撮合要遍历名录里的全部展商/展品，实测同步执行 6.5 秒，
+    # 前端只显示「发布中…」，用户以为发布失败。这里立即返回，撮合在后台跑。
+    def _notify_matches(procurement_id: int, title: str, category: str) -> None:
+        from app.models.base import SessionLocal
+        local_db = SessionLocal()
+        try:
+            from app.models.notification import notify
+            from app.models.procurement import Procurement
+            from app.modules.matching.workflow import notify_exhibitor_matches
+
+            procurement = local_db.query(Procurement).filter(Procurement.id == procurement_id).first()
+            if not procurement:
+                return
+            for hit in notify_exhibitor_matches(local_db, procurement):
+                notify(local_db, hit["user_id"], "match",
+                       f"🔔 新采购需求匹配（{int(hit['score'])}%）：{title[:30]}",
+                       f"品类：{category}，{hit['reason']}",
+                       f"/procurements/{procurement_id}")
+        except Exception:
+            # 后台任务失败不影响已创建的采购需求
+            pass
+        finally:
+            local_db.close()
+
+    background.add_task(_notify_matches, p.id, p.title, p.category or "")
 
     return {
         "success": True,

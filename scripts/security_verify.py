@@ -3,7 +3,10 @@
 运行: python scripts/security_verify.py
 要求: 后端已启动于 http://localhost:8002, 工作目录为仓库根(expohub-backend 同级)
 
-覆盖: 四角色登录 / 匿名接口 / organizer 越权 / pending 主办方限制 / book 角色限制 / 报价接口鉴权 / banned refresh
+覆盖: 四角色登录 / 匿名接口 / 普通用户越权(展会/展品) / 管理员专属接口 / book 角色限制 / 报价接口鉴权 / banned refresh
+
+2026-10-19：主办方(organizer)角色已取消，原「organizer 越权」用例改为「展商越权」，
+原「pending 主办方」用例改为「展商不能审批展会/看后台统计」。
 """
 import json
 import sqlite3
@@ -42,7 +45,7 @@ def main():
     # 1. 四角色登录
     toks = {}
     for u, p in [("admin", "admin123"), ("exhibitor_huawei", "exh123"),
-                 ("buyer_li", "buyer123"), ("organizer_canton", "org123")]:
+                 ("buyer_li", "buyer123"), ("visitor_chen", "visitor123")]:
         st, j = req("POST", "/api/auth/login", body={"username": u, "password": p})
         toks[u] = j["data"]["access_token"] if st == 200 else None
         check(f"login:{u}", st == 200, f"http={st}")
@@ -51,35 +54,35 @@ def main():
     st, _ = req("GET", "/api/admin/exhibitions/1/registrations")
     check("anon:registrations", st in (401, 403), f"http={st}")
 
-    # 3. organizer 改他人展品(P0-2) -> 403
-    st, j = req("GET", "/api/products?exhibitor_id=5")
+    # 3. 展商改他人展品 -> 403（原 organizer 越权用例）
+    st, j = req("GET", "/api/products?exhibitor_id=6")
     lst = j.get("data", {}).get("list") or j.get("data", {}).get("items") or []
     if lst:
-        st, _ = req("PUT", f"/api/products/{lst[0]['id']}", token=toks["organizer_canton"], body={"name": "hack"})
-        check("organizer:edit-others-product", st == 403, f"http={st}")
+        st, _ = req("PUT", f"/api/products/{lst[0]['id']}", token=toks["exhibitor_huawei"], body={"name": "hack"})
+        check("exhibitor:edit-others-product", st == 403, f"http={st}")
     else:
-        check("organizer:edit-others-product", False, "no product found")
+        check("exhibitor:edit-others-product", False, "no product found")
 
-    # 3b. publish 归属(P0-2 修复回归): 主办方发布他人展会 -> 403
+    # 3b. 展会创建/发布只归平台管理员：展商 -> 403
     st, j = req("GET", "/api/exhibitions?page_size=50")
     exhs = j.get("data", {}).get("list") or j.get("data", {}).get("items") or []
-    other_exh = next((e for e in exhs if e.get("organizer_id") != 2 and e.get("status") != "cancelled"), None)
-    if other_exh:
-        st, _ = req("POST", f"/api/exhibitions/{other_exh['id']}/publish", token=toks["organizer_canton"])
-        check("organizer:publish-others-exhibition", st == 403, f"http={st} (exh={other_exh['id']},owner={other_exh.get('organizer_id')})")
+    if exhs:
+        st, _ = req("POST", f"/api/exhibitions/{exhs[0]['id']}/publish", token=toks["exhibitor_huawei"])
+        check("exhibitor:publish-exhibition", st == 403, f"http={st}")
+        st, _ = req("POST", f"/api/exhibitions/{exhs[0]['id']}/approve", token=toks["exhibitor_huawei"], body={"approved": True})
+        check("exhibitor:approve-exhibition", st == 403, f"http={st}")
     else:
-        check("organizer:publish-others-exhibition", False, "no other-organizer exhibition found")
+        check("exhibitor:publish-exhibition", False, "no exhibition found")
 
-    # 4. pending 主办方(P0-2b) -> 403
+    # 4. 普通用户不能看后台统计；注册接口已拒绝 organizer 角色
+    st, _ = req("GET", "/api/admin/stats", token=toks["exhibitor_huawei"])
+    check("exhibitor:admin-stats", st == 403, f"http={st}")
     st, j = req("POST", "/api/auth/register", body={
         "username": f"org_{TS}", "email": f"org_{TS}@t.com", "password": "tmp123456",
-        "role": "organizer", "company_name": "临时", "business_license": "https://x/l.jpg"})
-    ptok = j["data"]["access_token"]
-    porg = j["data"]["user"]["id"]
-    st, _ = req("GET", "/api/admin/stats", token=ptok)
-    check("pending-organizer:admin-stats", st == 403, f"http={st}")
-    st, _ = req("POST", "/api/exhibitions/1/approve", token=ptok, body={"approved": True})
-    check("pending-organizer:approve", st == 403, f"http={st}")
+        "role": "organizer", "company_name": "临时", "business_license": "https://x/l.jpg",
+        "privacy_agreed": True})
+    check("register:organizer-rejected", st in (400, 422), f"http={st}")
+    porg = None
 
     # 5. buyer 预订展位(P1) -> 403; 匿名匹配(P1) -> 401
     st, j = req("GET", "/api/booths?status=available&page_size=5")
@@ -94,7 +97,8 @@ def main():
 
     # 6. banned refresh(P1) -> 401
     st, j = req("POST", "/api/auth/register", body={
-        "username": f"by_{TS}", "email": f"by_{TS}@t.com", "password": "tmp123456", "role": "buyer"})
+        "username": f"by_{TS}", "email": f"by_{TS}@t.com", "password": "tmp123456", "role": "buyer",
+        "privacy_agreed": True})
     bid2 = j["data"]["user"]["id"]
     bref = j["data"]["refresh_token"]
     conn = sqlite3.connect(DB)
@@ -106,7 +110,7 @@ def main():
 
     # 清理临时用户
     conn = sqlite3.connect(DB)
-    conn.execute("DELETE FROM users WHERE id IN (?, ?)", (porg, bid2))
+    conn.execute("DELETE FROM users WHERE id=?", (bid2,))
     conn.commit()
     conn.close()
 

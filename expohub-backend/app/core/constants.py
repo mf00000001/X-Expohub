@@ -10,16 +10,23 @@ from enum import Enum
 
 
 class RoleEnum(str, Enum):
-    """用户角色枚举"""
-    VISITOR = "visitor"         # 游客（浏览展会、搜索展商）
+    """用户角色枚举（两方撮合模型：展商 ↔ 采购商，展会由平台自营）
+
+    2026-10-19 决策：取消 organizer（会展举办方）角色，展会创建与运营能力收归 admin。
+    迁移脚本 scripts/migrate_drop_organizer.py 会把存量 organizer 账号升级为 admin。
+    """
+    VISITOR = "visitor"         # 游客/观众（浏览展会、搜索展商）
     BUYER = "buyer"             # 买家（发布采购需求、在线沟通）
     EXHIBITOR = "exhibitor"     # 展商（卖方）
-    ORGANIZER = "organizer"     # 主办方（展会组织者）
-    ADMIN = "admin"             # 平台管理员（审核主办方）
+    ADMIN = "admin"             # 平台管理员（含展会自营：创建展会/展位/票务/核销）
 
     @classmethod
     def values(cls) -> list[str]:
         return [m.value for m in cls]
+
+
+# 平台自营展会的展示名（2026-10-19 取消主办方角色后，展会统一由平台运营）
+PLATFORM_OPERATOR_NAME = "平台运营"
 
 
 class UserStatusEnum(str, Enum):
@@ -28,13 +35,6 @@ class UserStatusEnum(str, Enum):
     ACTIVE = "active"         # 正常
     DISABLED = "disabled"     # 禁用
     BANNED = "banned"         # 封禁
-
-
-class OrganizerStatusEnum(str, Enum):
-    """主办方审核状态枚举（仅 organizer 角色有效）"""
-    PENDING = "pending"       # 待审核
-    APPROVED = "approved"     # 通过
-    REJECTED = "rejected"     # 驳回
 
 
 class ExhibitionStatusEnum(str, Enum):

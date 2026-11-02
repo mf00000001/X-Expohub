@@ -129,7 +129,7 @@ async function saveProfile() {
             <button v-if="profile?.role === 'buyer'" class="btn btn-outline" @click="router.push('/buyer/dashboard')">
               买家工作台
             </button>
-            <button v-if="profile?.role === 'organizer' || profile?.role === 'admin'" class="btn btn-outline" @click="router.push('/organizer/dashboard')">
+            <button v-if="profile?.role === 'admin'" class="btn btn-outline" @click="router.push('/admin/dashboard')">
               管理后台
             </button>
             <!-- 我的报名 / 我的采购：全角色通用入口 -->
@@ -142,8 +142,8 @@ async function saveProfile() {
             <!-- P3-P6 新功能入口 -->
   <button class="btn btn-outline" @click="router.push('/tickets/my')">🎫 我的票务</button>
   <button class="btn btn-outline" @click="router.push('/ai/lab')">🤖 AI 实验室</button>
-  <button v-if="profile?.role === 'organizer' || profile?.role === 'admin'" class="btn btn-outline" @click="router.push('/organizer/ticket-types')">🎟️ 票种管理</button>
-  <button v-if="profile?.role === 'organizer' || profile?.role === 'admin'" class="btn btn-outline" @click="router.push('/organizer/onsite')">🎯 现场核销台</button>
+  <button v-if="profile?.role === 'admin'" class="btn btn-outline" @click="router.push('/admin/ticket-types')">🎟️ 票种管理</button>
+  <button v-if="profile?.role === 'admin'" class="btn btn-outline" @click="router.push('/admin/onsite')">🎯 现场核销台</button>
   <button v-if="profile?.role === 'admin'" class="btn btn-outline" @click="router.push('/admin/platform')">🛠️ 平台运营</button>
   <button v-if="profile?.role === 'admin'" class="btn btn-outline" @click="router.push('/admin/venues')">🏛️ 展馆管理</button>
   <button class="btn btn-outline" @click="router.push('/settings')">

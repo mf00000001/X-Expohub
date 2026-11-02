@@ -17,12 +17,21 @@ const routes: RouteRecordRaw[] = [
   { path: '/booths/:id', name: 'booth-detail', component: () => import('@/views/booth/BoothDetailView.vue'), meta: { title: '展位详情', requiresAuth: false, showFooter: true } },
   { path: '/products', name: 'product-list', component: () => import('@/views/product/ProductListView.vue'), meta: { title: '展品列表', requiresAuth: false, showFooter: true } },
   { path: '/products/:id', name: 'product-detail', component: () => import('@/views/product/ProductDetailView.vue'), meta: { title: '展品详情', requiresAuth: false, showFooter: true } },
+  // 展商名录 / 展品库（公开只读目录，数据来自 /catalog/*，无需登录）
+  // 展商名录：对齐参考站 e.chtf.com/#/exhibitor 的信息架构（搜索 + 行业/城市/展会筛选 + 分页）
+  { path: '/catalog/exhibitors', name: 'catalog-exhibitors', component: () => import('@/views/catalog/ExhibitorCatalogView.vue'), meta: { title: '展商名录', requiresAuth: false, showFooter: true } },
+  { path: '/catalog/exhibitors/:id', name: 'catalog-exhibitor-detail', component: () => import('@/views/catalog/ExhibitorCatalogDetailView.vue'), meta: { title: '展商详情', requiresAuth: false, showFooter: true } },
+  { path: '/catalog/products', name: 'catalog-products', component: () => import('@/views/catalog/ProductCatalogView.vue'), meta: { title: '展品库', requiresAuth: false, showFooter: true } },
+  { path: '/catalog/products/:id', name: 'catalog-product-detail', component: () => import('@/views/catalog/ProductCatalogDetailView.vue'), meta: { title: '展品详情', requiresAuth: false, showFooter: true } },
   { path: '/procurements', name: 'procurement-list', component: () => import('@/views/procurement/ProcurementListView.vue'), meta: { title: '采购需求列表', requiresAuth: false, showFooter: true } },
   { path: '/procurements/:id', name: 'procurement-detail', component: () => import('@/views/procurement/ProcurementDetailView.vue'), meta: { title: '采购需求详情', requiresAuth: false, showFooter: true } },
   { path: '/search', name: 'search', component: () => import('@/views/search/SearchView.vue'), meta: { title: '搜索', requiresAuth: false, showFooter: true } },
   // V2.3: 微展位广场（公开）
   { path: '/micro-booths', name: 'micro-booth-list', component: () => import('@/views/MicroBoothPublicView.vue'), meta: { title: '微展位广场', requiresAuth: false, showFooter: true } },
   { path: '/micro-booths/:id', name: 'micro-booth-detail', component: () => import('@/views/MicroBoothPublicView.vue'), meta: { title: '微展位详情', requiresAuth: false, showFooter: true } },
+  // 2026-10-19 合规：法律文本公开页（注册页勾选同意后跳转阅读；不设 roles，避免已登录用户被重定向）
+  { path: '/privacy', name: 'privacy-policy', component: () => import('@/views/legal/PrivacyPolicyView.vue'), meta: { title: '隐私政策', requiresAuth: false, showFooter: true } },
+  { path: '/terms', name: 'user-agreement', component: () => import('@/views/legal/UserAgreementView.vue'), meta: { title: '用户协议', requiresAuth: false, showFooter: true } },
 
   // ==================== 需登录（不限角色） ====================
   { path: '/messages', name: 'messages', component: () => import('@/views/message/MessageListView.vue'), meta: { title: '消息列表', requiresAuth: false, showFooter: true } },
@@ -34,16 +43,16 @@ const routes: RouteRecordRaw[] = [
   { path: '/notifications', name: 'notifications', component: () => import('@/views/NotificationListView.vue'), meta: { title: '通知', requiresAuth: true, showFooter: true } },
 
   // ==================== 观众 (visitor) ====================
-  { path: '/visitor/registrations', name: 'visitor-registrations', component: () => import('@/views/visitor/MyRegistrationsView.vue'), meta: { title: '我的登记', requiresAuth: true, roles: ['visitor','buyer','exhibitor','organizer','admin'], showFooter: true } },
+  { path: '/visitor/registrations', name: 'visitor-registrations', component: () => import('@/views/visitor/MyRegistrationsView.vue'), meta: { title: '我的登记', requiresAuth: true, roles: ['visitor','buyer','exhibitor','admin'], showFooter: true } },
   // 我的采购 / 发布采购：全角色通用（后端 POST /procurements 明确"登录用户即可"）
-  { path: '/visitor/procurements', name: 'visitor-procurements', component: () => import('@/views/visitor/MyProcurementsView.vue'), meta: { title: '我的采购', requiresAuth: true, roles: ['visitor','buyer','exhibitor','organizer','admin'], showFooter: true } },
-  { path: '/visitor/procurements/create', name: 'visitor-procurement-create', component: () => import('@/views/visitor/ProcurementCreateView.vue'), meta: { title: '发布采购需求', requiresAuth: true, roles: ['visitor','buyer','exhibitor','organizer','admin'], showFooter: false } },
+  { path: '/visitor/procurements', name: 'visitor-procurements', component: () => import('@/views/visitor/MyProcurementsView.vue'), meta: { title: '我的采购', requiresAuth: true, roles: ['visitor','buyer','exhibitor','admin'], showFooter: true } },
+  { path: '/visitor/procurements/create', name: 'visitor-procurement-create', component: () => import('@/views/visitor/ProcurementCreateView.vue'), meta: { title: '发布采购需求', requiresAuth: true, roles: ['visitor','buyer','exhibitor','admin'], showFooter: false } },
 
   // ==================== 买家 (buyer) ====================
   { path: '/buyer/dashboard', name: 'buyer-dashboard', component: () => import('@/views/buyer/DashboardView.vue'), meta: { title: '买家工作台', requiresAuth: true, roles: ['buyer'], showFooter: true } },
-  { path: '/buyer/registrations', name: 'buyer-registrations', component: () => import('@/views/buyer/MyRegistrationsView.vue'), meta: { title: '我的报名', requiresAuth: true, roles: ['visitor','buyer','exhibitor','organizer','admin'], showFooter: true } },
-  { path: '/buyer/procurements', name: 'buyer-procurements', component: () => import('@/views/buyer/MyProcurementsView.vue'), meta: { title: '我的采购', requiresAuth: true, roles: ['visitor','buyer','exhibitor','organizer','admin'], showFooter: true } },
-  { path: '/buyer/procurements/create', name: 'buyer-procurement-create', component: () => import('@/views/buyer/ProcurementCreateView.vue'), meta: { title: '发布采购需求', requiresAuth: true, roles: ['visitor','buyer','exhibitor','organizer','admin'], showFooter: false } },
+  { path: '/buyer/registrations', name: 'buyer-registrations', component: () => import('@/views/buyer/MyRegistrationsView.vue'), meta: { title: '我的报名', requiresAuth: true, roles: ['visitor','buyer','exhibitor','admin'], showFooter: true } },
+  { path: '/buyer/procurements', name: 'buyer-procurements', component: () => import('@/views/buyer/MyProcurementsView.vue'), meta: { title: '我的采购', requiresAuth: true, roles: ['visitor','buyer','exhibitor','admin'], showFooter: true } },
+  { path: '/buyer/procurements/create', name: 'buyer-procurement-create', component: () => import('@/views/buyer/ProcurementCreateView.vue'), meta: { title: '发布采购需求', requiresAuth: true, roles: ['visitor','buyer','exhibitor','admin'], showFooter: false } },
 
   // ==================== 参展商 (exhibitor) — 具体路由必须在 :id 通配之前 ====================
   { path: '/exhibitor/dashboard', name: 'exhibitor-dashboard', component: () => import('@/views/exhibitor/DashboardView.vue'), meta: { title: '参展商工作台', requiresAuth: true, roles: ['exhibitor'], showFooter: true } },
@@ -58,26 +67,24 @@ const routes: RouteRecordRaw[] = [
   // 展商公开主页 — :id 通配必须放在最后
   { path: '/exhibitor/:id', name: 'exhibitor-profile', component: () => import('@/views/exhibitor/PublicProfileView.vue'), meta: { title: '展商主页', requiresAuth: false, showFooter: true } },
 
-  // ==================== 主办方 (organizer) ====================
-  { path: '/organizer/dashboard', name: 'organizer-dashboard', component: () => import('@/views/organizer/DashboardView.vue'), meta: { title: '主办方工作台', requiresAuth: true, roles: ['organizer','admin'], showFooter: true } },
-  // V3.3: 主办方选馆(汇总对比展馆)
-  { path: '/organizer/venues', name: 'organizer-venue-select', component: () => import('@/views/organizer/VenueSelectView.vue'), meta: { title: '展馆选择', requiresAuth: true, roles: ['organizer','admin'], showFooter: true } },
-  { path: '/organizer/exhibitions', name: 'organizer-exhibitions', component: () => import('@/views/organizer/ExhibitionListView.vue'), meta: { title: '展会管理', requiresAuth: true, roles: ['organizer','admin'], showFooter: true } },
-  { path: '/organizer/exhibitions/create', name: 'organizer-exhibition-create', component: () => import('@/views/organizer/ExhibitionCreateView.vue'), meta: { title: '创建展会', requiresAuth: true, roles: ['organizer','admin'], showFooter: false } },
-  { path: '/organizer/exhibitions/:id/edit', name: 'organizer-exhibition-edit', component: () => import('@/views/organizer/ExhibitionEditView.vue'), meta: { title: '编辑展会', requiresAuth: true, roles: ['organizer','admin'], showFooter: false } },
-  { path: '/organizer/exhibitions/:id/booths', name: 'organizer-booth-layout', component: () => import('@/views/organizer/BoothLayoutView.vue'), meta: { title: '展位布局', requiresAuth: true, roles: ['organizer','admin'], showFooter: true } },
-  { path: '/organizer/exhibitions/:id/booths/create', name: 'organizer-booth-create', component: () => import('@/views/organizer/BoothCreateView.vue'), meta: { title: '创建展位', requiresAuth: true, roles: ['organizer','admin'], showFooter: false } },
-  { path: '/organizer/exhibitions/:id/booths/assign', name: 'organizer-booth-assign', component: () => import('@/views/organizer/BoothAssignView.vue'), meta: { title: '分配展位', requiresAuth: true, roles: ['organizer','admin'], showFooter: false } },
-  { path: '/organizer/exhibitions/:id/registrations', name: 'organizer-registrations', component: () => import('@/views/organizer/RegistrationsView.vue'), meta: { title: '观展登记', requiresAuth: true, roles: ['organizer','admin'], showFooter: true } },
-  { path: '/organizer/statistics', name: 'organizer-statistics', component: () => import('@/views/organizer/DashboardView.vue'), meta: { title: '数据统计', requiresAuth: true, roles: ['organizer','admin'], showFooter: true } },
-  { path: '/organizer/users', name: 'organizer-users', component: () => import('@/views/organizer/UserManagementView.vue'), meta: { title: '用户管理', requiresAuth: true, roles: ['organizer','admin'], showFooter: true } },
+  // ==================== 平台自营展会管理（原主办方，2026-10-19 角色取消后归 admin） ====================
+  { path: '/admin/dashboard', name: 'admin-dashboard', component: () => import('@/views/expo-admin/DashboardView.vue'), meta: { title: '平台运营工作台', requiresAuth: true, roles: ['admin'], showFooter: true } },
+  { path: '/admin/venue-select', name: 'admin-venue-select', component: () => import('@/views/expo-admin/VenueSelectView.vue'), meta: { title: '展馆选择', requiresAuth: true, roles: ['admin'], showFooter: true } },
+  { path: '/admin/exhibitions', name: 'admin-exhibitions', component: () => import('@/views/expo-admin/ExhibitionListView.vue'), meta: { title: '展会管理', requiresAuth: true, roles: ['admin'], showFooter: true } },
+  { path: '/admin/exhibitions/create', name: 'admin-exhibition-create', component: () => import('@/views/expo-admin/ExhibitionCreateView.vue'), meta: { title: '创建展会', requiresAuth: true, roles: ['admin'], showFooter: false } },
+  { path: '/admin/exhibitions/:id/edit', name: 'admin-exhibition-edit', component: () => import('@/views/expo-admin/ExhibitionEditView.vue'), meta: { title: '编辑展会', requiresAuth: true, roles: ['admin'], showFooter: false } },
+  { path: '/admin/exhibitions/:id/booths', name: 'admin-booth-layout', component: () => import('@/views/expo-admin/BoothLayoutView.vue'), meta: { title: '展位布局', requiresAuth: true, roles: ['admin'], showFooter: true } },
+  { path: '/admin/exhibitions/:id/booths/create', name: 'admin-booth-create', component: () => import('@/views/expo-admin/BoothCreateView.vue'), meta: { title: '创建展位', requiresAuth: true, roles: ['admin'], showFooter: false } },
+  { path: '/admin/exhibitions/:id/booths/assign', name: 'admin-booth-assign', component: () => import('@/views/expo-admin/BoothAssignView.vue'), meta: { title: '分配展位', requiresAuth: true, roles: ['admin'], showFooter: false } },
+  { path: '/admin/exhibitions/:id/registrations', name: 'admin-registrations', component: () => import('@/views/expo-admin/RegistrationsView.vue'), meta: { title: '观展登记', requiresAuth: true, roles: ['admin'], showFooter: true } },
+  { path: '/admin/users', name: 'admin-users', component: () => import('@/views/expo-admin/UserManagementView.vue'), meta: { title: '用户管理', requiresAuth: true, roles: ['admin'], showFooter: true } },
   { path: '/admin/boss', name: 'boss-dashboard', component: () => import('@/views/admin/BossDashboard.vue'), meta: { title: 'Boss看板', requiresAuth: true, roles: ['admin'], showFooter: true } },
 
   // ==================== P3-P6 新功能（票务/现场/AI/平台） ====================
   { path: '/exhibitions/:id/tickets', name: 'ticket-shop', component: () => import('@/views/ticketing/TicketShopView.vue'), meta: { title: '购票', requiresAuth: false, showFooter: true } },
   { path: '/tickets/my', name: 'my-tickets', component: () => import('@/views/ticketing/MyTicketsView.vue'), meta: { title: '我的票务', requiresAuth: true, showFooter: true } },
-  { path: '/organizer/ticket-types', name: 'organizer-ticket-types', component: () => import('@/views/organizer/TicketTypesView.vue'), meta: { title: '票种管理', requiresAuth: true, roles: ['organizer','admin'], showFooter: false } },
-  { path: '/organizer/onsite', name: 'organizer-onsite', component: () => import('@/views/organizer/OnsiteConsoleView.vue'), meta: { title: '现场核销台', requiresAuth: true, roles: ['organizer','admin'], showFooter: false } },
+  { path: '/admin/ticket-types', name: 'admin-ticket-types', component: () => import('@/views/expo-admin/TicketTypesView.vue'), meta: { title: '票种管理', requiresAuth: true, roles: ['admin'], showFooter: false } },
+  { path: '/admin/onsite', name: 'admin-onsite', component: () => import('@/views/expo-admin/OnsiteConsoleView.vue'), meta: { title: '现场核销台', requiresAuth: true, roles: ['admin'], showFooter: false } },
   { path: '/admin/venues', name: 'admin-venues', component: () => import('@/views/admin/VenueManageView.vue'), meta: { title: '展馆管理', requiresAuth: true, roles: ['admin'], showFooter: false } },
   { path: '/admin/platform', name: 'admin-platform', component: () => import('@/views/admin/PlatformAdminView.vue'), meta: { title: '平台运营', requiresAuth: true, roles: ['admin'], showFooter: false } },
   { path: '/ai/lab', name: 'ai-lab', component: () => import('@/views/ai/AiLabView.vue'), meta: { title: 'AI 实验室', requiresAuth: true, showFooter: true } },
@@ -88,7 +95,12 @@ const routes: RouteRecordRaw[] = [
 
 const router = createRouter({ history: createWebHistory(), routes, scrollBehavior() { return { top: 0 } } })
 
-router.beforeEach((to, _from, next) => {
+// 冷启动/刷新时 token 还���、但 Pinia 里的 profile 尚未拉取，
+// 此时 userStore.role 是空字符串，若直接按角色判定会把已登录用户踢回首页。
+// 这里用一个模块级 Promise 保证并发导航只补拉一次资料。
+let profilePromise: Promise<unknown> | null = null
+
+router.beforeEach(async (to, _from, next) => {
   document.title = `${to.meta.title || 'ExpoHub'} - ExpoHub`
   const userStore = useUserStore()
   const loggedIn = isLoggedIn() || userStore.isLoggedIn
@@ -103,6 +115,14 @@ router.beforeEach((to, _from, next) => {
   }
 
   if (!loggedIn) { next(`/login?redirect=${encodeURIComponent(to.fullPath)}`); return }
+
+  // 已登录但角色为空（刷新/直接输入地址）→ 先补拉一次资料再判角色
+  if (!userStore.role) {
+    if (!profilePromise) {
+      profilePromise = userStore.fetchProfile().catch(() => null).finally(() => { profilePromise = null })
+    }
+    await profilePromise
+  }
 
   const routeRoles = to.meta.roles as string[] | undefined
   if (routeRoles && routeRoles.length > 0) {

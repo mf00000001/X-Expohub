@@ -34,7 +34,7 @@ def overview(
     db: Session = Depends(get_db),
 ):
     """展商数据总览：今日 & 总计"""
-    if current_user.role not in ("exhibitor", "admin", "organizer"):
+    if current_user.role not in ("exhibitor", "admin"):
         raise Forbidden(message="无权访问")
 
     uid = current_user.id
@@ -119,7 +119,7 @@ def trend(
     db: Session = Depends(get_db),
 ):
     """浏览量趋势（按天）"""
-    if current_user.role not in ("exhibitor", "admin", "organizer"):
+    if current_user.role not in ("exhibitor", "admin"):
         raise Forbidden(message="无权访问")
 
     uid = current_user.id
@@ -146,7 +146,7 @@ def top_products(
     db: Session = Depends(get_db),
 ):
     """展商热门展品 Top N（按浏览量排序，暂用展品创建时间排序作为代理）"""
-    if current_user.role not in ("exhibitor", "admin", "organizer"):
+    if current_user.role not in ("exhibitor", "admin"):
         raise Forbidden(message="无权访问")
 
     products = db.query(Product).filter(

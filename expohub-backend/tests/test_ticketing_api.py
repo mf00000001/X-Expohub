@@ -62,7 +62,7 @@ def _auth(user: User) -> dict:
 def ctx():
     with TestClient(app) as client:
         db = SessionLocal()
-        org = _seed_user(db, "org_ticket", "organizer")
+        org = _seed_user(db, "org_ticket", "admin")
         buyer = _seed_user(db, "buyer_ticket", "buyer")
         visitor = _seed_user(db, "visitor_ticket", "visitor")
         payer = _seed_user(db, "payer_ticket", "buyer")
@@ -97,7 +97,7 @@ def ctx():
 
 
 class TestTicketType:
-    def test_organizer_creates_additional_ticket_type(self, ctx):
+    def test_admin_creates_additional_ticket_type(self, ctx):
         r = ctx["client"].post("/api/ticketing/ticket-types", json={
             "exhibition_id": ctx["expo_id"], "name": "VIP票", "price_cents": 29900, "quota": 5,
         }, headers=ctx["org"])

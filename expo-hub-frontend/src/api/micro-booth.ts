@@ -14,6 +14,16 @@ export interface MicroBoothDetail {
 
 export const microBoothApi = {
   getList(params?: any) { return http.get('/micro-booths', { params }) },
+  /** 广场分类/展会分面（真实数据统计；失败返回空，前端回退到不显示标签） */
+  async getFacets(): Promise<{ industries: { value: string; count: number }[]; exhibitions: { id: number; name: string; count: number }[] }> {
+    try {
+      const res: any = await http.get('/micro-booths/facets')
+      const data = res?.data || res || {}
+      return { industries: data.industries || [], exhibitions: data.exhibitions || [] }
+    } catch {
+      return { industries: [], exhibitions: [] }
+    }
+  },
   getMy() { return http.get('/micro-booths/my') as Promise<MicroBooth[]> },
   getDetail(id: number) { return http.get(`/micro-booths/${id}`) as Promise<MicroBoothDetail> },
   create(data: any) { return http.post('/micro-booths', data) as Promise<{ data: MicroBooth }> },

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import http from '@/api/index'
 import SearchBar from '@/components/SearchBar.vue'
@@ -27,6 +27,19 @@ onMounted(() => {
   const c = route.query.cat as string
   if (c) { activeCat.value = c; doSearch() }
   else if (q) { query.value = q; doSearch() }
+})
+
+// 同一页面二次搜索：q 变化时重新搜索（页面已挂载时 onMounted 不会再跑）
+// 不加 immediate：首屏由 onMounted 处理，避免重复请求
+watch(() => route.query.q, (raw) => {
+  const q = typeof raw === 'string' ? raw : ''
+  // q 为空时不请求（清空关键词/回到探索页），保持引导态
+  if (!q) return
+  // 结果已经是这个关键词（例如刚由 onMounted 处理过）时不重复请求
+  if (q === query.value && hasSearched.value) return
+  query.value = q
+  page.value = 1
+  doSearch()
 })
 
 const categories = [

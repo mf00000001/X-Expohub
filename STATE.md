@@ -1,16 +1,37 @@
 # ExpoHub — 展会撮合平台 · 状态锚点
 
-> **最后更新**：2026-09-21 ｜ **状态**：进行中（已交付桌面启动器）
+> **最后更新**：2026-10-19 ｜ **状态**：进行中（已收缩为两方撮合 · 平台自营展会）
 > **规则**：只写代码和文档里**读不出来**的东西。上限 150 行，超了就修剪——细节流到 `docs/`，这里只留指针。
 
 ---
 
 ## 一句话目标
 展前撮合平台：**帮犹豫的展商免费试水 → 看到数据 → 参加线下展会**。
+（2026-10-19 起为**两方撮合**：展商 ↔ 采购商；**会展举办方角色取消**，展会由平台自营，观众保留。）
 当前工程目标：在 X-Expohub 的功能全集之上，吸收 `exhibition-saas` 的架构范式，**在功能零回退的前提下**重构为多租户、可商业化、AI 原生的完整展会 SaaS。
 
 ## 当前阶段
 **整合重构 P0–P7 已全部跑完**（2026-09-02 单日完成），之后转入功能补齐与演示打磨。
+**2026-10-19：完成「去掉主办方」重构**（详见下方「⚠️ 决策变更」）。
+
+## ⚠️ 决策变更（2026-10-19，用户指示，覆盖原方案）
+
+**去掉会展举办方（organizer），收缩为两方撮合**，展会改「平台自营」：
+
+- 角色枚举收敛为 4 个：`visitor / buyer / exhibitor / admin`；`organizer` 已从 `RoleEnum` 移除
+- 展会创建/发布/审批、展位创建/分配、报名名单与导出、票种、现场核销、统计 —— 全部归 `admin`
+- 前端 `/organizer/*` 路由整体迁到 `/admin/*`，视图目录 `views/organizer/` → `views/expo-admin/`
+- 存量数据迁移：`scripts/migrate_drop_organizer.py`（organizer 账号 → admin；展会归属归一到管理员；补齐 `users.region` 列）
+- 被删除的死代码：`utils/role.ts`（旧 boss/organizer 映射，无人引用）、`components/NavBar.vue`（从未挂载）
+- `exhibitions.organizer_id / organizer_name`、`users.organizer_status` 作为**历史字段名保留**（SQLite 改列风险大），语义已变：
+  - `organizer_id` = 创建人（平台运营账号）；`organizer_name` = 固定「平台运营」
+  - `organizer_status` = 入驻/账号审核状态（展商审核仍在用）
+- 顺带修掉两个真实缺陷：`users.region` 缺列导致 `GET /exhibitions/{id}/exhibitors` 必 500；
+  `DELETE /exhibitions/{id}` 撞外键必 500（现按「展位/报名/评价/预约随展删，展品与采购解绑保留，有已支付订单则拒绝」处理）
+
+**数据抓取（沈建议 2）**：已确认要「后续新增脚本抓取」，本次交付骨架
+`scripts/scrape/expo_scraper.py`（默认不联网、不落库，走平台导入接口），方案与红线见
+`docs/2026-10-19-数据抓取方案与合规边界.md`。**真站适配器待来源清单确认后再写。**
 
 ## 上次停在哪
 **2026-09-23：做了「发给领导试用的零安装便携包」**（构建脚本已入库到 `portable/`）。
@@ -91,7 +112,7 @@ canPublish 全角色、pipeline 元信息透传），UI 端到端已实测（证
 `WScript.Shell.Run(cmd,0,..)` 的 SW_HIDE 会**连带隐藏进程创建的第一个顶层窗口**（需 P/Invoke 覆盖）。
 
 ### 存量规模（供参考）
-后端 97 个 py / `app/models` 20 个模型 / 前端 111 个 vue+ts / 小程序 8 页 / 测试 13 个文件（86 passed）
+后端 `app/` 81 个 py / `app/models` 21 个模型 / 前端 58 个 vue / 测试 15 个文件（**89 passed**，2026-10-19 实测）
 
 ## ⛔ 阻塞 / 待决
 
@@ -112,6 +133,7 @@ canPublish 全角色、pipeline 元信息透传），UI 端到端已实测（证
 | **主体不换栈** | 仍以 Python/FastAPI 承载；NestJS/TypeORM 仅作**蓝图**，用 Python 等价实现 |
 | **API 行为兼容优先** | 接口路径/字段可重构（前后端同仓同版本推进），但页面功能不得回退 |
 | **多租户用默认租户兜底** | P2 落地时"全默认行为不变"——现有数据归默认租户，不破坏存量 |
+| **取消主办方角色（2026-10-19）** | 战略上要绕开展会举办方做撮合；保留角色会让"平台自营"与"主办方入驻"两套模型长期冲突，因此角色收敛、能力归 admin、数据迁移而不是删数据 |
 
 ## 文件地图
 
@@ -131,9 +153,16 @@ canPublish 全角色、pipeline 元信息透传），UI 端到端已实测（证
 
 > ⚠️ 方案 §7.1 画的是 `expohub-backend/{core,modules}`，**实际落在 `expohub-backend/app/{core,modules}`**——文档与实现有偏差，以代码为准。
 
+| 想找什么 | 去哪 |
+|---|---|
+| 去掉主办方的迁移脚本 | `scripts/migrate_drop_organizer.py`（`--dry-run` 预演；默认自动备份） |
+| 平台自营展会管理页（原主办方页） | `expo-hub-frontend/src/views/expo-admin/`，路由 `/admin/*` |
+| 公开信息采集骨架 | `scripts/scrape/expo_scraper.py` + `sources.json`；方案见 `docs/2026-10-19-数据抓取方案与合规边界.md` |
+| 改进建议核查结论 | `docs/2026-10-19-建议核查与落地路线.md` |
+
 ## ⚠️ 不要碰
 
-1. **功能冻结红线** — 方案 §6 列出的 14 项用户可见功能（账号/角色/展会浏览/微展位/展馆/搜索/采购/匹配推荐/展商/主办方/收藏评价海报/消息通知/积分会员/后台管理）**语义不可删改**，只能增强。
+1. **功能冻结红线（2026-10-19 已修订）** — 原 14 项中的「主办方」按用户决策**已取消**，其能力并入「后台管理（平台自营）」。其余 13 项仍**语义不可删改**，只能增强。
 2. **git remote 指向上游而非自己的 fork**：`origin = https://github.com/mf00000001/X-Expohub.git`。且本机 **github.com 被墙**（见全局 CLAUDE.md 环境事实）——推送/拉取需代理，别盲目 `git push`。
 3. **历史遗留目录别自作主张删** — `helloworld/` `moba-backend/` `moba-frontend/` `weather-app/` `weather-backend/` `weather-frontend/` `src/`。方案 §5 明确"**执行前需你确认**"。
 4. **`exhibition-saas` 是参照蓝本，不是废弃项目** — 它的 48 次提交（租户四道防线/票务/六维评分/AI 五铁律）是整合的架构来源，可直接查。

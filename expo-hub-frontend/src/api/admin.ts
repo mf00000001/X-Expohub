@@ -35,7 +35,6 @@ export interface TrendDataPoint {
 export interface UserGrowthResponse {
   visitor_growth: TrendDataPoint[]
   exhibitor_growth: TrendDataPoint[]
-  organizer_growth: TrendDataPoint[]
   boss_growth: TrendDataPoint[]
   total_growth: TrendDataPoint[]
 }

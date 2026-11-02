@@ -157,7 +157,7 @@ def update_domain(
     前端调用：PUT /exhibitors/domain
     请求体：{"industry_domain": "电子及家电", "sub_domains": ["消费电子", "智能家居"]}
     """
-    if current_user.role not in ("exhibitor", "admin", "organizer"):
+    if current_user.role not in ("exhibitor", "admin"):
         raise Forbidden(message="仅展商可设置行业领域")
 
     current_user.industry_domain = data.industry_domain

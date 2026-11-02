@@ -1,0 +1,90 @@
+## A. 旧口径（exhibition_id + expo_name 别名）vs 新口径（关系表）集合比对
+
+| 展会 | 旧展商集合 | 新展商集合 | 展商对称差 | 旧展品集合 | 新展品集合 | 展品对称差 |
+|---:|---:|---:|---:|---:|---:|---:|
+| 4 | 969 | 969 | 0 | 574 | 574 | 0 |
+| 5 | 1,091 | 1,091 | 0 | 499 | 499 | 0 |
+| 6 | 1,230 | 1,230 | 0 | 552 | 552 | 0 |
+| 7 | 3,070 | 3,070 | 0 | 1,529 | 1,529 | 0 |
+| 8 | 760 | 760 | 0 | 0 | 0 | 0 |
+| 9 | 13,306 | 13,306 | 0 | 36,999 | 36,999 | 0 |
+| 10 | 1,810 | 1,810 | 0 | 4,764 | 4,764 | 0 |
+| 11 | 2,497 | 2,497 | 0 | 2,065 | 2,065 | 0 |
+| 12 | 860 | 860 | 0 | 412 | 412 | 0 |
+| 13 | 1,404 | 1,404 | 0 | 949 | 949 | 0 |
+| 14 | 403 | 403 | 0 | 92 | 92 | 0 |
+| 15 | 285 | 285 | 0 | 608 | 608 | 0 |
+
+集合完全一致：是（12 场全部对称差 0）
+
+## B. 端点响应 before/after 逐字段比对（改造前/后各跑一次 8012）
+
+| 展会 | stats 状态 | stats data 相同 | exhibitors total | products total | pageSize/totalPages 相同 | 首页字段集相同 |
+|---:|---|---|---|---|---|---|
+| 4 | 200 | 是 | 969 → 969 | 574 → 574 | 是 | 是 |
+| 5 | 200 | 是 | 1,091 → 1,091 | 499 → 499 | 是 | 是 |
+| 6 | 200 | 是 | 1,230 → 1,230 | 552 → 552 | 是 | 是 |
+| 7 | 200 | 是 | 3,070 → 3,070 | 1,529 → 1,529 | 是 | 是 |
+| 8 | 200 | 是 | 760 → 760 | 0 → 0 | 是 | 是 |
+| 9 | 200 | 是 | 13,306 → 13,306 | 36,999 → 36,999 | 是 | 是 |
+| 10 | 200 | 是 | 1,810 → 1,810 | 4,764 → 4,764 | 是 | 是 |
+| 11 | 200 | 是 | 2,497 → 2,497 | 2,065 → 2,065 | 是 | 是 |
+| 12 | 200 | 是 | 860 → 860 | 412 → 412 | 是 | 是 |
+| 13 | 200 | 是 | 1,404 → 1,404 | 949 → 949 | 是 | 是 |
+| 14 | 200 | 是 | 403 → 403 | 92 → 92 | 是 | 是 |
+| 15 | 200 | 是 | 285 → 285 | 608 → 608 | 是 | 是 |
+
+差异项合计：0（0 = 完全无差异）
+
+改造后 stats 明细（展商 / 展品 / 城市 / 行业）：
+
+  4: 969 / 574 / 1 / 16
+  5: 1091 / 499 / 1 / 15
+  6: 1230 / 552 / 1 / 10
+  7: 3070 / 1529 / 1 / 20
+  8: 760 / 0 / 1 / 1
+  9: 13306 / 36999 / 1 / 22
+  10: 1810 / 4764 / 1 / 24
+  11: 2497 / 2065 / 1 / 28
+  12: 860 / 412 / 1 / 13
+  13: 1404 / 949 / 1 / 22
+  14: 403 / 92 / 1 / 12
+  15: 285 / 608 / 1 / 11
+
+## C. 关系表 SQL 统计（sqlite3 口径）
+
+SELECT COUNT(*) FROM exhibition_exhibitors → 27,685
+
+SELECT exhibition_id, COUNT(*) ... GROUP BY exhibition_id:
+  exhibition_id=4  rows=969    CMES 华机展 · 佛山
+  exhibition_id=5  rows=1091   CMES 华机展 · 天津
+  exhibition_id=6  rows=1230   CMES 华机展 · 宁波
+  exhibition_id=7  rows=3070   CMES 华机展 · 东莞
+  exhibition_id=8  rows=760    中国国际健康营养博览会（NHNE）
+  exhibition_id=9  rows=13306  第九十四届中国国际医疗器械博览会（CMEF）
+  exhibition_id=10 rows=1810   第二十八届中国国际高新技术成果交易会（高交会）
+  exhibition_id=11 rows=2497   CMES 华机展 · 上海
+  exhibition_id=12 rows=860    CMES 华机展 · 西安
+  exhibition_id=13 rows=1404   CMES 华机展 · 苏州
+  exhibition_id=14 rows=403    玉环国际机床展
+  exhibition_id=15 rows=285    TME 台州机床展
+
+分布自检：
+  - 无关系的展会数：0
+  - 参展多场的展商数（>1 条关系）：0
+  - `catalog_exhibitors` 里同名但分布在不同 expo_name（=同一个企业按多届重复入行）的名称数：2898
+  - 无关系的名录展商数：4,253
+  - 关系总行数 == 名录展商数 - 无关系展商数：27685 == 31938 - 4253
+
+## D. 分页 / 边界实测（改造后 8012）
+
+- CMEF 展商第 665 页(末页): `/exhibitions/9/exhibitors?page=665&page_size=20` → HTTP 200, total=13306, list_len=20
+- CMEF 展商超出末页: `/exhibitions/9/exhibitors?page=700&page_size=20` → HTTP 200, total=13306, list_len=0
+- CMEF 展品第 1850 页: `/exhibitions/9/products?page=1850&page_size=20` → HTTP 200, total=36999, list_len=19
+- CMEF 展品 page_size=100: `/exhibitions/9/products?page=1&page_size=100` → HTTP 200, total=36999, list_len=100
+- NHNE 展品（0 条回落）: `/exhibitions/8/products?page=1&page_size=20` → HTTP 200, total=0, list_len=0
+- 佛山 stats: `/exhibitions/4/stats` → HTTP 200, total=None, list_len=0
+- 不存在展会 → 404: `/exhibitions/99999999/stats` → HTTP 404, total=None, list_len=None
+- 不存在展会 → 404: `/exhibitions/99999999/exhibitors` → HTTP 404, total=None, list_len=None
+- 不存在展会 → 404: `/exhibitions/99999999/products` → HTTP 404, total=None, list_len=None
+

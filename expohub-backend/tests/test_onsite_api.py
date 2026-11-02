@@ -60,7 +60,7 @@ def _auth(user: User) -> dict:
 def ctx():
     with TestClient(app) as client:
         db = SessionLocal()
-        org = _seed_user(db, "org_onsite", "organizer")
+        org = _seed_user(db, "org_onsite", "admin")
         attendee = _seed_user(db, "attendee_onsite", "visitor")
         visitor = _seed_user(db, "noperm_onsite", "visitor")
         expo = _seed_exhibition(db)

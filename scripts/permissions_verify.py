@@ -5,7 +5,7 @@
 
 验证 ROLE_PERMISSIONS 声明表与安全修复后的路由语义一致:
 - admin 拥有全部权限(补全后)
-- organizer 拥有展会管理权限,但无 product:edit/delete 等业务资源写权限
+- organizer 角色已取消(2026-10-19)，其展会自营权限并入 admin
 - exhibitor 拥有产品管理权限,无采购发布权限
 - visitor/buyer 无管理权限
 - has_permission 函数行为正确
@@ -32,16 +32,15 @@ admin_perms = ROLE_PERMISSIONS[RoleEnum.ADMIN]
 missing = all_perms - admin_perms
 check("admin:has-all-permissions", not missing, f"missing={sorted(p.value for p in missing)}")
 
-# 2. organizer: 有展会管理权限,无业务资源写权限
-org_perms = ROLE_PERMISSIONS[RoleEnum.ORGANIZER]
-check("organizer:exhibition-edit", Permission.EXHIBITION_EDIT in org_perms)
-check("organizer:exhibition-delete", Permission.EXHIBITION_DELETE in org_perms)
-check("organizer:exhibition-publish", Permission.EXHIBITION_PUBLISH in org_perms)
-check("organizer:no-product-edit", Permission.PRODUCT_EDIT not in org_perms)
-check("organizer:no-product-delete", Permission.PRODUCT_DELETE not in org_perms)
-check("organizer:no-procurement-edit", Permission.PROCUREMENT_EDIT not in org_perms)
-check("organizer:no-procurement-delete", Permission.PROCUREMENT_DELETE not in org_perms)
-check("organizer:no-user-manage", Permission.USER_MANAGE not in org_perms)
+# 2. 角色表已收敛为 4 个（无 organizer），展会自营能力在 admin
+check("roles:no-organizer", "organizer" not in RoleEnum.values(), f"roles={RoleEnum.values()}")
+check("roles:exactly-four", set(RoleEnum.values()) == {"visitor", "buyer", "exhibitor", "admin"})
+check("admin:exhibition-create", Permission.EXHIBITION_CREATE in admin_perms)
+check("admin:exhibition-edit", Permission.EXHIBITION_EDIT in admin_perms)
+check("admin:exhibition-delete", Permission.EXHIBITION_DELETE in admin_perms)
+check("admin:exhibition-publish", Permission.EXHIBITION_PUBLISH in admin_perms)
+check("admin:ticket-manage", Permission.TICKET_MANAGE in admin_perms)
+check("admin:onsite-manage", Permission.ONSITE_MANAGE in admin_perms)
 
 # 3. exhibitor: 产品管理权限,无采购发布
 exh_perms = ROLE_PERMISSIONS[RoleEnum.EXHIBITOR]
@@ -62,7 +61,7 @@ check("buyer:no-stats-global", Permission.STATS_VIEW_GLOBAL not in buy_perms)
 # 5. has_permission 函数
 check("has_permission:admin-product-edit", has_permission(RoleEnum.ADMIN, Permission.PRODUCT_EDIT))
 check("has_permission:visitor-product-edit-rejected", not has_permission(RoleEnum.VISITOR, Permission.PRODUCT_EDIT))
-check("has_permission:organizer-exhibition-edit", has_permission(RoleEnum.ORGANIZER, Permission.EXHIBITION_EDIT))
+check("has_permission:admin-exhibition-edit", has_permission(RoleEnum.ADMIN, Permission.EXHIBITION_EDIT))
 check("has_permission:unknown-role-empty", has_permission("hacker", Permission.USER_VIEW) is False)
 
 print("RESULT:", "ALL PASS" if not fails else f"FAILED: {fails}")

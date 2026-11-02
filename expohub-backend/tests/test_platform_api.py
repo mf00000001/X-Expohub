@@ -51,7 +51,7 @@ def ctx():
     with TestClient(app) as client:
         db = SessionLocal()
         admin = _seed_user(db, "admin_p6", "admin")
-        org = _seed_user(db, "org_p6", "organizer")
+        org = _seed_user(db, "org_p6", "admin")
         visitor = _seed_user(db, "visitor_p6", "visitor")
         _seed_exhibition(db)
         for obj in (admin, org, visitor):

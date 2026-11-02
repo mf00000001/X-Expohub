@@ -22,14 +22,20 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 
 from app.models.base import get_db
+from app.models.exhibition import Exhibition
 from app.models.user import User
 from app.models.micro_booth import MicroBooth
 from app.models.membership import Membership, TIER_PRODUCT_LIMITS
 from app.models.product import Product
+# 展商名录 / 展品库（只读快照）：名录来源微展位的展品从这里取，不碰平台 products
+from app.models.catalog import CatalogExhibitor, CatalogProduct
 from app.core.deps import get_current_active_user
 from app.core.exceptions import NotFound, Forbidden, BadRequest, Conflict
 
 router = APIRouter(prefix="/micro-booths", tags=["微展位"])
+
+# 名录来源微展位一次最多展示的展品条数（与 catalog 展商详情一致）
+CATALOG_PRODUCT_LIMIT = 12
 
 
 # ============================================================
@@ -111,12 +117,124 @@ def _product_to_dict(p: Product) -> dict:
     }
 
 
+def _category_suggestions(search: str, limit: int = 5) -> list[str]:
+    """把关键词映射到标准品类，返回同父组品类名（供前端「试试这些品类」提示）
+
+    映射规则：关键词是品类名的一部分（如「照明灯」→ 照明），
+    或品类名是关键词的一部分（如「电子及家电批发」→ 电子及家电）。
+    命中后取该品类所属父组下的全部品类（命中的品类本身排在最前），
+    无法映射到任何品类时返回空数组。
+    """
+    from app.models.category import EXHIBITION_CATEGORIES, get_parent_group
+
+    # 空关键词是任何字符串的子串，必须先拦掉
+    if not search:
+        return []
+
+    matched = [c for c in EXHIBITION_CATEGORIES if search in c or c in search]
+    if not matched:
+        return []
+
+    out: list[str] = []
+    for cat in matched:
+        pg = get_parent_group(cat)
+        # 同父组品类；父组缺失时退化为只有命中品类本身
+        group = [c for c in EXHIBITION_CATEGORIES if pg and get_parent_group(c) == pg] or [cat]
+        for c in group:
+            if c not in out:
+                out.append(c)
+    return out[:limit]
+
+
 def _check_product_limit(db: Session, micro_booth_id: int) -> int:
     """检查当前微展位已挂展品数，返回当前数量"""
     count = db.query(func.count(Product.id)).filter(
         Product.micro_booth_id == micro_booth_id
     ).scalar() or 0
     return count
+
+
+def _catalog_product_counts(db: Session, catalog_ids: list[int]) -> dict[int, int]:
+    """批量取名录展商的展品数：一条 IN 查询，返回 {catalog_exhibitor_id: product_count}
+
+    名录微展位的「展品数」直接用 catalog_exhibitors.product_count（导入时算好的统计列），
+    不逐条 COUNT catalog_products（3 万家 × 列表 20 条会是 20 次查询）。
+    不存在的 id 不会出现在返回值里，调用方按 0 处理。
+    """
+    if not catalog_ids:
+        return {}
+    rows = (
+        db.query(CatalogExhibitor.id, CatalogExhibitor.product_count)
+        .filter(CatalogExhibitor.id.in_(catalog_ids))
+        .all()
+    )
+    return {row.id: (row.product_count or 0) for row in rows}
+
+
+def _catalog_products(
+    db: Session, catalog_exhibitor_id: int, limit: int = CATALOG_PRODUCT_LIMIT
+) -> list[dict]:
+    """取名录展商的名录展品，映射成前端已有的展品结构
+
+    只 SELECT 展示需要的列（detail_html 是大字段，不进 SELECT）；
+    排序 `id ASC`，与 app/modules/catalog/routes.py 展商详情的口径一致。
+    """
+    rows = (
+        db.query(
+            CatalogProduct.id,
+            CatalogProduct.name,
+            CatalogProduct.category,
+            CatalogProduct.application,
+            CatalogProduct.price_spec,
+            CatalogProduct.image,
+            CatalogProduct.exhibitor_name,
+            CatalogProduct.expo_name,
+            CatalogProduct.exhibitor_id,
+        )
+        .filter(CatalogProduct.exhibitor_id == catalog_exhibitor_id)
+        .order_by(CatalogProduct.id.asc())
+        .limit(limit)
+        .all()
+    )
+    return [
+        {
+            "id": row.id,
+            "name": row.name,
+            "category": row.category,
+            "application": row.application,
+            "price_spec": row.price_spec,
+            "image": row.image,
+            "exhibitor_name": row.exhibitor_name,
+            "expo_name": row.expo_name,
+            "exhibitor_id": row.exhibitor_id,
+        }
+        for row in rows
+    ]
+
+
+def _catalog_product_total(db: Session, catalog_exhibitor_id: int, shown: int) -> int:
+    """名录展商在 catalog 里的展品总数
+
+    口径：优先用 catalog_exhibitors.product_count（与列表卡片同源，避免每次 COUNT）。
+    该列来自第三方「展品数量」，实测存在与 catalog_products 行数不一致的情况
+    （偏大 / 偏小 / 为 0），因此当它小于本次实际展示条数时用实际 COUNT 兜底，
+    保证 limit_info.total >= shown，不出现「12/0」这种自相矛盾的数字。
+    """
+    row = (
+        db.query(CatalogExhibitor.product_count)
+        .filter(CatalogExhibitor.id == catalog_exhibitor_id)
+        .first()
+    )
+    total = int((row.product_count if row else 0) or 0)
+    if total >= shown:
+        return total
+    actual = (
+        db.query(func.count(CatalogProduct.id))
+        .filter(CatalogProduct.exhibitor_id == catalog_exhibitor_id)
+        .scalar()
+        or 0
+    )
+    return max(actual, shown)
 
 
 def _ensure_membership(db: Session, user_id: int) -> Membership:
@@ -142,55 +260,109 @@ def list_public(
     search: Optional[str] = Query(default=None),
     db: Session = Depends(get_db),
 ):
-    """公开微展位列表"""
+    """公开微展位列表
+
+    搜索语义：名称/行业/简介任一精确包含即命中；命中为 0 时返回空列表（total=0），
+    并通过 suggestions 给出可尝试的同父组品类，前端据此展示「没有匹配…」空态。
+    """
     q = db.query(MicroBooth).filter(MicroBooth.status == "active")
     if industry_domain:
         q = q.filter(MicroBooth.industry_domain == industry_domain)
     if exhibition_id:
         q = q.filter(MicroBooth.exhibition_id == exhibition_id)
+    suggestions: list[str] = []
+    matched = True
     if search:
-        from app.models.category import EXHIBITION_CATEGORIES, get_parent_group
-        # 精确匹配
+        # 关键词能映射到标准品类时给出同父组品类名，否则为空数组（前端空态据此提示「试试这些品类」）
+        suggestions = _category_suggestions(search)
+        # 精确匹配：名称 / 行业 / 简介任一命中
         exact = q.filter(
             MicroBooth.name.ilike(f"%{search}%") |
             MicroBooth.industry_domain.ilike(f"%{search}%") |
             MicroBooth.description.ilike(f"%{search}%")
         )
-        exact_total = exact.count()
-        if exact_total > 0:
+        if exact.count() > 0:
             q = exact
         else:
-            # 模糊匹配：找search关键词出现在哪个分类里，然后匹配同父组分类
-            related_cats = []
-            for cat in EXHIBITION_CATEGORIES:
-                if search in cat:
-                    related_cats.append(cat)
-                    pg = get_parent_group(cat)
-                    if pg:
-                        for c in EXHIBITION_CATEGORIES:
-                            if get_parent_group(c) == pg and c not in related_cats:
-                                related_cats.append(c)
-            if related_cats:
-                q = q.filter(MicroBooth.industry_domain.in_(related_cats[:5]))
-            # 兜底：按浏览量返回热门微展位，不返回空
-    total = q.count()
+            # 精确命中为 0 时返回空列表，不再兜底返回全表
+            # （此前兜底会让前端「没有匹配」空态永远走不到，表现为「搜什么都一样」）
+            matched = False
+    if matched:
+        total = q.count()
+    else:
+        total = 0
     from sqlalchemy import case
+    # 排序：会员等级优先（旗舰→普通→免费），同级再按更新时间倒序（与浏览量无关）
     tier_order = case(
         (MicroBooth.membership_tier == 'flagship', 1),
         (MicroBooth.membership_tier == 'regular', 2),
         else_=3
     )
-    items = q.order_by(tier_order, MicroBooth.updated_at.desc()).offset((page-1)*page_size).limit(page_size).all()
+    if matched:
+        items = q.order_by(tier_order, MicroBooth.updated_at.desc()).offset((page-1)*page_size).limit(page_size).all()
+    else:
+        items = []
+
+    # 名录来源微展位：展品数走 catalog_exhibitors.product_count，一条 IN 批量查询（无 N+1）
+    catalog_ids = sorted({
+        mb.catalog_exhibitor_id for mb in items if mb.catalog_exhibitor_id is not None
+    })
+    catalog_counts = _catalog_product_counts(db, catalog_ids)
 
     result = []
     for mb in items:
-        count = _check_product_limit(db, mb.id)
+        if mb.catalog_exhibitor_id is not None:
+            # 名录微展位：展品数=名录统计列（不查平台 products）
+            count = catalog_counts.get(mb.catalog_exhibitor_id, 0)
+        else:
+            # 平台自建微展位：沿用原逻辑（统计挂在本微展位下的 products）
+            count = _check_product_limit(db, mb.id)
         result.append(_mb_to_dict(mb, count, db))
 
     return {
         "success": True, "code": "OK", "message": "获取成功",
         "data": {"list": result, "total": total, "page": page, "pageSize": page_size,
-                 "totalPages": (total + page_size - 1)//page_size if page_size > 0 else 0},
+                 "totalPages": (total + page_size - 1)//page_size if page_size > 0 else 0,
+                 "suggestions": suggestions},
+    }
+
+
+@router.get("/facets")
+def get_facets(db: Session = Depends(get_db)):
+    """微展位广场的分类与展会分面（真实数据统计，替代前端写死的 18 个旧品类）
+
+    2026-10-19：微展位数据来自公开名录后，行业是「医疗器械制造 / 机床工具 / 光电」这类
+    名录口径的值，前端原来写死的「电子及家电 / 照明 …」标签点了必然 0 条，
+    这里按真实 industry_domain 聚合返回，前端直接渲染。
+    """
+    rows = (
+        db.query(MicroBooth.industry_domain, func.count(MicroBooth.id))
+        .filter(
+            MicroBooth.status == "active",
+            MicroBooth.industry_domain.isnot(None),
+            MicroBooth.industry_domain != "",
+        )
+        .group_by(MicroBooth.industry_domain)
+        .order_by(func.count(MicroBooth.id).desc())
+        .limit(40)
+        .all()
+    )
+    industries = [{"value": name, "count": count} for name, count in rows]
+
+    expo_rows = (
+        db.query(MicroBooth.exhibition_id, Exhibition.title, func.count(MicroBooth.id))
+        .join(Exhibition, MicroBooth.exhibition_id == Exhibition.id)
+        .filter(MicroBooth.status == "active", Exhibition.status.notin_(("draft", "cancelled")))
+        .group_by(MicroBooth.exhibition_id)
+        .order_by(func.count(MicroBooth.id).desc())
+        .limit(30)
+        .all()
+    )
+    exhibitions = [{"id": eid, "name": title, "count": count} for eid, title, count in expo_rows]
+
+    return {
+        "success": True, "code": "OK", "message": "获取成功",
+        "data": {"industries": industries, "exhibitions": exhibitions},
     }
 
 
@@ -214,11 +386,38 @@ def my_booths(
 
 @router.get("/{mb_id}")
 def get_detail(mb_id: int, db: Session = Depends(get_db)):
-    """微展位详情(含展品列表)，按会员等级限制展品数"""
+    """微展位详情(含展品列表)，按会员等级限制展品数
+
+    名录来源微展位（catalog_exhibitor_id 非空）：展品从 catalog_products 取（只读快照），
+    一次取 12 条，total 用名录展品总数，upgrade_hint=None（名录展品不涉及会员限额）。
+    平台自建微展位：沿用原逻辑（平台 products + 会员等级限额）。
+    """
     mb = db.query(MicroBooth).filter(MicroBooth.id == mb_id).first()
     if not mb:
         raise NotFound(message="微展位不存在")
 
+    # ---- 名录来源：展品来自 catalog_products ----
+    if mb.catalog_exhibitor_id is not None:
+        catalog_products = _catalog_products(db, mb.catalog_exhibitor_id)
+        catalog_total = _catalog_product_total(
+            db, mb.catalog_exhibitor_id, len(catalog_products)
+        )
+        return {
+            "success": True, "code": "OK", "message": "获取成功",
+            "data": {
+                "booth": _mb_to_dict(mb, catalog_total, db),
+                "products": catalog_products,
+                "limit_info": {
+                    "tier": mb.membership_tier,
+                    "limit": CATALOG_PRODUCT_LIMIT,
+                    "total": catalog_total,
+                    "shown": len(catalog_products),
+                    "upgrade_hint": None,
+                },
+            },
+        }
+
+    # ---- 平台自建微展位：原逻辑不变 ----
     limit = TIER_PRODUCT_LIMITS.get(mb.membership_tier, 3)
     total_products = db.query(Product).filter(
         Product.micro_booth_id == mb_id

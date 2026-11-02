@@ -44,7 +44,7 @@ UPCOMING = [
     dict(
         title="2026国际智能制造与工业互联网交流会",
         start="2026-10-20T09:00:00+08:00", end="2026-10-23T18:00:00+08:00",
-        venue_id=23, organizer_id=3, organizer_name="中国国际进口博览局",
+        venue_id=23, organizer_id=3, organizer_name="平台运营",
         theme=["机械", "AI/科技"], target=34, vacant=6,
         hot_score=1500, is_featured=1, visitor_count=18200,
         hall_a="A馆·智能制造展区", hall_b="B馆·工业互联展区",
@@ -56,7 +56,7 @@ UPCOMING = [
     dict(
         title="2026全球新能源与碳中和产业交流会",
         start="2026-11-10T09:00:00+08:00", end="2026-11-13T18:00:00+08:00",
-        venue_id=4, organizer_id=4, organizer_name="深圳会展中心管理有限公司",
+        venue_id=4, organizer_id=4, organizer_name="平台运营",
         theme=["能源", "建材", "化工产品", "机械"], target=30, vacant=6,
         hot_score=1280, is_featured=1, visitor_count=16400,
         hall_a="A馆·新能源展区", hall_b="B馆·绿色建材展区",
@@ -68,7 +68,7 @@ UPCOMING = [
     dict(
         title="2026全球智慧医疗与健康产业交流会",
         start="2026-12-01T09:00:00+08:00", end="2026-12-04T18:00:00+08:00",
-        venue_id=2, organizer_id=3, organizer_name="中国国际进口博览局",
+        venue_id=2, organizer_id=3, organizer_name="平台运营",
         theme=["医药及医疗保健"], target=28, vacant=6,
         hot_score=1050, is_featured=0, visitor_count=9800,
         hall_a="A馆·医疗设备展区", hall_b="B馆·康复健康展区",
@@ -80,7 +80,7 @@ UPCOMING = [
     dict(
         title="2026全球消费电子与智能生活交流会",
         start="2026-12-18T09:00:00+08:00", end="2026-12-21T18:00:00+08:00",
-        venue_id=1, organizer_id=2, organizer_name="中国对外贸易中心",
+        venue_id=1, organizer_id=2, organizer_name="平台运营",
         theme=["电子及家电", "AI/科技"], target=30, vacant=6,
         hot_score=1320, is_featured=1, visitor_count=14200,
         hall_a="A馆·消费电子展区", hall_b="B馆·智能家居展区",
@@ -91,7 +91,7 @@ UPCOMING = [
     dict(
         title="2027全球AI与数字经济交流会",
         start="2027-04-08T09:00:00+08:00", end="2027-04-11T18:00:00+08:00",
-        venue_id=5, organizer_id=3, organizer_name="中国国际进口博览局",
+        venue_id=5, organizer_id=3, organizer_name="平台运营",
         theme=["AI/科技", "综合服务"], target=32, vacant=6,
         hot_score=880, is_featured=0, visitor_count=7600,
         hall_a="A馆·人工智能展区", hall_b="B馆·数字服务展区",
@@ -105,7 +105,7 @@ PAST = [
     dict(
         title="2026全球人工智能产业交流会",
         start="2026-09-15T09:00:00+08:00", end="2026-09-18T18:00:00+08:00",
-        venue_id=5, organizer_id=2, organizer_name="中国对外贸易中心",
+        venue_id=5, organizer_id=2, organizer_name="平台运营",
         theme=["AI/科技", "电子及家电", "机械"], target=32, vacant=0,
         hot_score=960, is_featured=0, visitor_count=12600,
         hall_a="A馆·人工智能展区", hall_b="B馆·智能装备展区",
@@ -116,7 +116,7 @@ PAST = [
     dict(
         title="2025全球医疗器械与康复健康交流会",
         start="2025-11-12T09:00:00+08:00", end="2025-11-15T18:00:00+08:00",
-        venue_id=16, organizer_id=2, organizer_name="中国对外贸易中心",
+        venue_id=16, organizer_id=2, organizer_name="平台运营",
         theme=["医药及医疗保健"], target=26, vacant=0,
         hot_score=420, is_featured=0, visitor_count=11800,
         hall_a="A馆·医疗器械展区", hall_b="B馆·康复设备展区",
@@ -127,7 +127,7 @@ PAST = [
     dict(
         title="2026中国国际食品加工与消费品交流会",
         start="2026-03-18T09:00:00+08:00", end="2026-03-21T18:00:00+08:00",
-        venue_id=7, organizer_id=2, organizer_name="中国对外贸易中心",
+        venue_id=7, organizer_id=2, organizer_name="平台运营",
         theme=["食品", "办公箱包及休闲用品", "礼品"], target=28, vacant=0,
         hot_score=560, is_featured=0, visitor_count=13500,
         hall_a="A馆·食品加工展区", hall_b="B馆·消费品展区",

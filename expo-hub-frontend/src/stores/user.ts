@@ -40,7 +40,15 @@ const profile = ref<UserProfile | null>(loadProfile())
     else { await fetchProfile() }
   }
 
-  async function register(data: { username: string; email: string; password: string; role?: string }) {
+  async function register(data: {
+    username: string
+    email: string
+    password: string
+    role?: string
+    // 2026-10-19 合规：注册页勾选同意《用户协议》《隐私政策》后必须为 true，后端据此写 privacy_agreed_at
+    privacy_agreed: boolean
+  }) {
+    // privacy_agreed 通过对象展开原样透传给后端（api 层 RegisterParams 未声明该字段，这里不改 api 文件）
     const res = await authApi.register({ ...data, role: data.role || 'visitor' })
     token.value = res.access_token
     localStorage.setItem('access_token', res.access_token)

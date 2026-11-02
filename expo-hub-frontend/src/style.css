@@ -39,9 +39,74 @@
   --spacing-lg: 24px;
   --spacing-xl: 32px;
 
+  /* ============================================
+     品牌视觉令牌（2026-10-19 起：商务深蓝 + 金）
+     规则：页面/组件只允许引用这里的令牌，不要再写死色值与字号。
+     深蓝负责"专业可信"，金色只用于强调（CTA、数据高亮、选中态），
+     一屏金色面积不超过 10%，否则会显廉价。
+     ============================================ */
+  --brand-950: #071426;
+  --brand-900: #0B1B33;
+  --brand-800: #12294A;
+  --brand-700: #17365F;
+  --brand-600: #1C4478;
+  --brand-500: #1E4E8C;
+  --brand-400: #3B6DA8;
+  --brand-300: #6E93BE;
+  --brand-100: #E6EDF6;
+  --brand-50:  #F4F7FB;
+
+  --accent-700: #9A7A2E;
+  --accent-600: #B08C3A;
+  --accent-500: #C8A24A;   /* 主金 */
+  --accent-400: #E0C070;
+  --accent-100: #F7EFD8;
+
+  --ink-900: #0F172A;
+  --ink-700: #334155;
+  --ink-500: #64748B;
+  --ink-300: #94A3B8;
+  --ink-100: #E2E8F0;
+
+  --surface-0: #FFFFFF;
+  --surface-1: #F7F8FB;
+  --surface-2: #EEF1F6;
+  --surface-dark: var(--brand-900);
+
+  /* 字体阶梯：只允许这 6 档，标题 700/800，正文 400 */
+  --font-h1: 40px;  --line-h1: 1.25;  --weight-h1: 800;
+  --font-h2: 28px;  --line-h2: 1.3;   --weight-h2: 700;
+  --font-h3: 20px;  --line-h3: 1.4;   --weight-h3: 600;
+  --font-body: 16px; --line-body: 1.7;
+  --font-sm: 14px;  --line-sm: 1.6;
+  --font-xs: 12px;  --line-xs: 1.5;
+
+  /* 间距（8pt 体系） */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
+
+  /* 圆角 / 阴影（大圆角 + 柔和阴影 = 品牌站质感） */
+  --radius-card: 14px;
+  --radius-btn: 10px;
+  --shadow-card: 0 2px 12px rgba(11, 27, 51, 0.06), 0 1px 3px rgba(11, 27, 51, 0.04);
+  --shadow-hover: 0 10px 28px rgba(11, 27, 51, 0.12), 0 2px 6px rgba(11, 27, 51, 0.06);
+  --shadow-dark: 0 12px 40px rgba(7, 20, 38, 0.35);
+
   /* 布局 */
   --header-height: 56px;
-  --footer-height: 60px;
+  /* 页脚固定底栏为纵向两行：导航行 + 法律链接行。
+     --footer-height 是页脚总高的唯一来源（80px = 60px 导航行 + 20px 法律链接行），
+     内容区底部留白（.main-content）与悬浮球初始 y（FloatingPoints.vue）都从它推导，
+     改高度只改这一个值，不要再在别处写死 60/80 之类的数字。 */
+  --footer-height: 80px;
+  /* iPhone 全面屏底部安全区（Home 指示条）：iOS Safari 上约 34px，桌面浏览器与无刘海设备
+     一律返回 0px，所以桌面视觉完全不变。它是在 --footer-height 之外「叠加」的一份高度，
+     不参与 60/20 的拆分，拆分逻辑保持原样。
+     引用点：AppFooter 的 min-height 与 padding-bottom、.main-content 的 padding-bottom。 */
+  --footer-safe-area: env(safe-area-inset-bottom, 0px);
+  /* 法律链接行高（含 1px 分隔线，border-box），导航行吃掉剩余高度（80 - 20 = 60px） */
+  --footer-legal-height: 20px;
+  --footer-tabs-height: calc(var(--footer-height) - var(--footer-legal-height));
   --max-width: 1200px;
 
   /* ============================================
@@ -242,11 +307,11 @@ img {
   width: 100%;
 }
 
-/* 页面主内容区 */
+/* 页面主内容区（与 App.vue 中 scoped 版本保持同一算法：页脚总高 + 16px 间距 + iPhone 安全区） */
 .main-content {
   flex: 1;
   padding-top: var(--header-height);
-  padding-bottom: calc(var(--footer-height) + var(--spacing-lg));
+  padding-bottom: calc(var(--footer-height) + var(--spacing-md) + var(--footer-safe-area));
   min-height: 100vh;
 }
 
