@@ -149,4 +149,10 @@ expo-hub-frontend/        # Vue 3 前端
     components/           # 15个复用组件
     router/               # 路由配置
     stores/               # Pinia状态管理
+
+expo-hub-miniapp/         # 微信小程序（原生，含登录/展会/采购/通知）
+expo-hub-uniapp/          # uni-app 端（vue3+vite，可编译 mp-weixin）
+desktop/                  # Windows 桌面启动器（GUI，健康检查 + 一键启停）
+portable/                 # 便携包构建（免安装 exe 分发）
+docs/                     # 架构、合规、决策记录（archive/ 为历史交付物）
 ```

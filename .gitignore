@@ -35,3 +35,7 @@ expohub-backend/data/*.jsonl
 # 一次性制作产物（PPT 中间件、验收截图），不进版本库
 ppt_work/
 reports/screenshots/
+
+# IDE 配置
+.idea/
+.vscode/
