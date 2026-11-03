@@ -86,6 +86,14 @@ class Expo(PersonaBase):
     area_caliber: Mapped[Optional[str]] = mapped_column(
         String(20), nullable=True, comment="net / gross / unknown"
     )
+    # 规模数的来源。**这一列不是审计附属，是可信度的一部分**：
+    # 官网一手 vs 第三方聚合（qufair）差得很远——实测去展网的观众数比官网低 20~25%，
+    # 而且两者不能混用（分子分母不同源，比值会凭空偏 20%）。
+    # 取值：official（官网/主办方页面）｜ qufair（第三方聚合）
+    scale_source: Mapped[Optional[str]] = mapped_column(
+        String(20), nullable=True, index=True,
+        comment="official / qufair —— 规模三件套的来源，混合来源不进比值计算"
+    )
 
     # ---- 价格与时间窗（E3/E4）----
     booth_price_standard: Mapped[Optional[int]] = mapped_column(

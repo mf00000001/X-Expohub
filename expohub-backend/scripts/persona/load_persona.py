@@ -249,7 +249,14 @@ def main() -> int:
     # 观测表存的是**当前快照**，不是历史流水：每次导入先清掉这批展的旧观测再插。
     # 若按 batch_id 删，重跑一次就会留下两份一模一样的数据，
     # 下游 count 或 join 会凭空翻倍。历史由 import_batch 记录。
-    cur.executemany("DELETE FROM expo_observation WHERE expo_id=?", [(i,) for i in id_of.values()])
+    #
+    # 但**第三方来源（source_type='thirdparty'）必须留着**：它们不是这两份 JSON 产出的，
+    # 是 match_qufair 直接写进来的。无差别删除会让"这个数从哪来"永久丢失，
+    # 而 expo 表里的数值还在——变成有数无据，比没数更糟。
+    cur.executemany(
+        "DELETE FROM expo_observation WHERE expo_id=?"
+        " AND COALESCE(source_type,'') <> 'thirdparty'",
+        [(i,) for i in id_of.values()])
     for o in obs:
         cell = o["cell"]
         cur.execute(
@@ -275,6 +282,18 @@ def main() -> int:
              "medium", now))
 
     cur.execute("UPDATE import_batch SET inserted=?, updated=? WHERE id=?", (ins, upd, batch_id))
+
+    # data_status 用**落库后的实际值**重算一遍，而不是沿用 build() 按 JSON 猜的那个。
+    # 原因：规模数可能来自本层之外的来源（去展网的第三方补采直接写 expo 表），
+    # build() 只看两份 JSON，会把一个数齐全的展算成 skeleton——那不是"没数据"，
+    # 是"数据不从这条路来"。
+    cur.execute("""
+        UPDATE expo SET data_status = CASE
+          WHEN visitor_count > 0 AND exhibitor_count > 0 AND exhibit_area_sqm > 0 THEN 'full'
+          WHEN visitor_count > 0 OR exhibitor_count > 0 OR exhibit_area_sqm > 0
+               OR (start_date IS NOT NULL AND start_date <> '') THEN 'partial'
+          ELSE 'skeleton' END
+    """)
     con.commit()
 
     print("\n落库完成：新增 %d，更新 %d，观测 %d 条（batch_id=%d）" % (ins, upd, len(obs), batch_id))

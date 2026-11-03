@@ -110,12 +110,16 @@ def main() -> int:
             visitor_count=r["visitor_count"], exhibitor_count=r["exhibitor_count"],
             visitor_caliber=r["visitor_caliber"], deadline_iso=r["booth_deadline"],
             today=today, start_date_iso=r["start_date"], dates_status=ds,
+            # 去展网等第三方来源的规模数，比值照算但要留痕：
+            # 实测第三方观众数比官网低 20~25%，档位会跟着偏低。
+            ratio_source="thirdparty" if (r["scale_source"] or "") == "qufair" else "official",
         )
         stat[p["ratio_band"]] = stat.get(p["ratio_band"], 0) + 1
         if p["e4_role"] == "gate":
             gate += 1
         note = " | ".join(x for x in (
             "ratio_basis=" + p["ratio_basis"],
+            "ratio_source=" + p["ratio_source"],
             "e4_role=" + p["e4_role"],
             "e4_source=" + str(p["e4_source"]),
             "e4:" + (p["e4_note"] or p["e4_band"]),

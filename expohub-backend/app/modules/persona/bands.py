@@ -22,9 +22,23 @@ from typing import Optional
 # v2 改成按本样本四分位切。v3 是因为补采之后样本从 27 涨到 35，
 # 分位跟着移动了 20 分——**这正是相对档位的代价，也是它诚实的地方**：
 # 常量必须跟着样本走，否则"前 25%"这个说法就名不副实。
-#   归一化后（人次÷2）P25=25.4 / P50=40.0 / P75=73.3，n=35
-#   原始未归一        P25=33.7 / P50=62.5 / P75=75.0
-# v2 的 24.5/60.0/75.0 对应 n=27，已作废（保留在 persona_param 的历史里）。
+#
+# v4：接入去展网第三方数据后又补进 8 个（n 35→43），P50 从 40.0 跳到 60.0。
+# 这次漂移幅度（20.0）刚好等于阈值，说明样本结构真的变了，不是抖动。
+#   归一化后（人次÷2）P25=27.4 / P50=60.0 / P75=76.4，n=43
+#   原始未归一        P25=35.0 / P50=66.7 / P75=81.7
+#
+# 有一个**结构性偏差**必须记住：新增的 8 个全是能查到第三方数据的知名大展
+# （进博会、服贸会、高交会、SIAL、HOTELEX…），它们观众基数天然大、比值高。
+# "能拿到数据的展"不等于"随机抽样的展"，所以样本每扩大一次，分位还会往上走。
+# 分位的本意是相对排序而不是绝对质量，这个方向性偏差可以接受，但不能忘记。
+#
+# 另外这 8 个里的比值是**下限估计**：去展网观众数实测系统性偏低 20~25%
+# （CMEF 15万 vs 20万+、CHINAPLAS 25万 vs 31万+），展商数则较准。
+# 成对同源取数保证了不混源，但比值本身偏保守。
+#
+# v3 的 25.4/40.0/73.3 对应 n=35，v2 的 24.5/60.0/75.0 对应 n=27，均已作废
+# （保留在 persona_param 的历史里）。
 #
 # 为什么敢用分位而不是绝对阈值：这几个数都是主办方的宣传口径，绝对值
 # 不可比（谁都想把分子写大），但"在同期样本里排第几"是可比的。
@@ -33,18 +47,19 @@ from typing import Optional
 # 绝对下限单独留着：不管分位怎么切，每个展位分不到 5 个观众就是摊薄，
 # 这是口径无关的常识判断。当前样本里不触发，但能挡住未来混进来的脏数据。
 RATIO_BANDS: list[tuple[float, str]] = [
-    (73.3, "ample"),      # ≥P75   客源相对充裕（样本前 25%）
-    (40.0, "normal"),     # ≥P50   正常
-    (25.4, "thin"),       # ≥P25   偏薄
+    (76.4, "ample"),      # ≥P75   客源相对充裕（样本前 25%）
+    (60.0, "normal"),     # ≥P50   正常
+    (27.4, "thin"),       # ≥P25   偏薄
     (0.0, "severe"),      # <P25   摊薄（样本后 25%）
 ]
 RATIO_ABS_FLOOR = 5.0     # 绝对下限：低于此值无条件 severe
 RATIO_CALIBRATION = {
-    "version": "v3-2026-11-03",
-    "basis": "persona.db 35 个可算比值的展（补采后），人次已÷2 归一",
-    "p25": 25.4, "p50": 40.0, "p75": 73.3, "n": 35,
-    "raw_p25": 33.7, "raw_p50": 62.5, "raw_p75": 75.0,
-    "superseded": "v2-2026-11-03 (n=27, 24.5/60.0/75.0)",
+    "version": "v4-2026-11-03",
+    "basis": "persona.db 43 个可算比值的展（含 8 个去展网第三方源），人次已÷2 归一",
+    "p25": 27.4, "p50": 60.0, "p75": 76.4, "n": 43,
+    "raw_p25": 35.0, "raw_p50": 66.7, "raw_p75": 81.7,
+    "superseded": "v3-2026-11-03 (n=35, 25.4/40.0/73.3)；v2-2026-11-03 (n=27, 24.5/60.0/75.0)",
+    "caveat": "8 个第三方源条目观众数系统性偏低 20~25%，其比值是下限估计",
     "note": "相对档位，换样本需用 compute_persona.py --calibrate 重算",
 }
 
@@ -313,6 +328,7 @@ def compute_all(
     last_soldout_days_before: Optional[int] = None,
     start_date_iso: Optional[str] = None,
     dates_status: Optional[str] = None,
+    ratio_source: str = "official",
 ) -> dict:
     """
     一次算完 E1 + E4，写入 ExpoPersona 用。
@@ -322,6 +338,11 @@ def compute_all(
       2. 无截止日、有本届开展日 → booth_window_by_start（实测唯一可行的路）
       3. 开展日属往届 → 只出季节先验，e4_band=unknown、e4_role=advisory
     dates_status 由采集层给出：current / past / none。
+
+    ratio_source 记的是**规模数从哪来**：official（官网/主办方）或 thirdparty（去展网等）。
+    它不影响比值算法，但影响这个比值该被信几分——实测第三方聚合的观众数比官网低 20~25%，
+    比值会跟着系统性偏低。既然 e1 的置信度本来就只能给 low，这里至少要把来源留痕，
+    免得以后有人拿一个第三方估算的比值去当一手数据用。
     """
     v = normalize_visitor_count(visitor_count, visitor_caliber)
     ratio, ratio_band = visitor_exhibitor_ratio(v, exhibitor_count)
@@ -353,6 +374,7 @@ def compute_all(
         "visitor_exhibitor_ratio": ratio,
         "ratio_band": ratio_band,
         "ratio_basis": basis,
+        "ratio_source": ratio_source,
         "e2_discount": e2, "e2_note": e2_note,
         "e1_lo": e1["lo"], "e1_mid": e1["mid"], "e1_hi": e1["hi"],
         "e1_confidence": e1["confidence"],
@@ -378,9 +400,9 @@ def self_check() -> list[str]:
     if normalize_visitor_count(300000, "unknown") is not None:
         fails.append("口径未知不应硬转")
 
-    # 档位边界（v3 四分位 + 绝对下限）
-    cases = [(200, "ample"), (73.3, "ample"), (73.2, "normal"), (40, "normal"),
-             (39.9, "thin"), (25.4, "thin"), (25.3, "severe"), (13.3, "severe")]
+    # 档位边界（v4 四分位 + 绝对下限）
+    cases = [(200, "ample"), (76.4, "ample"), (76.3, "normal"), (60, "normal"),
+             (59.9, "thin"), (27.4, "thin"), (27.3, "severe"), (13.3, "severe")]
     for ratio, expect in cases:
         got = _band_of(ratio, RATIO_BANDS)
         if got != expect:

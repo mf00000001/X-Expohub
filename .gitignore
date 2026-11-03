@@ -47,3 +47,6 @@ reports/screenshots/
 # 保留同目录的 *.json 抽取结果与 sub/ 正文，它们是可回溯的证据链
 expohub-backend/data/*/raw/
 expohub-backend/data/*/rendered/
+
+# 数据库快照备份（写库前手动打的回滚点，不进版本库）
+expohub-backend/*.db.bak*
