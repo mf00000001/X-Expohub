@@ -6,7 +6,8 @@
 安全默认值：
     * 默认 --dry-run：只产出 JSON，不推送任何服务
     * 默认不联网：除非 sources.json 里显式 enabled=true 且传 --allow-network
-    * 每个来源先读 robots.txt，被 Disallow 的来源直接跳过（不允许用 --force 绕过）
+    * 每个来源先读 robots.txt，按 RFC 9309 判定：明确 Disallow / 401 / 403 跳过，
+      404（无该文件）视为未声明限制、允许抓取；不允许用 --force 绕过
     * 字段白名单：只保留 标题/起止日期/地点/简介/封面/来源链接；**任何联系方式类字段一律丢弃并记录**
     * 请求间隔、单来源最大页数、超时都可配置，避免给对方站点造成压力
 
@@ -27,6 +28,7 @@
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import os
 import re
@@ -36,6 +38,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import urllib.robotparser
+import zlib
 from datetime import datetime, timezone
 
 USER_AGENT = "X-Expo-PublicInfoBot/0.1 (+contact: platform-ops@example.com)"
@@ -52,38 +55,110 @@ FORBIDDEN_KEY_PATTERNS = re.compile(
 # ----------------------------------------------------------------------------
 
 class RobotsCache:
-    """按来源缓存 robots.txt 判定结果"""
+    """按来源缓存 robots.txt 判定结果。
 
-    def __init__(self, timeout: int = 10):
+    判定遵循 RFC 9309（2022-09）：
+      · 2xx 且未命中 Disallow        → 允许
+      · 2xx 且命中 Disallow          → 拒绝
+      · 401 / 403                    → 拒绝（对方要求授权）
+      · 4xx（含 404 无此文件）        → 允许（未声明限制 ≠ 禁止）
+      · 5xx / 超时 / 网络错误        → 拒绝（无法确认对方意图，保守处理）
+
+    旧实现把"取不到"一律当禁止，方向是错的：robots.txt 是**限制声明**，
+    不存在该文件就意味着不存在限制。实测 94 个展会官网里 30 个没有
+    robots.txt，且全部是 404、无一条 Disallow: / —— 旧规则会白白损失约三成数据源。
+    """
+
+    def __init__(self, timeout: int = 10, opener=None):
         self.timeout = timeout
-        self._cache: dict[str, urllib.robotparser.RobotFileParser | None] = {}
+        # 允许注入 opener（如绕开本机系统代理的 ProxyHandler({})）。
+        # 本机常驻 127.0.0.1:7891，国内展会站经代理会被接走并返回假错误。
+        self.opener = opener
+        # 值可能是 "allow" / "deny" 字符串，或解析好的 RobotFileParser
+        self._cache: dict[str, str | urllib.robotparser.RobotFileParser] = {}
+        self.stats = {"allow": 0, "deny": 0, "absent": 0, "error": 0}
 
-    def allowed(self, url: str) -> bool:
+    def _open(self, req):
+        if self.opener is not None:
+            return self.opener.open(req, timeout=self.timeout)
+        return urllib.request.urlopen(req, timeout=self.timeout)
+
+    def _load(self, origin: str) -> None:
+        rp = urllib.robotparser.RobotFileParser()
+        rp.set_url(origin + "/robots.txt")
+        for attempt in range(3):  # 并发下 robots 请求很容易超时，重试 3 次再判死
+            try:
+                req = urllib.request.Request(origin + "/robots.txt", headers={"User-Agent": USER_AGENT})
+                with self._open(req) as resp:
+                    body = resp.read().decode("utf-8", "ignore")
+                # 有些站用 200 返回 HTML 404 页，这种内容不是 robots
+                if "<html" in body[:200].lower() or "<!doctype" in body[:200].lower():
+                    self._cache[origin] = "absent"
+                    self.stats["absent"] += 1
+                    return
+                rp.parse(body.splitlines())
+                self._cache[origin] = rp
+                return
+            except urllib.error.HTTPError as e:
+                if e.code in (401, 403):
+                    self._cache[origin] = "deny"
+                    self.stats["deny"] += 1
+                elif 400 <= e.code < 500:
+                    # 404 = 没有这个文件 = 没有限制
+                    self._cache[origin] = "absent"
+                    self.stats["absent"] += 1
+                else:
+                    self._cache[origin] = "error"
+                    self.stats["error"] += 1
+                return
+            except Exception:
+                if attempt < 2:
+                    time.sleep(0.5 * (attempt + 1))
+                    continue
+        # 三次都连不上：无法确认对方意图，保守拒绝；但要与"明确禁止"区分开
+        self._cache[origin] = "error"
+        self.stats["error"] += 1
+
+    def reason(self, url: str) -> str:
+        """返回 allow / absent / deny / error，供调用方区分'对方不让'和'我们连不上'。"""
         parts = urllib.parse.urlsplit(url)
         origin = f"{parts.scheme}://{parts.netloc}"
         if origin not in self._cache:
-            rp = urllib.robotparser.RobotFileParser()
-            rp.set_url(origin + "/robots.txt")
-            try:
-                req = urllib.request.Request(origin + "/robots.txt", headers={"User-Agent": USER_AGENT})
-                with urllib.request.urlopen(req, timeout=self.timeout) as resp:
-                    rp.parse(resp.read().decode("utf-8", "ignore").splitlines())
-            except Exception:
-                # 取不到 robots.txt 时保守处理：默认不允许自动抓取
-                rp = None
-            self._cache[origin] = rp
-        rp = self._cache[origin]
-        if rp is None:
-            return False
-        return rp.can_fetch(USER_AGENT, url)
+            self._load(origin)
+        rule = self._cache[origin]
+        if isinstance(rule, str):
+            return rule
+        return "allow" if rule.can_fetch(USER_AGENT, url) else "deny"
+
+    def allowed(self, url: str) -> bool:
+        return self.reason(url) in ("allow", "absent")
 
 
 def http_get(url: str, timeout: int = 15) -> str:
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept-Language": "zh-CN,zh;q=0.9"})
+    req = urllib.request.Request(url, headers={
+        "User-Agent": USER_AGENT,
+        "Accept-Language": "zh-CN,zh;q=0.9",
+        # 站点普遍 gzip；不解压会拿到压缩字节，后续所有正则全部落空
+        "Accept-Encoding": "gzip, deflate",
+    })
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         raw = resp.read()
-        charset = resp.headers.get_content_charset() or "utf-8"
-    return raw.decode(charset, "ignore")
+        enc = (resp.headers.get("Content-Encoding") or "").lower()
+        if "gzip" in enc:
+            raw = gzip.decompress(raw)
+        elif "deflate" in enc:
+            try:
+                raw = zlib.decompress(raw)
+            except zlib.error:
+                raw = zlib.decompress(raw, -zlib.MAX_WBITS)
+        charset = resp.headers.get_content_charset()
+    if charset:
+        return raw.decode(charset, "ignore")
+    # 中文站常见 GBK 但不标 charset。UTF-8 是自校验编码，能严格解码成功就用它。
+    try:
+        return raw.decode("utf-8")
+    except UnicodeDecodeError:
+        return raw.decode("gb18030", "ignore")
 
 
 def extract_jsonld_events(html: str) -> list[dict]:

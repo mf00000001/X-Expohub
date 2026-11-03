@@ -42,3 +42,8 @@ reports/screenshots/
 
 # AI 工具会话记录（不含源码价值）
 .memory/
+
+# 展会画像采集：原始页面与渲染快照体积大、可由脚本重跑（约 1.8MB/批）
+# 保留同目录的 *.json 抽取结果与 sub/ 正文，它们是可回溯的证据链
+expohub-backend/data/*/raw/
+expohub-backend/data/*/rendered/

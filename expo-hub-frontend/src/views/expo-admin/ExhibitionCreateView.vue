@@ -129,11 +129,18 @@ async function handleSubmit() {
       end_date: form.value.end_date,
       location: form.value.location.trim() || '待定',
       category: form.value.category || undefined,
-      status: 'draft',
+      // 之前这里硬编码 'draft'，用户选的「待审批/发布」被丢弃（同类静默丢失）
+      status: form.value.status || 'draft',
       total_booths: Number(form.value.total_booths) || 10,
       venue_id: form.value.venue_id ?? undefined,
     }
-    await exhibitionApi.create(payload as any)
+    const created: any = await exhibitionApi.create(payload as any)
+    // 后端 ExhibitionCreate / Exhibition 模型 / exhibitions 表均无 category 字段，
+    // 提交后会被静默丢弃。这里回读校验，把「静默」变成明确报错（后端补齐后自然不再触发）。
+    if (payload.category && created?.category !== payload.category) {
+      error.value = '展会已创建，但「品类」未保存：后端展会接口尚未支持 category 字段。请勿重复提交，待后端补齐后到该展会编辑页补填。'
+      return
+    }
     success.value = '展会创建成功！'
     setTimeout(() => {
       router.push({ name: 'admin-exhibitions' })

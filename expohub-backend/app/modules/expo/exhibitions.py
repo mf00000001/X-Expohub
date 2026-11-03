@@ -210,6 +210,9 @@ class ExhibitionCreate(BaseModel):
     end_date: str
     location: str
     venue_id: Optional[int] = None  # V3.1: 关联展馆(可选)
+    # 品类：之前前端传了、schema 没接，Pydantic 的 extra=ignore 会静默丢弃，
+    # 表现为"选了品类但保存后为空"，且接口返回 200，看不出任何异常。
+    category: Optional[str] = None
     status: Optional[str] = "draft"
 
 
@@ -222,6 +225,7 @@ class ExhibitionUpdate(BaseModel):
     end_date: Optional[str] = None
     location: Optional[str] = None
     venue_id: Optional[int] = None  # V3.2: 关联展馆(可改)
+    category: Optional[str] = None
     status: Optional[str] = None
 
 
@@ -328,6 +332,7 @@ def _exhibition_to_dict(
         "start_date": exh.start_date,
         "end_date": exh.end_date,
         "location": exh.location,
+        "category": getattr(exh, "category", None),
         "venue": exh.location,  # frontend alias for location
         "venue_info": venue_info,  # V3.1: 关联展馆信息(可选,含 id/name/city/address/area)
         "city": "",  # placeholder - backend does not separate city
@@ -926,6 +931,7 @@ def create(
         end_date=data.end_date,
         location=data.location,
         venue_id=venue_id,
+        category=data.category,
         status=data.status or "draft",
         organizer_id=current_user.id,
         organizer_name=PLATFORM_OPERATOR_NAME,

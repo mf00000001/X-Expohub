@@ -1,0 +1,18 @@
+[
+{"id":"tea-expo","official_name":"中国国际茶叶博览会","url":"https://www.goodtea.cc/","evidence":"贸促会展览服务网登记官网即 goodtea.cc（承办方华巨臣）；旧域 china-teaexpo.com 已 404","confidence":"medium"},
+{"id":"pharmchina","official_name":"全国药品交易会（PHARMCHINA）","url":"https://www.pharmchina.com.cn/","evidence":"站内即药交会官网，主办国药励展","confidence":"high"},
+{"id":"api-china","official_name":"中国国际医药原料药/中间体/包装/设备交易会（API China）","url":"https://www.apichina.com.cn/","evidence":"展商入口/观众注册齐全，主办国药励展","confidence":"high"},
+{"id":"sino-dental","official_name":"中国国际口腔设备材料展览会（Sino-Dental）","url":"https://www.sinodent.com.cn/","evidence":"组委会为国家卫健委国际交流与合作中心，京ICP备09065753号-2","confidence":"high"},
+{"id":"scie","official_name":"世界智能产业博览会（原智博会）","url":"https://www.smartchina-expo.cn/","evidence":"组委会官方站，2024 年起升级为世界智能产业博览会，域名未变","confidence":"high"},
+{"id":"iot-expo","official_name":"世界物联网博览会（WIoT）","url":"https://www.wiotexpo.cn/","evidence":"官网自述 2016 年至今落地无锡","confidence":"high"},
+{"id":"china-logistics","official_name":"中国（深圳）国际物流与供应链博览会（CILF）","url":"https://www.scmfair.com/","evidence":"中物联/深圳物流与供应链管理协会主办方站点","confidence":"high"},
+{"id":"ec-expo-yiwu","official_name":"浙江国际电子商务博览会（原中国国际电子商务博览会）","url":"https://www.ecfair.cn/","evidence":"义乌电商博览会官网，主办浙江省商务厅、义乌市政府","confidence":"medium"},
+{"id":"china-edu-expo","official_name":"中国国际教育展（CEE）","url":"https://www.chinaeducationexpo.com/","evidence":"教育部指导、中国教育国际交流协会主办","confidence":"high"},
+{"id":"ciie","official_name":"中国国际进口博览会（CIIE）","url":"https://www.ciie.org/","evidence":"页脚载商务部/上海市人民政府主办；原 URL 正确，未匹配关键词是前端渲染","confidence":"high"},
+{"id":"ccbef","official_name":"中国（深圳）跨境电商展览会（CCBEC）","url":"https://www.ccbec-shenzhen.com/","evidence":"法兰克福展览新闻稿明确刊载该域名","confidence":"high"},
+{"id":"caexpo","official_name":"中国—东盟博览会（CAEXPO）","url":"https://www.caexpo.org.cn/","evidence":"中国与东盟10国政府经贸主管部门共同主办，新版站点为 .org.cn","confidence":"high"},
+{"id":"cismef","official_name":"中国国际中小企业博览会（中博会）","url":"https://www.cismef.com.cn/","evidence":"中国国际商会广州商会通知载明展会官网，主办工信部","confidence":"high"},
+{"id":"hainan-expo","official_name":"中国国际消费品博览会（消博会）","url":"https://www.hainanexpo.org.cn/","evidence":"商务部、海南省人民政府主办","confidence":"high"},
+{"id":"cipsc","official_name":"中国国际供应链促进博览会（链博会）","url":"https://www.cisce.org.cn/","evidence":"贸促会主办、中展集团承办","confidence":"high"},
+{"id":"fhc-shanghai","official_name":"FHC上海环球食品展","url":"https://www.fhcchina.com/","evidence":"上海市餐饮烹饪行业协会、上海博华主办","confidence":"high"}
+]

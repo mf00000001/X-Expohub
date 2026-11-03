@@ -74,7 +74,7 @@ async function handleSubmit() {
   success.value = ''
   submitting.value = true
   try {
-    await exhibitionApi.update(id, {
+    const updated: any = await exhibitionApi.update(id, {
       title: form.value.title.trim(),
       description: form.value.description.trim() || undefined,
       cover_image: form.value.cover_image || undefined,
@@ -85,6 +85,11 @@ async function handleSubmit() {
       status: form.value.status,
       venue_id: form.value.venue_id ?? undefined,
     })
+    // 同创建页：后端无 category 字段，提交会被静默丢弃，回读校验后明确报错
+    if (form.value.category && updated?.category !== form.value.category) {
+      error.value = '其它字段已保存，但「品类」未保存：后端展会接口尚未支持 category 字段。'
+      return
+    }
     success.value = '展会更新成功！'
     setTimeout(() => {
       router.push({ name: 'admin-exhibitions' })

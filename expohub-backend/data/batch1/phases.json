@@ -1,0 +1,32 @@
+{
+  "built_at": "\"2026-11-03T15:58:16.839221\"",
+  "total": 1,
+  "records": [
+    {
+      "id": "canton-fair",
+      "phases": [
+        {
+          "phase_no": 1,
+          "phase_name": "先进制造",
+          "start_date": "2026-10-15",
+          "end_date": "2026-10-19",
+          "evidence": "2026年10月15日-19日"
+        },
+        {
+          "phase_no": 2,
+          "phase_name": "品质家居",
+          "start_date": "2026-10-23",
+          "end_date": "2026-10-27",
+          "evidence": "2026年10月23日-27日"
+        },
+        {
+          "phase_no": 3,
+          "phase_name": "美好生活",
+          "start_date": "2026-10-31",
+          "end_date": "2026-11-04",
+          "evidence": "2026年10月31日-11月4日"
+        }
+      ]
+    }
+  ]
+}

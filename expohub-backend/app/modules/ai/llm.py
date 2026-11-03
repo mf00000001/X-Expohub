@@ -65,6 +65,42 @@ class OpenAICompatProvider(LLMProvider):
         except (KeyError, IndexError, TypeError) as exc:
             raise RuntimeError(f"LLM 响应格式异常: {exc}") from exc
 
+    def complete_full(
+        self,
+        prompt: str,
+        system: str | None = None,
+        temperature: float = 0.0,
+        max_tokens: int = 800,
+        timeout: float = 60.0,
+        json_mode: bool = False,
+    ) -> str:
+        """可控参数的调用入口，供**离线批处理**使用（抽取、标注、清洗）。
+
+        与 complete() 分开的原因：面向用户的对话需要 0.4 的温度和短回复，
+        而结构化抽取必须 0 温度、更长输出、可要求 JSON 模式。
+        把两套参数塞进同一个方法只会让两边都别扭。
+        """
+        url = f"{self._base_url}/chat/completions"
+        payload: dict = {
+            "model": self._model,
+            "messages": [
+                {"role": "system", "content": system or "你是 ExpoHub 的数据处理助手。"},
+                {"role": "user", "content": prompt},
+            ],
+            "temperature": temperature,
+            "max_tokens": max_tokens,
+        }
+        if json_mode:
+            payload["response_format"] = {"type": "json_object"}
+        headers = {"Authorization": f"Bearer {self._api_key}", "Content-Type": "application/json"}
+        resp = httpx.post(url, json=payload, headers=headers, timeout=timeout)
+        resp.raise_for_status()
+        data = resp.json()
+        try:
+            return data["choices"][0]["message"]["content"].strip()
+        except (KeyError, IndexError, TypeError) as exc:
+            raise RuntimeError(f"LLM 响应格式异常: {exc}") from exc
+
 
 def _build_real_provider() -> Optional[LLMProvider]:
     """按配置构造真实渠道；缺 key 返回 None（触发 mock 降级）"""

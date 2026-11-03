@@ -1,0 +1,4507 @@
+{
+  "summary": {
+    "collected_at": "2026-11-03 14:36:46",
+    "total": 94,
+    "ok": 81,
+    "errors": {
+      "china-adhesive": "robots_denied",
+      "ecf": "robots_unreachable",
+      "ningbo-consumer": "robots_denied",
+      "gz-gift": "robots_unreachable",
+      "chic": "HTTPError: HTTP Error 500: RuntimeError",
+      "china-shoes": "robots_unreachable",
+      "wenzhou-shoes": "HTTPError: HTTP Error 403: Forbidden",
+      "furniture-china": "robots_unreachable",
+      "china-bags": "HTTPError: HTTP Error 403: Forbidden",
+      "cile": "robots_unreachable",
+      "china-outdoor": "no_url",
+      "tangjiu": "robots_denied",
+      "b-fitness": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    "fill": {
+      "title": 76,
+      "start_date": 37,
+      "end_date": 37,
+      "venue": 48,
+      "city": 66,
+      "organizer": 16,
+      "edition": 38,
+      "deadline": 0
+    },
+    "fill_rate": {
+      "title": 0.938,
+      "start_date": 0.457,
+      "end_date": 0.457,
+      "venue": 0.593,
+      "city": 0.815,
+      "organizer": 0.198,
+      "edition": 0.469,
+      "deadline": 0.0
+    },
+    "by_method": {
+      "title": {
+        "title_tag": 76
+      },
+      "start_date": {
+        "regex": 37
+      },
+      "end_date": {
+        "regex": 37
+      },
+      "venue": {
+        "dict": 48
+      },
+      "city": {
+        "dict": 66
+      },
+      "organizer": {
+        "regex": 16
+      },
+      "edition": {
+        "regex": 38
+      }
+    },
+    "dates_status": {
+      "current": 37,
+      "past": 18,
+      "none": 26
+    },
+    "prev_date_kept": 18,
+    "typical_month_known": 55,
+    "robots_stats": {
+      "allow": 0,
+      "deny": 3,
+      "absent": 43,
+      "error": 5
+    },
+    "avg_filled": 3.93
+  },
+  "records": [
+    {
+      "id": "awe",
+      "layer": "trunk",
+      "category": "电子及家电",
+      "name": "中国家电及消费电子博览会（AWE）",
+      "url": "https://www.awe.com.cn/",
+      "fields": {
+        "title": {
+          "value": "AWE中国家电及消费电子博览会|上海家电展|智能家居展|小家电展|消费电子展",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-03-17",
+          "method": "regex",
+          "evidence": "2027年3月17-20日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-03-20",
+          "method": "regex",
+          "evidence": "2027年3月17-20日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "中国家用电器协会",
+          "method": "regex",
+          "evidence": "主办单位 \n 中国家用电器协会 ",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "电子及家电",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.awe.com.cn/contents/161/15509.html",
+        "https://www.awe.com.cn/contents/12/944.html",
+        "https://www.awe.com.cn/jumpGZ.html"
+      ],
+      "dates_status": "current",
+      "typical_month": 3,
+      "final_url": "https://www.awe.com.cn/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 9361
+    },
+    {
+      "id": "electronica-china",
+      "layer": "trunk",
+      "category": "电子及家电",
+      "name": "慕尼黑上海电子展",
+      "url": "https://www.electronica-china.com/",
+      "fields": {
+        "title": {
+          "value": "Semiconductors_Industrial Electronics_Embedded systems-electronica Shanghai",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-04-14",
+          "method": "regex",
+          "evidence": "Apr. 14-16, 2027",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-04-16",
+          "method": "regex",
+          "evidence": "Apr. 14-16, 2027",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "dict",
+          "evidence": "SNIEC",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "SNIEC",
+          "conf": "high"
+        },
+        "category": {
+          "value": "电子及家电",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.electronicachina.com.cn/en/important-exhibitions-for-the-industry/accompanying-program/activities-at-a-glance",
+        "https://www.electronicachina.com.cn/en/important-exhibitions-for-the-industry/exhibitor-centre/why-exhibit",
+        "https://www.electronicachina.com.cn/en/important-exhibitions-for-the-industry/exhibitor-centre/prospectus"
+      ],
+      "dates_status": "current",
+      "typical_month": 4,
+      "final_url": "https://www.electronicachina.com.cn/en",
+      "http": "current",
+      "robots": "allow",
+      "filled": 5,
+      "raw_chars": 14767
+    },
+    {
+      "id": "cite",
+      "layer": "trunk",
+      "category": "电子及家电",
+      "name": "中国国际电子信息博览会",
+      "url": "http://www.citexpo.com.cn/",
+      "fields": {
+        "title": {
+          "value": "China International Tire Expo",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "category": {
+          "value": "电子及家电",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.citexpo.com.cn/en/media&publication/pub/180228e.php",
+        "https://www.citexpo.com.cn/en/media&publication/pub/170203e.php"
+      ],
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.citexpo.com.cn//",
+      "http": "none",
+      "robots": "allow",
+      "filled": 1,
+      "raw_chars": 8438
+    },
+    {
+      "id": "sinoces",
+      "layer": "trunk",
+      "category": "电子及家电",
+      "name": "中国国际消费电子博览会（电博会 CICE）",
+      "url": "https://sinoces.com/",
+      "fields": {
+        "prev_start_date": {
+          "value": "2026-09-04",
+          "method": "regex",
+          "evidence": "2026年9月4-6日",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-09-06",
+          "method": "regex",
+          "evidence": "2026年9月4-6日",
+          "conf": "low"
+        },
+        "venue": {
+          "value": "青岛国际会展中心",
+          "method": "dict",
+          "evidence": "青岛国际会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "青岛",
+          "method": "dict",
+          "evidence": "青岛国际会展中心",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "山东省人民政府",
+          "method": "regex",
+          "evidence": "由山东省人民政府主办",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "电子及家电",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://sinoces.com/about",
+        "https://sinoces.com/expb",
+        "https://sinoces.com/about/abouthg"
+      ],
+      "dates_status": "past",
+      "typical_month": 9,
+      "final_url": "https://sinoces.com/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-09-04 ~ 2026-09-06（开展日已过去 60 天（已结束或正在举办））"
+      ],
+      "filled": 3,
+      "raw_chars": 6933
+    },
+    {
+      "id": "gile",
+      "layer": "trunk",
+      "category": "照明",
+      "name": "广州国际照明展览会（光亚展 GILE）",
+      "url": "http://gile.gymf.com.cn/",
+      "fields": {
+        "title": {
+          "value": "2027广州国际照明展览会-光亚展(GILE)_照明及LED产业风向标",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-06-09",
+          "method": "regex",
+          "evidence": "2027年6月9-12日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-06-12",
+          "method": "regex",
+          "evidence": "2027年6月9-12日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "广交会展馆",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "city": {
+          "value": "广州",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 31,
+          "method": "regex",
+          "evidence": "第31届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "照明",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "http://gile.gymf.com.cn/overview/about",
+        "http://gile.gymf.com.cn/exhibition",
+        "http://gile.gymf.com.cn/exhibition/apply"
+      ],
+      "dates_status": "current",
+      "typical_month": 6,
+      "final_url": "https://gile.gymf.com.cn/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 16329
+    },
+    {
+      "id": "guzhen-lighting",
+      "layer": "trunk",
+      "category": "照明",
+      "name": "中国·古镇国际灯饰博览会",
+      "url": "https://www.gzlightingfair.com/",
+      "fields": {
+        "title": {
+          "value": "古镇灯博会 &#8211; 【第35届古镇灯博会】以“专业化、市场化、国际化”为定位，打造展店联动、展网融合的一站式新品采购盛会。",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2026-10-22",
+          "method": "regex",
+          "evidence": "2026年10月22-25日",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-10-25",
+          "method": "regex",
+          "evidence": "2026年10月22-25日",
+          "conf": "low"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "仅命中城市词 上海",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "中国照明电器协会",
+          "method": "regex",
+          "evidence": "主办单位 \n \n \n \n 中国照明电器协会 ",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 35,
+          "method": "regex",
+          "evidence": "第35届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "照明",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://gzlightingfair.denggle.com/"
+      ],
+      "dates_status": "past",
+      "typical_month": 10,
+      "final_url": "https://gzlightingfair.denggle.com/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-10-22 ~ 2026-10-25（开展日已过去 12 天（已结束或正在举办））"
+      ],
+      "filled": 4,
+      "raw_chars": 10659
+    },
+    {
+      "id": "hktdc-lighting",
+      "layer": "trunk",
+      "category": "照明",
+      "name": "香港国际秋季灯饰展",
+      "url": "https://hklightingfairae.hktdc.com/",
+      "fields": {
+        "title": {
+          "value": "HKTDC Hong Kong International Lighting Fair (Autumn Edition)",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "venue": {
+          "value": "香港会议展览中心",
+          "method": "dict",
+          "evidence": "HKCEC",
+          "conf": "high"
+        },
+        "city": {
+          "value": "香港",
+          "method": "dict",
+          "evidence": "HKCEC",
+          "conf": "high"
+        },
+        "category": {
+          "value": "照明",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.hktdc.com/event/hklightingfairae/en/exhibitor-list",
+        "https://www.hktdc.com/event/hklightingfairae/en/fair-at-a-glance"
+      ],
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.hktdc.com/event/hklightingfairae/en",
+      "http": "none",
+      "robots": "allow",
+      "filled": 3,
+      "raw_chars": 14748
+    },
+    {
+      "id": "ningbo-lighting",
+      "layer": "trunk",
+      "category": "照明",
+      "name": "宁波国际照明展览会",
+      "url": "https://nb.yishengexpo.com/",
+      "fields": {
+        "title": {
+          "value": "2027宁波国际照明展",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-05-07",
+          "method": "regex",
+          "evidence": "2027年05月07日-09日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-05-09",
+          "method": "regex",
+          "evidence": "2027年05月07日-09日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "宁波国际会展中心",
+          "method": "dict",
+          "evidence": "宁波国际会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "宁波",
+          "method": "dict",
+          "evidence": "宁波国际会展中心",
+          "conf": "high"
+        },
+        "category": {
+          "value": "照明",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://nb.yishengexpo.com/cnt_33.html",
+        "https://nb.yishengexpo.com/cnt_26.html",
+        "https://nb.yishengexpo.com/cnt_34.html"
+      ],
+      "dates_status": "current",
+      "typical_month": 5,
+      "final_url": "https://nb.yishengexpo.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 5,
+      "raw_chars": 6056
+    },
+    {
+      "id": "auto-shanghai",
+      "layer": "trunk",
+      "category": "车辆及配件",
+      "name": "上海国际汽车工业展览会",
+      "url": "https://www.autoshanghai.org/",
+      "fields": {
+        "title": {
+          "value": "第二十二届上海国际汽车工业展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "仅命中城市词 上海",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "上海市国际贸易促进委员会 中国汽车工业协会",
+          "method": "regex",
+          "evidence": "主办单位 上海市国际贸易促进委员会 中国汽车工业协会 承办单位 上海市国际展览（集团）有限公司 上海",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 22,
+          "method": "regex",
+          "evidence": "第二十二届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "车辆及配件",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.autoshanghai.org/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 4,
+      "raw_chars": 973
+    },
+    {
+      "id": "auto-china",
+      "layer": "trunk",
+      "category": "车辆及配件",
+      "name": "北京国际汽车展览会（Auto China）",
+      "url": "https://www.autochinashow.org/",
+      "fields": {
+        "title": {
+          "value": "2027北京国际新质汽车及未来智慧出行展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-03-27",
+          "method": "regex",
+          "evidence": "2027年3月27日-4月5日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-04-05",
+          "method": "regex",
+          "evidence": "2027年3月27日-4月5日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "中国国际展览中心（顺义馆）",
+          "method": "dict",
+          "evidence": "中国国际展览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "北京",
+          "method": "dict",
+          "evidence": "中国国际展览中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 19,
+          "method": "regex",
+          "evidence": "第十九届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "车辆及配件",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.autochinashow.org/zhgk",
+        "https://www.autochinashow.org/zhxw",
+        "https://www.autochinashow.org/zhfw"
+      ],
+      "dates_status": "current",
+      "typical_month": 3,
+      "final_url": "https://www.autochinashow.org/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 11469
+    },
+    {
+      "id": "auto-guangzhou",
+      "layer": "trunk",
+      "category": "车辆及配件",
+      "name": "广州国际汽车展览会",
+      "url": "https://www.autoguangzhou.com.cn/",
+      "fields": {
+        "title": {
+          "value": "广州国际车展",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "city": {
+          "value": "广州",
+          "method": "dict",
+          "evidence": "仅命中城市词 广州",
+          "conf": "high"
+        },
+        "category": {
+          "value": "车辆及配件",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.autoguangzhou.com.cn/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 2,
+      "raw_chars": 41
+    },
+    {
+      "id": "automechanika-sh",
+      "layer": "trunk",
+      "category": "车辆及配件",
+      "name": "上海国际汽车零配件维修检测设备展",
+      "url": "https://automechanika-shanghai.hk.messefrankfurt.com/",
+      "fields": {
+        "title": {
+          "value": "上海国际汽车零配件、维修检测诊断设备及服务用品展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2026-12-02",
+          "method": "regex",
+          "evidence": "2026年12月2至5日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-12-05",
+          "method": "regex",
+          "evidence": "2026年12月2至5日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "category": {
+          "value": "车辆及配件",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://automechanika-shanghai.hk.messefrankfurt.com/shanghai/zh-cn/exhibitor-search.html",
+        "https://automechanika-shanghai.hk.messefrankfurt.com/shanghai/zh-cn/exhibitor-search/key-exhibitors.html",
+        "https://automechanika-shanghai.hk.messefrankfurt.com/shanghai/zh-cn/planning-preparation.html"
+      ],
+      "dates_status": "current",
+      "typical_month": 12,
+      "final_url": "https://automechanika-shanghai.hk.messefrankfurt.com/shanghai/zh-cn.html",
+      "http": "current",
+      "robots": "allow",
+      "filled": 5,
+      "raw_chars": 27279
+    },
+    {
+      "id": "cihs",
+      "layer": "trunk",
+      "category": "五金工具",
+      "name": "中国国际五金展",
+      "url": "http://www.cihs.com.cn/",
+      "fields": {
+        "title": {
+          "value": "中国国际五金展官方网站",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2026-09-28",
+          "method": "regex",
+          "evidence": "2026年9月28日-30日",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-09-30",
+          "method": "regex",
+          "evidence": "2026年9月28日-30日",
+          "conf": "low"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 2,
+          "method": "regex",
+          "evidence": "第二届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "五金工具",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "http://www.cihs.com.cn/single-data.jsp?mid=14",
+        "http://www.cihs.com.cn/loop-data-img.jsp?mid=18&pnum=1&psize=9",
+        "http://www.cihs.com.cn/single-data.jsp?mid=19"
+      ],
+      "dates_status": "past",
+      "typical_month": 9,
+      "final_url": "http://www.cihs.com.cn/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-09-28 ~ 2026-09-30（开展日已过去 36 天（已结束或正在举办））"
+      ],
+      "filled": 4,
+      "raw_chars": 9870
+    },
+    {
+      "id": "china-hardware",
+      "layer": "trunk",
+      "category": "五金工具",
+      "name": "中国国际五金博览会（CIHF）",
+      "url": "https://hardware-fair.com/",
+      "fields": {
+        "title": {
+          "value": "中国国际五金博览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-03-17",
+          "method": "regex",
+          "evidence": "2027年3月17-19日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-03-19",
+          "method": "regex",
+          "evidence": "2027年3月17-19日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "中国五金交电化工商业协会",
+          "method": "regex",
+          "evidence": "主办单位: \n 中国五金交电化工商业协会 ",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 40,
+          "method": "regex",
+          "evidence": "第四十届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "五金工具",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://hardware-fair.com/p/zhanhuijieshao.html",
+        "https://hardware-fair.com/zhanhuixinwen/552.html",
+        "https://hardware-fair.com/zhanhuixinwen/549.html"
+      ],
+      "dates_status": "current",
+      "typical_month": 3,
+      "final_url": "https://hardware-fair.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 7,
+      "raw_chars": 9852
+    },
+    {
+      "id": "yongkang-hardware",
+      "layer": "trunk",
+      "category": "五金工具",
+      "name": "中国五金博览会（永康）",
+      "url": "https://www.chhwf.com/",
+      "fields": {
+        "title": {
+          "value": "五金博览会-唯一指定官网网站",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2026-03-01",
+          "method": "regex",
+          "evidence": "2026年3月1日",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-03-01",
+          "method": "regex",
+          "evidence": "2026年3月1日",
+          "conf": "low"
+        },
+        "venue": {
+          "value": "永康国际会展中心",
+          "method": "dict",
+          "evidence": "永康国际会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "永康",
+          "method": "dict",
+          "evidence": "永康国际会展中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 31,
+          "method": "regex",
+          "evidence": "第31届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "五金工具",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.chhwf.com/zhjs.php?zid=4",
+        "https://www.chhwf.com/exhibition.php",
+        "https://www.chhwf.com/apply/index.php"
+      ],
+      "dates_status": "past",
+      "typical_month": 3,
+      "final_url": "https://www.chhwf.com/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-03-01 ~ 2026-03-01（官网仍展示 8 个月前的往届展期）"
+      ],
+      "filled": 4,
+      "raw_chars": 8802
+    },
+    {
+      "id": "cimt",
+      "layer": "trunk",
+      "category": "五金工具",
+      "name": "中国国际机床展览会",
+      "url": "https://www.cimtshow.com/",
+      "fields": {
+        "title": {
+          "value": "第二十届中国国际机床展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2025-04-21",
+          "method": "regex",
+          "evidence": "2025年4月21日至26日",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2025-04-26",
+          "method": "regex",
+          "evidence": "2025年4月21日至26日",
+          "conf": "low"
+        },
+        "venue": {
+          "value": "中国国际展览中心（顺义馆）",
+          "method": "dict",
+          "evidence": "中国国际展览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "北京",
+          "method": "dict",
+          "evidence": "中国国际展览中心",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "中国机床工具工业协会",
+          "method": "regex",
+          "evidence": "本届展会由中国机床工具工业协会主办",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 20,
+          "method": "regex",
+          "evidence": "第二十届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "五金工具",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.cimtshow.com/233/list.html",
+        "https://www.cimtshow.com/197001/10615.html",
+        "https://www.cimtshow.com/352/list.html"
+      ],
+      "dates_status": "past",
+      "typical_month": 4,
+      "final_url": "https://www.cimtshow.com/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2025-04-21 ~ 2025-04-26（官网仍展示 19 个月前的往届展期）"
+      ],
+      "filled": 5,
+      "raw_chars": 9253
+    },
+    {
+      "id": "ciif",
+      "layer": "trunk",
+      "category": "机械",
+      "name": "中国国际工业博览会（中国工博会 CIIF）",
+      "url": "https://www.ciif-expo.com/",
+      "fields": {
+        "category": {
+          "value": "机械",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.ciif-expo.com/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 0,
+      "raw_chars": 1
+    },
+    {
+      "id": "chinaplas",
+      "layer": "trunk",
+      "category": "机械",
+      "name": "中国国际塑料橡胶工业展览会",
+      "url": "https://www.chinaplasonline.com/",
+      "fields": {
+        "title": {
+          "value": "CHINAPLAS 2027 | 全球领先的国际塑料橡胶展",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-04-13",
+          "method": "regex",
+          "evidence": "2027.4.13-16",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-04-16",
+          "method": "regex",
+          "evidence": "2027.4.13-16",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "深圳国际会展中心",
+          "method": "dict",
+          "evidence": "深圳国际会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "深圳",
+          "method": "dict",
+          "evidence": "深圳国际会展中心",
+          "conf": "high"
+        },
+        "category": {
+          "value": "机械",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.chinaplasonline.com/CPS/exhibitor/BecomeanExhibitor/simp",
+        "https://www.chinaplasonline.com/CPS/information/AboutChinaplas/simp",
+        "https://www.chinaplasonline.com/CPS/exhibitor/becomeanexhibitor/simp"
+      ],
+      "dates_status": "current",
+      "typical_month": 4,
+      "final_url": "https://www.chinaplasonline.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 5,
+      "raw_chars": 40000
+    },
+    {
+      "id": "simm",
+      "layer": "trunk",
+      "category": "机械",
+      "name": "ITES 深圳国际工业制造技术及设备展览会（原 SIMM）",
+      "url": "https://www.iteschina.com/",
+      "fields": {
+        "title": {
+          "value": "ITES深圳工业展-深圳机械展_机床展_自动化展_机器人展",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-03-24",
+          "method": "regex",
+          "evidence": "2027年3月24日-3月27日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-03-27",
+          "method": "regex",
+          "evidence": "2027年3月24日-3月27日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "深圳国际会展中心",
+          "method": "dict",
+          "evidence": "深圳国际会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "深圳",
+          "method": "dict",
+          "evidence": "深圳国际会展中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 28,
+          "method": "regex",
+          "evidence": "第28届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "机械",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.iteschina.com/zh-cn/exhibitor-list",
+        "https://www.iteschina.com/zh-cn/exhibitors/process",
+        "https://www.iteschina.com/zh-cn/exhibitors/booth-reservation"
+      ],
+      "dates_status": "current",
+      "typical_month": 3,
+      "final_url": "https://www.iteschina.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 12294
+    },
+    {
+      "id": "ccmt",
+      "layer": "trunk",
+      "category": "机械",
+      "name": "中国数控机床展览会",
+      "url": "https://www.ccmtshow.com/",
+      "fields": {
+        "title": {
+          "value": "第十四届中国数控机床展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 14,
+          "method": "regex",
+          "evidence": "第十四届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "机械",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.ccmtshow.com/296/list.html",
+        "https://www.ccmtshow.com/299/list.html",
+        "https://www.ccmtshow.com/358/list.html"
+      ],
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.ccmtshow.com/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 4,
+      "raw_chars": 9346
+    },
+    {
+      "id": "cbd-fair",
+      "layer": "trunk",
+      "category": "建材",
+      "name": "中国建博会（广州）CBD Fair",
+      "url": "https://www.cbdfair-gz.com/",
+      "fields": {
+        "title": {
+          "value": "中国建博会（广州）| 广州建材展",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-07-08",
+          "method": "regex",
+          "evidence": "2027年7月8-11日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-07-11",
+          "method": "regex",
+          "evidence": "2027年7月8-11日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "广交会展馆",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "city": {
+          "value": "广州",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 140,
+          "method": "regex",
+          "evidence": "第140届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "建材",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "current",
+      "typical_month": 7,
+      "final_url": "https://www.cbdfair-gz.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 982
+    },
+    {
+      "id": "fenestration-china",
+      "layer": "trunk",
+      "category": "建材",
+      "name": "中国国际门窗幕墙博览会（FBC）",
+      "url": "https://fenestration.com.cn/",
+      "fields": {
+        "title": {
+          "value": "国际门窗幕墙博览会 FENESTRATION BAU CHINA",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2026-10-28",
+          "method": "regex",
+          "evidence": "2026.10.28-30",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-10-30",
+          "method": "regex",
+          "evidence": "2026.10.28-30",
+          "conf": "low"
+        },
+        "venue": {
+          "value": "中国国际展览中心（顺义馆）",
+          "method": "dict",
+          "evidence": "中国国际展览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "北京",
+          "method": "dict",
+          "evidence": "中国国际展览中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 11,
+          "method": "regex",
+          "evidence": "第十一届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "建材",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://fenestration.com.cn/Exhibition"
+      ],
+      "dates_status": "past",
+      "typical_month": 10,
+      "final_url": "https://fenestration.com.cn/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-10-28 ~ 2026-10-30（开展日已过去 6 天（已结束或正在举办））"
+      ],
+      "filled": 4,
+      "raw_chars": 4359
+    },
+    {
+      "id": "foshan-ceramics",
+      "layer": "trunk",
+      "category": "建材",
+      "name": "中国（佛山）国际陶瓷及卫浴博览交易会",
+      "url": "https://www.cerambath.org/",
+      "fields": {
+        "title": {
+          "value": "陶瓷卫浴品牌加盟严选，陶瓷卫浴新品发布平台 - 线上陶博会,线上展会,佛山陶博会,博览会,陶瓷,卫浴,展会,陶博会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "仅命中城市词 上海",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 36,
+          "method": "regex",
+          "evidence": "第36届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "建材",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.cerambath.org/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 3,
+      "raw_chars": 3276
+    },
+    {
+      "id": "ceramics-china",
+      "layer": "trunk",
+      "category": "建材",
+      "name": "中国国际陶瓷工业展览会",
+      "url": "http://www.ceramicschina.com.cn/",
+      "fields": {
+        "title": {
+          "value": "广州陶瓷工业展|陶瓷展|广州陶瓷展|陶瓷工业展|陶瓷装备材料展",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-06-23",
+          "method": "regex",
+          "evidence": "2027年6月23-26日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-06-26",
+          "method": "regex",
+          "evidence": "2027年6月23-26日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "广交会展馆",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "city": {
+          "value": "广州",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 41,
+          "method": "regex",
+          "evidence": "第41届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "建材",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "http://www.ceramicschina.com.cn/portal/about/introduce",
+        "https://www.ceramicschina.com.cn/portal/about/introduce",
+        "http://www.ceramicschina.com.cn/portal/busi/book"
+      ],
+      "dates_status": "current",
+      "typical_month": 6,
+      "final_url": "http://www.ceramicschina.com.cn/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 7482
+    },
+    {
+      "id": "chinacoat",
+      "layer": "trunk",
+      "category": "化工产品",
+      "name": "中国国际涂料展",
+      "url": "https://www.chinacoat.net/",
+      "fields": {
+        "title": {
+          "value": "CHINACOAT",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2026-11-08",
+          "method": "regex",
+          "evidence": "2026年11月8至10日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-11-10",
+          "method": "regex",
+          "evidence": "2026年11月8至10日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "广交会展馆",
+          "method": "dict",
+          "evidence": "中国进出口商品交易会展馆",
+          "conf": "high"
+        },
+        "city": {
+          "value": "广州",
+          "method": "dict",
+          "evidence": "中国进出口商品交易会展馆",
+          "conf": "high"
+        },
+        "category": {
+          "value": "化工产品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.chinacoat.net/?route=about_exhibition_1",
+        "https://www.chinacoat.net/?route=exhibiting_2",
+        "https://www.chinacoat.net/?route=exhibiting_3"
+      ],
+      "dates_status": "current",
+      "typical_month": 11,
+      "final_url": "https://www.chinacoat.net/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 5,
+      "raw_chars": 9278
+    },
+    {
+      "id": "icif",
+      "layer": "trunk",
+      "category": "化工产品",
+      "name": "中国国际化工展览会",
+      "url": "http://www.icif.cn/",
+      "fields": {
+        "title": {
+          "value": "中国国际化工展览会—官网",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-09-22",
+          "method": "regex",
+          "evidence": "2027年09月22-24日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-09-24",
+          "method": "regex",
+          "evidence": "2027年09月22-24日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "中国石油和化学工业联合会",
+          "method": "regex",
+          "evidence": "由中国石油和化学工业联合会主办",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "化工产品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.icif.cn/cnt_otjx8h.html",
+        "https://www.icif.cn/cnt_exbFeature.html"
+      ],
+      "dates_status": "current",
+      "typical_month": 9,
+      "final_url": "http://www.icif.cn/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 9170
+    },
+    {
+      "id": "china-adhesive",
+      "layer": "trunk",
+      "category": "化工产品",
+      "name": "中国国际胶粘剂及密封剂展览会（ASE CHINA）",
+      "url": "https://www.chinaadhesive2000.com/",
+      "fields": {},
+      "error": "robots_denied",
+      "robots": "deny"
+    },
+    {
+      "id": "pcb-china",
+      "layer": "trunk",
+      "category": "化工产品",
+      "name": "国际电子电路（上海）展览会（CPCA SHOW）",
+      "url": "http://www.cpcashow.com/",
+      "fields": {
+        "title": {
+          "value": "上海颖展展览服务有限公司",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "仅命中城市词 上海",
+          "conf": "high"
+        },
+        "category": {
+          "value": "化工产品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "http://www.cpcashow.com/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 2,
+      "raw_chars": 426
+    },
+    {
+      "id": "snec",
+      "layer": "trunk",
+      "category": "能源",
+      "name": "国际太阳能光伏与智慧能源大会暨展览会",
+      "url": "https://www.snec.org.cn/",
+      "fields": {
+        "title": {
+          "value": "SNEC光.储.氢产业融合协和发展系列展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "category": {
+          "value": "能源",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.snec.org.cn/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 1,
+      "raw_chars": 260
+    },
+    {
+      "id": "cippe",
+      "layer": "trunk",
+      "category": "能源",
+      "name": "中国国际石油石化技术装备展览会",
+      "url": "http://www.cippe.com.cn/",
+      "fields": {
+        "title": {
+          "value": "中国国际石油石化技术装备展览会|振威展览",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "仅命中城市词 上海",
+          "conf": "high"
+        },
+        "category": {
+          "value": "能源",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "http://www.cippe.com.cn/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 2,
+      "raw_chars": 417
+    },
+    {
+      "id": "cwp",
+      "layer": "trunk",
+      "category": "能源",
+      "name": "北京国际风能大会暨展览会（CWP）",
+      "url": "https://www.chinawind.org.cn/",
+      "fields": {
+        "title": {
+          "value": "CWP北京国际风能大会暨展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "venue": {
+          "value": "中国国际展览中心（顺义馆）",
+          "method": "dict",
+          "evidence": "中国国际展览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "北京",
+          "method": "dict",
+          "evidence": "中国国际展览中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 5,
+          "method": "regex",
+          "evidence": "第五届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "能源",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.chinawind.org.cn/about",
+        "https://www.chinawind.org.cn/zwyd",
+        "https://www.chinawind.org.cn/zwt"
+      ],
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.chinawind.org.cn/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 4,
+      "raw_chars": 6179
+    },
+    {
+      "id": "cies",
+      "layer": "trunk",
+      "category": "能源",
+      "name": "中国国际储能大会暨展览会（CIES）",
+      "url": "http://www.ciessummit.cn/",
+      "fields": {
+        "title": {
+          "value": "储能大会暨展览会 CIES",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-03-31",
+          "method": "regex",
+          "evidence": "2027年3月31日-4月1日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-04-01",
+          "method": "regex",
+          "evidence": "2027年3月31日-4月1日",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "杭州",
+          "method": "dict",
+          "evidence": "仅命中城市词 杭州",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 16,
+          "method": "regex",
+          "evidence": "第十六届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "能源",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "http://www.ciessummit.cn/Article/detail/id/698.html",
+        "http://www.ciessummit.cn/article/detail/id/698.html",
+        "http://www.ciessummit.cn/article/detail/id/1167.html"
+      ],
+      "dates_status": "current",
+      "typical_month": 3,
+      "final_url": "http://www.ciessummit.cn/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 5,
+      "raw_chars": 11894
+    },
+    {
+      "id": "ecf",
+      "layer": "trunk",
+      "category": "日用消费品",
+      "name": "华东进出口商品交易会",
+      "url": "http://www.ecf.org.cn/",
+      "fields": {},
+      "error": "robots_unreachable",
+      "robots": "error"
+    },
+    {
+      "id": "yiwu-fair",
+      "layer": "trunk",
+      "category": "日用消费品",
+      "name": "中国义乌国际小商品博览会",
+      "url": "http://www.yiwufair.com/",
+      "fields": {
+        "title": {
+          "value": "义乌国际小商品博览会（义博会）官方网站",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "venue": {
+          "value": "义乌国际博览中心",
+          "method": "dict",
+          "evidence": "义乌国际博览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "义乌",
+          "method": "dict",
+          "evidence": "义乌国际博览中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 32,
+          "method": "regex",
+          "evidence": "第32届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "日用消费品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "http://www.yiwufair.com/exhibitor/czfw/blzj/czzsb/",
+        "http://www.yiwufair.com/exhibitor/invite/",
+        "http://www.yiwufair.com/exhibitor/czfw/zljtsj/"
+      ],
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "http://www.yiwufair.com/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 4,
+      "raw_chars": 7485
+    },
+    {
+      "id": "china-daily-goods",
+      "layer": "trunk",
+      "category": "日用消费品",
+      "name": "中国日用百货商品交易会（百货会 CDATF）",
+      "url": "https://cdatf.com/",
+      "fields": {
+        "title": {
+          "value": "百货会|第120届上海百货会|百货展-日用百货商品交易会|华百官网",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-07-22",
+          "method": "regex",
+          "evidence": "2027年7月22-24日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-07-24",
+          "method": "regex",
+          "evidence": "2027年7月22-24日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 120,
+          "method": "regex",
+          "evidence": "第120届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "日用消费品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.cdatf.com:443/zh-cn/about.html",
+        "https://www.cdatf.com:443/zh-cn/exhibition/booking.html",
+        "https://www.cdatf.com:443/zh-cn/exhibition/zwt.html"
+      ],
+      "dates_status": "current",
+      "typical_month": 7,
+      "final_url": "https://www.cdatf.com:443/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 24532
+    },
+    {
+      "id": "ningbo-consumer",
+      "layer": "trunk",
+      "category": "日用消费品",
+      "name": "中国—中东欧国家博览会暨国际消费品博览会（原宁波消博会）",
+      "url": "https://www.cceecexpo.org/",
+      "fields": {},
+      "error": "robots_denied",
+      "robots": "deny"
+    },
+    {
+      "id": "reed-gift-sz",
+      "layer": "trunk",
+      "category": "礼品",
+      "name": "深圳国际礼品及家居用品展览会",
+      "url": "https://www.reedhuabo.com/",
+      "fields": {
+        "title": {
+          "value": "深圳礼品展、深圳消费电子展、深圳包装展、国内知名的|礼品展|家居展|包装展|消费电子展|礼品包装及印刷展|的主办方-励展华博",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2026-02-04",
+          "method": "regex",
+          "evidence": "2026年02月04日",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-02-04",
+          "method": "regex",
+          "evidence": "2026年02月04日",
+          "conf": "low"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "仅命中城市词 上海",
+          "conf": "high"
+        },
+        "category": {
+          "value": "礼品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "past",
+      "typical_month": 2,
+      "final_url": "https://www.rxhuabo.com.cn/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-02-04 ~ 2026-02-04（官网仍展示 9 个月前的往届展期）"
+      ],
+      "filled": 2,
+      "raw_chars": 2495
+    },
+    {
+      "id": "sh-gift",
+      "layer": "trunk",
+      "category": "礼品",
+      "name": "上海国际礼业博览会（原上海国际礼品及促销品展览会）",
+      "url": "https://july.rxhuabo.com.cn/",
+      "fields": {
+        "title": {
+          "value": "上海国际礼业博览会&mdash;Gift &amp; Home上海礼博会&mdash;励展华博",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-07-15",
+          "method": "regex",
+          "evidence": "2027年7月15-17日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-07-17",
+          "method": "regex",
+          "evidence": "2027年7月15-17日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 9,
+          "method": "regex",
+          "evidence": "第9届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "礼品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://july.rxhuabo.com.cn/about.html",
+        "https://july.rxhuabo.com.cn/why.html",
+        "https://july.rxhuabo.com.cn/info.html"
+      ],
+      "dates_status": "current",
+      "typical_month": 7,
+      "final_url": "https://july.rxhuabo.com.cn/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 8883
+    },
+    {
+      "id": "yiwu-gift",
+      "layer": "trunk",
+      "category": "礼品",
+      "name": "义乌礼品、时尚用品及家庭用品展览会",
+      "url": "https://yiwu.rxhuabo.com.cn/",
+      "fields": {
+        "title": {
+          "value": "2027年义乌礼品、时尚用品及家庭用品展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-05-16",
+          "method": "regex",
+          "evidence": "2027年5月16-18日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-05-18",
+          "method": "regex",
+          "evidence": "2027年5月16-18日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "义乌国际博览中心",
+          "method": "dict",
+          "evidence": "义乌国际博览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "义乌",
+          "method": "dict",
+          "evidence": "义乌国际博览中心",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "励展华博展览（深圳）有限公司",
+          "method": "regex",
+          "evidence": "主办单位 ：励展华博展览（深圳）有限公司 ",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "礼品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://yiwu.rxhuabo.com.cn/about.html",
+        "https://yiwu.rxhuabo.com.cn/organizer.html",
+        "https://yiwu.rxhuabo.com.cn/why.html"
+      ],
+      "dates_status": "current",
+      "typical_month": 5,
+      "final_url": "https://yiwu.rxhuabo.com.cn/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 8098
+    },
+    {
+      "id": "gz-gift",
+      "layer": "trunk",
+      "category": "礼品",
+      "name": "广州国际礼品及家居用品展览会（华礼展广州站）",
+      "url": "https://gz.cghe-expo.com/",
+      "fields": {},
+      "error": "robots_unreachable",
+      "robots": "error"
+    },
+    {
+      "id": "intertextile",
+      "layer": "trunk",
+      "category": "纺织服装",
+      "name": "中国国际纺织面料及辅料博览会",
+      "url": "http://www.intertextile.com.cn/",
+      "fields": {
+        "title": {
+          "value": "Intertextile中国国际纺织面料及辅料博览会 - 官方网站",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-03-10",
+          "method": "regex",
+          "evidence": "2027.3.10-12",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-03-12",
+          "method": "regex",
+          "evidence": "2027.3.10-12",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "category": {
+          "value": "纺织服装",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "current",
+      "typical_month": 3,
+      "final_url": "http://www.intertextile.com.cn/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 5,
+      "raw_chars": 685
+    },
+    {
+      "id": "chic",
+      "layer": "trunk",
+      "category": "纺织服装",
+      "name": "中国国际服装服饰博览会",
+      "url": "http://www.chicfair.com/",
+      "fields": {},
+      "error": "HTTPError: HTTP Error 500: RuntimeError"
+    },
+    {
+      "id": "itma-asia",
+      "layer": "trunk",
+      "category": "纺织服装",
+      "name": "中国国际纺织机械展览会暨ITMA亚洲展览会（ITMA ASIA + CITME）",
+      "url": "https://www.citme.com.cn/",
+      "fields": {
+        "title": {
+          "value": "首页",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "category": {
+          "value": "纺织服装",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.citme.com.cn/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 1,
+      "raw_chars": 27
+    },
+    {
+      "id": "humen-fashion",
+      "layer": "trunk",
+      "category": "纺织服装",
+      "name": "中国（虎门）国际服装交易会",
+      "url": "http://www.hmcec.com/",
+      "fields": {
+        "title": {
+          "value": "虎门会展网",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2018-12-29",
+          "method": "regex",
+          "evidence": "2018.12.29-2019.1.1",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2019-01-01",
+          "method": "regex",
+          "evidence": "2018.12.29-2019.1.1",
+          "conf": "low"
+        },
+        "city": {
+          "value": "深圳",
+          "method": "dict",
+          "evidence": "仅命中城市词 深圳",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 23,
+          "method": "regex",
+          "evidence": "第23届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "纺织服装",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "http://www.hmcec.com/humen/list_270.html",
+        "http://www.hmcec.com/humen/About/Generalization.html",
+        "http://www.hmcec.com/humen/Guide/Exhibition.html"
+      ],
+      "dates_status": "past",
+      "typical_month": 12,
+      "final_url": "http://www.hmcec.com/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2018-12-29 ~ 2019-01-01（官网仍展示 95 个月前的往届展期）"
+      ],
+      "filled": 3,
+      "raw_chars": 5357
+    },
+    {
+      "id": "china-shoes",
+      "layer": "trunk",
+      "category": "鞋类",
+      "name": "上海国际鞋业博览会（SISE）",
+      "url": "https://ilse.com.cn/",
+      "fields": {},
+      "error": "robots_unreachable",
+      "robots": "error"
+    },
+    {
+      "id": "gz-shoes",
+      "layer": "trunk",
+      "category": "鞋类",
+      "name": "广州国际鞋业展览会（CISE）",
+      "url": "http://www.slfchinafair.com/",
+      "fields": {
+        "title": {
+          "value": "2026厦门国际鞋业博览会2026年11月13-15日福建厦门",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2026-11-13",
+          "method": "regex",
+          "evidence": "2026年11月13-15日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-11-15",
+          "method": "regex",
+          "evidence": "2026年11月13-15日",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "广州",
+          "method": "dict",
+          "evidence": "仅命中城市词 广州",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 29,
+          "method": "regex",
+          "evidence": "第29届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "鞋类",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "http://www.slfchinafair.com/cnt_exbIntro.html",
+        "http://www.slfchinafair.com/cnt_hallIntro.html",
+        "http://www.slfchinafair.com/cnt_exbProcess.html"
+      ],
+      "dates_status": "current",
+      "typical_month": 11,
+      "final_url": "http://www.slfchinafair.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 5,
+      "raw_chars": 8932
+    },
+    {
+      "id": "jinjiang-shoes",
+      "layer": "trunk",
+      "category": "鞋类",
+      "name": "中国（晋江）国际鞋业暨国际体育产业博览会",
+      "url": "https://www.cn-jif.com/",
+      "fields": {
+        "title": {
+          "value": "Footwear, Shoe Materials, Footwear Machinery, Outdoor Sport Gear, Media Advertising Manufacturers and Suppliers - China Factory - Jinjiang International Chamber of Commerce",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2026-04-19",
+          "method": "regex",
+          "evidence": "April 19-22, 2026",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-04-22",
+          "method": "regex",
+          "evidence": "April 19-22, 2026",
+          "conf": "low"
+        },
+        "category": {
+          "value": "鞋类",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.cn-jif.com/online-exhibition",
+        "https://www.cn-jif.com/products",
+        "https://www.cn-jif.com/exhibitors-center"
+      ],
+      "dates_status": "past",
+      "typical_month": 4,
+      "final_url": "https://www.cn-jif.com/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-04-19 ~ 2026-04-22（官网仍展示 7 个月前的往届展期）"
+      ],
+      "filled": 1,
+      "raw_chars": 13294
+    },
+    {
+      "id": "wenzhou-shoes",
+      "layer": "trunk",
+      "category": "鞋类",
+      "name": "中国（温州）皮革、鞋材、鞋机展览会",
+      "url": "https://www.chinashoetech.cn/",
+      "fields": {},
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "furniture-china",
+      "layer": "trunk",
+      "category": "家居装饰品",
+      "name": "中国国际家具展览会（Furniture China）",
+      "url": "https://www.furniture-china.cn/",
+      "fields": {},
+      "error": "robots_unreachable",
+      "robots": "error"
+    },
+    {
+      "id": "ciff-gz",
+      "layer": "trunk",
+      "category": "家居装饰品",
+      "name": "中国广州国际家具博览会",
+      "url": "https://www.ciff-gz.com/",
+      "fields": {
+        "title": {
+          "value": "中国（广州）国际家具博览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-03-18",
+          "method": "regex",
+          "evidence": "2027年3月18-21日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-03-21",
+          "method": "regex",
+          "evidence": "2027年3月18-21日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "广交会展馆",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "city": {
+          "value": "广州",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "中国对外贸易中心集团有限公司",
+          "method": "regex",
+          "evidence": "主办单位 \n 中国对外贸易中心集团有限公司",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 59,
+          "method": "regex",
+          "evidence": "第59届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "家居装饰品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.ciff-gz.com/fair/about",
+        "https://www.ciff-gz.com/exhibitors/why-exhibit",
+        "https://www.ciff-gz.com/data"
+      ],
+      "dates_status": "current",
+      "typical_month": 3,
+      "final_url": "https://www.ciff-gz.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 7,
+      "raw_chars": 6253
+    },
+    {
+      "id": "dg-furniture",
+      "layer": "trunk",
+      "category": "家居装饰品",
+      "name": "国际名家具（东莞）展览会（3F）",
+      "url": "https://www.gde3f.com/",
+      "fields": {
+        "title": {
+          "value": "名家具展官网_家居行业风向标_国际名家具（东莞）展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-03-16",
+          "method": "regex",
+          "evidence": "2027年3月16-20日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-03-20",
+          "method": "regex",
+          "evidence": "2027年3月16-20日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "广东现代国际展览中心",
+          "method": "dict",
+          "evidence": "广东现代国际展览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "东莞",
+          "method": "dict",
+          "evidence": "广东现代国际展览中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 53,
+          "method": "regex",
+          "evidence": "第53届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "家居装饰品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.gde3f.com/about.html",
+        "https://www.gde3f.com/about/007001.html",
+        "https://www.gde3f.com/show/2974.html"
+      ],
+      "dates_status": "current",
+      "typical_month": 3,
+      "final_url": "https://www.gde3f.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 25703
+    },
+    {
+      "id": "sh-home-deco",
+      "layer": "trunk",
+      "category": "家居装饰品",
+      "name": "HD+ Asia 亚洲家居装饰及生活方式展",
+      "url": "https://www.hd-asia.net/",
+      "fields": {
+        "title": {
+          "value": "HD+ Asia 亚洲家居装饰及生活方式展-上海万耀企龙展览有限公司",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-05-26",
+          "method": "regex",
+          "evidence": "2027年5月26 日-5月28 日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-05-28",
+          "method": "regex",
+          "evidence": "2027年5月26 日-5月28 日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "category": {
+          "value": "家居装饰品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.hd-asia.net/zhjs.shtml",
+        "https://www.hd-asia.net/zwyd.shtml",
+        "https://www.hd-asia.net/zhhzhp.shtml"
+      ],
+      "dates_status": "current",
+      "typical_month": 5,
+      "final_url": "https://www.hd-asia.net/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 5,
+      "raw_chars": 15644
+    },
+    {
+      "id": "paperworld-china",
+      "layer": "trunk",
+      "category": "办公箱包及休闲用品",
+      "name": "中国国际文具及办公用品展览会",
+      "url": "https://paperworldchina.hk.messefrankfurt.com/",
+      "fields": {
+        "title": {
+          "value": "中国国际文具及办公用品展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2026-12-04",
+          "method": "regex",
+          "evidence": "2026年12月4至6日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-12-06",
+          "method": "regex",
+          "evidence": "2026年12月4至6日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海世博展览馆",
+          "method": "dict",
+          "evidence": "世博展览馆",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "世博展览馆",
+          "conf": "high"
+        },
+        "category": {
+          "value": "办公箱包及休闲用品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://paperworldchina.hk.messefrankfurt.com/shanghai/zh-cn/exhibitor-search.html",
+        "https://paperworldchina.hk.messefrankfurt.com/shanghai/zh-cn/planning-preparation.html",
+        "https://paperworldchina.hk.messefrankfurt.com/shanghai/zh-cn/planning-preparation/exhibitors.html"
+      ],
+      "dates_status": "current",
+      "typical_month": 12,
+      "final_url": "https://paperworldchina.hk.messefrankfurt.com/shanghai/zh-cn.html",
+      "http": "current",
+      "robots": "allow",
+      "filled": 5,
+      "raw_chars": 18010
+    },
+    {
+      "id": "china-bags",
+      "layer": "trunk",
+      "category": "办公箱包及休闲用品",
+      "name": "上海国际箱包手袋皮具展览会",
+      "url": "https://www.cshbox.com/",
+      "fields": {},
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "cile",
+      "layer": "trunk",
+      "category": "办公箱包及休闲用品",
+      "name": "中国国际体育用品博览会",
+      "url": "http://www.sportshow.com.cn/",
+      "fields": {},
+      "error": "robots_unreachable",
+      "robots": "error"
+    },
+    {
+      "id": "china-outdoor",
+      "layer": "trunk",
+      "category": "办公箱包及休闲用品",
+      "name": "中国国际户外用品展览会",
+      "url": "",
+      "fields": {},
+      "error": "no_url"
+    },
+    {
+      "id": "sial-china",
+      "layer": "trunk",
+      "category": "食品",
+      "name": "中国国际食品和饮料展览会",
+      "url": "https://www.sialchina.com/",
+      "fields": {
+        "title": {
+          "value": "International Food and Beverage Exhibition 2027 | SIAL China",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-05-18",
+          "method": "regex",
+          "evidence": "2027.5.18-20",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-05-20",
+          "method": "regex",
+          "evidence": "2027.5.18-20",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "食品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.sialchina.com/exhibitor/why",
+        "https://www.sialchina.com/exhibitorgz/why",
+        "https://www.sialchina.com/contact/exhibitor"
+      ],
+      "dates_status": "current",
+      "typical_month": 5,
+      "final_url": "https://www.sialchina.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 3,
+      "raw_chars": 40000
+    },
+    {
+      "id": "bakery-china",
+      "layer": "trunk",
+      "category": "食品",
+      "name": "中国国际焙烤展览会",
+      "url": "https://www.bakerychina.com/",
+      "fields": {
+        "title": {
+          "value": "焙烤展|2027上海烘焙展|国际烘焙展|中国烘焙展-焙烤展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-05-17",
+          "method": "regex",
+          "evidence": "2027年5月17-20日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-05-20",
+          "method": "regex",
+          "evidence": "2027年5月17-20日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "中国焙烤食品糖制品工业协会",
+          "method": "regex",
+          "evidence": "主办单位\n \n \n \n \n \n 中国焙烤食品糖制品工业协会 ",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 29,
+          "method": "regex",
+          "evidence": "第29届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "食品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.bakerychina.com/page/about-us"
+      ],
+      "dates_status": "current",
+      "typical_month": 5,
+      "final_url": "https://www.bakerychina.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 7,
+      "raw_chars": 3167
+    },
+    {
+      "id": "tangjiu",
+      "layer": "trunk",
+      "category": "食品",
+      "name": "全国糖酒商品交易会（CFDF）",
+      "url": "https://www.qgtjh.org.cn/",
+      "fields": {},
+      "error": "robots_denied",
+      "robots": "deny"
+    },
+    {
+      "id": "tea-expo",
+      "layer": "trunk",
+      "category": "食品",
+      "name": "中国国际茶叶博览会",
+      "url": "https://www.goodtea.cc/",
+      "fields": {
+        "title": {
+          "value": "华巨臣茶博会-深圳茶博会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "city": {
+          "value": "北京",
+          "method": "dict",
+          "evidence": "仅命中城市词 北京",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 24,
+          "method": "regex",
+          "evidence": "第24届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "食品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.goodtea.cc/about-us"
+      ],
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.goodtea.cc/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 3,
+      "raw_chars": 6597
+    },
+    {
+      "id": "cmef",
+      "layer": "trunk",
+      "category": "医药及医疗保健",
+      "name": "中国国际医疗器械博览会",
+      "url": "https://www.cmef.com.cn/",
+      "fields": {
+        "title": {
+          "value": "CMEF医博会-国药励展展览有限责任公司",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2026-10-21",
+          "method": "regex",
+          "evidence": "2026年10月21-24日",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-10-24",
+          "method": "regex",
+          "evidence": "2026年10月21-24日",
+          "conf": "low"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "仅命中城市词 上海",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 94,
+          "method": "regex",
+          "evidence": "第94届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "医药及医疗保健",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.cmef.com.cn/Content/html/info.html",
+        "https://www.cmef.com.cn/information/?cid=55",
+        "https://www.cmef.com.cn/information/?cid=39"
+      ],
+      "dates_status": "past",
+      "typical_month": 10,
+      "final_url": "https://www.cmef.com.cn/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-10-21 ~ 2026-10-24（开展日已过去 13 天（已结束或正在举办））"
+      ],
+      "filled": 3,
+      "raw_chars": 40000
+    },
+    {
+      "id": "pharmchina",
+      "layer": "trunk",
+      "category": "医药及医疗保健",
+      "name": "全国药品交易会（PHARMCHINA）",
+      "url": "https://www.pharmchina.com.cn/",
+      "fields": {
+        "title": {
+          "value": "全国药品交易会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "category": {
+          "value": "医药及医疗保健",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.pharmchina.com.cn/page/boothReservation"
+      ],
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.pharmchina.com.cn/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 1,
+      "raw_chars": 1068
+    },
+    {
+      "id": "api-china",
+      "layer": "trunk",
+      "category": "医药及医疗保健",
+      "name": "中国国际医药原料药/中间体/包装/设备交易会（API China）",
+      "url": "https://www.apichina.com.cn/",
+      "fields": {
+        "title": {
+          "value": "API",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "category": {
+          "value": "医药及医疗保健",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.apichina.com.cn/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 1,
+      "raw_chars": 105
+    },
+    {
+      "id": "sino-dental",
+      "layer": "trunk",
+      "category": "医药及医疗保健",
+      "name": "中国国际口腔设备材料展览会（Sino-Dental）",
+      "url": "https://www.sinodent.com.cn/",
+      "fields": {
+        "title": {
+          "value": "Sino-Dental 北京国际口腔展",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "city": {
+          "value": "北京",
+          "method": "dict",
+          "evidence": "仅命中城市词 北京",
+          "conf": "high"
+        },
+        "category": {
+          "value": "医药及医疗保健",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.sinodent.com.cn/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 2,
+      "raw_chars": 66
+    },
+    {
+      "id": "waic",
+      "layer": "trunk",
+      "category": "AI/科技",
+      "name": "世界人工智能大会",
+      "url": "https://www.worldaic.com.cn/",
+      "fields": {
+        "title": {
+          "value": "世界人工智能大会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "仅命中城市词 上海",
+          "conf": "high"
+        },
+        "category": {
+          "value": "AI/科技",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.worldaic.com.cn/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 2,
+      "raw_chars": 817
+    },
+    {
+      "id": "chtf",
+      "layer": "trunk",
+      "category": "AI/科技",
+      "name": "中国国际高新技术成果交易会",
+      "url": "https://www.chtf.com/",
+      "fields": {
+        "title": {
+          "value": "首页_中国国际高新技术成果交易会_高交会官方网站",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2026-11-26",
+          "method": "regex",
+          "evidence": "2026年11月26-28日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-11-28",
+          "method": "regex",
+          "evidence": "2026年11月26-28日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "深圳国际会展中心",
+          "method": "dict",
+          "evidence": "深圳国际会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "深圳",
+          "method": "dict",
+          "evidence": "深圳国际会展中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 28,
+          "method": "regex",
+          "evidence": "第二十八届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "AI/科技",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.chtf.com/liaojiegaojiaohui/zynr/gaikuang/",
+        "https://www.chtf.com/canzhanzhiyin/ziliaoxiazai/",
+        "https://www.chtf.com/canzhanzhiyin/schedule/"
+      ],
+      "dates_status": "current",
+      "typical_month": 11,
+      "final_url": "https://www.chtf.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 34501
+    },
+    {
+      "id": "scie",
+      "layer": "trunk",
+      "category": "AI/科技",
+      "name": "世界智能产业博览会（原智博会）",
+      "url": "https://www.smartchina-expo.cn/",
+      "fields": {
+        "category": {
+          "value": "AI/科技",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.smartchina-expo.cn/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 0,
+      "raw_chars": 1
+    },
+    {
+      "id": "iot-expo",
+      "layer": "trunk",
+      "category": "AI/科技",
+      "name": "世界物联网博览会（WIoT）",
+      "url": "https://www.wiotexpo.cn/",
+      "fields": {
+        "title": {
+          "value": "世界物联网博览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "category": {
+          "value": "AI/科技",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.wiotexpo.cn/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 1,
+      "raw_chars": 55
+    },
+    {
+      "id": "ciftis",
+      "layer": "trunk",
+      "category": "综合服务",
+      "name": "中国国际服务贸易交易会",
+      "url": "https://www.ciftis.org/",
+      "fields": {
+        "title": {
+          "value": "中国国际服务贸易交易会_服贸会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "category": {
+          "value": "综合服务",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.ciftis.org/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 1,
+      "raw_chars": 34
+    },
+    {
+      "id": "china-logistics",
+      "layer": "trunk",
+      "category": "综合服务",
+      "name": "中国（深圳）国际物流与供应链博览会（CILF）",
+      "url": "https://www.scmfair.com/",
+      "fields": {
+        "title": {
+          "value": "Maintenance - International Logistics,Transportation Exhibition,CILF,SCM,China,Asia",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2026-12-02",
+          "method": "regex",
+          "evidence": "December 2-4, 2026",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-12-04",
+          "method": "regex",
+          "evidence": "December 2-4, 2026",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "广州",
+          "method": "dict",
+          "evidence": "仅命中城市词 广州",
+          "conf": "high"
+        },
+        "category": {
+          "value": "综合服务",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://scmfair.com/exhibitor/why-exhibit"
+      ],
+      "dates_status": "current",
+      "typical_month": 12,
+      "final_url": "https://scmfair.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 4,
+      "raw_chars": 11539
+    },
+    {
+      "id": "ec-expo-yiwu",
+      "layer": "trunk",
+      "category": "综合服务",
+      "name": "浙江国际电子商务博览会（原中国国际电子商务博览会）",
+      "url": "https://www.ecfair.cn/",
+      "fields": {
+        "title": {
+          "value": "浙江电子商务博览会（电商博览会）官方网站",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-06-21",
+          "method": "regex",
+          "evidence": "2027年6月21日-23日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-06-23",
+          "method": "regex",
+          "evidence": "2027年6月21日-23日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "义乌国际博览中心",
+          "method": "dict",
+          "evidence": "义乌国际博览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "义乌",
+          "method": "dict",
+          "evidence": "义乌国际博览中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 5,
+          "method": "regex",
+          "evidence": "第五届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "综合服务",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.ecfair.cn/about/zhjs/",
+        "https://www.ecfair.cn/about/gywm/",
+        "https://www.ecfair.cn/exhibitor/czzn/"
+      ],
+      "dates_status": "current",
+      "typical_month": 6,
+      "final_url": "https://www.ecfair.cn/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 10809
+    },
+    {
+      "id": "china-edu-expo",
+      "layer": "trunk",
+      "category": "综合服务",
+      "name": "中国国际教育展（CEE）",
+      "url": "https://www.chinaeducationexpo.com/",
+      "fields": {
+        "title": {
+          "value": "CEE - China Education Expo",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "category": {
+          "value": "综合服务",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.chinaeducationexpo.com/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 1,
+      "raw_chars": 63
+    },
+    {
+      "id": "canton-fair",
+      "layer": "cross",
+      "category": "日用消费品",
+      "name": "中国进出口商品交易会",
+      "url": "https://www.cantonfair.org.cn/",
+      "fields": {
+        "title": {
+          "value": "首页 - 中国进出口商品交易会（广交会官方网站）",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "category": {
+          "value": "日用消费品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.cantonfair.org.cn/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 1,
+      "raw_chars": 76
+    },
+    {
+      "id": "ciie",
+      "layer": "cross",
+      "category": "综合服务",
+      "name": "中国国际进口博览会（CIIE）",
+      "url": "https://www.ciie.org/",
+      "fields": {
+        "category": {
+          "value": "综合服务",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.ciie.org/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 0,
+      "raw_chars": 14
+    },
+    {
+      "id": "ccbef",
+      "layer": "cross",
+      "category": "综合服务",
+      "name": "中国（深圳）跨境电商展览会（CCBEC）",
+      "url": "https://www.ccbec-shenzhen.com/",
+      "fields": {
+        "title": {
+          "value": "深圳跨境电商展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-08-18",
+          "method": "regex",
+          "evidence": "2027年8月18至20日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-08-20",
+          "method": "regex",
+          "evidence": "2027年8月18至20日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "深圳国际会展中心",
+          "method": "dict",
+          "evidence": "深圳国际会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "深圳",
+          "method": "dict",
+          "evidence": "深圳国际会展中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 7,
+          "method": "regex",
+          "evidence": "第七届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "综合服务",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "current",
+      "typical_month": 8,
+      "final_url": "https://www.ccbec-shenzhen.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 4779
+    },
+    {
+      "id": "caexpo",
+      "layer": "cross",
+      "category": "日用消费品",
+      "name": "中国—东盟博览会（CAEXPO）",
+      "url": "https://www.caexpo.org.cn/",
+      "fields": {
+        "city": {
+          "value": "南宁",
+          "method": "dict",
+          "evidence": "仅命中城市词 南宁",
+          "conf": "high"
+        },
+        "category": {
+          "value": "日用消费品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.caexpo.org.cn/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 1,
+      "raw_chars": 40000
+    },
+    {
+      "id": "cismef",
+      "layer": "cross",
+      "category": "综合服务",
+      "name": "中国国际中小企业博览会（中博会）",
+      "url": "https://www.cismef.com.cn/",
+      "fields": {
+        "title": {
+          "value": "中国国际中小企业博览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-06-27",
+          "method": "regex",
+          "evidence": "2027年06月27日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-06-27",
+          "method": "regex",
+          "evidence": "2027年06月27日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "广交会展馆",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "city": {
+          "value": "广州",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "工业和信息化部",
+          "method": "regex",
+          "evidence": "主办单位 \n 工业和信息化部 ",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "综合服务",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "current",
+      "typical_month": 6,
+      "final_url": "https://www.cismef.com.cn/zbh-cms/template-pc/index.html",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 11538
+    },
+    {
+      "id": "hainan-expo",
+      "layer": "cross",
+      "category": "日用消费品",
+      "name": "中国国际消费品博览会（消博会）",
+      "url": "https://www.hainanexpo.org.cn/",
+      "fields": {
+        "title": {
+          "value": "中国国际消费品博览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "category": {
+          "value": "日用消费品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "none",
+      "typical_month": null,
+      "final_url": "https://www.hainanexpo.org.cn/",
+      "http": "none",
+      "robots": "allow",
+      "filled": 1,
+      "raw_chars": 44
+    },
+    {
+      "id": "cipsc",
+      "layer": "cross",
+      "category": "综合服务",
+      "name": "中国国际供应链促进博览会（链博会）",
+      "url": "https://www.cisce.org.cn/",
+      "fields": {
+        "title": {
+          "value": "首页_链博会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2026-06-22",
+          "method": "regex",
+          "evidence": "2026年6月22-26日",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-06-26",
+          "method": "regex",
+          "evidence": "2026年6月22-26日",
+          "conf": "low"
+        },
+        "venue": {
+          "value": "中国国际展览中心（顺义馆）",
+          "method": "dict",
+          "evidence": "中国国际展览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "北京",
+          "method": "dict",
+          "evidence": "中国国际展览中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 5,
+          "method": "regex",
+          "evidence": "第五届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "综合服务",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.cisce.org.cn/server/intellectual.html",
+        "https://www.cisce.org.cn/event/schedule.html",
+        "https://www.cisce.org.cn/partners/introduce.html"
+      ],
+      "dates_status": "past",
+      "typical_month": 6,
+      "final_url": "https://www.cisce.org.cn/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-06-22 ~ 2026-06-26（官网仍展示 5 个月前的往届展期）"
+      ],
+      "filled": 4,
+      "raw_chars": 18861
+    },
+    {
+      "id": "fhc-shanghai",
+      "layer": "cross",
+      "category": "食品",
+      "name": "FHC上海环球食品展",
+      "url": "https://www.fhcchina.com/",
+      "fields": {
+        "title": {
+          "value": "FHC上海环球食品展 - Homepage of FHC Shanghai Global Food Trade Show - FHC上海环球食品展",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2026-11-10",
+          "method": "regex",
+          "evidence": "2026.11.10-12",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-11-12",
+          "method": "regex",
+          "evidence": "2026.11.10-12",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "上海博华国际展览有限公司",
+          "method": "regex",
+          "evidence": "主办单位 \n \n 上海博华国际展览有限公司 ",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 29,
+          "method": "regex",
+          "evidence": "第二十九届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "食品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.fhcchina.com/exhibitor/why_exhibit",
+        "https://www.fhcchina.com/about/exhibition_info",
+        "https://www.fhcchina.com/about/concurrent_exhibition"
+      ],
+      "dates_status": "current",
+      "typical_month": 11,
+      "final_url": "https://www.fhcchina.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 7,
+      "raw_chars": 9669
+    },
+    {
+      "id": "b-muying",
+      "layer": "boundary",
+      "category": "日用消费品",
+      "name": "CBME国际孕婴童展",
+      "url": "https://cbmexpo.com/",
+      "fields": {
+        "title": {
+          "value": "孕婴童用品展-上海母婴展-儿童玩具食品童装新品展览会-2027CBME国际孕婴童展官网",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-07-14",
+          "method": "regex",
+          "evidence": "2027年7月14-16日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-07-16",
+          "method": "regex",
+          "evidence": "2027年7月14-16日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "category": {
+          "value": "日用消费品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.cbmexpo.com/cn/about",
+        "https://www.cbmexpo.com/cn/exhibitorcontact"
+      ],
+      "dates_status": "current",
+      "typical_month": 7,
+      "final_url": "https://www.cbmexpo.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 5,
+      "raw_chars": 17060
+    },
+    {
+      "id": "b-pet",
+      "layer": "boundary",
+      "category": "日用消费品",
+      "name": "亚洲宠物展 Pet Fair Asia",
+      "url": "https://www.petfairasia.com/",
+      "fields": {
+        "title": {
+          "value": "亚洲宠物展",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2026-08-19",
+          "method": "regex",
+          "evidence": "2026年8月19-23日",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-08-23",
+          "method": "regex",
+          "evidence": "2026年8月19-23日",
+          "conf": "low"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 29,
+          "method": "regex",
+          "evidence": "第 29 届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "日用消费品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.petfairasia.com/czsq.html",
+        "https://www.petfairasia.com/baoming.html",
+        "https://www.petfairasia.com/about.html"
+      ],
+      "dates_status": "past",
+      "typical_month": 8,
+      "final_url": "https://www.petfairasia.com/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-08-19 ~ 2026-08-23（开展日已过去 76 天（已结束或正在举办））"
+      ],
+      "filled": 4,
+      "raw_chars": 10994
+    },
+    {
+      "id": "b-hotel",
+      "layer": "boundary",
+      "category": "综合服务",
+      "name": "HOTELEX 上海国际酒店及餐饮业博览会",
+      "url": "https://www.hotelex.cn/",
+      "fields": {
+        "title": {
+          "value": "HOTELEX-上海国际酒店用品及餐饮业博览会系列展-上海酒店展-上海餐饮展-上海酒店用品展-上海咖啡美食节",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-03-30",
+          "method": "regex",
+          "evidence": "2027年3月30日-4月2日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-04-02",
+          "method": "regex",
+          "evidence": "2027年3月30日-4月2日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 35,
+          "method": "regex",
+          "evidence": "第三十五届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "综合服务",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.hotelex.cn/shanghai/aboutsh",
+        "https://www.hotelex.cn/shanghai/service",
+        "https://www.hotelex.cn/shanghai/floorplan"
+      ],
+      "dates_status": "current",
+      "typical_month": 3,
+      "final_url": "https://www.hotelex.cn/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 16337
+    },
+    {
+      "id": "b-coffee",
+      "layer": "boundary",
+      "category": "食品",
+      "name": "CAFEEX 咖啡与饮品展览会",
+      "url": "https://www.cafeex.com.cn/",
+      "fields": {
+        "title": {
+          "value": "CAFEEX 咖啡与饮品展览会/咖啡节官网",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2026-07-24",
+          "method": "regex",
+          "evidence": "2026.7.24-26",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-07-26",
+          "method": "regex",
+          "evidence": "2026.7.24-26",
+          "conf": "low"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "钦诺展览",
+          "method": "regex",
+          "evidence": "主办方： 钦诺展览 ",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "食品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.cafeex.com.cn/About.aspx?ClassID=25",
+        "https://www.cafeex.com.cn/aboutus.aspx?ClassID=2",
+        "https://www.cafeex.com.cn/About.aspx?ClassID=29"
+      ],
+      "dates_status": "past",
+      "typical_month": 7,
+      "final_url": "https://www.cafeex.com.cn/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-07-24 ~ 2026-07-26（官网仍展示 4 个月前的往届展期）"
+      ],
+      "filled": 4,
+      "raw_chars": 6997
+    },
+    {
+      "id": "b-retail",
+      "layer": "boundary",
+      "category": "综合服务",
+      "name": "中国零售业博览会 CHINASHOP",
+      "url": "https://www.chinashop.cc/",
+      "fields": {
+        "title": {
+          "value": "中国零售业博览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-04-14",
+          "method": "regex",
+          "evidence": "2027年4月14-16日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-04-16",
+          "method": "regex",
+          "evidence": "2027年4月14-16日",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "北京",
+          "method": "dict",
+          "evidence": "仅命中城市词 北京",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 27,
+          "method": "regex",
+          "evidence": "第二十七届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "综合服务",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.chinashop.cc/2027/exhibition/go",
+        "https://www.chinashop.cc/2027/exhibition/boothlayout",
+        "https://www.chinashop.cc/2027/about/aboutus"
+      ],
+      "dates_status": "current",
+      "typical_month": 4,
+      "final_url": "https://www.chinashop.cc/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 5,
+      "raw_chars": 5697
+    },
+    {
+      "id": "b-camping",
+      "layer": "boundary",
+      "category": "办公箱包及休闲用品",
+      "name": "OCE 上海国际户外露营生活展",
+      "url": "https://hweexpo.cn/",
+      "fields": {
+        "title": {
+          "value": "2027SVE上海国际休闲运动车展览会展|观光车展|休闲车展|休闲运动展",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-07-07",
+          "method": "regex",
+          "evidence": "2027年7月7日-9日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-07-09",
+          "method": "regex",
+          "evidence": "2027年7月7日-9日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "category": {
+          "value": "办公箱包及休闲用品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://hweexpo.cn/?pages_8/",
+        "https://hweexpo.cn/?whcz/",
+        "https://hweexpo.cn/?pages_15/"
+      ],
+      "dates_status": "current",
+      "typical_month": 7,
+      "final_url": "https://hweexpo.cn/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 5,
+      "raw_chars": 20486
+    },
+    {
+      "id": "b-tea-drink",
+      "layer": "boundary",
+      "category": "食品",
+      "name": "中国（广州）国际茶业博览会",
+      "url": "https://www.teaexpo.cn/",
+      "fields": {
+        "title": {
+          "value": "广州茶博会官网_益武展览",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2026-05-14",
+          "method": "regex",
+          "evidence": "2026年5月14-17日",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-05-17",
+          "method": "regex",
+          "evidence": "2026年5月14-17日",
+          "conf": "low"
+        },
+        "venue": {
+          "value": "广交会展馆",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "city": {
+          "value": "广州",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 18,
+          "method": "regex",
+          "evidence": "第十八届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "食品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.teaexpo.cn/forExhibitor.aspx"
+      ],
+      "dates_status": "past",
+      "typical_month": 5,
+      "final_url": "https://www.teaexpo.cn/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-05-14 ~ 2026-05-17（官网仍展示 6 个月前的往届展期）"
+      ],
+      "filled": 4,
+      "raw_chars": 5470
+    },
+    {
+      "id": "b-fitness",
+      "layer": "boundary",
+      "category": "办公箱包及休闲用品",
+      "name": "IWF 上海国际健身展",
+      "url": "https://www.ciwf.com.cn/",
+      "fields": {},
+      "error": "HTTPError: HTTP Error 403: Forbidden"
+    },
+    {
+      "id": "b-babycare",
+      "layer": "boundary",
+      "category": "医药及医疗保健",
+      "name": "广州国际妇幼健康产业博览会",
+      "url": "https://mch.ihe-china.com/",
+      "fields": {
+        "title": {
+          "value": "MCH 广州国际妇幼健康产业博览会将于2025年6月12-14日在广交会馆举办",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2025-06-12",
+          "method": "regex",
+          "evidence": "2025年6月12-14日",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2025-06-14",
+          "method": "regex",
+          "evidence": "2025年6月12-14日",
+          "conf": "low"
+        },
+        "venue": {
+          "value": "广交会展馆",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "city": {
+          "value": "广州",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "中小企业合作发展促进中心",
+          "method": "regex",
+          "evidence": "主办单位 \n \n \n 中小企业合作发展促进中心 ",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 33,
+          "method": "regex",
+          "evidence": "第33届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "医药及医疗保健",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://mch.ihe-china.com/cn/Invitation/16.MCH/2025/",
+        "https://mch.ihe-china.com/cn/WhyExhibiting/",
+        "https://mch.ihe-china.com/cn/BookStand/"
+      ],
+      "dates_status": "past",
+      "typical_month": 6,
+      "final_url": "https://mch.ihe-china.com/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2025-06-12 ~ 2025-06-14（官网仍展示 17 个月前的往届展期）"
+      ],
+      "filled": 5,
+      "raw_chars": 15868
+    },
+    {
+      "id": "b-crossborder",
+      "layer": "boundary",
+      "category": "综合服务",
+      "name": "CCBEC 中国（深圳）跨境电商展览会",
+      "url": "https://www.ccbecexpo.com/",
+      "fields": {
+        "title": {
+          "value": "CCBEC_2027深圳跨境电商展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-08-18",
+          "method": "regex",
+          "evidence": "2027年8月18-20日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-08-20",
+          "method": "regex",
+          "evidence": "2027年8月18-20日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "深圳国际会展中心",
+          "method": "dict",
+          "evidence": "深圳国际会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "深圳",
+          "method": "dict",
+          "evidence": "深圳国际会展中心",
+          "conf": "high"
+        },
+        "edition": {
+          "value": 7,
+          "method": "regex",
+          "evidence": "第七届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "综合服务",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.ccbecexpo.com/about",
+        "https://www.ccbecexpo.com/szkjdsz/19192.html",
+        "https://www.ccbecexpo.com/exhibits"
+      ],
+      "dates_status": "current",
+      "typical_month": 8,
+      "final_url": "https://www.ccbecexpo.com/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 6,
+      "raw_chars": 12119
+    },
+    {
+      "id": "b-premium-gift",
+      "layer": "boundary",
+      "category": "礼品",
+      "name": "中国（深圳）国际礼品及家居用品展览会",
+      "url": "https://www.rxhuabo.com.cn/",
+      "fields": {
+        "title": {
+          "value": "深圳礼品展、深圳消费电子展、深圳包装展、国内知名的|礼品展|家居展|包装展|消费电子展|礼品包装及印刷展|的主办方-励展华博",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2026-02-04",
+          "method": "regex",
+          "evidence": "2026年02月04日",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-02-04",
+          "method": "regex",
+          "evidence": "2026年02月04日",
+          "conf": "low"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "仅命中城市词 上海",
+          "conf": "high"
+        },
+        "category": {
+          "value": "礼品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "dates_status": "past",
+      "typical_month": 2,
+      "final_url": "https://www.rxhuabo.com.cn/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-02-04 ~ 2026-02-04（官网仍展示 9 个月前的往届展期）"
+      ],
+      "filled": 2,
+      "raw_chars": 2495
+    },
+    {
+      "id": "b-domestic-trade",
+      "layer": "boundary",
+      "category": "日用消费品",
+      "name": "广东优品展览会",
+      "url": "https://www.gqpe.com.cn/",
+      "fields": {
+        "title": {
+          "value": "广东优品展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2026-07-24",
+          "method": "regex",
+          "evidence": "2026年7月24日-26日",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-07-26",
+          "method": "regex",
+          "evidence": "2026年7月24日-26日",
+          "conf": "low"
+        },
+        "venue": {
+          "value": "广交会展馆",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "city": {
+          "value": "广州",
+          "method": "dict",
+          "evidence": "广交会展馆",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "广东省商业联合会",
+          "method": "regex",
+          "evidence": "主办单位 广东省商业联合会",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 19,
+          "method": "regex",
+          "evidence": "第十九届",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "日用消费品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.gqpe.com.cn/h-col-128.html",
+        "https://www.gqpe.com.cn/sys-nd/91.html",
+        "https://www.gqpe.com.cn/sys-nd/103.html"
+      ],
+      "dates_status": "past",
+      "typical_month": 7,
+      "final_url": "https://www.gqpe.com.cn/",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-07-24 ~ 2026-07-26（官网仍展示 4 个月前的往届展期）"
+      ],
+      "filled": 5,
+      "raw_chars": 10741
+    },
+    {
+      "id": "b-catering",
+      "layer": "boundary",
+      "category": "食品",
+      "name": "SIAL 西雅国际食品和饮料展览会（上海）",
+      "url": "https://www.sialchina.cn/",
+      "fields": {
+        "title": {
+          "value": "SIAL西雅展官网 - SIAL 西雅国际食品展 2026 | 国际食品和饮料展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "start_date": {
+          "value": "2027-05-18",
+          "method": "regex",
+          "evidence": "2027年5月18日-20日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-05-20",
+          "method": "regex",
+          "evidence": "2027年5月18日-20日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "新国际博览中心",
+          "conf": "high"
+        },
+        "category": {
+          "value": "食品",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.sialchina.cn/contact/exhibitor.html"
+      ],
+      "dates_status": "current",
+      "typical_month": 5,
+      "final_url": "https://www.sialchina.cn/",
+      "http": "current",
+      "robots": "allow",
+      "filled": 5,
+      "raw_chars": 5694
+    },
+    {
+      "id": "b-furniture-wood",
+      "layer": "boundary",
+      "category": "建材",
+      "name": "WMF 中国（上海）国际家具生产设备及木工机械展览会",
+      "url": "https://www.woodworkfair.com/",
+      "fields": {
+        "title": {
+          "value": "首页 - WMF 2026 | 家具生产设备及木工机械展览会",
+          "method": "title_tag",
+          "evidence": "<title>",
+          "conf": "high"
+        },
+        "prev_start_date": {
+          "value": "2026-09-05",
+          "method": "regex",
+          "evidence": "2026年9月5日至8日",
+          "conf": "low"
+        },
+        "prev_end_date": {
+          "value": "2026-09-08",
+          "method": "regex",
+          "evidence": "2026年9月5日至8日",
+          "conf": "low"
+        },
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "city": {
+          "value": "上海",
+          "method": "dict",
+          "evidence": "国家会展中心",
+          "conf": "high"
+        },
+        "organizer": {
+          "value": "中国对外贸易广州展览有限公司、中国林业机械协会、雅式展览服务有限公司、上海中贸美凯龙经贸发展有限公司",
+          "method": "regex",
+          "evidence": "此次展会由中国对外贸易广州展览有限公司、中国林业机械协会、雅式展览服务有限公司、上海中贸美凯龙经贸发",
+          "conf": "medium"
+        },
+        "category": {
+          "value": "建材",
+          "method": "config",
+          "evidence": "18 品类映射表",
+          "conf": "high"
+        }
+      },
+      "error": null,
+      "subpages": [
+        "https://www.woodworkfair.com/WMF/information/AboutWMF/simp",
+        "https://www.woodworkfair.com/WMF/exhibit-at-wmf/simp",
+        "https://www.woodworkfair.com/WMF/AboutUs/simp"
+      ],
+      "dates_status": "past",
+      "typical_month": 9,
+      "final_url": "https://www.woodworkfair.com/WMF/idx/simp",
+      "http": "past",
+      "robots": "allow",
+      "notes": [
+        "往届展期：2026-09-05 ~ 2026-09-08（开展日已过去 59 天（已结束或正在举办））"
+      ],
+      "filled": 4,
+      "raw_chars": 21454
+    }
+  ]
+}

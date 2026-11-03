@@ -1,0 +1,22 @@
+[
+{"id":"b-muying","official_name":"CBME国际孕婴童展","url":"https://cbmexpo.com/","city":"上海","evidence":"Informa Markets 主办母婴全品类旗舰B2B展","confidence":"high"},
+{"id":"b-pet","official_name":"亚洲宠物展 Pet Fair Asia","url":"https://www.petfairasia.com/","city":"上海","evidence":"亚太最大宠物用品B2B展，2600+展商/32万㎡","confidence":"high"},
+{"id":"b-hotel","official_name":"HOTELEX 上海国际酒店及餐饮业博览会","url":"https://www.hotelex.cn/","city":"上海","evidence":"国内最大酒店用品与餐饮设备展，40万㎡","confidence":"high"},
+{"id":"b-coffee","official_name":"CAFEEX 咖啡与饮品展览会","url":"https://www.cafeex.com.cn/","city":"上海","evidence":"专注咖啡与饮品全产业链，上海/深圳/杭州三站","confidence":"medium"},
+{"id":"b-retail","official_name":"中国零售业博览会 CHINASHOP","url":"https://www.chinashop.cc/","city":"轮换（杭州/郑州）","evidence":"中国连锁经营协会主办，亚洲最大零售专业展，巡回举办","confidence":"medium"},
+{"id":"b-camping","official_name":"OCE 上海国际户外露营生活展","url":"https://hweexpo.cn/","city":"上海","evidence":"上海新国际博览中心每年7月，约2万㎡","confidence":"medium"},
+{"id":"b-tea-drink","official_name":"中国（广州）国际茶业博览会","url":"https://www.teaexpo.cn/","city":"广州","evidence":"20年老牌茶展，2026起设新式茶饮与茶楼供应链专区","confidence":"medium"},
+{"id":"b-fitness","official_name":"IWF 上海国际健身展","url":"https://www.ciwf.com.cn/","city":"上海","evidence":"亚太健身器材旗舰展，8.5万㎡/1000+品牌","confidence":"high"},
+{"id":"b-babycare","official_name":"广州国际妇幼健康产业博览会","url":"https://mch.ihe-china.com/","city":"广州","evidence":"广交会展馆，孕产护理/婴童洗护/母婴健康","confidence":"medium"},
+{"id":"b-houseware","official_name":"中国日用百货商品交易会（上海百货会）","url":"https://www.cdatf.com/","city":"上海","evidence":"20万㎡/5000+展商，90%为生产企业","confidence":"high"},
+{"id":"b-crossborder","official_name":"CCBEC 中国（深圳）跨境电商展览会","url":"https://www.ccbecexpo.com/","city":"深圳","evidence":"8万㎡/1500展商，供货商占比超88%","confidence":"high"},
+{"id":"b-premium-gift","official_name":"中国（深圳）国际礼品及家居用品展览会","url":"https://www.rxhuabo.com.cn/","city":"深圳","evidence":"励展华博主办、UFI认证，近30万㎡/4500展商","confidence":"medium"},
+{"id":"b-general-consumer","official_name":"中国进出口商品交易会（广交会）","url":"https://www.cantonfair.org.cn/","city":"广州","evidence":"商务部主办综合消费品展；定位出口撮合，内销属性弱","confidence":"medium"},
+{"id":"b-domestic-trade","official_name":"广东优品展览会","url":"https://www.gqpe.com.cn/","city":"广州","evidence":"广东省商务厅指导，定位内外贸一体化/转内销；2026年1501家粤企、成交87.6亿","confidence":"high"},
+{"id":"b-catering","official_name":"SIAL 西雅国际食品和饮料展览会（上海）","url":"https://www.sialchina.cn/","city":"上海","evidence":"世界三大食品展之一，同期设餐饮供应链展","confidence":"medium"},
+{"id":"b-machine-tool","official_name":"CCMT 中国数控机床展览会","url":"https://www.ccmtshow.com/","city":"上海","evidence":"中国机床工具工业协会主办，CIMT姊妹展，20.2万㎡","confidence":"high"},
+{"id":"b-medical-device","official_name":"CMEF 中国国际医疗器械博览会（同期 ICMD）","url":"https://www.cmef.com.cn/","city":"上海","evidence":"国药励展主办，同期ICMD面向医疗器械制造端","confidence":"high"},
+{"id":"b-textile-machinery","official_name":"中国国际纺织机械展览会暨ITMA亚洲展览会","url":"https://www.citme.com.cn/","city":"上海","evidence":"CEMATEX与中国纺机协会主办，18万㎡/1800+展商","confidence":"high"},
+{"id":"b-furniture-wood","official_name":"WMF 中国（上海）国际家具生产设备及木工机械展览会","url":"https://www.woodworkfair.com/","city":"上海","evidence":"1986年创办，与CIFF上海同期，400+展商","confidence":"high"},
+{"id":"b-hardware-industrial","official_name":"中国国际五金展 CIHS","url":"https://www.cihs.com.cn/","city":"上海","evidence":"中国五金制品协会与科隆展览合办，12万㎡/近3000展商","confidence":"high"}
+]

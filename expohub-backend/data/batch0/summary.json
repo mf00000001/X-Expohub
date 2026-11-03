@@ -1,0 +1,120 @@
+{
+  "total": 100,
+  "unique": 94,
+  "status": {
+    "crawlable": 49,
+    "crawlable_if_std": 27,
+    "needs_render": 8,
+    "dead": 3,
+    "blocked_by_site": 4,
+    "suspicious": 2,
+    "no_url": 1,
+    "duplicate": 6
+  },
+  "by_layer": {
+    "trunk": {
+      "crawlable": 34,
+      "crawlable_if_std": 24,
+      "needs_render": 6,
+      "dead": 3,
+      "blocked_by_site": 3,
+      "suspicious": 1,
+      "no_url": 1
+    },
+    "cross": {
+      "crawlable": 6,
+      "needs_render": 1,
+      "crawlable_if_std": 1
+    },
+    "boundary": {
+      "crawlable": 9,
+      "crawlable_if_std": 2,
+      "suspicious": 1,
+      "needs_render": 1,
+      "blocked_by_site": 1,
+      "duplicate": 6
+    }
+  },
+  "by_category": {
+    "AI/科技": {
+      "total": 4,
+      "usable": 4
+    },
+    "五金工具": {
+      "total": 5,
+      "usable": 4
+    },
+    "办公箱包及休闲用品": {
+      "total": 6,
+      "usable": 2
+    },
+    "化工产品": {
+      "total": 4,
+      "usable": 4
+    },
+    "医药及医疗保健": {
+      "total": 6,
+      "usable": 5
+    },
+    "家居装饰品": {
+      "total": 5,
+      "usable": 3
+    },
+    "建材": {
+      "total": 5,
+      "usable": 5
+    },
+    "日用消费品": {
+      "total": 11,
+      "usable": 9
+    },
+    "机械": {
+      "total": 5,
+      "usable": 4
+    },
+    "照明": {
+      "total": 4,
+      "usable": 4
+    },
+    "电子及家电": {
+      "total": 4,
+      "usable": 4
+    },
+    "礼品": {
+      "total": 5,
+      "usable": 4
+    },
+    "纺织服装": {
+      "total": 5,
+      "usable": 4
+    },
+    "综合服务": {
+      "total": 11,
+      "usable": 11
+    },
+    "能源": {
+      "total": 4,
+      "usable": 4
+    },
+    "车辆及配件": {
+      "total": 4,
+      "usable": 4
+    },
+    "鞋类": {
+      "total": 4,
+      "usable": 2
+    },
+    "食品": {
+      "total": 8,
+      "usable": 7
+    }
+  },
+  "note": {
+    "crawlable": "能打开 + 内容是这家展 + robots 允许：纯 HTTP 直接可采",
+    "crawlable_if_std": "同上，但站点无 robots.txt。RFC 9309 视为允许，现 scraper 视为不允许",
+    "needs_render": "域名未跳转但正文为空：前端渲染，需 headless 浏览器",
+    "blocked_by_site": "站点存在但拒绝（403/SSL 握手），只能人工录入",
+    "duplicate": "与另一 id 是同一展会，统计时要剔除",
+    "suspicious": "能打开但内容不是这家展，URL 不可用"
+  }
+}

@@ -1,0 +1,3320 @@
+{
+  "model": "deepseek-chat",
+  "updated_at": "2026-11-03 15:20:59",
+  "records": [
+    {
+      "id": "auto-guangzhou",
+      "fields": {
+        "title": {
+          "value": "第二十四届广州国际汽车展览会",
+          "method": "llm",
+          "evidence": "第二十四届广州国际汽车展览会",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "广州",
+          "method": "llm",
+          "evidence": "第二十四届广州国际汽车展览会",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国对外贸易中心、中国机械工业联合会、中国国际贸易促进委员会汽车行业分会、中国汽车工业协会",
+          "method": "llm",
+          "evidence": "主办机构 中国对外贸易中心 中国机械工业联合会 中国国际贸易促进委员会汽车行业分会 中国汽车工业协会",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 24,
+          "method": "llm",
+          "evidence": "第二十四届广州国际汽车展览会",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"第二十四届广州国际汽车展览会\",\"evidence\":\"第二十四届广州国际汽车展览会\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":\"广州\",\"evidence\":\"第二十四届广州国际汽车展览会\"},\"organizer\":{\"value\":\"中国对外贸易中心、中国机械工业联合会、中国国际贸易促进委员会汽车行业分会、中国汽车工业协会\",\"evidence\":\"主办机构 中国对外贸易中心 中国机械工业联合会 中国国际贸易促进委员会汽车行业分会 中国汽车工业协会\"},\"edition\":{\"value\":24,\"evidence\":\"第二十四届广州国际汽车展览会\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 4,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "api-china",
+      "fields": {
+        "title": {
+          "value": "中国国际医药原料药/中间体/包装/设备交易会",
+          "method": "llm",
+          "evidence": "中国国际医药原料药/中间体/包装/设备交易会（API China）深耕中国医药市场40余年",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 95,
+          "method": "llm",
+          "evidence": "倒计时10天！第95届中国国际医药原料药/中间体/包装/设备交易会展位图",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际医药原料药/中间体/包装/设备交易会\",\"evidence\":\"中国国际医药原料药/中间体/包装/设备交易会（API China）深耕中国医药市场40余年\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":95,\"evidence\":\"倒计时10天！第95届中国国际医药原料药/中间体/包装/设备交易会展位图\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 2,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "auto-china",
+      "fields": {
+        "title": {
+          "value": "2027北京国际新质汽车及未来智慧出行展览会",
+          "method": "llm",
+          "evidence": "2027北京国际新质汽车及未来智慧出行展览会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-03-27",
+          "method": "llm",
+          "evidence": "展会日期 2027.3.27-4.5",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-04-05",
+          "method": "llm",
+          "evidence": "展会日期 2027.3.27-4.5",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "中国国际展览中心（顺义馆）、首都国际会展中心",
+          "method": "llm",
+          "evidence": "中国国际展览中心（顺义馆）  首都国际会展中心",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "北京",
+          "method": "llm",
+          "evidence": "2027北京国际新质汽车及未来智慧出行展览会",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国国际贸易促进委员会汽车行业分会、中国机械国际合作股份有限公司、中国国际展览中心集团有限公司",
+          "method": "llm",
+          "evidence": "主办单位 \n\n 中国国际贸易促进委员会汽车行业分会 \n\n 中国机械国际合作股份有限公司 \n\n 中国国际展览中心集团有限公司",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"2027北京国际新质汽车及未来智慧出行展览会\",\"evidence\":\"2027北京国际新质汽车及未来智慧出行展览会\"},\"start_date\":{\"value\":\"2027-03-27\",\"evidence\":\"展会日期 2027.3.27-4.5\"},\"end_date\":{\"value\":\"2027-04-05\",\"evidence\":\"展会日期 2027.3.27-4.5\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"中国国际展览中心（顺义馆）、首都国际会展中心\",\"evidence\":\"中国国际展览中心（顺义馆）  首都国际会展中心\"},\"city\":{\"value\":\"北京\",\"evidence\":\"2027北京国际新质汽车及未来智慧出行展览会\"},\"organizer\":{\"value\":\"中国国际贸易促进委员会汽车行业分会、中国机械国际合作股份有限公司、中国国际展览中心集团有限公司\",\"evidence\":\"主办单位 \\n\\n 中国国际贸易促进委员会汽车行业分会 \\n\\n 中国机械国际合作股份有限公司 \\n\\n 中国国际展览中心集团有限公司\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 6,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "auto-shanghai",
+      "fields": {
+        "title": {
+          "value": "第二十二届上海国际汽车工业展览会",
+          "method": "llm",
+          "evidence": "第二十二届上海国际汽车工业展览会",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "第二十二届上海国际汽车工业展览会",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "上海市国际贸易促进委员会、中国汽车工业协会",
+          "method": "llm",
+          "evidence": "主办单位 上海市国际贸易促进委员会 中国汽车工业协会",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 22,
+          "method": "llm",
+          "evidence": "第二十二届上海国际汽车工业展览会",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"第二十二届上海国际汽车工业展览会\",\"evidence\":\"第二十二届上海国际汽车工业展览会\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":\"上海\",\"evidence\":\"第二十二届上海国际汽车工业展览会\"},\"organizer\":{\"value\":\"上海市国际贸易促进委员会、中国汽车工业协会\",\"evidence\":\"主办单位 上海市国际贸易促进委员会 中国汽车工业协会\"},\"edition\":{\"value\":22,\"evidence\":\"第二十二届上海国际汽车工业展览会\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 4,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "automechanika-sh",
+      "fields": {
+        "title": {
+          "value": "上海国际汽车零配件、维修检测诊断设备及服务用品展览会",
+          "method": "llm",
+          "evidence": "上海国际汽车零配件、维修检测诊断设备及服务用品展览会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2026-12-02",
+          "method": "llm",
+          "evidence": "2026年12月2至5日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-12-05",
+          "method": "llm",
+          "evidence": "2026年12月2至5日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "llm",
+          "evidence": "本届展会将于2026年12月2至5日在国家会展中心（上海）举行",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "中国，上海",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"上海国际汽车零配件、维修检测诊断设备及服务用品展览会\",\"evidence\":\"上海国际汽车零配件、维修检测诊断设备及服务用品展览会\"},\"start_date\":{\"value\":\"2026-12-02\",\"evidence\":\"2026年12月2至5日\"},\"end_date\":{\"value\":\"2026-12-05\",\"evidence\":\"2026年12月2至5日\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"国家会展中心（上海）\",\"evidence\":\"本届展会将于2026年12月2至5日在国家会展中心（上海）举行\"},\"city\":{\"value\":\"上海\",\"evidence\":\"中国，上海\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "awe",
+      "fields": {
+        "title": {
+          "value": "AWE中国家电及消费电子博览会",
+          "method": "llm",
+          "evidence": "AWE中国家电及消费电子博览会|上海家电展|智能家居展|小家电展|消费电子展",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-03-17",
+          "method": "llm",
+          "evidence": "将于2027年3月17 - 20日在上海新国际博览中心举办",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-03-20",
+          "method": "llm",
+          "evidence": "将于2027年3月17 - 20日在上海新国际博览中心举办",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "llm",
+          "evidence": "将于2027年3月17 - 20日在上海新国际博览中心举办",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "每年3月在上海举办",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国家用电器协会、艾维（北京）展览展示服务有限公司",
+          "method": "llm",
+          "evidence": "主办单位 \n 中国家用电器协会 \n 艾维（北京）展览展示服务有限公司",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"AWE中国家电及消费电子博览会\",\"evidence\":\"AWE中国家电及消费电子博览会|上海家电展|智能家居展|小家电展|消费电子展\"},\"start_date\":{\"value\":\"2027-03-17\",\"evidence\":\"将于2027年3月17 - 20日在上海新国际博览中心举办\"},\"end_date\":{\"value\":\"2027-03-20\",\"evidence\":\"将于2027年3月17 - 20日在上海新国际博览中心举办\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"上海新国际博览中心\",\"evidence\":\"将于2027年3月17 - 20日在上海新国际博览中心举办\"},\"city\":{\"value\":\"上海\",\"evidence\":\"每年3月在上海举办\"},\"organizer\":{\"value\":\"中国家用电器协会、艾维（北京）展览展示服务有限公司\",\"evidence\":\"主办单位 \\n 中国家用电器协会 \\n 艾维（北京）展览展示服务有限公司\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 6,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-babycare",
+      "fields": {
+        "title": {
+          "value": "广州国际妇幼健康产业博览会",
+          "method": "llm",
+          "evidence": "广州国际妇幼健康产业博览会将于2025年6月12-14日在广交会展馆举办",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "广交会展馆",
+          "method": "llm",
+          "evidence": "地点 广州•广交会展馆",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "广州",
+          "method": "llm",
+          "evidence": "地点 广州•广交会展馆",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "广州市亿帆展览服务有限公司",
+          "method": "llm",
+          "evidence": "主办 广州市亿帆展览服务有限公司",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2025-06-12",
+          "method": "llm",
+          "evidence": "时间 2025年6月12-14日",
+          "conf": "medium"
+        },
+        "prev_end_date": {
+          "value": "2025-06-14",
+          "method": "llm",
+          "evidence": "时间 2025年6月12-14日",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"广州国际妇幼健康产业博览会\",\"evidence\":\"广州国际妇幼健康产业博览会将于2025年6月12-14日在广交会展馆举办\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":\"2025-06-12\",\"evidence\":\"时间 2025年6月12-14日\"},\"prev_end_date\":{\"value\":\"2025-06-14\",\"evidence\":\"时间 2025年6月12-14日\"},\"venue\":{\"value\":\"广交会展馆\",\"evidence\":\"地点 广州•广交会展馆\"},\"city\":{\"value\":\"广州\",\"evidence\":\"地点 广州•广交会展馆\"},\"organizer\":{\"value\":\"广州市亿帆展览服务有限公司\",\"evidence\":\"主办 广州市亿帆展览服务有限公司\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 4,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-catering",
+      "fields": {
+        "title": {
+          "value": "SIAL西雅国际食品和饮料展览会(上海)",
+          "method": "llm",
+          "evidence": "SIAL 西雅国际食品和饮料展览会(上海)",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-05-18",
+          "method": "llm",
+          "evidence": "2027.5.18 - 20",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-05-20",
+          "method": "llm",
+          "evidence": "2027.5.18 - 20",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "llm",
+          "evidence": "上海新国际博览中心 2027.5.18 - 20",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "SIAL 西雅国际食品和饮料展览会（上海） 中国 上海",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"SIAL西雅国际食品和饮料展览会(上海)\",\"evidence\":\"SIAL 西雅国际食品和饮料展览会(上海)\"},\"start_date\":{\"value\":\"2027-05-18\",\"evidence\":\"2027.5.18 - 20\"},\"end_date\":{\"value\":\"2027-05-20\",\"evidence\":\"2027.5.18 - 20\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"上海新国际博览中心\",\"evidence\":\"上海新国际博览中心 2027.5.18 - 20\"},\"city\":{\"value\":\"上海\",\"evidence\":\"SIAL 西雅国际食品和饮料展览会（上海） 中国 上海\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-camping",
+      "fields": {
+        "title": {
+          "value": "2027上海国际休闲运动车展览会",
+          "method": "llm",
+          "evidence": "2027上海国际休闲运动车展览会（SVE）",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-07-07",
+          "method": "llm",
+          "evidence": "2027年7月7日—9日在上海新国际博览中心",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-07-09",
+          "method": "llm",
+          "evidence": "2027年7月7日—9日在上海新国际博览中心",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "llm",
+          "evidence": "2027年7月7日—9日在上海新国际博览中心",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "中国上海",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"2027上海国际休闲运动车展览会\",\"evidence\":\"2027上海国际休闲运动车展览会（SVE）\"},\"start_date\":{\"value\":\"2027-07-07\",\"evidence\":\"2027年7月7日—9日在上海新国际博览中心\"},\"end_date\":{\"value\":\"2027-07-09\",\"evidence\":\"2027年7月7日—9日在上海新国际博览中心\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"上海新国际博览中心\",\"evidence\":\"2027年7月7日—9日在上海新国际博览中心\"},\"city\":{\"value\":\"上海\",\"evidence\":\"中国上海\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-coffee",
+      "fields": {
+        "title": {
+          "value": "CAFEEX 咖啡与饮品展览会/咖啡节",
+          "method": "llm",
+          "evidence": "CAFEEX 咖啡与饮品展览会/咖啡节官网",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "钦诺展览",
+          "method": "llm",
+          "evidence": "主办方： 钦诺展览",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"CAFEEX 咖啡与饮品展览会/咖啡节\",\"evidence\":\"CAFEEX 咖啡与饮品展览会/咖啡节官网\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":\"钦诺展览\",\"evidence\":\"主办方： 钦诺展览\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 2,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-furniture-wood",
+      "fields": {
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "llm",
+          "evidence": "将在上海虹桥·国家会展中心举办的WMF国际木工展",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "将在上海虹桥·国家会展中心举办的WMF国际木工展",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国对外贸易广州展览有限公司、中国林业机械协会、雅式展览服务有限公司、上海中贸美凯龙经贸发展有限公司",
+          "method": "llm",
+          "evidence": "此次展会由中国对外贸易广州展览有限公司、中国林业机械协会、雅式展览服务有限公司、上海中贸美凯龙经贸发展有限公司主办",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-09-05",
+          "method": "llm",
+          "evidence": "2026年9月5日至8日，将在上海虹桥·国家会展中心举办的WMF国际木工展",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        },
+        "prev_end_date": {
+          "value": "2026-09-08",
+          "method": "llm",
+          "evidence": "2026年9月5日至8日，将在上海虹桥·国家会展中心举办的WMF国际木工展",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        }
+      },
+      "dropped": {
+        "title": {
+          "value": "WMF 2026 国际木工展",
+          "why": "取值不在依据中（缺 国际木工展）",
+          "evidence": "首页 - WMF 2026 | 家具生产设备及木工机械展览会"
+        }
+      },
+      "moved": {
+        "start_date": {
+          "value": "2026-09-05",
+          "to": "prev_start_date"
+        },
+        "end_date": {
+          "value": "2026-09-08",
+          "to": "prev_end_date"
+        }
+      },
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"WMF 2026 国际木工展\",\"evidence\":\"首页 - WMF 2026 | 家具生产设备及木工机械展览会\"},\"start_date\":{\"value\":\"2026-09-05\",\"evidence\":\"2026年9月5日至8日，将在上海虹桥·国家会展中心举办的WMF国际木工展\"},\"end_date\":{\"value\":\"2026-09-08\",\"evidence\":\"2026年9月5日至8日，将在上海虹桥·国家会展中心举办的WMF国际木工展\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"国家会展中心（上海）\",\"evidence\":\"将在上海虹桥·国家会展中心举办的WMF国际木工展\"},\"city\":{\"value\":\"上海\",\"evidence\":\"将在上海虹桥·国家会展中心举办的WMF国际木工展\"},\"organizer\":{\"value\":\"中国对外贸易广州展览有限公司、中国林业机械协会、雅式展览服务有限公司、上海中贸美凯龙经贸发展有限公司\",\"evidence\":\"此次展会由中国对外贸易广州展览有限公司、中国林业机械协会、雅式展览服务有限公司、上海中贸美凯龙经贸发展有限公司主办\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 3,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-crossborder",
+      "fields": {
+        "title": {
+          "value": "中国（深圳）跨境电商展览会",
+          "method": "llm",
+          "evidence": "中国（深圳）跨境电商展览会 深圳跨境电商展览会CCBEC 2027年8月18-20日",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-08-18",
+          "method": "llm",
+          "evidence": "第七届深圳跨境电商展览会（CCBEC）正式定档，将于2027年8月18至20日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-08-20",
+          "method": "llm",
+          "evidence": "第七届深圳跨境电商展览会（CCBEC）正式定档，将于2027年8月18至20日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "深圳国际会展中心（宝安）",
+          "method": "llm",
+          "evidence": "将于2027年8月18至20日在深圳国际会展中心（宝安）隆重举办",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "深圳",
+          "method": "llm",
+          "evidence": "将于2027年8月18至20日在深圳国际会展中心（宝安）隆重举办",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-09-16",
+          "method": "llm",
+          "evidence": "展会于9月16-18日，在深圳国际会展中心（宝安）盛大举办",
+          "conf": "medium"
+        },
+        "prev_end_date": {
+          "value": "2026-09-18",
+          "method": "llm",
+          "evidence": "展会于9月16-18日，在深圳国际会展中心（宝安）盛大举办",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "edition": {
+          "value": 7,
+          "why": "届次依据不成立"
+        }
+      },
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国（深圳）跨境电商展览会\",\"evidence\":\"中国（深圳）跨境电商展览会 深圳跨境电商展览会CCBEC 2027年8月18-20日\"},\"start_date\":{\"value\":\"2027-08-18\",\"evidence\":\"第七届深圳跨境电商展览会（CCBEC）正式定档，将于2027年8月18至20日\"},\"end_date\":{\"value\":\"2027-08-20\",\"evidence\":\"第七届深圳跨境电商展览会（CCBEC）正式定档，将于2027年8月18至20日\"},\"prev_start_date\":{\"value\":\"2026-09-16\",\"evidence\":\"展会于9月16-18日，在深圳国际会展中心（宝安）盛大举办\"},\"prev_end_date\":{\"value\":\"2026-09-18\",\"evidence\":\"展会于9月16-18日，在深圳国际会展中心（宝安）盛大举办\"},\"venue\":{\"value\":\"深圳国际会展中心（宝安）\",\"evidence\":\"将于2027年8月18至20日在深圳国际会展中心（宝安）隆重举办\"},\"city\":{\"value\":\"深圳\",\"evidence\":\"将于2027年8月18至20日在深圳国际会展中心（宝安）隆重举办\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":7,\"evidence\":\"第七届深圳跨境电商展览会（CCBEC）正式定档\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-domestic-trade",
+      "fields": {
+        "title": {
+          "value": "广东优品展览会",
+          "method": "llm",
+          "evidence": "广东优品展览会",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "广州进出口商品交易会展馆A区",
+          "method": "llm",
+          "evidence": "展会地点：广州进出口商品交易会展馆A区",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "广州",
+          "method": "llm",
+          "evidence": "在广州广交会展馆A区举办",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 2,
+          "method": "llm",
+          "evidence": "宣告第二届展会正式开启全面招商",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-07-24",
+          "method": "llm",
+          "evidence": "展会时间：2026年7月24日-26日",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        },
+        "prev_end_date": {
+          "value": "2026-07-26",
+          "method": "llm",
+          "evidence": "展会时间：2026年7月24日-26日",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        }
+      },
+      "dropped": {
+        "organizer": {
+          "value": "广东省商业联合会、广州国际会展集团有限公司",
+          "why": "取值不在依据中（缺 广州国际会展集团有限公司）",
+          "evidence": "广东省商业联合会和广州国际会展集团联合主办"
+        }
+      },
+      "moved": {
+        "start_date": {
+          "value": "2026-07-24",
+          "to": "prev_start_date"
+        },
+        "end_date": {
+          "value": "2026-07-26",
+          "to": "prev_end_date"
+        }
+      },
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"广东优品展览会\",\"evidence\":\"广东优品展览会\"},\"start_date\":{\"value\":\"2026-07-24\",\"evidence\":\"展会时间：2026年7月24日-26日\"},\"end_date\":{\"value\":\"2026-07-26\",\"evidence\":\"展会时间：2026年7月24日-26日\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"广州进出口商品交易会展馆A区\",\"evidence\":\"展会地点：广州进出口商品交易会展馆A区\"},\"city\":{\"value\":\"广州\",\"evidence\":\"在广州广交会展馆A区举办\"},\"organizer\":{\"value\":\"广东省商业联合会、广州国际会展集团有限公司\",\"evidence\":\"广东省商业联合会和广州国际会展集团联合主办\"},\"edition\":{\"value\":2,\"evidence\":\"宣告第二届展会正式开启全面招商\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 4,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-muying",
+      "fields": {
+        "title": {
+          "value": "CBME国际孕婴童展",
+          "method": "llm",
+          "evidence": "CBME国际孕婴童展始于2001年，迄今已连续成功举办26年",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-07-14",
+          "method": "llm",
+          "evidence": "2027 CBME国际孕婴童展，将于2027年7月14-16日在上海国家会展中心（NECC）举行",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-07-16",
+          "method": "llm",
+          "evidence": "2027 CBME国际孕婴童展，将于2027年7月14-16日在上海国家会展中心（NECC）举行",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "llm",
+          "evidence": "将于2027年7月14-16日在上海国家会展中心（NECC）举行",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "将于2027年7月14-16日在上海国家会展中心（NECC）举行",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"CBME国际孕婴童展\",\"evidence\":\"CBME国际孕婴童展始于2001年，迄今已连续成功举办26年\"},\"start_date\":{\"value\":\"2027-07-14\",\"evidence\":\"2027 CBME国际孕婴童展，将于2027年7月14-16日在上海国家会展中心（NECC）举行\"},\"end_date\":{\"value\":\"2027-07-16\",\"evidence\":\"2027 CBME国际孕婴童展，将于2027年7月14-16日在上海国家会展中心（NECC）举行\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"国家会展中心（上海）\",\"evidence\":\"将于2027年7月14-16日在上海国家会展中心（NECC）举行\"},\"city\":{\"value\":\"上海\",\"evidence\":\"将于2027年7月14-16日在上海国家会展中心（NECC）举行\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-pet",
+      "fields": {
+        "title": {
+          "value": "亚洲宠物展",
+          "method": "llm",
+          "evidence": "亚洲宠物展",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-08-18",
+          "method": "llm",
+          "evidence": "第 29 届亚洲宠物展 2027.8.18-8.22 上海新国际博览中心",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-08-22",
+          "method": "llm",
+          "evidence": "第 29 届亚洲宠物展 2027.8.18-8.22 上海新国际博览中心",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "llm",
+          "evidence": "第 29 届亚洲宠物展 2027.8.18-8.22 上海新国际博览中心",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "第 29 届亚洲宠物展 2027.8.18-8.22 上海新国际博览中心",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 29,
+          "method": "llm",
+          "evidence": "第 29 届亚洲宠物展 2027.8.18-8.22 上海新国际博览中心",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-08-19",
+          "method": "llm",
+          "evidence": "第28届亚洲宠物展 2026.8.19-23 上海新国际博览中心",
+          "conf": "medium"
+        },
+        "prev_end_date": {
+          "value": "2026-08-23",
+          "method": "llm",
+          "evidence": "第28届亚洲宠物展 2026.8.19-23 上海新国际博览中心",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"亚洲宠物展\",\"evidence\":\"亚洲宠物展\"},\"start_date\":{\"value\":\"2027-08-18\",\"evidence\":\"第 29 届亚洲宠物展 2027.8.18-8.22 上海新国际博览中心\"},\"end_date\":{\"value\":\"2027-08-22\",\"evidence\":\"第 29 届亚洲宠物展 2027.8.18-8.22 上海新国际博览中心\"},\"prev_start_date\":{\"value\":\"2026-08-19\",\"evidence\":\"第28届亚洲宠物展 2026.8.19-23 上海新国际博览中心\"},\"prev_end_date\":{\"value\":\"2026-08-23\",\"evidence\":\"第28届亚洲宠物展 2026.8.19-23 上海新国际博览中心\"},\"venue\":{\"value\":\"上海新国际博览中心\",\"evidence\":\"第 29 届亚洲宠物展 2027.8.18-8.22 上海新国际博览中心\"},\"city\":{\"value\":\"上海\",\"evidence\":\"第 29 届亚洲宠物展 2027.8.18-8.22 上海新国际博览中心\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":29,\"evidence\":\"第 29 届亚洲宠物展 2027.8.18-8.22 上海新国际博览中心\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 6,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-hotel",
+      "fields": {
+        "title": {
+          "value": "第三十五届上海国际酒店及餐饮业博览会",
+          "method": "llm",
+          "evidence": "第三十五届上海国际酒店及餐饮业博览会 • 2027.3.30-4.2 • 国家会展中心",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-03-30",
+          "method": "llm",
+          "evidence": "2027.3.30-4.2 • 国家会展中心",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-04-02",
+          "method": "llm",
+          "evidence": "2027.3.30-4.2 • 国家会展中心",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心",
+          "method": "llm",
+          "evidence": "2027.3.30-4.2 • 国家会展中心",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "第三十五届上海国际酒店及餐饮业博览会",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 35,
+          "method": "llm",
+          "evidence": "第三十五届上海国际酒店及餐饮业博览会",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"第三十五届上海国际酒店及餐饮业博览会\",\"evidence\":\"第三十五届上海国际酒店及餐饮业博览会 • 2027.3.30-4.2 • 国家会展中心\"},\"start_date\":{\"value\":\"2027-03-30\",\"evidence\":\"2027.3.30-4.2 • 国家会展中心\"},\"end_date\":{\"value\":\"2027-04-02\",\"evidence\":\"2027.3.30-4.2 • 国家会展中心\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"国家会展中心\",\"evidence\":\"2027.3.30-4.2 • 国家会展中心\"},\"city\":{\"value\":\"上海\",\"evidence\":\"第三十五届上海国际酒店及餐饮业博览会\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":35,\"evidence\":\"第三十五届上海国际酒店及餐饮业博览会\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 6,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-premium-gift",
+      "fields": {},
+      "dropped": {},
+      "moved": {},
+      "ok": false,
+      "raw": "{\"title\":{\"value\":null,\"evidence\":\"\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 0,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-retail",
+      "fields": {
+        "title": {
+          "value": "中国零售业博览会",
+          "method": "llm",
+          "evidence": "中国零售业博览会（CHINASHOP）创立于1999年",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-04-14",
+          "method": "llm",
+          "evidence": "2027年4月14-16日，第二十七届中国零售业博览会将在中原国际会展中心（郑州）举办",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-04-16",
+          "method": "llm",
+          "evidence": "2027年4月14-16日，第二十七届中国零售业博览会将在中原国际会展中心（郑州）举办",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "中原国际会展中心",
+          "method": "llm",
+          "evidence": "第二十七届中国零售业博览会--2027年4月14-16日--中原国际会展中心",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "郑州",
+          "method": "llm",
+          "evidence": "第二十七届中国零售业博览会将在中原国际会展中心（郑州）举办",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国连锁经营协会（CCFA）、北京智合联创展览有限公司",
+          "method": "llm",
+          "evidence": "由中国连锁经营协会（CCFA）与北京智合联创展览有限公司共同主办",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "edition": {
+          "value": 27,
+          "why": "届次依据不成立"
+        }
+      },
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国零售业博览会\",\"evidence\":\"中国零售业博览会（CHINASHOP）创立于1999年\"},\"start_date\":{\"value\":\"2027-04-14\",\"evidence\":\"2027年4月14-16日，第二十七届中国零售业博览会将在中原国际会展中心（郑州）举办\"},\"end_date\":{\"value\":\"2027-04-16\",\"evidence\":\"2027年4月14-16日，第二十七届中国零售业博览会将在中原国际会展中心（郑州）举办\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"中原国际会展中心\",\"evidence\":\"第二十七届中国零售业博览会--2027年4月14-16日--中原国际会展中心\"},\"city\":{\"value\":\"郑州\",\"evidence\":\"第二十七届中国零售业博览会将在中原国际会展中心（郑州）举办\"},\"organizer\":{\"value\":\"中国连锁经营协会（CCFA）、北京智合联创展览有限公司\",\"evidence\":\"由中国连锁经营协会（CCFA）与北京智合联创展览有限公司共同主办\"},\"edition\":{\"value\":27,\"evidence\":\"第二十七届中国零售业博览会将在中原国际会展中心（郑州）举办\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 6,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-tea-drink",
+      "fields": {
+        "title": {
+          "value": "2026春季中国（广州）国际茶业博览会",
+          "method": "llm",
+          "evidence": "2026春季中国（广州）国际茶业博览会",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "广交会展馆C区",
+          "method": "llm",
+          "evidence": "地点：广州·琶洲·广交会展馆C区",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "广州",
+          "method": "llm",
+          "evidence": "地点：广州·琶洲·广交会展馆C区",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-05-14",
+          "method": "llm",
+          "evidence": "时间：2026年5月14-17日",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        },
+        "prev_end_date": {
+          "value": "2026-05-17",
+          "method": "llm",
+          "evidence": "时间：2026年5月14-17日",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        }
+      },
+      "dropped": {},
+      "moved": {
+        "start_date": {
+          "value": "2026-05-14",
+          "to": "prev_start_date"
+        },
+        "end_date": {
+          "value": "2026-05-17",
+          "to": "prev_end_date"
+        }
+      },
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"2026春季中国（广州）国际茶业博览会\",\"evidence\":\"2026春季中国（广州）国际茶业博览会\"},\"start_date\":{\"value\":\"2026-05-14\",\"evidence\":\"时间：2026年5月14-17日\"},\"end_date\":{\"value\":\"2026-05-17\",\"evidence\":\"时间：2026年5月14-17日\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"广交会展馆C区\",\"evidence\":\"地点：广州·琶洲·广交会展馆C区\"},\"city\":{\"value\":\"广州\",\"evidence\":\"地点：广州·琶洲·广交会展馆C区\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 3,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "caexpo",
+      "fields": {},
+      "dropped": {},
+      "moved": {},
+      "ok": false,
+      "raw": "{\"title\":{\"value\":null,\"evidence\":\"\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 0,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "bakery-china",
+      "fields": {
+        "title": {
+          "value": "中国国际焙烤展览会",
+          "method": "llm",
+          "evidence": "中国国际焙烤展览会（Bakery\n China）由中国焙烤食品糖制品工业协会与北京贝克瑞会展服务有限责任公司共同主办",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-05-17",
+          "method": "llm",
+          "evidence": "2027第29届中国国际焙烤展览会将于2027年5月17-20日在上海虹桥国家会展中心",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-05-20",
+          "method": "llm",
+          "evidence": "2027第29届中国国际焙烤展览会将于2027年5月17-20日在上海虹桥国家会展中心",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海虹桥国家会展中心",
+          "method": "llm",
+          "evidence": "将于2027年5月17-20日在上海虹桥国家会展中心（上海市崧泽大道333号）举办",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "将于2027年5月17-20日在上海虹桥国家会展中心（上海市崧泽大道333号）举办",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国焙烤食品糖制品工业协会、北京贝克瑞会展服务有限责任公司",
+          "method": "llm",
+          "evidence": "由中国焙烤食品糖制品工业协会与北京贝克瑞会展服务有限责任公司共同主办",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 29,
+          "method": "llm",
+          "evidence": "2027第29届中国国际焙烤展览会将于2027年5月17-20日",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际焙烤展览会\",\"evidence\":\"中国国际焙烤展览会（Bakery\\n China）由中国焙烤食品糖制品工业协会与北京贝克瑞会展服务有限责任公司共同主办\"},\"start_date\":{\"value\":\"2027-05-17\",\"evidence\":\"2027第29届中国国际焙烤展览会将于2027年5月17-20日在上海虹桥国家会展中心\"},\"end_date\":{\"value\":\"2027-05-20\",\"evidence\":\"2027第29届中国国际焙烤展览会将于2027年5月17-20日在上海虹桥国家会展中心\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"上海虹桥国家会展中心\",\"evidence\":\"将于2027年5月17-20日在上海虹桥国家会展中心（上海市崧泽大道333号）举办\"},\"city\":{\"value\":\"上海\",\"evidence\":\"将于2027年5月17-20日在上海虹桥国家会展中心（上海市崧泽大道333号）举办\"},\"organizer\":{\"value\":\"中国焙烤食品糖制品工业协会、北京贝克瑞会展服务有限责任公司\",\"evidence\":\"由中国焙烤食品糖制品工业协会与北京贝克瑞会展服务有限责任公司共同主办\"},\"edition\":{\"value\":29,\"evidence\":\"2027第29届中国国际焙烤展览会将于2027年5月17-20日\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 7,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "canton-fair",
+      "fields": {
+        "title": {
+          "value": "第140届广交会",
+          "method": "llm",
+          "evidence": "第140届广交会",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-11-04",
+          "method": "llm",
+          "evidence": "第三期 美好生活\n2026年10月31日-11月4日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "中国进出口商品交易会展馆",
+          "method": "llm",
+          "evidence": "地址：中国进出口商品交易会展馆",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "广州市",
+          "method": "llm",
+          "evidence": "广东省广州市海珠区阅江中路382号",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 140,
+          "method": "llm",
+          "evidence": "第140届广交会",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-10-15",
+          "method": "llm",
+          "evidence": "第一期 先进制造\n2026年10月15日-19日",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        }
+      },
+      "dropped": {},
+      "moved": {
+        "start_date": {
+          "value": "2026-10-15",
+          "to": "prev_start_date"
+        }
+      },
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"第140届广交会\",\"evidence\":\"第140届广交会\"},\"start_date\":{\"value\":\"2026-10-15\",\"evidence\":\"第一期 先进制造\\n2026年10月15日-19日\"},\"end_date\":{\"value\":\"2026-11-04\",\"evidence\":\"第三期 美好生活\\n2026年10月31日-11月4日\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"中国进出口商品交易会展馆\",\"evidence\":\"地址：中国进出口商品交易会展馆\"},\"city\":{\"value\":\"广州市\",\"evidence\":\"广东省广州市海珠区阅江中路382号\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":140,\"evidence\":\"第140届广交会\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cbd-fair",
+      "fields": {
+        "title": {
+          "value": "第29届中国（广州）国际建筑装饰博览会",
+          "method": "llm",
+          "evidence": "第29届中国（广州）国际建筑装饰博览会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-07-08",
+          "method": "llm",
+          "evidence": "第29届中国建博会（广州）将于2027年7月8—11日在广交会展馆举办",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-07-11",
+          "method": "llm",
+          "evidence": "第29届中国建博会（广州）将于2027年7月8—11日在广交会展馆举办",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "广交会展馆",
+          "method": "llm",
+          "evidence": "第29届中国建博会（广州）将于2027年7月8—11日在广交会展馆举办",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "广州",
+          "method": "llm",
+          "evidence": "第29届中国（广州）国际建筑装饰博览会",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国对外贸易中心集团有限公司、中国建筑装饰协会",
+          "method": "llm",
+          "evidence": "由中国对外贸易中心集团有限公司、中国建筑装饰协会主办",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "edition": {
+          "value": 29,
+          "why": "届次依据不成立"
+        }
+      },
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"第29届中国（广州）国际建筑装饰博览会\",\"evidence\":\"第29届中国（广州）国际建筑装饰博览会\"},\"start_date\":{\"value\":\"2027-07-08\",\"evidence\":\"第29届中国建博会（广州）将于2027年7月8—11日在广交会展馆举办\"},\"end_date\":{\"value\":\"2027-07-11\",\"evidence\":\"第29届中国建博会（广州）将于2027年7月8—11日在广交会展馆举办\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"广交会展馆\",\"evidence\":\"第29届中国建博会（广州）将于2027年7月8—11日在广交会展馆举办\"},\"city\":{\"value\":\"广州\",\"evidence\":\"第29届中国（广州）国际建筑装饰博览会\"},\"organizer\":{\"value\":\"中国对外贸易中心集团有限公司、中国建筑装饰协会\",\"evidence\":\"由中国对外贸易中心集团有限公司、中国建筑装饰协会主办\"},\"edition\":{\"value\":29,\"evidence\":\"第29届中国建博会（广州）将于2027年7月8—11日\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 6,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "ccmt",
+      "fields": {
+        "title": {
+          "value": "第十四届中国数控机床展览会",
+          "method": "llm",
+          "evidence": "第十四届中国数控机床展览会",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 14,
+          "method": "llm",
+          "evidence": "第十四届中国数控机床展览会",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"第十四届中国数控机床展览会\",\"evidence\":\"第十四届中国数控机床展览会\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":14,\"evidence\":\"第十四届中国数控机床展览会\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 2,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "ccbef",
+      "fields": {
+        "title": {
+          "value": "深圳跨境电商展览会",
+          "method": "llm",
+          "evidence": "深圳跨境电商展览会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-08-18",
+          "method": "llm",
+          "evidence": "将于 2027年8月18至20日 在 深圳国际会展中心（宝安） 隆重举办",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-08-20",
+          "method": "llm",
+          "evidence": "将于 2027年8月18至20日 在 深圳国际会展中心（宝安） 隆重举办",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "深圳国际会展中心（宝安）",
+          "method": "llm",
+          "evidence": "在 深圳国际会展中心（宝安） 隆重举办",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "深圳",
+          "method": "llm",
+          "evidence": "中国，深圳",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "edition": {
+          "value": 7,
+          "why": "届次依据不成立"
+        }
+      },
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"深圳跨境电商展览会\",\"evidence\":\"深圳跨境电商展览会\"},\"start_date\":{\"value\":\"2027-08-18\",\"evidence\":\"将于 2027年8月18至20日 在 深圳国际会展中心（宝安） 隆重举办\"},\"end_date\":{\"value\":\"2027-08-20\",\"evidence\":\"将于 2027年8月18至20日 在 深圳国际会展中心（宝安） 隆重举办\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"深圳国际会展中心（宝安）\",\"evidence\":\"在 深圳国际会展中心（宝安） 隆重举办\"},\"city\":{\"value\":\"深圳\",\"evidence\":\"中国，深圳\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":7,\"evidence\":\"第七届深圳跨境电商展览会（CCBEC） 正式定档\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "china-daily-goods",
+      "fields": {
+        "title": {
+          "value": "第120届中国日用百货商品交易会",
+          "method": "llm",
+          "evidence": "第120届 中国日用百货商品交易会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-07-22",
+          "method": "llm",
+          "evidence": "第120届百货会将于2027年7月22-24日在上海新国际博览中心举办",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-07-24",
+          "method": "llm",
+          "evidence": "第120届百货会将于2027年7月22-24日在上海新国际博览中心举办",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "llm",
+          "evidence": "第120届百货会将于2027年7月22-24日在上海新国际博览中心举办",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "第120届百货会将于2027年7月22-24日在上海新国际博览中心举办",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 120,
+          "method": "llm",
+          "evidence": "第120届 中国日用百货商品交易会",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"第120届中国日用百货商品交易会\",\"evidence\":\"第120届 中国日用百货商品交易会\"},\"start_date\":{\"value\":\"2027-07-22\",\"evidence\":\"第120届百货会将于2027年7月22-24日在上海新国际博览中心举办\"},\"end_date\":{\"value\":\"2027-07-24\",\"evidence\":\"第120届百货会将于2027年7月22-24日在上海新国际博览中心举办\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"上海新国际博览中心\",\"evidence\":\"第120届百货会将于2027年7月22-24日在上海新国际博览中心举办\"},\"city\":{\"value\":\"上海\",\"evidence\":\"第120届百货会将于2027年7月22-24日在上海新国际博览中心举办\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":120,\"evidence\":\"第120届 中国日用百货商品交易会\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 6,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "china-edu-expo",
+      "fields": {
+        "title": {
+          "value": "2026中国国际教育展",
+          "method": "llm",
+          "evidence": "2026中国国际教育展将于2026年10月30日-11月8日在北京、武汉、成都、广州、上海举办",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-11-08",
+          "method": "llm",
+          "evidence": "2026中国国际教育展将于2026年10月30日-11月8日在北京、武汉、成都、广州、上海举办",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国教育国际交流协会",
+          "method": "llm",
+          "evidence": "由中国教育国际交流协会主办的中国国际教育展",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-10-30",
+          "method": "llm",
+          "evidence": "2026中国国际教育展将于2026年10月30日-11月8日在北京、武汉、成都、广州、上海举办",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        }
+      },
+      "dropped": {
+        "edition": {
+          "value": 25,
+          "why": "届次依据不成立"
+        }
+      },
+      "moved": {
+        "start_date": {
+          "value": "2026-10-30",
+          "to": "prev_start_date"
+        }
+      },
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"2026中国国际教育展\",\"evidence\":\"2026中国国际教育展将于2026年10月30日-11月8日在北京、武汉、成都、广州、上海举办\"},\"start_date\":{\"value\":\"2026-10-30\",\"evidence\":\"2026中国国际教育展将于2026年10月30日-11月8日在北京、武汉、成都、广州、上海举办\"},\"end_date\":{\"value\":\"2026-11-08\",\"evidence\":\"2026中国国际教育展将于2026年10月30日-11月8日在北京、武汉、成都、广州、上海举办\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":\"中国教育国际交流协会\",\"evidence\":\"由中国教育国际交流协会主办的中国国际教育展\"},\"edition\":{\"value\":25,\"evidence\":\"自2000年创办以来已成功举办25届\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 3,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "ceramics-china",
+      "fields": {
+        "title": {
+          "value": "中国国际陶瓷工业展览会",
+          "method": "llm",
+          "evidence": "第41届中国国际陶瓷工业展览会定于6月23至26日在广州广交会展馆A区盛大举办",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-06-23",
+          "method": "llm",
+          "evidence": "2027年6月23-26日，广州广交会展馆A区",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-06-26",
+          "method": "llm",
+          "evidence": "2027年6月23-26日，广州广交会展馆A区",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "中国进出口商品交易会展馆A区",
+          "method": "llm",
+          "evidence": "展览地点：中国进出口商品交易会展馆A区一、二楼",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "广州",
+          "method": "llm",
+          "evidence": "展览地点：中国进出口商品交易会展馆A区一、二楼，展馆地址：广州市海珠区阅江中路380号",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国轻工业联合会、中国建筑材料联合会、中国建筑卫生陶瓷协会、中国陶瓷工业协会、中国贸促会建材分会、新之联展览公司、北京建展公司",
+          "method": "llm",
+          "evidence": "由中国轻工业联合会、中国建筑材料联合会、中国建筑卫生陶瓷协会、中国陶瓷工业协会、中国贸促会建材分会、新之联展览公司、北京建展公司等单位联合举办",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 41,
+          "method": "llm",
+          "evidence": "第41届中国国际陶瓷工业展览会定于6月23至26日",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际陶瓷工业展览会\",\"evidence\":\"第41届中国国际陶瓷工业展览会定于6月23至26日在广州广交会展馆A区盛大举办\"},\"start_date\":{\"value\":\"2027-06-23\",\"evidence\":\"2027年6月23-26日，广州广交会展馆A区\"},\"end_date\":{\"value\":\"2027-06-26\",\"evidence\":\"2027年6月23-26日，广州广交会展馆A区\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"中国进出口商品交易会展馆A区\",\"evidence\":\"展览地点：中国进出口商品交易会展馆A区一、二楼\"},\"city\":{\"value\":\"广州\",\"evidence\":\"展览地点：中国进出口商品交易会展馆A区一、二楼，展馆地址：广州市海珠区阅江中路380号\"},\"organizer\":{\"value\":\"中国轻工业联合会、中国建筑材料联合会、中国建筑卫生陶瓷协会、中国陶瓷工业协会、中国贸促会建材分会、新之联展览公司、北京建展公司\",\"evidence\":\"由中国轻工业联合会、中国建筑材料联合会、中国建筑卫生陶瓷协会、中国陶瓷工业协会、中国贸促会建材分会、新之联展览公司、北京建展公司等单位联合举办\"},\"edition\":{\"value\":41,\"evidence\":\"第41届中国国际陶瓷工业展览会定于6月23至26日\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 7,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "china-hardware",
+      "fields": {
+        "title": {
+          "value": "中国国际五金博览会",
+          "method": "llm",
+          "evidence": "中国国际五金博览会唯一官方网址",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-03-17",
+          "method": "llm",
+          "evidence": "2027年3月17-19日 国家会展中心（上海）",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-03-19",
+          "method": "llm",
+          "evidence": "2027年3月17-19日 国家会展中心（上海）",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "llm",
+          "evidence": "2027年3月17-19日 国家会展中心（上海）",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "2027年3月17-19日 国家会展中心（上海）",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国五金交电化工商业协会",
+          "method": "llm",
+          "evidence": "主办单位: \n 中国五金交电化工商业协会",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 40,
+          "method": "llm",
+          "evidence": "第四十届中国国际五金博览会 The 40th China International Hardware Fair",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际五金博览会\",\"evidence\":\"中国国际五金博览会唯一官方网址\"},\"start_date\":{\"value\":\"2027-03-17\",\"evidence\":\"2027年3月17-19日 国家会展中心（上海）\"},\"end_date\":{\"value\":\"2027-03-19\",\"evidence\":\"2027年3月17-19日 国家会展中心（上海）\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"国家会展中心（上海）\",\"evidence\":\"2027年3月17-19日 国家会展中心（上海）\"},\"city\":{\"value\":\"上海\",\"evidence\":\"2027年3月17-19日 国家会展中心（上海）\"},\"organizer\":{\"value\":\"中国五金交电化工商业协会\",\"evidence\":\"主办单位: \\n 中国五金交电化工商业协会\"},\"edition\":{\"value\":40,\"evidence\":\"第四十届中国国际五金博览会 The 40th China International Hardware Fair\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 7,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "china-logistics",
+      "fields": {},
+      "dropped": {},
+      "moved": {},
+      "ok": false,
+      "raw": "{\"title\":{\"value\":null,\"evidence\":\"\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 0,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "chinaplas",
+      "fields": {
+        "title": {
+          "value": "CHINAPLAS 2027 | 全球领先的国际塑料橡胶展",
+          "method": "llm",
+          "evidence": "CHINAPLAS 2027 | 全球领先的国际塑料橡胶展",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-04-13",
+          "method": "llm",
+          "evidence": "2027·4·13 - 16",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-04-16",
+          "method": "llm",
+          "evidence": "2027·4·13 - 16",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "深圳国际会展中心（宝安）",
+          "method": "llm",
+          "evidence": "中国·深圳国际会展中心（宝安）",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "深圳",
+          "method": "llm",
+          "evidence": "中国·深圳国际会展中心（宝安）",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"CHINAPLAS 2027 | 全球领先的国际塑料橡胶展\",\"evidence\":\"CHINAPLAS 2027 | 全球领先的国际塑料橡胶展\"},\"start_date\":{\"value\":\"2027-04-13\",\"evidence\":\"2027·4·13 - 16\"},\"end_date\":{\"value\":\"2027-04-16\",\"evidence\":\"2027·4·13 - 16\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"深圳国际会展中心（宝安）\",\"evidence\":\"中国·深圳国际会展中心（宝安）\"},\"city\":{\"value\":\"深圳\",\"evidence\":\"中国·深圳国际会展中心（宝安）\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "chtf",
+      "fields": {
+        "title": {
+          "value": "中国国际高新技术成果交易会",
+          "method": "llm",
+          "evidence": "首页_中国国际高新技术成果交易会_高交会官方网站",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "深圳",
+          "method": "llm",
+          "evidence": "第十二届高交会于2010年11月16-21日在深圳会展中心举行",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 28,
+          "method": "llm",
+          "evidence": "第二十八届中国国际高新技术成果交易会 展会保险服务商公开遴",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际高新技术成果交易会\",\"evidence\":\"首页_中国国际高新技术成果交易会_高交会官方网站\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":\"深圳\",\"evidence\":\"第十二届高交会于2010年11月16-21日在深圳会展中心举行\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":28,\"evidence\":\"第二十八届中国国际高新技术成果交易会 展会保险服务商公开遴\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 3,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "chinacoat",
+      "fields": {
+        "title": {
+          "value": "中国国际涂料展 CHINACOAT",
+          "method": "llm",
+          "evidence": "2026「中国国际涂料展 CHINACOAT」重返广州，欢迎参展、参观！",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2026-11-11",
+          "method": "llm",
+          "evidence": "展出期： 2026年11月11至13日（周三至周五）",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-11-13",
+          "method": "llm",
+          "evidence": "展出期： 2026年11月11至13日（周三至周五）",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "中国进出口商品交易会展馆A区",
+          "method": "llm",
+          "evidence": "中国进出口商品交易会展馆A区",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "广州市",
+          "method": "llm",
+          "evidence": "广州市海珠区阅江中路380号",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际涂料展 CHINACOAT\",\"evidence\":\"2026「中国国际涂料展 CHINACOAT」重返广州，欢迎参展、参观！\"},\"start_date\":{\"value\":\"2026-11-11\",\"evidence\":\"展出期： 2026年11月11至13日（周三至周五）\"},\"end_date\":{\"value\":\"2026-11-13\",\"evidence\":\"展出期： 2026年11月11至13日（周三至周五）\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"中国进出口商品交易会展馆A区\",\"evidence\":\"中国进出口商品交易会展馆A区\"},\"city\":{\"value\":\"广州市\",\"evidence\":\"广州市海珠区阅江中路380号\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cies",
+      "fields": {
+        "title": {
+          "value": "储能大会暨展览会 CIES",
+          "method": "llm",
+          "evidence": "储能大会暨展览会 CIES",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "杭州洲际酒店",
+          "method": "llm",
+          "evidence": "2026CIES第十六届储能大会暨展览会即将于2026年8月9-11日在杭州洲际酒店召开",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "杭州",
+          "method": "llm",
+          "evidence": "2026CIES第十六届储能大会暨展览会即将于2026年8月9-11日在杭州洲际酒店召开",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 16,
+          "method": "llm",
+          "evidence": "2026CIES第十六届储能大会暨展览会即将于2026年8月9-11日在杭州洲际酒店召开",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-08-09",
+          "method": "llm",
+          "evidence": "2026CIES第十六届储能大会暨展览会即将于2026年8月9-11日在杭州洲际酒店召开",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        },
+        "prev_end_date": {
+          "value": "2026-08-11",
+          "method": "llm",
+          "evidence": "2026CIES第十六届储能大会暨展览会即将于2026年8月9-11日在杭州洲际酒店召开",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        }
+      },
+      "dropped": {
+        "deadline": {
+          "value": "2025-12-30",
+          "why": "截止日已过去，属往届"
+        }
+      },
+      "moved": {
+        "start_date": {
+          "value": "2026-08-09",
+          "to": "prev_start_date"
+        },
+        "end_date": {
+          "value": "2026-08-11",
+          "to": "prev_end_date"
+        }
+      },
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"储能大会暨展览会 CIES\",\"evidence\":\"储能大会暨展览会 CIES\"},\"start_date\":{\"value\":\"2026-08-09\",\"evidence\":\"2026CIES第十六届储能大会暨展览会即将于2026年8月9-11日在杭州洲际酒店召开\"},\"end_date\":{\"value\":\"2026-08-11\",\"evidence\":\"2026CIES第十六届储能大会暨展览会即将于2026年8月9-11日在杭州洲际酒店召开\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"杭州洲际酒店\",\"evidence\":\"2026CIES第十六届储能大会暨展览会即将于2026年8月9-11日在杭州洲际酒店召开\"},\"city\":{\"value\":\"杭州\",\"evidence\":\"2026CIES第十六届储能大会暨展览会即将于2026年8月9-11日在杭州洲际酒店召开\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":16,\"evidence\":\"2026CIES第十六届储能大会暨展览会即将于2026年8月9-11日在杭州洲际酒店召开\"},\"deadline\":{\"value\":\"2025-12-30\",\"evidence\":\"参展商需在2025年12月30日前付清余款，否则主办单位有权调整或取消其所定展位\"}}",
+      "filled": 4,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "ciftis",
+      "fields": {
+        "title": {
+          "value": "中国国际服务贸易交易会",
+          "method": "llm",
+          "evidence": "2026 中国国际服务贸易交易会：400-688-5590",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际服务贸易交易会\",\"evidence\":\"2026 中国国际服务贸易交易会：400-688-5590\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 1,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "ciff-gz",
+      "fields": {
+        "title": {
+          "value": "中国（广州）国际家具博览会",
+          "method": "llm",
+          "evidence": "中国（广州）国际家具博览会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-03-18",
+          "method": "llm",
+          "evidence": "2027年3月18-21日（民用家具/饰品家纺/户外家居）",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-03-31",
+          "method": "llm",
+          "evidence": "2027年3月28-31日（办公商用/设备配料）",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "广交会展馆、保利世贸博览馆",
+          "method": "llm",
+          "evidence": "广州琶洲·广交会展馆/保利世贸博览馆",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "广州",
+          "method": "llm",
+          "evidence": "广州琶洲·广交会展馆/保利世贸博览馆",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国对外贸易中心集团有限公司、中国家具协会、红星美凯龙家居集团股份有限公司、广东省家具协会、香港家私装饰厂商总会有限公司",
+          "method": "llm",
+          "evidence": "主办单位 \n 中国对外贸易中心集团有限公司\n\n 中国家具协会\n\n 红星美凯龙家居集团股份有限公司\n\n 广东省家具协会\n\n 香港家私装饰厂商总会有限公司",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "edition": {
+          "value": 59,
+          "why": "届次依据不成立"
+        }
+      },
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国（广州）国际家具博览会\",\"evidence\":\"中国（广州）国际家具博览会\"},\"start_date\":{\"value\":\"2027-03-18\",\"evidence\":\"2027年3月18-21日（民用家具/饰品家纺/户外家居）\"},\"end_date\":{\"value\":\"2027-03-31\",\"evidence\":\"2027年3月28-31日（办公商用/设备配料）\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"广交会展馆、保利世贸博览馆\",\"evidence\":\"广州琶洲·广交会展馆/保利世贸博览馆\"},\"city\":{\"value\":\"广州\",\"evidence\":\"广州琶洲·广交会展馆/保利世贸博览馆\"},\"organizer\":{\"value\":\"中国对外贸易中心集团有限公司、中国家具协会、红星美凯龙家居集团股份有限公司、广东省家具协会、香港家私装饰厂商总会有限公司\",\"evidence\":\"主办单位 \\n 中国对外贸易中心集团有限公司\\n\\n 中国家具协会\\n\\n 红星美凯龙家居集团股份有限公司\\n\\n 广东省家具协会\\n\\n 香港家私装饰厂商总会有限公司\"},\"edition\":{\"value\":59,\"evidence\":\"第59届中国（广州）国际家具博览会\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 6,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "ciie",
+      "fields": {
+        "title": {
+          "value": "中国国际进口博览会",
+          "method": "llm",
+          "evidence": "距 第九届中国国际进口博览会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2026-11-05",
+          "method": "llm",
+          "evidence": "2026年11月5-10日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-11-10",
+          "method": "llm",
+          "evidence": "2026年11月5-10日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "llm",
+          "evidence": "国家会展中心（上海）开启“夜景模式”",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "国家会展中心（上海）",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中华人民共和国商务部、上海市人民政府",
+          "method": "llm",
+          "evidence": "主办单位\n\n中华人民共和国商务部\n上海市人民政府",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 9,
+          "method": "llm",
+          "evidence": "距 第九届中国国际进口博览会",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际进口博览会\",\"evidence\":\"距 第九届中国国际进口博览会\"},\"start_date\":{\"value\":\"2026-11-05\",\"evidence\":\"2026年11月5-10日\"},\"end_date\":{\"value\":\"2026-11-10\",\"evidence\":\"2026年11月5-10日\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"国家会展中心（上海）\",\"evidence\":\"国家会展中心（上海）开启“夜景模式”\"},\"city\":{\"value\":\"上海\",\"evidence\":\"国家会展中心（上海）\"},\"organizer\":{\"value\":\"中华人民共和国商务部、上海市人民政府\",\"evidence\":\"主办单位\\n\\n中华人民共和国商务部\\n上海市人民政府\"},\"edition\":{\"value\":9,\"evidence\":\"距 第九届中国国际进口博览会\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 7,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cihs",
+      "fields": {
+        "title": {
+          "value": "中国国际五金展",
+          "method": "llm",
+          "evidence": "中国国际五金展官方网站",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "llm",
+          "evidence": "2026中国国际五金展将于2026年9月28日-30日在上海新国际博览中心举办",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "2026中国国际五金展将于2026年9月28日-30日在上海新国际博览中心举办",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国五金制品协会、德国科隆国际展览有限公司",
+          "method": "llm",
+          "evidence": "中国国际五金展（CIHS）由中国五金制品协会、德国科隆国际展览有限公司联合主办",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-09-28",
+          "method": "llm",
+          "evidence": "2026中国国际五金展将于2026年9月28日-30日在上海新国际博览中心举办",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        },
+        "prev_end_date": {
+          "value": "2026-09-30",
+          "method": "llm",
+          "evidence": "2026中国国际五金展将于2026年9月28日-30日在上海新国际博览中心举办",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        }
+      },
+      "dropped": {},
+      "moved": {
+        "start_date": {
+          "value": "2026-09-28",
+          "to": "prev_start_date"
+        },
+        "end_date": {
+          "value": "2026-09-30",
+          "to": "prev_end_date"
+        }
+      },
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际五金展\",\"evidence\":\"中国国际五金展官方网站\"},\"start_date\":{\"value\":\"2026-09-28\",\"evidence\":\"2026中国国际五金展将于2026年9月28日-30日在上海新国际博览中心举办\"},\"end_date\":{\"value\":\"2026-09-30\",\"evidence\":\"2026中国国际五金展将于2026年9月28日-30日在上海新国际博览中心举办\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"上海新国际博览中心\",\"evidence\":\"2026中国国际五金展将于2026年9月28日-30日在上海新国际博览中心举办\"},\"city\":{\"value\":\"上海\",\"evidence\":\"2026中国国际五金展将于2026年9月28日-30日在上海新国际博览中心举办\"},\"organizer\":{\"value\":\"中国五金制品协会、德国科隆国际展览有限公司\",\"evidence\":\"中国国际五金展（CIHS）由中国五金制品协会、德国科隆国际展览有限公司联合主办\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 4,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "ciif",
+      "fields": {
+        "title": {
+          "value": "中国国际工业博览会",
+          "method": "llm",
+          "evidence": "中国国际工业博览会(简称”中国工博会”、“工博会”)1999年创办",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-09-20",
+          "method": "llm",
+          "evidence": "9月20日-24日\n2027年",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-09-24",
+          "method": "llm",
+          "evidence": "9月20日-24日\n2027年",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心",
+          "method": "llm",
+          "evidence": "展馆\n国家会展中心\n中国 · 上海",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "展馆\n国家会展中心\n中国 · 上海",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际工业博览会\",\"evidence\":\"中国国际工业博览会(简称”中国工博会”、“工博会”)1999年创办\"},\"start_date\":{\"value\":\"2027-09-20\",\"evidence\":\"9月20日-24日\\n2027年\"},\"end_date\":{\"value\":\"2027-09-24\",\"evidence\":\"9月20日-24日\\n2027年\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"国家会展中心\",\"evidence\":\"展馆\\n国家会展中心\\n中国 · 上海\"},\"city\":{\"value\":\"上海\",\"evidence\":\"展馆\\n国家会展中心\\n中国 · 上海\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cippe",
+      "fields": {
+        "title": {
+          "value": "中国国际石油石化技术装备展览会",
+          "method": "llm",
+          "evidence": "中国国际石油石化技术装备展览会|振威展览",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际石油石化技术装备展览会\",\"evidence\":\"中国国际石油石化技术装备展览会|振威展览\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 1,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cimt",
+      "fields": {
+        "title": {
+          "value": "第二十届中国国际机床展览会",
+          "method": "llm",
+          "evidence": "第二十届中国国际机床展览会",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "首都国际会展中心、中国国际展览中心（顺义馆）",
+          "method": "llm",
+          "evidence": "CIMT2027继续同时使用 首都国际会展中心和中国国际展览中心（顺义馆）",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "北京",
+          "method": "llm",
+          "evidence": "于2025年4月21日至26日在北京成功举办",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国机床工具工业协会",
+          "method": "llm",
+          "evidence": "本届展会由中国机床工具工业协会主办",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 20,
+          "method": "llm",
+          "evidence": "第二十届中国国际机床展览会",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2025-04-21",
+          "method": "llm",
+          "evidence": "第十九届中国国际机床展览会(CIMT2025)于2025年4月21日至26日在北京成功举办",
+          "conf": "medium"
+        },
+        "prev_end_date": {
+          "value": "2025-04-26",
+          "method": "llm",
+          "evidence": "第十九届中国国际机床展览会(CIMT2025)于2025年4月21日至26日在北京成功举办",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"第二十届中国国际机床展览会\",\"evidence\":\"第二十届中国国际机床展览会\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":\"2025-04-21\",\"evidence\":\"第十九届中国国际机床展览会(CIMT2025)于2025年4月21日至26日在北京成功举办\"},\"prev_end_date\":{\"value\":\"2025-04-26\",\"evidence\":\"第十九届中国国际机床展览会(CIMT2025)于2025年4月21日至26日在北京成功举办\"},\"venue\":{\"value\":\"首都国际会展中心、中国国际展览中心（顺义馆）\",\"evidence\":\"CIMT2027继续同时使用 首都国际会展中心和中国国际展览中心（顺义馆）\"},\"city\":{\"value\":\"北京\",\"evidence\":\"于2025年4月21日至26日在北京成功举办\"},\"organizer\":{\"value\":\"中国机床工具工业协会\",\"evidence\":\"本届展会由中国机床工具工业协会主办\"},\"edition\":{\"value\":20,\"evidence\":\"第二十届中国国际机床展览会\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cipsc",
+      "fields": {
+        "title": {
+          "value": "中国国际供应链促进博览会",
+          "method": "llm",
+          "evidence": "中国国际供应链促进博览会（简称链博会）",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "中国国际展览中心（顺义馆）",
+          "method": "llm",
+          "evidence": "北京中国国际展览中心（顺义馆）",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "北京",
+          "method": "llm",
+          "evidence": "北京中国国际展览中心（顺义馆）",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国贸促会",
+          "method": "llm",
+          "evidence": "链博会由中国贸促会主办",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 4,
+          "method": "llm",
+          "evidence": "第四届中国国际供应链促进博览会",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-06-22",
+          "method": "llm",
+          "evidence": "2026年6月22-26日",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        },
+        "prev_end_date": {
+          "value": "2026-06-26",
+          "method": "llm",
+          "evidence": "2026年6月22-26日",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        }
+      },
+      "dropped": {},
+      "moved": {
+        "start_date": {
+          "value": "2026-06-22",
+          "to": "prev_start_date"
+        },
+        "end_date": {
+          "value": "2026-06-26",
+          "to": "prev_end_date"
+        }
+      },
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际供应链促进博览会\",\"evidence\":\"中国国际供应链促进博览会（简称链博会）\"},\"start_date\":{\"value\":\"2026-06-22\",\"evidence\":\"2026年6月22-26日\"},\"end_date\":{\"value\":\"2026-06-26\",\"evidence\":\"2026年6月22-26日\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"中国国际展览中心（顺义馆）\",\"evidence\":\"北京中国国际展览中心（顺义馆）\"},\"city\":{\"value\":\"北京\",\"evidence\":\"北京中国国际展览中心（顺义馆）\"},\"organizer\":{\"value\":\"中国贸促会\",\"evidence\":\"链博会由中国贸促会主办\"},\"edition\":{\"value\":4,\"evidence\":\"第四届中国国际供应链促进博览会\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cismef",
+      "fields": {
+        "title": {
+          "value": "中国国际中小企业博览会",
+          "method": "llm",
+          "evidence": "中国国际中小企业博览会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-06-27",
+          "method": "llm",
+          "evidence": "2027年06月27日 -- 2027年06月30日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-06-30",
+          "method": "llm",
+          "evidence": "2027年06月27日 -- 2027年06月30日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "中国进出口商品交易会展馆",
+          "method": "llm",
+          "evidence": "中国进出口商品交易会展馆D区(广州市海珠区阅江中路168号)",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "广州市",
+          "method": "llm",
+          "evidence": "中国进出口商品交易会展馆D区(广州市海珠区阅江中路168号)",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "工业和信息化部",
+          "method": "llm",
+          "evidence": "主办单位 \n 工业和信息化部",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际中小企业博览会\",\"evidence\":\"中国国际中小企业博览会\"},\"start_date\":{\"value\":\"2027-06-27\",\"evidence\":\"2027年06月27日 -- 2027年06月30日\"},\"end_date\":{\"value\":\"2027-06-30\",\"evidence\":\"2027年06月27日 -- 2027年06月30日\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"中国进出口商品交易会展馆\",\"evidence\":\"中国进出口商品交易会展馆D区(广州市海珠区阅江中路168号)\"},\"city\":{\"value\":\"广州市\",\"evidence\":\"中国进出口商品交易会展馆D区(广州市海珠区阅江中路168号)\"},\"organizer\":{\"value\":\"工业和信息化部\",\"evidence\":\"主办单位 \\n 工业和信息化部\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 6,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cite",
+      "fields": {
+        "title": {
+          "value": "China International Tire Expo",
+          "method": "llm",
+          "evidence": "China International Tire Expo",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-09-01",
+          "method": "llm",
+          "evidence": "1-3 September 2027",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-09-03",
+          "method": "llm",
+          "evidence": "1-3 September 2027",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "Shanghai World Expo Exhibition & Convention Center",
+          "method": "llm",
+          "evidence": "Shanghai World Expo Exhibition & Convention Center",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "Shanghai",
+          "method": "llm",
+          "evidence": "Shanghai China",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "edition": {
+          "value": 22,
+          "why": "届次依据不成立"
+        }
+      },
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"China International Tire Expo\",\"evidence\":\"China International Tire Expo\"},\"start_date\":{\"value\":\"2027-09-01\",\"evidence\":\"1-3 September 2027\"},\"end_date\":{\"value\":\"2027-09-03\",\"evidence\":\"1-3 September 2027\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"Shanghai World Expo Exhibition & Convention Center\",\"evidence\":\"Shanghai World Expo Exhibition & Convention Center\"},\"city\":{\"value\":\"Shanghai\",\"evidence\":\"Shanghai China\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":22,\"evidence\":\"The 22 nd China International \\n TIRE EXPO 2027\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cmef",
+      "fields": {
+        "title": {
+          "value": "中国国际医疗器械博览会",
+          "method": "llm",
+          "evidence": "CMEF(全称:中国国际医疗器械博览会)始创于1979年",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "北京",
+          "method": "llm",
+          "evidence": "2026年10月21-24日 北京",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-10-21",
+          "method": "llm",
+          "evidence": "2026年10月21-24日 北京",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        },
+        "prev_end_date": {
+          "value": "2026-10-24",
+          "method": "llm",
+          "evidence": "2026年10月21-24日 北京",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        }
+      },
+      "dropped": {},
+      "moved": {
+        "start_date": {
+          "value": "2026-10-21",
+          "to": "prev_start_date"
+        },
+        "end_date": {
+          "value": "2026-10-24",
+          "to": "prev_end_date"
+        }
+      },
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际医疗器械博览会\",\"evidence\":\"CMEF(全称:中国国际医疗器械博览会)始创于1979年\"},\"start_date\":{\"value\":\"2026-10-21\",\"evidence\":\"2026年10月21-24日 北京\"},\"end_date\":{\"value\":\"2026-10-24\",\"evidence\":\"2026年10月21-24日 北京\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":\"北京\",\"evidence\":\"2026年10月21-24日 北京\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 2,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "dg-furniture",
+      "fields": {
+        "title": {
+          "value": "国际名家具（东莞）展览会",
+          "method": "llm",
+          "evidence": "名家具展官网_家居行业风向标_国际名家具（东莞）展览会",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "广东现代国际展览中心",
+          "method": "llm",
+          "evidence": "广东省东莞市厚街镇家具大道广东现代国际展览中心12号门",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "东莞",
+          "method": "llm",
+          "evidence": "广东省东莞市厚街镇家具大道广东现代国际展览中心12号门",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"国际名家具（东莞）展览会\",\"evidence\":\"名家具展官网_家居行业风向标_国际名家具（东莞）展览会\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"广东现代国际展览中心\",\"evidence\":\"广东省东莞市厚街镇家具大道广东现代国际展览中心12号门\"},\"city\":{\"value\":\"东莞\",\"evidence\":\"广东省东莞市厚街镇家具大道广东现代国际展览中心12号门\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 3,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cwp",
+      "fields": {
+        "title": {
+          "value": "北京国际风能大会暨展览会",
+          "method": "llm",
+          "evidence": "北京国际风能大会暨展览会（CWP）现已成为一年一度的全球风电行业盛会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-10-12",
+          "method": "llm",
+          "evidence": "10月12日—14日，CWP2027将在北京·中国国际展览中心（顺义馆）举行",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-10-14",
+          "method": "llm",
+          "evidence": "10月12日—14日，CWP2027将在北京·中国国际展览中心（顺义馆）举行",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "中国国际展览中心（顺义馆）",
+          "method": "llm",
+          "evidence": "CWP2027将在北京·中国国际展览中心（顺义馆）举行",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "北京",
+          "method": "llm",
+          "evidence": "CWP2027将在北京·中国国际展览中心（顺义馆）举行",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"北京国际风能大会暨展览会\",\"evidence\":\"北京国际风能大会暨展览会（CWP）现已成为一年一度的全球风电行业盛会\"},\"start_date\":{\"value\":\"2027-10-12\",\"evidence\":\"10月12日—14日，CWP2027将在北京·中国国际展览中心（顺义馆）举行\"},\"end_date\":{\"value\":\"2027-10-14\",\"evidence\":\"10月12日—14日，CWP2027将在北京·中国国际展览中心（顺义馆）举行\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"中国国际展览中心（顺义馆）\",\"evidence\":\"CWP2027将在北京·中国国际展览中心（顺义馆）举行\"},\"city\":{\"value\":\"北京\",\"evidence\":\"CWP2027将在北京·中国国际展览中心（顺义馆）举行\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "ec-expo-yiwu",
+      "fields": {
+        "title": {
+          "value": "浙江电子商务博览会",
+          "method": "llm",
+          "evidence": "浙江电子商务博览会（电商博览会）官方网站",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-06-21",
+          "method": "llm",
+          "evidence": "2027年6月21日-23日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-06-23",
+          "method": "llm",
+          "evidence": "2027年6月21日-23日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "义乌国际博览中心",
+          "method": "llm",
+          "evidence": "义乌国际博览中心　2027年6月21日-23日",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "义乌",
+          "method": "llm",
+          "evidence": "义乌国际博览中心　2027年6月21日-23日",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"浙江电子商务博览会\",\"evidence\":\"浙江电子商务博览会（电商博览会）官方网站\"},\"start_date\":{\"value\":\"2027-06-21\",\"evidence\":\"2027年6月21日-23日\"},\"end_date\":{\"value\":\"2027-06-23\",\"evidence\":\"2027年6月21日-23日\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"义乌国际博览中心\",\"evidence\":\"义乌国际博览中心　2027年6月21日-23日\"},\"city\":{\"value\":\"义乌\",\"evidence\":\"义乌国际博览中心　2027年6月21日-23日\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "electronica-china",
+      "fields": {
+        "title": {
+          "value": "electronica Shanghai",
+          "method": "llm",
+          "evidence": "electronica Shanghai 2027",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-04-14",
+          "method": "llm",
+          "evidence": "electronica Shanghai 2027 \n\n Apr. 14—16, 2027",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-04-16",
+          "method": "llm",
+          "evidence": "Apr. 14—16, 2027",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"electronica Shanghai\",\"evidence\":\"electronica Shanghai 2027\"},\"start_date\":{\"value\":\"2027-04-14\",\"evidence\":\"electronica Shanghai 2027 \\n\\n Apr. 14—16, 2027\"},\"end_date\":{\"value\":\"2027-04-16\",\"evidence\":\"Apr. 14—16, 2027\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 3,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "fenestration-china",
+      "fields": {
+        "title": {
+          "value": "国际门窗幕墙博览会 FENESTRATION BAU CHINA",
+          "method": "llm",
+          "evidence": "国际门窗幕墙博览会 FENESTRATION BAU CHINA",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "中国国际展览中心（顺义馆）",
+          "method": "llm",
+          "evidence": "北京 · 中国国际展览中心（顺义馆）",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "北京",
+          "method": "llm",
+          "evidence": "北京 · 中国国际展览中心（顺义馆）",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-10-28",
+          "method": "llm",
+          "evidence": "重构 · 焕新 2026.10.28-30",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        },
+        "prev_end_date": {
+          "value": "2026-10-30",
+          "method": "llm",
+          "evidence": "重构 · 焕新 2026.10.28-30",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        }
+      },
+      "dropped": {},
+      "moved": {
+        "start_date": {
+          "value": "2026-10-28",
+          "to": "prev_start_date"
+        },
+        "end_date": {
+          "value": "2026-10-30",
+          "to": "prev_end_date"
+        }
+      },
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"国际门窗幕墙博览会 FENESTRATION BAU CHINA\",\"evidence\":\"国际门窗幕墙博览会 FENESTRATION BAU CHINA\"},\"start_date\":{\"value\":\"2026-10-28\",\"evidence\":\"重构 · 焕新 2026.10.28-30\"},\"end_date\":{\"value\":\"2026-10-30\",\"evidence\":\"重构 · 焕新 2026.10.28-30\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"中国国际展览中心（顺义馆）\",\"evidence\":\"北京 · 中国国际展览中心（顺义馆）\"},\"city\":{\"value\":\"北京\",\"evidence\":\"北京 · 中国国际展览中心（顺义馆）\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 3,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "fhc-shanghai",
+      "fields": {
+        "title": {
+          "value": "FHC上海环球食品展",
+          "method": "llm",
+          "evidence": "FHC上海环球食品展 - Homepage of FHC Shanghai Global Food Trade Show",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2026-11-10",
+          "method": "llm",
+          "evidence": "2026.11.10 – 12上海新国际博览中心·浦东",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-11-12",
+          "method": "llm",
+          "evidence": "2026.11.10 – 12上海新国际博览中心·浦东",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "llm",
+          "evidence": "2026.11.10 – 12上海新国际博览中心·浦东",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "2026.11.10 – 12上海新国际博览中心·浦东",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "上海市餐饮烹饪行业协会、上海博华国际展览有限公司",
+          "method": "llm",
+          "evidence": "由上海市餐饮烹饪行业协会、上海博华国际展览有限公司主办",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 29,
+          "method": "llm",
+          "evidence": "第二十九届FHC上海环球食品展",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"FHC上海环球食品展\",\"evidence\":\"FHC上海环球食品展 - Homepage of FHC Shanghai Global Food Trade Show\"},\"start_date\":{\"value\":\"2026-11-10\",\"evidence\":\"2026.11.10 – 12上海新国际博览中心·浦东\"},\"end_date\":{\"value\":\"2026-11-12\",\"evidence\":\"2026.11.10 – 12上海新国际博览中心·浦东\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"上海新国际博览中心\",\"evidence\":\"2026.11.10 – 12上海新国际博览中心·浦东\"},\"city\":{\"value\":\"上海\",\"evidence\":\"2026.11.10 – 12上海新国际博览中心·浦东\"},\"organizer\":{\"value\":\"上海市餐饮烹饪行业协会、上海博华国际展览有限公司\",\"evidence\":\"由上海市餐饮烹饪行业协会、上海博华国际展览有限公司主办\"},\"edition\":{\"value\":29,\"evidence\":\"第二十九届FHC上海环球食品展\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 7,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "foshan-ceramics",
+      "fields": {
+        "title": {
+          "value": "佛山陶博会",
+          "method": "llm",
+          "evidence": "佛山陶博会 CERAMABATH 招商热线：0757-82521999",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "佛山国际会议展览中心",
+          "method": "llm",
+          "evidence": "佛山国际会议展览中心展馆：广东省佛山市禅城区南庄镇华夏陶瓷博览城陶博大道42座",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "佛山",
+          "method": "llm",
+          "evidence": "佛山国际会议展览中心展馆：广东省佛山市禅城区南庄镇华夏陶瓷博览城陶博大道42座",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"佛山陶博会\",\"evidence\":\"佛山陶博会 CERAMABATH 招商热线：0757-82521999\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"佛山国际会议展览中心\",\"evidence\":\"佛山国际会议展览中心展馆：广东省佛山市禅城区南庄镇华夏陶瓷博览城陶博大道42座\"},\"city\":{\"value\":\"佛山\",\"evidence\":\"佛山国际会议展览中心展馆：广东省佛山市禅城区南庄镇华夏陶瓷博览城陶博大道42座\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 3,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "gile",
+      "fields": {
+        "title": {
+          "value": "广州国际照明展览会",
+          "method": "llm",
+          "evidence": "广州国际照明展览会-照明及LED产业风向标",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-06-09",
+          "method": "llm",
+          "evidence": "2027年6月9-12日，GILE与GEBT与您相约广州",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-06-12",
+          "method": "llm",
+          "evidence": "2027年6月9-12日，GILE与GEBT与您相约广州",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "中国进出口商品交易会展馆",
+          "method": "llm",
+          "evidence": "在中国进出口商品交易会展馆A及B区隆重举行",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "广州",
+          "method": "llm",
+          "evidence": "中国,广州",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "edition": {
+          "value": 32,
+          "why": "届次依据不成立"
+        }
+      },
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"广州国际照明展览会\",\"evidence\":\"广州国际照明展览会-照明及LED产业风向标\"},\"start_date\":{\"value\":\"2027-06-09\",\"evidence\":\"2027年6月9-12日，GILE与GEBT与您相约广州\"},\"end_date\":{\"value\":\"2027-06-12\",\"evidence\":\"2027年6月9-12日，GILE与GEBT与您相约广州\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"中国进出口商品交易会展馆\",\"evidence\":\"在中国进出口商品交易会展馆A及B区隆重举行\"},\"city\":{\"value\":\"广州\",\"evidence\":\"中国,广州\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":32,\"evidence\":\"第32届广州国际照明展览会（GILE）将于2027年6月9至12日\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "guzhen-lighting",
+      "fields": {
+        "title": {
+          "value": "古镇灯博会",
+          "method": "llm",
+          "evidence": "古镇灯博会 – 【第35届古镇灯博会】",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "灯都古镇会议展览中心",
+          "method": "llm",
+          "evidence": "地址：广东·中山·灯都古镇会议展览中心",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "中山",
+          "method": "llm",
+          "evidence": "地址：广东·中山·灯都古镇会议展览中心",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国照明电器协会",
+          "method": "llm",
+          "evidence": "展会由中国照明电器协会主办，中山古镇灯都博览有限公司承办",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 35,
+          "method": "llm",
+          "evidence": "第35届古镇灯博会 同期举办",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-10-22",
+          "method": "llm",
+          "evidence": "2026年10月22-25日 广东省中山市灯都古镇会议展览中心",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        },
+        "prev_end_date": {
+          "value": "2026-10-25",
+          "method": "llm",
+          "evidence": "2026年10月22-25日 广东省中山市灯都古镇会议展览中心",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        }
+      },
+      "dropped": {},
+      "moved": {
+        "start_date": {
+          "value": "2026-10-22",
+          "to": "prev_start_date"
+        },
+        "end_date": {
+          "value": "2026-10-25",
+          "to": "prev_end_date"
+        }
+      },
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"古镇灯博会\",\"evidence\":\"古镇灯博会 – 【第35届古镇灯博会】\"},\"start_date\":{\"value\":\"2026-10-22\",\"evidence\":\"2026年10月22-25日 广东省中山市灯都古镇会议展览中心\"},\"end_date\":{\"value\":\"2026-10-25\",\"evidence\":\"2026年10月22-25日 广东省中山市灯都古镇会议展览中心\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"灯都古镇会议展览中心\",\"evidence\":\"地址：广东·中山·灯都古镇会议展览中心\"},\"city\":{\"value\":\"中山\",\"evidence\":\"地址：广东·中山·灯都古镇会议展览中心\"},\"organizer\":{\"value\":\"中国照明电器协会\",\"evidence\":\"展会由中国照明电器协会主办，中山古镇灯都博览有限公司承办\"},\"edition\":{\"value\":35,\"evidence\":\"第35届古镇灯博会 同期举办\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "hainan-expo",
+      "fields": {
+        "title": {
+          "value": "中国国际消费品博览会",
+          "method": "llm",
+          "evidence": "关于公开征集第七届中国国际消费品博览会主场运输服务商的公告",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "海口市",
+          "method": "llm",
+          "evidence": "地址: 中国 · 海南省海口市国兴大道15A号全球贸易之窗18-19F",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "商务部、海南省人民政府",
+          "method": "llm",
+          "evidence": "主办单位\n商务部\n海南省人民政府",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际消费品博览会\",\"evidence\":\"关于公开征集第七届中国国际消费品博览会主场运输服务商的公告\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":\"海口市\",\"evidence\":\"地址: 中国 · 海南省海口市国兴大道15A号全球贸易之窗18-19F\"},\"organizer\":{\"value\":\"商务部、海南省人民政府\",\"evidence\":\"主办单位\\n商务部\\n海南省人民政府\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 3,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "gz-shoes",
+      "fields": {
+        "title": {
+          "value": "2026厦门国际鞋业博览会",
+          "method": "llm",
+          "evidence": "2026厦门国际鞋业博览会2026年11月13-15日福建厦门",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2026-11-13",
+          "method": "llm",
+          "evidence": "展会时间：2026年11月13-15日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-11-15",
+          "method": "llm",
+          "evidence": "展会时间：2026年11月13-15日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "厦门国际博览中心",
+          "method": "llm",
+          "evidence": "展会展馆：福建 厦门国际博览中心（厦门市翔安区扬帆路1号）",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "厦门",
+          "method": "llm",
+          "evidence": "展会展馆：福建 厦门国际博览中心（厦门市翔安区扬帆路1号）",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "edition": {
+          "value": 29,
+          "why": "届次依据不成立"
+        }
+      },
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"2026厦门国际鞋业博览会\",\"evidence\":\"2026厦门国际鞋业博览会2026年11月13-15日福建厦门\"},\"start_date\":{\"value\":\"2026-11-13\",\"evidence\":\"展会时间：2026年11月13-15日\"},\"end_date\":{\"value\":\"2026-11-15\",\"evidence\":\"展会时间：2026年11月13-15日\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"厦门国际博览中心\",\"evidence\":\"展会展馆：福建 厦门国际博览中心（厦门市翔安区扬帆路1号）\"},\"city\":{\"value\":\"厦门\",\"evidence\":\"展会展馆：福建 厦门国际博览中心（厦门市翔安区扬帆路1号）\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":29,\"evidence\":\"2026（第29届）厦门国际鞋业博览会\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "hktdc-lighting",
+      "fields": {
+        "title": {
+          "value": "HKTDC Hong Kong International Lighting Fair (Autumn Edition)",
+          "method": "llm",
+          "evidence": "HKTDC Hong Kong International Lighting Fair (Autumn Edition) Details Fair Fair a",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "HKCEC",
+          "method": "llm",
+          "evidence": "Autumn Lighting Fair Opens Tomorrow at HKCEC",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "HKTDC",
+          "method": "llm",
+          "evidence": "HKTDC Hong Kong International Lighting Fair (Autumn Edition)",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "city": {
+          "value": "香港",
+          "why": "取值不在依据中（缺 香港）",
+          "evidence": "Visa/Permit for Entering Hong Kong"
+        }
+      },
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"HKTDC Hong Kong International Lighting Fair (Autumn Edition)\",\"evidence\":\"HKTDC Hong Kong International Lighting Fair (Autumn Edition) Details Fair Fair at a Glance\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"HKCEC\",\"evidence\":\"Autumn Lighting Fair Opens Tomorrow at HKCEC\"},\"city\":{\"value\":\"香港\",\"evidence\":\"Visa/Permit for Entering Hong Kong\"},\"organizer\":{\"value\":\"HKTDC\",\"evidence\":\"HKTDC Hong Kong International Lighting Fair (Autumn Edition)\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 3,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "humen-fashion",
+      "fields": {
+        "venue": {
+          "value": "虎门会展中心",
+          "method": "llm",
+          "evidence": "地址：东莞市虎门镇连升路虎门会展中心",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "东莞市",
+          "method": "llm",
+          "evidence": "地址：东莞市虎门镇连升路虎门会展中心",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":null,\"evidence\":\"\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"虎门会展中心\",\"evidence\":\"地址：东莞市虎门镇连升路虎门会展中心\"},\"city\":{\"value\":\"东莞市\",\"evidence\":\"地址：东莞市虎门镇连升路虎门会展中心\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 2,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "intertextile",
+      "fields": {
+        "title": {
+          "value": "中国国际纺织面料及辅料博览会",
+          "method": "llm",
+          "evidence": "中国国际 \n 纺织面料及辅料博览会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-03-10",
+          "method": "llm",
+          "evidence": "2027.3.10-12",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-03-12",
+          "method": "llm",
+          "evidence": "2027.3.10-12",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心(上海)",
+          "method": "llm",
+          "evidence": "国家会展中心(上海)",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "国家会展中心(上海)",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际纺织面料及辅料博览会\",\"evidence\":\"中国国际 \\n 纺织面料及辅料博览会\"},\"start_date\":{\"value\":\"2027-03-10\",\"evidence\":\"2027.3.10-12\"},\"end_date\":{\"value\":\"2027-03-12\",\"evidence\":\"2027.3.10-12\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"国家会展中心(上海)\",\"evidence\":\"国家会展中心(上海)\"},\"city\":{\"value\":\"上海\",\"evidence\":\"国家会展中心(上海)\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "icif",
+      "fields": {
+        "title": {
+          "value": "中国国际化工展览会",
+          "method": "llm",
+          "evidence": "中国国际化工展览会（ICIF） 创办于1992年",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-09-22",
+          "method": "llm",
+          "evidence": "时间：2027年09月22-24日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-09-24",
+          "method": "llm",
+          "evidence": "时间：2027年09月22-24日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "llm",
+          "evidence": "地点：上海新国际博览中心",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "地点：上海新国际博览中心",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "中国石油和化学工业联合会",
+          "method": "llm",
+          "evidence": "由中国石油和化学工业联合会主办",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "edition": {
+          "value": 23,
+          "why": "届次依据不成立"
+        }
+      },
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际化工展览会\",\"evidence\":\"中国国际化工展览会（ICIF） 创办于1992年\"},\"start_date\":{\"value\":\"2027-09-22\",\"evidence\":\"时间：2027年09月22-24日\"},\"end_date\":{\"value\":\"2027-09-24\",\"evidence\":\"时间：2027年09月22-24日\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"上海新国际博览中心\",\"evidence\":\"地点：上海新国际博览中心\"},\"city\":{\"value\":\"上海\",\"evidence\":\"地点：上海新国际博览中心\"},\"organizer\":{\"value\":\"中国石油和化学工业联合会\",\"evidence\":\"由中国石油和化学工业联合会主办\"},\"edition\":{\"value\":23,\"evidence\":\"已成功举办了二十三届\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 6,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "iot-expo",
+      "fields": {
+        "title": {
+          "value": "世界物联网博览会",
+          "method": "llm",
+          "evidence": "世界物联网博览会，以下简称“物博会”，落地于国家传感网创新示范区",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "无锡",
+          "method": "llm",
+          "evidence": "2026物博会将于10月30日-11月2日在江苏无锡举办",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "世界物联网博览会组委会",
+          "method": "llm",
+          "evidence": "主办单位\n世界物联网博览会组委会",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-10-30",
+          "method": "llm",
+          "evidence": "2026物博会将于10月30日-11月2日在江苏无锡举办",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        },
+        "prev_end_date": {
+          "value": "2026-11-02",
+          "method": "llm",
+          "evidence": "2026物博会将于10月30日-11月2日在江苏无锡举办",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        }
+      },
+      "dropped": {},
+      "moved": {
+        "start_date": {
+          "value": "2026-10-30",
+          "to": "prev_start_date"
+        },
+        "end_date": {
+          "value": "2026-11-02",
+          "to": "prev_end_date"
+        }
+      },
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"世界物联网博览会\",\"evidence\":\"世界物联网博览会，以下简称“物博会”，落地于国家传感网创新示范区\"},\"start_date\":{\"value\":\"2026-10-30\",\"evidence\":\"2026物博会将于10月30日-11月2日在江苏无锡举办\"},\"end_date\":{\"value\":\"2026-11-02\",\"evidence\":\"2026物博会将于10月30日-11月2日在江苏无锡举办\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":\"无锡\",\"evidence\":\"2026物博会将于10月30日-11月2日在江苏无锡举办\"},\"organizer\":{\"value\":\"世界物联网博览会组委会\",\"evidence\":\"主办单位\\n世界物联网博览会组委会\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 3,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "jinjiang-shoes",
+      "fields": {
+        "title": {
+          "value": "The 27th Jinjiang Footwear &Sports Industry International Exposition, China",
+          "method": "llm",
+          "evidence": "The 27th Jinjiang Footwear &Sports Industry International Exposition, China",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "Jinjiang",
+          "method": "llm",
+          "evidence": "in Jinjiang, Fujian province",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-04-19",
+          "method": "llm",
+          "evidence": "is due to take place from April 19-22, 2026",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        },
+        "prev_end_date": {
+          "value": "2026-04-22",
+          "method": "llm",
+          "evidence": "is due to take place from April 19-22, 2026",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        }
+      },
+      "dropped": {
+        "edition": {
+          "value": 27,
+          "why": "届次依据不成立"
+        }
+      },
+      "moved": {
+        "start_date": {
+          "value": "2026-04-19",
+          "to": "prev_start_date"
+        },
+        "end_date": {
+          "value": "2026-04-22",
+          "to": "prev_end_date"
+        }
+      },
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"The 27th Jinjiang Footwear &Sports Industry International Exposition, China\",\"evidence\":\"The 27th Jinjiang Footwear &Sports Industry International Exposition, China\"},\"start_date\":{\"value\":\"2026-04-19\",\"evidence\":\"is due to take place from April 19-22, 2026\"},\"end_date\":{\"value\":\"2026-04-22\",\"evidence\":\"is due to take place from April 19-22, 2026\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":\"Jinjiang\",\"evidence\":\"in Jinjiang, Fujian province\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":27,\"evidence\":\"The 27th Jinjiang Footwear &Sports Industry International Exposition\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 2,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "itma-asia",
+      "fields": {
+        "title": {
+          "value": "中国国际纺织机械展览会暨ITMA亚洲展览会",
+          "method": "llm",
+          "evidence": "中国国际纺织机械展览会暨ITMA亚洲展览会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2026-11-20",
+          "method": "llm",
+          "evidence": "2026年11月20-24日 中国·上海·国家会展中心",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-11-24",
+          "method": "llm",
+          "evidence": "2026年11月20-24日 中国·上海·国家会展中心",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "llm",
+          "evidence": "本届展会定于2026年11月20日至24日在国家会展中心（上海）举行",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "2026年11月20-24日 中国·上海·国家会展中心",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "deadline": {
+          "value": "2026-03-24",
+          "why": "截止日已过去，属往届"
+        }
+      },
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际纺织机械展览会暨ITMA亚洲展览会\",\"evidence\":\"中国国际纺织机械展览会暨ITMA亚洲展览会\"},\"start_date\":{\"value\":\"2026-11-20\",\"evidence\":\"2026年11月20-24日 中国·上海·国家会展中心\"},\"end_date\":{\"value\":\"2026-11-24\",\"evidence\":\"2026年11月20-24日 中国·上海·国家会展中心\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"国家会展中心（上海）\",\"evidence\":\"本届展会定于2026年11月20日至24日在国家会展中心（上海）举行\"},\"city\":{\"value\":\"上海\",\"evidence\":\"2026年11月20-24日 中国·上海·国家会展中心\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":\"2026-03-24\",\"evidence\":\"截至3月24日报名截止日，参展企业数量及签约面积双双超过往届同期水平\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "ningbo-lighting",
+      "fields": {
+        "title": {
+          "value": "2027宁波国际照明展",
+          "method": "llm",
+          "evidence": "2027宁波国际照明展",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-05-07",
+          "method": "llm",
+          "evidence": "2027年05月07日-",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "宁波国际会展中心",
+          "method": "llm",
+          "evidence": "地点：宁波国际会展中心",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "宁波",
+          "method": "llm",
+          "evidence": "地点：宁波国际会展中心",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "end_date": {
+          "value": "2027-05-09",
+          "why": "依据过短",
+          "evidence": "09日"
+        }
+      },
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"2027宁波国际照明展\",\"evidence\":\"2027宁波国际照明展\"},\"start_date\":{\"value\":\"2027-05-07\",\"evidence\":\"2027年05月07日-\"},\"end_date\":{\"value\":\"2027-05-09\",\"evidence\":\"09日\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"宁波国际会展中心\",\"evidence\":\"地点：宁波国际会展中心\"},\"city\":{\"value\":\"宁波\",\"evidence\":\"地点：宁波国际会展中心\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 4,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "pcb-china",
+      "fields": {},
+      "dropped": {},
+      "moved": {},
+      "ok": false,
+      "raw": "{\"title\":{\"value\":null,\"evidence\":\"\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 0,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "pharmchina",
+      "fields": {
+        "title": {
+          "value": "全国药品交易会",
+          "method": "llm",
+          "evidence": "全国药品交易会",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"全国药品交易会\",\"evidence\":\"全国药品交易会\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 1,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "paperworld-china",
+      "fields": {
+        "title": {
+          "value": "中国国际文具及办公用品展览会",
+          "method": "llm",
+          "evidence": "中国国际文具及办公用品展览会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2026-12-04",
+          "method": "llm",
+          "evidence": "2026年12月4至6日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2026-12-06",
+          "method": "llm",
+          "evidence": "2026年12月4至6日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海世博展览馆",
+          "method": "llm",
+          "evidence": "中国‧上海世博展览馆",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "中国‧上海世博展览馆",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "法兰克福展览、中国文教体育用品协会",
+          "method": "llm",
+          "evidence": "法兰克福展览携手中国文教体育用品协会",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际文具及办公用品展览会\",\"evidence\":\"中国国际文具及办公用品展览会\"},\"start_date\":{\"value\":\"2026-12-04\",\"evidence\":\"2026年12月4至6日\"},\"end_date\":{\"value\":\"2026-12-06\",\"evidence\":\"2026年12月4至6日\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"上海世博展览馆\",\"evidence\":\"中国‧上海世博展览馆\"},\"city\":{\"value\":\"上海\",\"evidence\":\"中国‧上海世博展览馆\"},\"organizer\":{\"value\":\"法兰克福展览、中国文教体育用品协会\",\"evidence\":\"法兰克福展览携手中国文教体育用品协会\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 6,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "reed-gift-sz",
+      "fields": {
+        "organizer": {
+          "value": "励展华博展览（深圳）有限公司",
+          "method": "llm",
+          "evidence": "励展华博展览（深圳）有限公司是国内礼品家居行业有影响力的展会主办机构",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":null,\"evidence\":\"\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":\"励展华博展览（深圳）有限公司\",\"evidence\":\"励展华博展览（深圳）有限公司是国内礼品家居行业有影响力的展会主办机构\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 1,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "sh-gift",
+      "fields": {
+        "title": {
+          "value": "第9届上海国际礼业博览会",
+          "method": "llm",
+          "evidence": "第9届上海国际礼业博览会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-07-15",
+          "method": "llm",
+          "evidence": "2027年7月15-17日",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-07-17",
+          "method": "llm",
+          "evidence": "2027年7月15-17日",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "上海新国际博览中心",
+          "method": "llm",
+          "evidence": "上海新国际博览中心",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "上海新国际博览中心",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "励展华博展览（深圳）有限公司",
+          "method": "llm",
+          "evidence": "主办单位： 励展华博展览（深圳）有限公司",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 9,
+          "method": "llm",
+          "evidence": "第9届上海国际礼业博览会",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"第9届上海国际礼业博览会\",\"evidence\":\"第9届上海国际礼业博览会\"},\"start_date\":{\"value\":\"2027-07-15\",\"evidence\":\"2027年7月15-17日\"},\"end_date\":{\"value\":\"2027-07-17\",\"evidence\":\"2027年7月15-17日\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"上海新国际博览中心\",\"evidence\":\"上海新国际博览中心\"},\"city\":{\"value\":\"上海\",\"evidence\":\"上海新国际博览中心\"},\"organizer\":{\"value\":\"励展华博展览（深圳）有限公司\",\"evidence\":\"主办单位： 励展华博展览（深圳）有限公司\"},\"edition\":{\"value\":9,\"evidence\":\"第9届上海国际礼业博览会\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 7,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "scie",
+      "fields": {
+        "title": {
+          "value": "世界智能产业博览会（重庆）",
+          "method": "llm",
+          "evidence": "©世界智能产业博览会（重庆）",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "重庆悦来国际会议中心",
+          "method": "llm",
+          "evidence": "举办地点：重庆悦来国际会议中心",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "重庆",
+          "method": "llm",
+          "evidence": "地址：重庆市渝北区云杉南路6号3幢涉外商务区二期B6栋6楼",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"世界智能产业博览会（重庆）\",\"evidence\":\"©世界智能产业博览会（重庆）\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"重庆悦来国际会议中心\",\"evidence\":\"举办地点：重庆悦来国际会议中心\"},\"city\":{\"value\":\"重庆\",\"evidence\":\"地址：重庆市渝北区云杉南路6号3幢涉外商务区二期B6栋6楼\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 3,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "sh-home-deco",
+      "fields": {
+        "title": {
+          "value": "HD+ Asia 亚洲家居装饰及生活方式展",
+          "method": "llm",
+          "evidence": "HD+ Asia 亚洲家居装饰及生活方式展-上海万耀企龙展览有限公司",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-05-26",
+          "method": "llm",
+          "evidence": "2027 年 5 月 26 日- 5 月 28 日 上海虹桥·国家会展中心",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-05-28",
+          "method": "llm",
+          "evidence": "2027 年 5 月 26 日- 5 月 28 日 上海虹桥·国家会展中心",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "国家会展中心（上海）",
+          "method": "llm",
+          "evidence": "2027 年 5 月 26 日- 5 月 28 日 上海虹桥·国家会展中心",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "2027 年 5 月 26 日- 5 月 28 日 上海虹桥·国家会展中心",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "上海万耀企龙展览有限公司、德国斯图加特国际展览公司",
+          "method": "llm",
+          "evidence": "主办单位： 上海万耀企龙展览有限公司 德国斯图加特国际展览公司",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"HD+ Asia 亚洲家居装饰及生活方式展\",\"evidence\":\"HD+ Asia 亚洲家居装饰及生活方式展-上海万耀企龙展览有限公司\"},\"start_date\":{\"value\":\"2027-05-26\",\"evidence\":\"2027 年 5 月 26 日- 5 月 28 日 上海虹桥·国家会展中心\"},\"end_date\":{\"value\":\"2027-05-28\",\"evidence\":\"2027 年 5 月 26 日- 5 月 28 日 上海虹桥·国家会展中心\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"国家会展中心（上海）\",\"evidence\":\"2027 年 5 月 26 日- 5 月 28 日 上海虹桥·国家会展中心\"},\"city\":{\"value\":\"上海\",\"evidence\":\"2027 年 5 月 26 日- 5 月 28 日 上海虹桥·国家会展中心\"},\"organizer\":{\"value\":\"上海万耀企龙展览有限公司、德国斯图加特国际展览公司\",\"evidence\":\"主办单位： 上海万耀企龙展览有限公司 德国斯图加特国际展览公司\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 6,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "sial-china",
+      "fields": {
+        "title": {
+          "value": "SIAL Shanghai 2027",
+          "method": "llm",
+          "evidence": "SIAL Shanghai 2027 Global food sourcing meets stability",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-05-18",
+          "method": "llm",
+          "evidence": "2027.5.18 - 20",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-05-20",
+          "method": "llm",
+          "evidence": "2027.5.18 - 20",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "Shanghai New International Expo Center",
+          "method": "llm",
+          "evidence": "Shanghai New International Expo Center 2027.5.18 - 20",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "Shanghai",
+          "method": "llm",
+          "evidence": "SIAL in China CHINA Shanghai 2027.05.18 - 20",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"SIAL Shanghai 2027\",\"evidence\":\"SIAL Shanghai 2027 Global food sourcing meets stability\"},\"start_date\":{\"value\":\"2027-05-18\",\"evidence\":\"2027.5.18 - 20\"},\"end_date\":{\"value\":\"2027-05-20\",\"evidence\":\"2027.5.18 - 20\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"Shanghai New International Expo Center\",\"evidence\":\"Shanghai New International Expo Center 2027.5.18 - 20\"},\"city\":{\"value\":\"Shanghai\",\"evidence\":\"SIAL in China CHINA Shanghai 2027.05.18 - 20\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 5,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "simm",
+      "fields": {
+        "title": {
+          "value": "ITES深圳国际工业制造技术及设备展览会",
+          "method": "llm",
+          "evidence": "ITES深圳国际工业制造技术及设备展览会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-03-24",
+          "method": "llm",
+          "evidence": "2027年3月24日-3月27日（周三至周六），第28届ITES深圳国际工业制造技术及设备展览会",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-03-27",
+          "method": "llm",
+          "evidence": "2027年3月24日-3月27日（周三至周六），第28届ITES深圳国际工业制造技术及设备展览会",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "深圳国际会展中心（宝安）",
+          "method": "llm",
+          "evidence": "将在深圳国际会展中心（宝安）举行",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "深圳",
+          "method": "llm",
+          "evidence": "将在深圳国际会展中心（宝安）举行",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 28,
+          "method": "llm",
+          "evidence": "第28届ITES深圳国际工业制造技术及设备展览会",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"ITES深圳国际工业制造技术及设备展览会\",\"evidence\":\"ITES深圳国际工业制造技术及设备展览会\"},\"start_date\":{\"value\":\"2027-03-24\",\"evidence\":\"2027年3月24日-3月27日（周三至周六），第28届ITES深圳国际工业制造技术及设备展览会\"},\"end_date\":{\"value\":\"2027-03-27\",\"evidence\":\"2027年3月24日-3月27日（周三至周六），第28届ITES深圳国际工业制造技术及设备展览会\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"深圳国际会展中心（宝安）\",\"evidence\":\"将在深圳国际会展中心（宝安）举行\"},\"city\":{\"value\":\"深圳\",\"evidence\":\"将在深圳国际会展中心（宝安）举行\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":28,\"evidence\":\"第28届ITES深圳国际工业制造技术及设备展览会\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 6,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "sino-dental",
+      "fields": {
+        "title": {
+          "value": "Sino-Dental®2026",
+          "method": "llm",
+          "evidence": "Sino-Dental®2026展商名录",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"Sino-Dental®2026\",\"evidence\":\"Sino-Dental®2026展商名录\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 1,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "sinoces",
+      "fields": {
+        "title": {
+          "value": "中国国际消费电子博览会",
+          "method": "llm",
+          "evidence": "中国国际消费电子博览会 ( 以下简称“电博会” )",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "青岛国际会展中心（红岛馆）",
+          "method": "llm",
+          "evidence": "中国·青岛国际会展中心（红岛馆）",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "青岛",
+          "method": "llm",
+          "evidence": "中国·青岛国际会展中心（红岛馆）",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "山东省人民政府",
+          "method": "llm",
+          "evidence": "由山东省人民政府主办",
+          "conf": "medium"
+        },
+        "prev_start_date": {
+          "value": "2026-09-04",
+          "method": "llm",
+          "evidence": "2026 电博会拟于 9 月 4 日至 6 日在青岛国际会展中心",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        },
+        "prev_end_date": {
+          "value": "2026-09-06",
+          "method": "llm",
+          "evidence": "2026 电博会拟于 9 月 4 日至 6 日在青岛国际会展中心",
+          "conf": "low",
+          "note": "模型原填为 start_date，已按日期归属移入往届"
+        }
+      },
+      "dropped": {},
+      "moved": {
+        "start_date": {
+          "value": "2026-09-04",
+          "to": "prev_start_date"
+        },
+        "end_date": {
+          "value": "2026-09-06",
+          "to": "prev_end_date"
+        }
+      },
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国国际消费电子博览会\",\"evidence\":\"中国国际消费电子博览会 ( 以下简称“电博会” )\"},\"start_date\":{\"value\":\"2026-09-04\",\"evidence\":\"2026 电博会拟于 9 月 4 日至 6 日在青岛国际会展中心\"},\"end_date\":{\"value\":\"2026-09-06\",\"evidence\":\"2026 电博会拟于 9 月 4 日至 6 日在青岛国际会展中心\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"青岛国际会展中心（红岛馆）\",\"evidence\":\"中国·青岛国际会展中心（红岛馆）\"},\"city\":{\"value\":\"青岛\",\"evidence\":\"中国·青岛国际会展中心（红岛馆）\"},\"organizer\":{\"value\":\"山东省人民政府\",\"evidence\":\"由山东省人民政府主办\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 4,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "snec",
+      "fields": {},
+      "dropped": {},
+      "moved": {},
+      "ok": false,
+      "raw": "{\"title\":{\"value\":null,\"evidence\":\"\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":null,\"evidence\":\"\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 0,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "tea-expo",
+      "fields": {
+        "title": {
+          "value": "华巨臣茶博会-深圳茶博会",
+          "method": "llm",
+          "evidence": "华巨臣茶博会-深圳茶博会",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "深圳",
+          "method": "llm",
+          "evidence": "深圳茶博会",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"华巨臣茶博会-深圳茶博会\",\"evidence\":\"华巨臣茶博会-深圳茶博会\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":null,\"evidence\":\"\"},\"city\":{\"value\":\"深圳\",\"evidence\":\"深圳茶博会\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 2,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "yiwu-fair",
+      "fields": {
+        "title": {
+          "value": "中国义乌国际小商品博览会",
+          "method": "llm",
+          "evidence": "第32届中国义乌国际小商品博览会-出口商品展参展商手册",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "义乌国际博览中心",
+          "method": "llm",
+          "evidence": "办证地点：义乌国际博览中心 展商报到处",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "义乌",
+          "method": "llm",
+          "evidence": "地址： 浙江省义乌市宗泽东路59号义乌国际博览中心综合楼三楼",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 32,
+          "method": "llm",
+          "evidence": "第32届义博会倒计时100天！",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国义乌国际小商品博览会\",\"evidence\":\"第32届中国义乌国际小商品博览会-出口商品展参展商手册\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"义乌国际博览中心\",\"evidence\":\"办证地点：义乌国际博览中心 展商报到处\"},\"city\":{\"value\":\"义乌\",\"evidence\":\"地址： 浙江省义乌市宗泽东路59号义乌国际博览中心综合楼三楼\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":32,\"evidence\":\"第32届义博会倒计时100天！\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 4,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "waic",
+      "fields": {
+        "title": {
+          "value": "世界人工智能大会",
+          "method": "llm",
+          "evidence": "世界人工智能大会（WAIC）是全球人工智能领域的顶级盛会",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "世博中心",
+          "method": "llm",
+          "evidence": "世博中心｜前沿思想策源地",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "上海",
+          "method": "llm",
+          "evidence": "中国·上海",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "start_date": {
+          "value": "2026-07-17",
+          "why": "依据里找不到 7 月 17 日",
+          "evidence": "07.17 - 07.20"
+        },
+        "end_date": {
+          "value": "2026-07-20",
+          "why": "依据里找不到 7 月 20 日",
+          "evidence": "07.17 - 07.20"
+        },
+        "organizer": {
+          "value": "中华人民共和国外交部、中华人民共和国国家发展和改革委员会、中华人民共和国工业和信息化部、中华人民共和国教育部、中华人民共和国科学技术部、国务院国有资产监督管理委员会、中华人民共和国国家互联网信息办公室、中国科学院、中国科学技术协会、上海市人民政府",
+          "why": "取值不在依据中（缺 中华人民共和国国家发展和改革委员会、中华人民共和）",
+          "evidence": "主办单位\n中华人民共和国外交部"
+        }
+      },
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"世界人工智能大会\",\"evidence\":\"世界人工智能大会（WAIC）是全球人工智能领域的顶级盛会\"},\"start_date\":{\"value\":\"2026-07-17\",\"evidence\":\"07.17 - 07.20\"},\"end_date\":{\"value\":\"2026-07-20\",\"evidence\":\"07.17 - 07.20\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"世博中心\",\"evidence\":\"世博中心｜前沿思想策源地\"},\"city\":{\"value\":\"上海\",\"evidence\":\"中国·上海\"},\"organizer\":{\"value\":\"中华人民共和国外交部、中华人民共和国国家发展和改革委员会、中华人民共和国工业和信息化部、中华人民共和国教育部、中华人民共和国科学技术部、国务院国有资产监督管理委员会、中华人民共和国国家互联网信息办公室、中国科学院、中国科学技术协会、上海市人民政府\",\"evidence\":\"主办单位\\n中华人民共和国外交部\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 3,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "yiwu-gift",
+      "fields": {
+        "title": {
+          "value": "2027年义乌礼品、时尚用品及家庭用品展览会",
+          "method": "llm",
+          "evidence": "2027年义乌礼品、时尚用品及家庭用品展览会",
+          "conf": "medium"
+        },
+        "start_date": {
+          "value": "2027-05-16",
+          "method": "llm",
+          "evidence": "将于2027年5月16-18日在义乌国际博览中心隆重举办",
+          "conf": "medium"
+        },
+        "end_date": {
+          "value": "2027-05-18",
+          "method": "llm",
+          "evidence": "将于2027年5月16-18日在义乌国际博览中心隆重举办",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "义乌国际博览中心",
+          "method": "llm",
+          "evidence": "将于2027年5月16-18日在义乌国际博览中心隆重举办",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "义乌",
+          "method": "llm",
+          "evidence": "将于2027年5月16-18日在义乌国际博览中心隆重举办",
+          "conf": "medium"
+        },
+        "organizer": {
+          "value": "励展华博展览（深圳）有限公司、义乌中国小商品城展览股份有限公司、义乌市工艺礼品行业协会",
+          "method": "llm",
+          "evidence": "由励展华博展览(深圳)有限公司、义乌中国小商品城展览股份有限公司、义乌市工艺礼品行业协会主办",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"2027年义乌礼品、时尚用品及家庭用品展览会\",\"evidence\":\"2027年义乌礼品、时尚用品及家庭用品展览会\"},\"start_date\":{\"value\":\"2027-05-16\",\"evidence\":\"将于2027年5月16-18日在义乌国际博览中心隆重举办\"},\"end_date\":{\"value\":\"2027-05-18\",\"evidence\":\"将于2027年5月16-18日在义乌国际博览中心隆重举办\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"义乌国际博览中心\",\"evidence\":\"将于2027年5月16-18日在义乌国际博览中心隆重举办\"},\"city\":{\"value\":\"义乌\",\"evidence\":\"将于2027年5月16-18日在义乌国际博览中心隆重举办\"},\"organizer\":{\"value\":\"励展华博展览（深圳）有限公司、义乌中国小商品城展览股份有限公司、义乌市工艺礼品行业协会\",\"evidence\":\"由励展华博展览(深圳)有限公司、义乌中国小商品城展览股份有限公司、义乌市工艺礼品行业协会主办\"},\"edition\":{\"value\":null,\"evidence\":\"\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 6,
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "yongkang-hardware",
+      "fields": {
+        "title": {
+          "value": "中国五金博览会",
+          "method": "llm",
+          "evidence": "第31届中国五金博览会将于2026年3月1日上午8时开始报名",
+          "conf": "medium"
+        },
+        "venue": {
+          "value": "永康国际会展中心",
+          "method": "llm",
+          "evidence": "地址：浙江省永康市五湖路1号\n （永康国际会展中心）",
+          "conf": "medium"
+        },
+        "city": {
+          "value": "永康",
+          "method": "llm",
+          "evidence": "地址:浙江省永康市五湖路1号中国五金博览会招商交易组",
+          "conf": "medium"
+        },
+        "edition": {
+          "value": 31,
+          "method": "llm",
+          "evidence": "第31届中国五金博览会将于2026年3月1日上午8时开始报名",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "moved": {},
+      "ok": true,
+      "raw": "{\"title\":{\"value\":\"中国五金博览会\",\"evidence\":\"第31届中国五金博览会将于2026年3月1日上午8时开始报名\"},\"start_date\":{\"value\":null,\"evidence\":\"\"},\"end_date\":{\"value\":null,\"evidence\":\"\"},\"prev_start_date\":{\"value\":null,\"evidence\":\"\"},\"prev_end_date\":{\"value\":null,\"evidence\":\"\"},\"venue\":{\"value\":\"永康国际会展中心\",\"evidence\":\"地址：浙江省永康市五湖路1号\\n （永康国际会展中心）\"},\"city\":{\"value\":\"永康\",\"evidence\":\"地址:浙江省永康市五湖路1号中国五金博览会招商交易组\"},\"organizer\":{\"value\":null,\"evidence\":\"\"},\"edition\":{\"value\":31,\"evidence\":\"第31届中国五金博览会将于2026年3月1日上午8时开始报名\"},\"deadline\":{\"value\":null,\"evidence\":\"\"}}",
+      "filled": 4,
+      "model": "deepseek-chat"
+    }
+  ],
+  "reverified_at": "2026-11-03 15:21:17"
+}

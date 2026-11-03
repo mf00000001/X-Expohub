@@ -1,0 +1,148 @@
+{
+  "rendered_at": "2026-11-03 15:19:30",
+  "records": [
+    {
+      "id": "ciif",
+      "url": "https://www.ciif-expo.com/",
+      "status": "ok",
+      "chars": 1732,
+      "seconds": 24.3
+    },
+    {
+      "id": "canton-fair",
+      "url": "https://www.cantonfair.org.cn/",
+      "status": "ok",
+      "chars": 1097,
+      "seconds": 12.2
+    },
+    {
+      "id": "ciie",
+      "url": "https://www.ciie.org/",
+      "status": "ok",
+      "chars": 9916,
+      "seconds": 9.7
+    },
+    {
+      "id": "auto-shanghai",
+      "url": "https://www.autoshanghai.org/",
+      "status": "ok",
+      "chars": 143,
+      "seconds": 3.2
+    },
+    {
+      "id": "auto-guangzhou",
+      "url": "https://www.autoguangzhou.com.cn/",
+      "status": "ok",
+      "chars": 614,
+      "seconds": 11.6
+    },
+    {
+      "id": "cbd-fair",
+      "url": "https://www.cbdfair-gz.com/",
+      "status": "ok",
+      "chars": 1223,
+      "seconds": 7.3
+    },
+    {
+      "id": "pcb-china",
+      "url": "http://www.cpcashow.com/",
+      "status": "ok",
+      "chars": 1322,
+      "seconds": 8.4
+    },
+    {
+      "id": "snec",
+      "url": "https://www.snec.org.cn/",
+      "status": "ok",
+      "chars": 1677,
+      "subpages": [],
+      "sub_chars": 0,
+      "seconds": 6.3
+    },
+    {
+      "id": "cippe",
+      "url": "http://www.cippe.com.cn/",
+      "status": "ok",
+      "chars": 452,
+      "subpages": [],
+      "sub_chars": 0,
+      "seconds": 11.3
+    },
+    {
+      "id": "intertextile",
+      "url": "http://www.intertextile.com.cn/",
+      "status": "ok",
+      "chars": 865,
+      "seconds": 22.9
+    },
+    {
+      "id": "itma-asia",
+      "url": "https://www.citme.com.cn/",
+      "status": "ok",
+      "chars": 10423,
+      "seconds": 7.7
+    },
+    {
+      "id": "api-china",
+      "url": "https://www.apichina.com.cn/",
+      "status": "ok",
+      "chars": 1760,
+      "seconds": 23.4
+    },
+    {
+      "id": "sino-dental",
+      "url": "https://www.sinodent.com.cn/",
+      "status": "ok",
+      "chars": 762,
+      "seconds": 31.8
+    },
+    {
+      "id": "waic",
+      "url": "https://www.worldaic.com.cn/",
+      "status": "ok",
+      "chars": 1923,
+      "seconds": 8.9
+    },
+    {
+      "id": "scie",
+      "url": "https://www.smartchina-expo.cn/",
+      "status": "ok",
+      "chars": 3279,
+      "subpages": [
+        "https://www.smartchina-expo.cn/zbh/kms/jj/kmsjj/index.html"
+      ],
+      "sub_chars": 2025,
+      "seconds": 96.7
+    },
+    {
+      "id": "iot-expo",
+      "url": "https://www.wiotexpo.cn/",
+      "status": "ok",
+      "chars": 2039,
+      "seconds": 19.3
+    },
+    {
+      "id": "ciftis",
+      "url": "https://www.ciftis.org/",
+      "status": "ok",
+      "chars": 1773,
+      "subpages": [],
+      "sub_chars": 0,
+      "seconds": 34.8
+    },
+    {
+      "id": "china-edu-expo",
+      "url": "https://www.chinaeducationexpo.com/",
+      "status": "ok",
+      "chars": 1273,
+      "seconds": 4.7
+    },
+    {
+      "id": "hainan-expo",
+      "url": "https://www.hainanexpo.org.cn/",
+      "status": "ok",
+      "chars": 2023,
+      "seconds": 18.0
+    }
+  ]
+}

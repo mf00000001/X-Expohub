@@ -1,0 +1,133 @@
+{
+  "version": "v1",
+  "created": "2026-11-03",
+  "note": "批次 0 候选名单。layer: trunk=18品类×4主干 / cross=综合跨界 / boundary=边界加压。tier: head=头部, mid=腰部, niche=垂类或区域, cross=品类交叉, control=对照组。conf: 对 url 的把握程度, 空 url 表示尚未确定官网。",
+  "layers": {
+    "trunk": 72,
+    "cross": 8,
+    "boundary": 20
+  },
+  "expos": [
+    {"id": "awe", "layer": "trunk", "category": "电子及家电", "tier": "head", "name": "中国家电及消费电子博览会", "short": "AWE", "city": "上海", "url": "https://www.awe-site.com/", "conf": "medium", "kw": ["家电", "AWE", "消费电子"]},
+    {"id": "electronica-china", "layer": "trunk", "category": "电子及家电", "tier": "mid", "name": "慕尼黑上海电子展", "short": "electronica China", "city": "上海", "url": "https://www.electronica-china.com/", "conf": "high", "kw": ["electronica", "慕尼黑", "电子"]},
+    {"id": "cite", "layer": "trunk", "category": "电子及家电", "tier": "mid", "name": "中国国际电子信息博览会", "short": "CITE", "city": "深圳", "url": "http://www.citexpo.com.cn/", "conf": "medium", "kw": ["电子信息", "CITE", "博览会"]},
+    {"id": "sinoces", "layer": "trunk", "category": "电子及家电", "tier": "niche", "name": "中国国际消费电子博览会", "short": "SINOCES", "city": "青岛", "url": "http://www.sinoces.com/", "conf": "medium", "kw": ["消费电子", "SINOCES", "青岛"]},
+
+    {"id": "gile", "layer": "trunk", "category": "照明", "tier": "head", "name": "广州国际照明展览会", "short": "光亚展 GILE", "city": "广州", "url": "https://www.gile-china.com/", "conf": "high", "kw": ["照明", "GILE", "光亚"]},
+    {"id": "guzhen-lighting", "layer": "trunk", "category": "照明", "tier": "niche", "name": "中国古镇国际灯饰博览会", "short": "古镇灯博会", "city": "中山", "url": "", "conf": "none", "kw": ["灯饰", "古镇"]},
+    {"id": "hktdc-lighting", "layer": "trunk", "category": "照明", "tier": "mid", "name": "香港国际秋季灯饰展", "short": "香港灯饰展", "city": "香港", "url": "https://www.hktdc.com/hklightingfairae/en", "conf": "medium", "kw": ["Lighting", "灯饰", "HKTDC"]},
+    {"id": "ningbo-lighting", "layer": "trunk", "category": "照明", "tier": "niche", "name": "宁波国际照明展览会", "short": "宁波照明展", "city": "宁波", "url": "", "conf": "none", "kw": ["照明", "宁波"]},
+
+    {"id": "auto-shanghai", "layer": "trunk", "category": "车辆及配件", "tier": "head", "name": "上海国际汽车工业展览会", "short": "上海车展", "city": "上海", "url": "https://www.autoshanghai.org/", "conf": "medium", "kw": ["汽车", "车展", "autoshanghai"]},
+    {"id": "auto-china", "layer": "trunk", "category": "车辆及配件", "tier": "head", "name": "北京国际汽车展览会", "short": "北京车展", "city": "北京", "url": "http://www.autochinashow.com/", "conf": "low", "kw": ["汽车", "车展", "北京"]},
+    {"id": "auto-guangzhou", "layer": "trunk", "category": "车辆及配件", "tier": "mid", "name": "广州国际汽车展览会", "short": "广州车展", "city": "广州", "url": "https://www.autoguangzhou.com.cn/", "conf": "medium", "kw": ["汽车", "车展", "广州"]},
+    {"id": "automechanika-sh", "layer": "trunk", "category": "车辆及配件", "tier": "niche", "name": "上海国际汽车零配件维修检测设备展", "short": "Automechanika Shanghai", "city": "上海", "url": "https://automechanika-shanghai.hk.messefrankfurt.com/", "conf": "medium", "kw": ["Automechanika", "零配件", "汽配"]},
+
+    {"id": "cihs", "layer": "trunk", "category": "五金工具", "tier": "head", "name": "中国国际五金展", "short": "CIHS", "city": "上海", "url": "http://www.cihs.com.cn/", "conf": "medium", "kw": ["五金", "CIHS"]},
+    {"id": "china-hardware", "layer": "trunk", "category": "五金工具", "tier": "mid", "name": "中国国际五金博览会", "short": "五金博览会", "city": "上海", "url": "http://www.hardwarefair.cn/", "conf": "low", "kw": ["五金", "博览会"]},
+    {"id": "yongkang-hardware", "layer": "trunk", "category": "五金工具", "tier": "niche", "name": "中国永康五金博览会", "short": "永康五金展", "city": "永康", "url": "", "conf": "none", "kw": ["五金", "永康"]},
+    {"id": "cimt", "layer": "trunk", "category": "五金工具", "tier": "cross", "name": "中国国际机床展览会", "short": "CIMT", "city": "北京", "url": "https://www.cimtshow.com/", "conf": "high", "kw": ["机床", "CIMT"]},
+
+    {"id": "ciif", "layer": "trunk", "category": "机械", "tier": "head", "name": "中国国际工业博览会", "short": "工博会 CIIF", "city": "上海", "url": "https://www.ciif-expo.com/", "conf": "high", "kw": ["工业博览会", "CIIF", "工博会"]},
+    {"id": "chinaplas", "layer": "trunk", "category": "机械", "tier": "head", "name": "中国国际塑料橡胶工业展览会", "short": "Chinaplas", "city": "上海", "url": "https://www.chinaplasonline.com/", "conf": "high", "kw": ["塑料", "橡胶", "Chinaplas"]},
+    {"id": "simm", "layer": "trunk", "category": "机械", "tier": "mid", "name": "深圳国际机械制造工业展览会", "short": "SIMM", "city": "深圳", "url": "http://www.simmexpo.com/", "conf": "low", "kw": ["机械制造", "SIMM", "深圳"]},
+    {"id": "ccmt", "layer": "trunk", "category": "机械", "tier": "niche", "name": "中国数控机床展览会", "short": "CCMT", "city": "上海", "url": "https://www.ccmtshow.com/", "conf": "medium", "kw": ["数控机床", "CCMT"]},
+
+    {"id": "cbd-fair", "layer": "trunk", "category": "建材", "tier": "head", "name": "中国国际建筑装饰博览会", "short": "建博会 CBD Fair", "city": "广州", "url": "https://www.cbd-fair.com/", "conf": "high", "kw": ["建筑装饰", "建博会", "CBD"]},
+    {"id": "fenestration-china", "layer": "trunk", "category": "建材", "tier": "mid", "name": "中国国际门窗幕墙博览会", "short": "Fenestration China", "city": "北京", "url": "", "conf": "none", "kw": ["门窗", "幕墙"]},
+    {"id": "foshan-ceramics", "layer": "trunk", "category": "建材", "tier": "niche", "name": "佛山陶博会", "short": "佛山陶博会", "city": "佛山", "url": "", "conf": "none", "kw": ["陶瓷", "佛山", "陶博会"]},
+    {"id": "ceramics-china", "layer": "trunk", "category": "建材", "tier": "cross", "name": "中国国际陶瓷工业展览会", "short": "Ceramics China", "city": "广州", "url": "http://www.ceramicschina.com.cn/", "conf": "low", "kw": ["陶瓷工业", "Ceramics"]},
+
+    {"id": "chinacoat", "layer": "trunk", "category": "化工产品", "tier": "head", "name": "中国国际涂料展", "short": "Chinacoat", "city": "广州", "url": "https://www.chinacoat.net/", "conf": "medium", "kw": ["涂料", "Chinacoat"]},
+    {"id": "icif", "layer": "trunk", "category": "化工产品", "tier": "mid", "name": "中国国际化工展览会", "short": "ICIF China", "city": "上海", "url": "http://www.icif.cn/", "conf": "medium", "kw": ["化工", "ICIF"]},
+    {"id": "china-adhesive", "layer": "trunk", "category": "化工产品", "tier": "niche", "name": "中国国际胶粘剂及密封剂展览会", "short": "胶粘剂展", "city": "上海", "url": "", "conf": "none", "kw": ["胶粘剂", "密封剂"]},
+    {"id": "pcb-china", "layer": "trunk", "category": "化工产品", "tier": "cross", "name": "中国国际电子电路展览会", "short": "CPCA Show", "city": "上海", "url": "", "conf": "none", "kw": ["电子电路", "CPCA"]},
+
+    {"id": "snec", "layer": "trunk", "category": "能源", "tier": "head", "name": "国际太阳能光伏与智慧能源大会暨展览会", "short": "SNEC", "city": "上海", "url": "https://www.snec.org.cn/", "conf": "medium", "kw": ["光伏", "太阳能", "SNEC"]},
+    {"id": "cippe", "layer": "trunk", "category": "能源", "tier": "mid", "name": "中国国际石油石化技术装备展览会", "short": "cippe", "city": "北京", "url": "http://www.cippe.com.cn/", "conf": "medium", "kw": ["石油", "石化", "cippe"]},
+    {"id": "cwp", "layer": "trunk", "category": "能源", "tier": "niche", "name": "北京国际风能大会暨展览会", "short": "CWP", "city": "北京", "url": "", "conf": "none", "kw": ["风能", "CWP"]},
+    {"id": "cies", "layer": "trunk", "category": "能源", "tier": "cross", "name": "中国国际储能大会暨展览会", "short": "CIES", "city": "深圳", "url": "", "conf": "none", "kw": ["储能", "CIES"]},
+
+    {"id": "ecf", "layer": "trunk", "category": "日用消费品", "tier": "head", "name": "华东进出口商品交易会", "short": "华交会", "city": "上海", "url": "http://www.ecf.org.cn/", "conf": "low", "kw": ["华东", "进出口", "华交会"]},
+    {"id": "yiwu-fair", "layer": "trunk", "category": "日用消费品", "tier": "head", "name": "中国义乌国际小商品博览会", "short": "义博会", "city": "义乌", "url": "http://www.yiwufair.com/", "conf": "medium", "kw": ["义乌", "小商品", "义博会"]},
+    {"id": "china-daily-goods", "layer": "trunk", "category": "日用消费品", "tier": "mid", "name": "中国日用百货商品交易会", "short": "百货会", "city": "上海", "url": "", "conf": "none", "kw": ["日用百货"]},
+    {"id": "ningbo-consumer", "layer": "trunk", "category": "日用消费品", "tier": "niche", "name": "中国国际日用消费品博览会", "short": "宁波消博会", "city": "宁波", "url": "", "conf": "none", "kw": ["日用消费品", "宁波"]},
+
+    {"id": "reed-gift-sz", "layer": "trunk", "category": "礼品", "tier": "head", "name": "深圳国际礼品及家居用品展览会", "short": "深圳礼品展", "city": "深圳", "url": "https://www.reedhuabo.com/", "conf": "medium", "kw": ["礼品", "家居用品", "深圳"]},
+    {"id": "sh-gift", "layer": "trunk", "category": "礼品", "tier": "mid", "name": "上海国际礼品及促销品展览会", "short": "上海礼品展", "city": "上海", "url": "", "conf": "none", "kw": ["礼品", "促销品"]},
+    {"id": "yiwu-gift", "layer": "trunk", "category": "礼品", "tier": "niche", "name": "义乌国际礼品及家居用品展", "short": "义乌礼品展", "city": "义乌", "url": "", "conf": "none", "kw": ["礼品", "义乌"]},
+    {"id": "gz-gift", "layer": "trunk", "category": "礼品", "tier": "cross", "name": "广州国际礼品及家居用品展", "short": "广州礼品展", "city": "广州", "url": "", "conf": "none", "kw": ["礼品", "广州"]},
+
+    {"id": "intertextile", "layer": "trunk", "category": "纺织服装", "tier": "head", "name": "中国国际纺织面料及辅料博览会", "short": "Intertextile", "city": "上海", "url": "https://intertextile-shanghai-apparel-fabrics.hk.messefrankfurt.com/", "conf": "medium", "kw": ["纺织", "面料", "Intertextile"]},
+    {"id": "chic", "layer": "trunk", "category": "纺织服装", "tier": "head", "name": "中国国际服装服饰博览会", "short": "CHIC", "city": "上海", "url": "http://www.chicfair.com/", "conf": "medium", "kw": ["服装", "CHIC"]},
+    {"id": "itma-asia", "layer": "trunk", "category": "纺织服装", "tier": "niche", "name": "中国国际纺织机械展览会", "short": "ITMA ASIA + CITME", "city": "上海", "url": "", "conf": "none", "kw": ["纺织机械", "ITMA"]},
+    {"id": "humen-fashion", "layer": "trunk", "category": "纺织服装", "tier": "cross", "name": "虎门国际服装交易会", "short": "虎门服交会", "city": "东莞", "url": "", "conf": "none", "kw": ["服装", "虎门"]},
+
+    {"id": "china-shoes", "layer": "trunk", "category": "鞋类", "tier": "head", "name": "中国国际鞋类展览会", "short": "中国鞋展", "city": "上海", "url": "", "conf": "none", "kw": ["鞋类", "鞋"]},
+    {"id": "gz-shoes", "layer": "trunk", "category": "鞋类", "tier": "mid", "name": "广州国际鞋类展览会", "short": "广州鞋展", "city": "广州", "url": "", "conf": "none", "kw": ["鞋", "广州"]},
+    {"id": "jinjiang-shoes", "layer": "trunk", "category": "鞋类", "tier": "niche", "name": "中国晋江国际鞋业博览会", "short": "晋江鞋博会", "city": "晋江", "url": "", "conf": "none", "kw": ["鞋业", "晋江"]},
+    {"id": "wenzhou-shoes", "layer": "trunk", "category": "鞋类", "tier": "cross", "name": "温州国际鞋类皮革展", "short": "温州鞋展", "city": "温州", "url": "", "conf": "none", "kw": ["鞋", "皮革", "温州"]},
+
+    {"id": "furniture-china", "layer": "trunk", "category": "家居装饰品", "tier": "head", "name": "中国国际家具展览会", "short": "Furniture China", "city": "上海", "url": "https://www.furniture-china.com.cn/", "conf": "high", "kw": ["家具", "Furniture"]},
+    {"id": "ciff-gz", "layer": "trunk", "category": "家居装饰品", "tier": "head", "name": "中国广州国际家具博览会", "short": "CIFF 广州", "city": "广州", "url": "https://www.ciff-gz.com/", "conf": "medium", "kw": ["家具", "CIFF"]},
+    {"id": "dg-furniture", "layer": "trunk", "category": "家居装饰品", "tier": "niche", "name": "东莞国际名家具展览会", "short": "名家具展", "city": "东莞", "url": "", "conf": "none", "kw": ["家具", "东莞"]},
+    {"id": "sh-home-deco", "layer": "trunk", "category": "家居装饰品", "tier": "cross", "name": "上海国际家居装饰展览会", "short": "上海家居装饰展", "city": "上海", "url": "", "conf": "none", "kw": ["家居", "装饰"]},
+
+    {"id": "paperworld-china", "layer": "trunk", "category": "办公箱包及休闲用品", "tier": "head", "name": "中国国际文具及办公用品展览会", "short": "Paperworld China", "city": "上海", "url": "https://paperworldchina.hk.messefrankfurt.com/", "conf": "medium", "kw": ["文具", "办公用品", "Paperworld"]},
+    {"id": "china-bags", "layer": "trunk", "category": "办公箱包及休闲用品", "tier": "mid", "name": "中国国际箱包手袋展览会", "short": "中国箱包展", "city": "上海", "url": "", "conf": "none", "kw": ["箱包", "手袋"]},
+    {"id": "cile", "layer": "trunk", "category": "办公箱包及休闲用品", "tier": "niche", "name": "中国国际体育用品博览会", "short": "体博会", "city": "上海", "url": "http://www.sportshow.com.cn/", "conf": "low", "kw": ["体育用品", "体博会"]},
+    {"id": "china-outdoor", "layer": "trunk", "category": "办公箱包及休闲用品", "tier": "cross", "name": "中国国际户外用品展览会", "short": "户外用品展", "city": "南京", "url": "", "conf": "none", "kw": ["户外", "露营"]},
+
+    {"id": "sial-china", "layer": "trunk", "category": "食品", "tier": "head", "name": "中国国际食品和饮料展览会", "short": "SIAL 中食展", "city": "上海", "url": "https://www.sialchina.com/", "conf": "medium", "kw": ["食品", "饮料", "SIAL"]},
+    {"id": "bakery-china", "layer": "trunk", "category": "食品", "tier": "head", "name": "中国国际焙烤展览会", "short": "Bakery China", "city": "上海", "url": "https://www.bakerychina.com/", "conf": "medium", "kw": ["焙烤", "烘焙", "Bakery"]},
+    {"id": "tangjiu", "layer": "trunk", "category": "食品", "tier": "mid", "name": "全国糖酒商品交易会", "short": "糖酒会", "city": "轮换", "url": "", "conf": "none", "kw": ["糖酒"]},
+    {"id": "tea-expo", "layer": "trunk", "category": "食品", "tier": "niche", "name": "中国国际茶叶博览会", "short": "茶博会", "city": "杭州", "url": "", "conf": "none", "kw": ["茶叶", "茶博"]},
+
+    {"id": "cmef", "layer": "trunk", "category": "医药及医疗保健", "tier": "head", "name": "中国国际医疗器械博览会", "short": "CMEF", "city": "上海", "url": "https://www.cmef.com.cn/", "conf": "high", "kw": ["医疗器械", "CMEF"]},
+    {"id": "pharmchina", "layer": "trunk", "category": "医药及医疗保健", "tier": "mid", "name": "全国药品交易会", "short": "药交会", "city": "轮换", "url": "", "conf": "none", "kw": ["药品", "药交会"]},
+    {"id": "api-china", "layer": "trunk", "category": "医药及医疗保健", "tier": "niche", "name": "中国国际医药原料药中间体包装设备交易会", "short": "API China", "city": "轮换", "url": "", "conf": "none", "kw": ["原料药", "API"]},
+    {"id": "sino-dental", "layer": "trunk", "category": "医药及医疗保健", "tier": "cross", "name": "北京国际口腔设备器材展览会", "short": "Sino-Dental", "city": "北京", "url": "", "conf": "none", "kw": ["口腔", "牙科"]},
+
+    {"id": "waic", "layer": "trunk", "category": "AI/科技", "tier": "head", "name": "世界人工智能大会", "short": "WAIC", "city": "上海", "url": "https://www.worldaic.com.cn/", "conf": "medium", "kw": ["人工智能", "WAIC"]},
+    {"id": "chtf", "layer": "trunk", "category": "AI/科技", "tier": "head", "name": "中国国际高新技术成果交易会", "short": "高交会", "city": "深圳", "url": "https://www.chtf.com/", "conf": "medium", "kw": ["高新技术", "高交会"]},
+    {"id": "scie", "layer": "trunk", "category": "AI/科技", "tier": "niche", "name": "中国国际智能产业博览会", "short": "智博会", "city": "重庆", "url": "", "conf": "none", "kw": ["智能", "智博会"]},
+    {"id": "iot-expo", "layer": "trunk", "category": "AI/科技", "tier": "cross", "name": "中国国际物联网博览会", "short": "物联网博览会", "city": "无锡", "url": "", "conf": "none", "kw": ["物联网"]},
+
+    {"id": "ciftis", "layer": "trunk", "category": "综合服务", "tier": "head", "name": "中国国际服务贸易交易会", "short": "服贸会", "city": "北京", "url": "https://www.ciftis.org/", "conf": "medium", "kw": ["服务贸易", "服贸会"]},
+    {"id": "china-logistics", "layer": "trunk", "category": "综合服务", "tier": "mid", "name": "中国国际物流与供应链博览会", "short": "物博会", "city": "深圳", "url": "", "conf": "none", "kw": ["物流", "供应链"]},
+    {"id": "ec-expo-yiwu", "layer": "trunk", "category": "综合服务", "tier": "niche", "name": "中国国际电子商务博览会", "short": "电商博览会", "city": "义乌", "url": "", "conf": "none", "kw": ["电子商务", "电商"]},
+    {"id": "china-edu-expo", "layer": "trunk", "category": "综合服务", "tier": "cross", "name": "中国国际教育展", "short": "教育展", "city": "北京", "url": "", "conf": "none", "kw": ["教育"]},
+
+    {"id": "canton-fair", "layer": "cross", "category": "日用消费品", "tier": "cross", "name": "中国进出口商品交易会", "short": "广交会", "city": "广州", "url": "https://www.cantonfair.org.cn/", "conf": "high", "kw": ["广交会", "Canton", "进出口商品交易会"]},
+    {"id": "ciie", "layer": "cross", "category": "综合服务", "tier": "cross", "name": "中国国际进口博览会", "short": "进博会", "city": "上海", "url": "https://www.ciie.org/", "conf": "high", "kw": ["进口博览", "进博会", "CIIE"]},
+    {"id": "ccbef", "layer": "cross", "category": "综合服务", "tier": "cross", "name": "中国跨境电商交易会", "short": "跨境电商展", "city": "深圳", "url": "", "conf": "none", "kw": ["跨境电商"]},
+    {"id": "caexpo", "layer": "cross", "category": "日用消费品", "tier": "cross", "name": "中国—东盟博览会", "short": "东博会", "city": "南宁", "url": "https://www.caexpo.org/", "conf": "medium", "kw": ["东盟", "CAEXPO"]},
+    {"id": "cismef", "layer": "cross", "category": "综合服务", "tier": "cross", "name": "中国国际中小企业博览会", "short": "中博会", "city": "广州", "url": "", "conf": "none", "kw": ["中小企业", "中博会"]},
+    {"id": "hainan-expo", "layer": "cross", "category": "日用消费品", "tier": "cross", "name": "中国国际消费品博览会", "short": "消博会", "city": "海口", "url": "", "conf": "none", "kw": ["消费品", "消博会"]},
+    {"id": "cipsc", "layer": "cross", "category": "综合服务", "tier": "cross", "name": "中国国际供应链促进博览会", "short": "链博会", "city": "北京", "url": "", "conf": "none", "kw": ["供应链", "链博会"]},
+    {"id": "fhc-shanghai", "layer": "cross", "category": "食品", "tier": "cross", "name": "上海国际食品饮料及餐饮设备展", "short": "FHC", "city": "上海", "url": "", "conf": "none", "kw": ["食品", "餐饮", "FHC"]},
+
+    {"id": "b-muying", "layer": "boundary", "category": "日用消费品", "tier": "control", "name": "中国国际婴童用品展览会", "short": "母婴展", "city": "上海", "url": "", "conf": "none", "kw": ["婴童", "母婴"], "boundary": "near"},
+    {"id": "b-pet", "layer": "boundary", "category": "日用消费品", "tier": "control", "name": "中国国际宠物水族用品展", "short": "宠物展", "city": "上海", "url": "", "conf": "none", "kw": ["宠物", "水族"], "boundary": "near"},
+    {"id": "b-hotel", "layer": "boundary", "category": "综合服务", "tier": "control", "name": "中国国际酒店用品博览会", "short": "酒店用品展", "city": "上海", "url": "", "conf": "none", "kw": ["酒店用品"], "boundary": "near"},
+    {"id": "b-coffee", "layer": "boundary", "category": "食品", "tier": "control", "name": "中国国际咖啡展览会", "short": "咖啡展", "city": "上海", "url": "", "conf": "none", "kw": ["咖啡"], "boundary": "near"},
+    {"id": "b-retail", "layer": "boundary", "category": "综合服务", "tier": "control", "name": "中国国际零售业博览会", "short": "零售展", "city": "上海", "url": "", "conf": "none", "kw": ["零售"], "boundary": "near"},
+    {"id": "b-camping", "layer": "boundary", "category": "办公箱包及休闲用品", "tier": "control", "name": "中国国际露营生活展", "short": "露营展", "city": "上海", "url": "", "conf": "none", "kw": ["露营", "户外"], "boundary": "near"},
+    {"id": "b-tea-drink", "layer": "boundary", "category": "食品", "tier": "control", "name": "中国国际茶饮设备与原料展", "short": "茶饮设备展", "city": "上海", "url": "", "conf": "none", "kw": ["茶饮"], "boundary": "near"},
+    {"id": "b-fitness", "layer": "boundary", "category": "办公箱包及休闲用品", "tier": "control", "name": "中国国际健身器材展览会", "short": "健身器材展", "city": "上海", "url": "", "conf": "none", "kw": ["健身"], "boundary": "near"},
+    {"id": "b-babycare", "layer": "boundary", "category": "医药及医疗保健", "tier": "control", "name": "中国国际孕婴童健康展", "short": "孕婴童展", "city": "广州", "url": "", "conf": "none", "kw": ["孕婴童"], "boundary": "near"},
+    {"id": "b-houseware", "layer": "boundary", "category": "家居装饰品", "tier": "control", "name": "中国国际家居用品博览会", "short": "家居用品展", "city": "上海", "url": "", "conf": "none", "kw": ["家居用品"], "boundary": "near"},
+
+    {"id": "b-crossborder", "layer": "boundary", "category": "综合服务", "tier": "control", "name": "中国国际跨境电商供应链展", "short": "跨境供应链展", "city": "杭州", "url": "", "conf": "none", "kw": ["跨境电商"], "boundary": "fuzzy"},
+    {"id": "b-premium-gift", "layer": "boundary", "category": "礼品", "tier": "control", "name": "中国国际高端礼品定制展", "short": "高端礼品展", "city": "上海", "url": "", "conf": "none", "kw": ["礼品", "定制"], "boundary": "fuzzy"},
+    {"id": "b-general-consumer", "layer": "boundary", "category": "日用消费品", "tier": "control", "name": "中国国际综合消费品博览会", "short": "综合消费品展", "city": "上海", "url": "", "conf": "none", "kw": ["消费品"], "boundary": "fuzzy"},
+    {"id": "b-domestic-trade", "layer": "boundary", "category": "日用消费品", "tier": "control", "name": "外贸转内销商品博览会", "short": "转内销展", "city": "东莞", "url": "", "conf": "none", "kw": ["外贸", "转内销"], "boundary": "fuzzy"},
+    {"id": "b-catering", "layer": "boundary", "category": "食品", "tier": "control", "name": "中国国际餐饮业博览会", "short": "餐饮展", "city": "上海", "url": "", "conf": "none", "kw": ["餐饮"], "boundary": "fuzzy"},
+
+    {"id": "b-machine-tool", "layer": "boundary", "category": "机械", "tier": "control", "name": "中国国际机床工具展览会", "short": "机床工具展", "city": "北京", "url": "", "conf": "none", "kw": ["机床"], "boundary": "far"},
+    {"id": "b-medical-device", "layer": "boundary", "category": "医药及医疗保健", "tier": "control", "name": "中国国际医疗装备展览会", "short": "医疗装备展", "city": "上海", "url": "", "conf": "none", "kw": ["医疗"], "boundary": "far"},
+    {"id": "b-textile-machinery", "layer": "boundary", "category": "纺织服装", "tier": "control", "name": "中国国际纺织机械器材展", "short": "纺机展", "city": "上海", "url": "", "conf": "none", "kw": ["纺织机械"], "boundary": "far"},
+    {"id": "b-furniture-wood", "layer": "boundary", "category": "建材", "tier": "control", "name": "中国国际木工机械展览会", "short": "木工机械展", "city": "广州", "url": "", "conf": "none", "kw": ["木工", "机械"], "boundary": "far"},
+    {"id": "b-hardware-industrial", "layer": "boundary", "category": "五金工具", "tier": "control", "name": "中国国际工业五金零部件展", "short": "工业五金展", "city": "上海", "url": "", "conf": "none", "kw": ["五金", "零部件"], "boundary": "far"}
+  ]
+}

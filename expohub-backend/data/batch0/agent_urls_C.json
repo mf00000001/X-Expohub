@@ -1,0 +1,14 @@
+[
+{"id":"itma-asia","official_name":"中国国际纺织机械展览会暨ITMA亚洲展览会（ITMA ASIA + CITME）","url":"https://www.citme.com.cn/","evidence":"中国纺织机械协会/贸促会纺织分会与CEMATEX主办方官网，稿件明确列出官网 www.citme.com.cn 与 www.itmaasia.com","confidence":"high"},
+{"id":"humen-fashion","official_name":"中国（虎门）国际服装交易会","url":"http://www.hmcec.com/","evidence":"虎门会展网为该展组委会/会展中心站点，页面即服交会专区；动态主要在公众号","confidence":"medium"},
+{"id":"china-shoes","official_name":"上海国际鞋业博览会（SISE）","url":"https://ilse.com.cn/","evidence":"真实展名不是'中国国际鞋类展览会'，上海鞋展为上海雅辉主办的 SISE","confidence":"medium"},
+{"id":"gz-shoes","official_name":"广州国际鞋业展览会（CISE）","url":"http://www.slfchinafair.com/","evidence":"主办广州广旅展览策划，站点同时承载厦门国际鞋业博览会","confidence":"medium"},
+{"id":"jinjiang-shoes","official_name":"中国（晋江）国际鞋业暨国际体育产业博览会","url":"https://www.cn-jif.com/","evidence":"晋江市展务有限公司运营，含组织单位、参展申请、往届回顾","confidence":"high"},
+{"id":"wenzhou-shoes","official_name":"中国（温州）皮革、鞋材、鞋机展览会","url":"https://www.chinashoetech.cn/","evidence":"官网公告 2026 年已更名去掉'国际'，主办温州市鞋革行业协会","confidence":"high"},
+{"id":"furniture-china","official_name":"中国国际家具展览会（Furniture China）","url":"https://www.furniture-china.cn/","evidence":"中国家具协会与上海博华主办；正确域名为 .cn，原猜的 .com.cn 非其官网","confidence":"high"},
+{"id":"dg-furniture","official_name":"国际名家具（东莞）展览会（3F）","url":"https://www.gde3f.com/","evidence":"主办广东现代会展管理有限公司官网，贸促会登记网址亦为此域名","confidence":"high"},
+{"id":"sh-home-deco","official_name":"HD+ Asia 亚洲家居装饰及生活方式展","url":"https://www.hd-asia.net/","evidence":"主办上海万耀企龙+德国斯图加特展览；名录中'上海国际家居装饰展览会'即指此展","confidence":"medium"},
+{"id":"china-bags","official_name":"上海国际箱包手袋皮具展览会","url":"https://www.cshbox.com/","evidence":"中国皮革协会等主办、上海能博会展承办的官方站","confidence":"medium"},
+{"id":"china-outdoor","official_name":"亚洲户外用品展览会（Asia Outdoor，已停办）","url":null,"evidence":"2019 年后再无举办记录，原站 asian-outdoor.com 已无法访问；南京现为 ISPO 体系，名称与该条不符","confidence":"none"},
+{"id":"tangjiu","official_name":"全国糖酒商品交易会（CFDF）","url":"https://www.qgtjh.org.cn/","evidence":"官方参展商手册写明这是唯一官网，主办中国糖业酒类集团、承办中粮会展","confidence":"high"}
+]

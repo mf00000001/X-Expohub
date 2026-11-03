@@ -1,0 +1,2441 @@
+{
+  "model": "deepseek-chat",
+  "updated_at": "2026-11-03 15:56:11",
+  "records": [
+    {
+      "id": "api-china",
+      "fields": {
+        "visitor_count": {
+          "value": 29871,
+          "method": "llm",
+          "raw_text": "29,871 +",
+          "unit": "专业观众",
+          "caliber": "person",
+          "evidence": "29,871+专业观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 1195,
+          "method": "llm",
+          "raw_text": "1,195 +",
+          "unit": "参展企业",
+          "caliber": "company",
+          "evidence": "1,195+参展企业",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 69700,
+          "method": "llm",
+          "raw_text": "69,700 m²",
+          "unit": "m²",
+          "caliber": "gross",
+          "evidence": "69,700m²展览面积",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "第95届APIChina预登记现已开启，快来完成观众注册！",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "29,871+专业观众",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":29871,\"raw_text\":\"29,871 +\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"29,871 +\\n专业观众\"},\"exhibitor_count\":{\"value\":1195,\"raw_text\":\"1,195 +\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"1,195 +\\n参展企业\"},\"exhibition_area\":{\"value\":69700,\"raw_text\":\"69,700 m²\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"69,700 m²\\n展览面积\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"观众注册\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"第95届API China预登记现已开启，快来完成观众注册！\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"专业观众\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"29,871 +\\n专业观众\"},\"text_note\":\"页面未标注规模数据所属届次，按最新一届处理；观众数原文为“专业观众”，按人数(person)计；面积未注明净/毛，按gross计；参展企业数原文为“参展企业”，按company计。\"}",
+      "text_note": "页面未标注规模数据所属届次，按最新一届处理；观众数原文为“专业观众”，按人数(person)计；面积未注明净/毛，按gross计；参展企业数原文为“参展企业”，按company计。",
+      "filled": 5,
+      "body_src": "rendered",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "auto-guangzhou",
+      "fields": {
+        "admission": {
+          "value": "public",
+          "method": "llm",
+          "evidence": "[官宣]广州车展票务系统正式上线|30元全展期早鸟票限量发售",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"public\",\"raw_text\":\"30元全展期早鸟票限量发售\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"【官宣】广州车展票务系统正式上线 | 30元全展期早鸟票限量发售\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文未给出任何观众数、参展商数或展览面积数字；admission 依据为公开售票信息，但正文未明确是否设专业观众日，故 nature 无法判定。\"}",
+      "text_note": "正文未给出任何观众数、参展商数或展览面积数字；admission 依据为公开售票信息，但正文未明确是否设专业观众日，故 nature 无法判定。",
+      "filled": 1,
+      "body_src": "rendered",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "auto-china",
+      "fields": {
+        "visitor_count": {
+          "value": 1280000,
+          "method": "llm",
+          "raw_text": "128 万人次",
+          "unit": "人次",
+          "caliber": "visit",
+          "evidence": "展出整车1451辆，接待观众128万人次",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 1000,
+          "method": "llm",
+          "raw_text": "近 1000 家",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "全球近千家车企及相关企业参展",
+          "evidence_span": "raw_text",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 380000,
+          "method": "llm",
+          "raw_text": "38 万㎡",
+          "unit": "平方米",
+          "caliber": "gross",
+          "evidence": "展出面积达到38万平方米",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "mixed",
+          "method": "llm",
+          "evidence": "3月29日-30日专业观众日",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "mixed",
+          "method": "llm",
+          "evidence": "3月29日-30日专业观众日",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":1280000,\"raw_text\":\"128 万人次\",\"unit\":\"人次\",\"caliber\":\"visit\",\"evidence\":\"展出整车1451辆，接待观众128万人次\"},\"exhibitor_count\":{\"value\":1000,\"raw_text\":\"近 1000 家\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"全球近千家车企及相关企业参展\"},\"exhibition_area\":{\"value\":380000,\"raw_text\":\"38 万㎡\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"展出面积达到38万平方米\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"mixed\",\"raw_text\":\"专业观众日\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"3月29日- 30日 专业观众日\"},\"nature\":{\"value\":\"mixed\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"3月29日- 30日 专业观众日\"},\"text_note\":\"页面最新一届规模数据标注为2026北京车展（2027届尚未举办），A组按该届填写；参展企业原文为“近1000家”，取1000；面积未注明净/毛，按gross；准入依据为日程中专业观众日与公众参观日并存，nature依据同一日程推断为mixed。\"}",
+      "text_note": "页面最新一届规模数据标注为2026北京车展（2027届尚未举办），A组按该届填写；参展企业原文为“近1000家”，取1000；面积未注明净/毛，按gross；准入依据为日程中专业观众日与公众参观日并存，nature依据同一日程推断为mixed。",
+      "filled": 5,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "automechanika-sh",
+      "fields": {
+        "exhibitor_count": {
+          "value": 7600,
+          "method": "llm",
+          "raw_text": "汇聚7,600家参展企业",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "本届展会将于2026年12月2至5日在国家会展中心(上海)举行，汇聚7,600家参展企业",
+          "evidence_span": "evidence",
+          "conf": "low"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "观众预登记现已开放！于2026年10月31日或之前完成预登记并亲临展会现场，可在展会结束后免费获取电子版展商名录。",
+          "conf": "low"
+        }
+      },
+      "dropped": {
+        "nature": {
+          "value": "B2B",
+          "why": "依据里没有支持 B2B 的判别词（连弱证据都没有）",
+          "evidence": "展会持续引领全球产业创新，并帮助供应商对接中国和亚洲地区的经销商以及主机厂"
+        }
+      },
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":7600,\"raw_text\":\"汇聚7,600家参展企业\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"本届展会将于2026年12月2至5日在国家会展中心（上海）举行，汇聚7,600家参展企业\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"观众预登记现已开放\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"观众预登记现已开放！ 于2026年10月31日或之前完成预登记并亲临展会现场，可在展会结束后免费获取电子版展商名录。\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"展会持续引领全球产业创新，并帮助供应商对接中国和亚洲地区的经销商以及主机厂\"},\"text_note\":\"参展商数7,600家为2026年（即将举办）一届的表述；页面另有'超过25,000家参展企业及83万名观众'属法兰克福全球展览合计数据，未采用；'300平方米'为进博会展位面积，非本展面积，未采用。\"}",
+      "text_note": "参展商数7,600家为2026年（即将举办）一届的表述；页面另有'超过25,000家参展企业及83万名观众'属法兰克福全球展览合计数据，未采用；'300平方米'为进博会展位面积，非本展面积，未采用。",
+      "review": true,
+      "filled": 2,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "awe",
+      "fields": {
+        "visitor_count": {
+          "value": 250000,
+          "method": "llm",
+          "raw_text": "突破25万人",
+          "unit": "人",
+          "caliber": "person",
+          "evidence": "2026年，AWE现场观众人数突破25万人，参观人数位居全球家电及消费电子类展会第一",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 1200,
+          "method": "llm",
+          "raw_text": "1,200+  家",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "AWE2026主要数据1,200+家参展企业",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 170000,
+          "method": "llm",
+          "raw_text": "170,000  平方米",
+          "unit": "平方米",
+          "caliber": "gross",
+          "evidence": "AWE2026主要数据1,200+家参展企业170,000平方米展出面积",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "AWE汇聚国内外渠道商、制造商、采购商、跨国企业高管、科研及技术人才、投融资机构、跨境采购团队等多元专业群体。",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "强大的专业观众资源是AWE的重要平台优势。AWE汇聚国内外渠道商、制造商、采购商、跨国企业高管、科研及技术人才、投融资机构、跨境采购团队等多元专业群体。",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":250000,\"raw_text\":\"突破25万人\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"2026年，AWE现场观众 人数 突破25万人，参观人数位居全球家电及消费电子类展会第一\"},\"exhibitor_count\":{\"value\":1200,\"raw_text\":\"1,200+  家\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"AWE2026主要数据 1,200+  家 参展企业\"},\"exhibition_area\":{\"value\":170000,\"raw_text\":\"170,000  平方米\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"AWE2026主要数据 1,200+  家 参展企业 170,000  平方米 展出面积\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"AWE汇聚国内外渠道商、制造商、采购商、跨国企业高管、科研及技术人才、投融资机构、跨境采购团队等多元专业群体。\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"强大的专业观众资源是AWE的重要平台优势。AWE汇聚国内外渠道商、制造商、采购商、跨国企业高管、科研及技术人才、投融资机构、跨境采购团队等多元专业群体。\"},\"text_note\":\"AWE2026主要数据模块的观众数标注为“国内外观众（新国际展区）”，口径可能仅限新国际展区；展会概况另称“2026年AWE现场观众人数突破25万人”，两处数字一致。AWE2027的15万平方米、1200余家企业、28万人均为规划或预计值，未采用。面积未注明净/毛，按gross处理。\"}",
+      "text_note": "AWE2026主要数据模块的观众数标注为“国内外观众（新国际展区）”，口径可能仅限新国际展区；展会概况另称“2026年AWE现场观众人数突破25万人”，两处数字一致。AWE2027的15万平方米、1200余家企业、28万人均为规划或预计值，未采用。面积未注明净/毛，按gross处理。",
+      "filled": 5,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-coffee",
+      "fields": {
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "现场涵盖产品展示、专业赛事及行业交流等丰富内容，为专业观众打造高效优质的观展体验",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "现场涵盖产品展示、专业赛事及行业交流等丰富内容，为专业观众打造高效优质的观展体验",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"为专业观众打造高效优质的观展体验\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"现场涵盖产品展示、专业赛事及行业交流等丰富内容，为专业观众打造高效优质的观展体验\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"为专业观众打造高效优质的观展体验\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"现场涵盖产品展示、专业赛事及行业交流等丰富内容，为专业观众打造高效优质的观展体验\"},\"text_note\":\"页面仅有累计数据“展商数量累计超1600家，观展人数累计超30万人次”，属公司多年多展累计，非单届规模，故 A/B 组均留空；admission 与 nature 仅依据“专业观众”表述判定，页面无明确登记或票务规则。\"}",
+      "text_note": "页面仅有累计数据“展商数量累计超1600家，观展人数累计超30万人次”，属公司多年多展累计，非单届规模，故 A/B 组均留空；admission 与 nature 仅依据“专业观众”表述判定，页面无明确登记或票务规则。",
+      "filled": 2,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-camping",
+      "fields": {
+        "visitor_count": {
+          "value": 50000,
+          "method": "llm",
+          "raw_text": "50000 名专业观众",
+          "unit": "名",
+          "caliber": "person",
+          "evidence": "本次展会整体规模达30000平方米，汇聚800+行业品牌、50000名专业观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 800,
+          "method": "llm",
+          "raw_text": "800+ 行业品牌",
+          "unit": "品牌",
+          "caliber": "brand",
+          "evidence": "本次展会整体规模达30000平方米，汇聚800+行业品牌、50000名专业观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 30000,
+          "method": "llm",
+          "raw_text": "30000 平方米",
+          "unit": "平方米",
+          "caliber": "gross",
+          "evidence": "本次展会整体规模达30000平方米，汇聚800+行业品牌、50000名专业观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "精准汇聚景区、乐园、度假区、高尔夫球场、商业综合体、酒店营地及政企配套采购方、海内外经销商、跨境采购商等优质客群",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":50000,\"raw_text\":\"50000 名专业观众\",\"unit\":\"名\",\"caliber\":\"person\",\"evidence\":\"本次展会整体规模达 30000 平方米，汇聚 800+ 行业品牌、 50000 名专业观众\"},\"exhibitor_count\":{\"value\":800,\"raw_text\":\"800+ 行业品牌\",\"unit\":\"家\",\"caliber\":\"brand\",\"evidence\":\"本次展会整体规模达 30000 平方米，汇聚 800+ 行业品牌、 50000 名专业观众\"},\"exhibition_area\":{\"value\":30000,\"raw_text\":\"30000 平方米\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"本次展会整体规模达 30000 平方米，汇聚 800+ 行业品牌、 50000 名专业观众\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"专业观众\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"精准汇聚景区、乐园、度假区、高尔夫球场、商业综合体、酒店营地及政企配套采购方、海内外经销商、跨境采购商等优质客群\"},\"text_note\":\"页面存在两组规模数据：展会介绍处写“展览面积 20000㎡，集结 200 余家优质品牌”，为何参展处写“30000 平方米、800+ 行业品牌、50000 名专业观众”，两处口径不一致，A 组取后者（含观众数且表述为本次展会整体规模）；另展会介绍处“2023 创办于 20000 m²+ 展览面积 300+ 品牌企业 40000+ 专业观众”疑为历届累计或创办以来数据，未采用。\"}",
+      "text_note": "页面存在两组规模数据：展会介绍处写“展览面积 20000㎡，集结 200 余家优质品牌”，为何参展处写“30000 平方米、800+ 行业品牌、50000 名专业观众”，两处口径不一致，A 组取后者（含观众数且表述为本次展会整体规模）；另展会介绍处“2023 创办于 20000 m²+ 展览面积 300+ 品牌企业 40000+ 专业观众”疑为历届累计或创办以来数据，未采用。",
+      "filled": 4,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-catering",
+      "fields": {
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "温馨提示：本展会为专业食品饮料展，仅对专业人士开放，不满18周岁未成年人和70周岁及以上的非专业人士无法入场。",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "与来自全球高度精准、高质量的数万餐饮B端买家面对面洽谈商贸",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"仅对专业人士开放\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"温馨提示：本展会为专业食品饮料展，仅对专业人士开放，不满18周岁未成年人和70周岁及以上的非专业人士无法入场。\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"数万餐饮B端买家\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"与来自全球高度精准、高质量的数万餐饮B端买家面对面洽谈商贸\"},\"text_note\":\"页面唯一带数字的规模表述为新闻中的预测值（'预计以20万平方米展览面积，汇聚…5,000余家食饮品牌，吸引…18万专业人士'），属预测值，按规则不填入 A 组；'超过35万件新奇特好品'为展品数量，非观众/展商/面积；'12,000+食饮专业人士'为峰会参与人数，不填；'55,000家展商''1,500,000余名行业专业人士'为 SIAL 品牌累计数据，不填。\"}",
+      "text_note": "页面唯一带数字的规模表述为新闻中的预测值（'预计以20万平方米展览面积，汇聚…5,000余家食饮品牌，吸引…18万专业人士'），属预测值，按规则不填入 A 组；'超过35万件新奇特好品'为展品数量，非观众/展商/面积；'12,000+食饮专业人士'为峰会参与人数，不填；'55,000家展商''1,500,000余名行业专业人士'为 SIAL 品牌累计数据，不填。",
+      "filled": 2,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-crossborder",
+      "fields": {
+        "visitor_count": {
+          "value": 78461,
+          "method": "llm",
+          "raw_text": "78,461人次",
+          "unit": "人次",
+          "caliber": "visit",
+          "evidence": "本届CCBEC三天累计参展观众高达78,461人次",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":78461,\"raw_text\":\"78,461人次\",\"unit\":\"人次\",\"caliber\":\"visit\",\"evidence\":\"本届CCBEC三天累计参展观众高达78,461人次\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"观众数取2026年已闭幕一届的78,461人次；页面另有多处2027年'预计达到80,000平方米''预计将汇聚1,500家'属预测值，按规则未填入面积与展商数。'约1,500家参展'出现在新闻摘要中，未明确届次口径，故未采用。\"}",
+      "text_note": "观众数取2026年已闭幕一届的78,461人次；页面另有多处2027年'预计达到80,000平方米''预计将汇聚1,500家'属预测值，按规则未填入面积与展商数。'约1,500家参展'出现在新闻摘要中，未明确届次口径，故未采用。",
+      "filled": 1,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-domestic-trade",
+      "fields": {
+        "nature": {
+          "value": "mixed",
+          "method": "llm",
+          "evidence": "通过B2B和B2C融合办展模式，打造优质消费类产品内销供采对接平台",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":\"mixed\",\"raw_text\":\"通过B2B和B2C融合办展模式\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"通过B2B和B2C融合办展模式，打造优质消费类产品内销供采对接平台\"},\"text_note\":\"页面关于2026年（第二届）的规模数字均为预计/拟邀请/力争口径（预计参展企业1500+家、3000+家专业采购商、总人数超12万人次、占地面积7万平方），按规则不填入A组；2025年首届数据（8.25万人次、1086家企业、5万平方米）属上一届，且页面未同时给出两届可分清的可比口径，故prev_*亦留空。admission 方面页面同时出现“公众报名”与“采购商报名”，但无明确专业/公众日划分，故留空。\"}",
+      "text_note": "页面关于2026年（第二届）的规模数字均为预计/拟邀请/力争口径（预计参展企业1500+家、3000+家专业采购商、总人数超12万人次、占地面积7万平方），按规则不填入A组；2025年首届数据（8.25万人次、1086家企业、5万平方米）属上一届，且页面未同时给出两届可分清的可比口径，故prev_*亦留空。admission 方面页面同时出现“公众报名”与“采购商报名”，但无明确专业/公众日划分，",
+      "filled": 1,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-muying",
+      "fields": {
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "*展会只对18岁以上专业观众开放",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "国内各省市孕婴童产品代理商、批发商、网络代理商",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"展会只对18岁以上专业观众开放\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"*展会只对18岁以上专业观众开放\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"国内各省市孕婴童产品代理商、批发商、网络代理商\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"国内各省市孕婴童产品代理商、批发商、网络代理商\"},\"text_note\":\"页面规模数字均为占位符（展商0、品牌0、观众0、面积0，标注*2027预计），属预测值不抽取；'4,200+全球优质品牌'与'10万+全渠道买家'未标明届次且为概数/渠道买家口径，未作为规模字段填入。\"}",
+      "text_note": "页面规模数字均为占位符（展商0、品牌0、观众0、面积0，标注*2027预计），属预测值不抽取；'4,200+全球优质品牌'与'10万+全渠道买家'未标明届次且为概数/渠道买家口径，未作为规模字段填入。",
+      "filled": 2,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-furniture-wood",
+      "fields": {
+        "visitor_count": {
+          "value": 30000,
+          "method": "llm",
+          "raw_text": "30,000+ 专业观众",
+          "unit": "专业观众",
+          "caliber": "person",
+          "evidence": "400+参展企业52,000平方米展出面积30,000+专业观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 400,
+          "method": "llm",
+          "raw_text": "400+ 参展企业",
+          "unit": "参展企业",
+          "caliber": "company",
+          "evidence": "400+参展企业52,000平方米展出面积30,000+专业观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 52000,
+          "method": "llm",
+          "raw_text": "52,000 平方米 展出面积",
+          "unit": "平方米",
+          "caliber": "gross",
+          "evidence": "400+参展企业52,000平方米展出面积30,000+专业观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "国内观众预登记",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "30,000+专业观众",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":30000,\"raw_text\":\"30,000+ 专业观众\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"400+ 参展企业 52,000 平方米 展出面积 30,000+ 专业观众\"},\"exhibitor_count\":{\"value\":400,\"raw_text\":\"400+ 参展企业\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"400+ 参展企业 52,000 平方米 展出面积 30,000+ 专业观众\"},\"exhibition_area\":{\"value\":52000,\"raw_text\":\"52,000 平方米 展出面积\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"400+ 参展企业 52,000 平方米 展出面积 30,000+ 专业观众\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"国内观众预登记\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"国内观众预登记\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"30,000+ 专业观众\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"30,000+ 专业观众\"},\"text_note\":\"页面同时出现“WMF 2026 一览”的 400+/52,000/30,000+ 与“WMF 2027”页面同组数字，无法确认该组规模归属哪一届；正文另有“全球超过370家参展商”，与 400+ 不一致，未采用。面积未注明净/毛，按 gross 处理。\"}",
+      "text_note": "页面同时出现“WMF 2026 一览”的 400+/52,000/30,000+ 与“WMF 2027”页面同组数字，无法确认该组规模归属哪一届；正文另有“全球超过370家参展商”，与 400+ 不一致，未采用。面积未注明净/毛，按 gross 处理。",
+      "filled": 5,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-pet",
+      "fields": {
+        "exhibitor_count": {
+          "value": 2600,
+          "method": "llm",
+          "raw_text": "2,600+ 国内外展商",
+          "unit": "展商",
+          "caliber": "company",
+          "evidence": "汇聚2,600+国内外展商，完整覆盖宠物上下游全产业链",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 320000,
+          "method": "llm",
+          "raw_text": "32 万平米展出面积",
+          "unit": "平米",
+          "caliber": "gross",
+          "evidence": "32万平米展出面积，汇聚2,600+国内外展商",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "mixed",
+          "method": "llm",
+          "evidence": "专业观众预约登记",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "mixed",
+          "method": "llm",
+          "evidence": "吸引130,000宠物从业者，390,000消费者到场",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "visitor_count": {
+          "value": 520000,
+          "why": "依据里没有可解析的数量；仅用 raw_text 也依据里没有可解析的数量",
+          "evidence": "吸引130,000宠物从业者，390,000消费者到场"
+        }
+      },
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":520000,\"raw_text\":\"吸引 130,000 宠物从业者，390,000 消费者到场\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"吸引 130,000 宠物从业者，390,000 消费者到场\"},\"exhibitor_count\":{\"value\":2600,\"raw_text\":\"2,600+ 国内外展商\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"汇聚 2,600+ 国内外展商，完整覆盖宠物上下游全产业链\"},\"exhibition_area\":{\"value\":320000,\"raw_text\":\"32 万平米展出面积\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"32 万平米展出面积，汇聚 2,600+ 国内外展商\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"mixed\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"专业观众预约登记\"},\"nature\":{\"value\":\"mixed\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"吸引 130,000 宠物从业者，390,000 消费者到场\"},\"text_note\":\"观众数由正文两处口径合并：130,000 宠物从业者 + 390,000 消费者 = 520,000，原文未给出合计值；页面另有“13 W + 专业观众 39 W + 消费者”为同一组数据的约数表述。面积原文写“32 万平米”，未注明净/毛，按 gross 处理。\"}",
+      "text_note": "观众数由正文两处口径合并：130,000 宠物从业者 + 390,000 消费者 = 520,000，原文未给出合计值；页面另有“13 W + 专业观众 39 W + 消费者”为同一组数据的约数表述。面积原文写“32 万平米”，未注明净/毛，按 gross 处理。",
+      "filled": 4,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-premium-gift",
+      "fields": {
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "包括顶级分销商、批发商、代理商、礼品采购公司、百货公司及连锁店等专业采购商",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "包括顶级分销商、批发商、代理商、礼品采购公司、百货公司及连锁店等专业采购商",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"包括顶级分销商、批发商、代理商、礼品采购公司、百货公司及连锁店等专业采购商\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"包括顶级分销商、批发商、代理商、礼品采购公司、百货公司及连锁店等专业采购商\"},\"text_note\":\"页面为励展华博主办方首页，仅列出多场展会导航与公司介绍，未给出任何单届展会的观众数、参展商数或展览面积数字；admission/nature 依据的是公司整体买家描述，非某一具体展会的准入规则。\"}",
+      "text_note": "页面为励展华博主办方首页，仅列出多场展会导航与公司介绍，未给出任何单届展会的观众数、参展商数或展览面积数字；admission/nature 依据的是公司整体买家描述，非某一具体展会的准入规则。",
+      "filled": 2,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-retail",
+      "fields": {
+        "visitor_count": {
+          "value": 70000,
+          "method": "llm",
+          "raw_text": "70000+ 展会观众",
+          "unit": "观众",
+          "caliber": "person",
+          "evidence": "100000m²展览规模900+参展企业70000+展会观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 900,
+          "method": "llm",
+          "raw_text": "900+ 参展企业",
+          "unit": "参展企业",
+          "caliber": "company",
+          "evidence": "100000m²展览规模900+参展企业70000+展会观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 100000,
+          "method": "llm",
+          "raw_text": "100000m²",
+          "unit": "m²",
+          "caliber": "gross",
+          "evidence": "100000m²展览规模900+参展企业70000+展会观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":70000,\"raw_text\":\"70000+ 展会观众\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"100000m² 展览规模 900+ 参展企业 70000+ 展会观众\"},\"exhibitor_count\":{\"value\":900,\"raw_text\":\"900+ 参展企业\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"100000m² 展览规模 900+ 参展企业 70000+ 展会观众\"},\"exhibition_area\":{\"value\":100000,\"raw_text\":\"100000m²\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"100000m² 展览规模 900+ 参展企业 70000+ 展会观众\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"首页规模数字未标注届次，且与2027年（第二十七届）宣传文案并列；'预计展商900+'为预测值，但首页'900+ 参展企业'为独立陈述，故采用首页数字。观众'70000+'未注明人次/人数，按'展会观众'取person。面积未注明净/毛，取gross。\"}",
+      "text_note": "首页规模数字未标注届次，且与2027年（第二十七届）宣传文案并列；'预计展商900+'为预测值，但首页'900+ 参展企业'为独立陈述，故采用首页数字。观众'70000+'未注明人次/人数，按'展会观众'取person。面积未注明净/毛，取gross。",
+      "filled": 3,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "canton-fair",
+      "fields": {
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "境外采购商预登记境外采购商邀请函境外采购商办证采购代表办证",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "境外采购商预登记境外采购商邀请函境外采购商办证采购代表办证",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"境外采购商预登记\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"境外采购商预登记 境外采购商邀请函 境外采购商办证 采购代表办证\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"境外采购商预登记\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"境外采购商预登记 境外采购商邀请函 境外采购商办证 采购代表办证\"},\"text_note\":\"页面仅有展区数量（13个板块 54个展区）与展期，无观众、展商、面积数字；admission/nature 依据为采购商预登记与办证入口，属推断性口径。\"}",
+      "text_note": "页面仅有展区数量（13个板块 54个展区）与展期，无观众、展商、面积数字；admission/nature 依据为采购商预登记与办证入口，属推断性口径。",
+      "filled": 2,
+      "body_src": "rendered",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cbd-fair",
+      "fields": {
+        "visitor_count": {
+          "value": 144370,
+          "method": "llm",
+          "raw_text": "144,370",
+          "unit": "专业观众",
+          "caliber": "person",
+          "evidence": "第28届中国建博会(广州)20万m²展会规模近2000家参展企业144,370专业观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 2000,
+          "method": "llm",
+          "raw_text": "近2000家",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "20万m²展会规模近2000家参展企业144,370",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 200000,
+          "method": "llm",
+          "raw_text": "20万m²",
+          "unit": "m²",
+          "caliber": "gross",
+          "evidence": "第28届中国建博会(广州)20万m²展会规模近2000家",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":144370,\"raw_text\":\"144,370\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"第28届中国建博会（广州）\\n\\n20万m²\\n\\n展会规模\\n\\n近2000家\\n\\n参展企业\\n\\n144,370\\n\\n专业观众\"},\"exhibitor_count\":{\"value\":2000,\"raw_text\":\"近2000家\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"20万m²\\n\\n展会规模\\n\\n近2000家\\n\\n参展企业\\n\\n144,370\"},\"exhibition_area\":{\"value\":200000,\"raw_text\":\"20万m²\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"第28届中国建博会（广州）\\n\\n20万m²\\n\\n展会规模\\n\\n近2000家\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"页面最新一届为第29届（2027年，尚未举办，无规模数据），规模数字标注为第28届，故A组填入第28届数据；参展企业原文为“近2000家”属约数；面积未注明净/毛，按gross处理；144,370原文称“专业观众”，但未明确是人次还是人数，按person处理。\"}",
+      "text_note": "页面最新一届为第29届（2027年，尚未举办，无规模数据），规模数字标注为第28届，故A组填入第28届数据；参展企业原文为“近2000家”属约数；面积未注明净/毛，按gross处理；144,370原文称“专业观众”，但未明确是人次还是人数，按person处理。",
+      "filled": 3,
+      "body_src": "rendered",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "ccmt",
+      "fields": {
+        "visitor_count": {
+          "value": 124695,
+          "method": "llm",
+          "raw_text": "124695名专业观众",
+          "unit": "名",
+          "caliber": "person",
+          "evidence": "共有来自88个国家和地区的124695名专业观众到会参观采购，比CCMT2018增长58.49%",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 1877,
+          "method": "llm",
+          "raw_text": "1877家展商",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "共有来自28个国家和地区的1877家展商参展，比CCMT2018增长52.23%",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 200000,
+          "method": "llm",
+          "raw_text": "20万平方米",
+          "unit": "平方米",
+          "caliber": "gross",
+          "evidence": "CCMT2024展会首次使用上海新国际博览中心全部17个室内展馆，展会总面积达20万平方米",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "共有来自88个国家和地区的124695名专业观众到会参观采购",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "共有来自88个国家和地区的124695名专业观众到会参观采购，比CCMT2018增长58.49%",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":124695,\"raw_text\":\"124695名专业观众\",\"unit\":\"名\",\"caliber\":\"person\",\"evidence\":\"共有来自88个国家和地区的124695名专业观众到会参观采购，比CCMT2018增长58.49%\"},\"exhibitor_count\":{\"value\":1877,\"raw_text\":\"1877家展商\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"共有来自28个国家和地区的1877家展商参展，比CCMT2018增长52.23%\"},\"exhibition_area\":{\"value\":200000,\"raw_text\":\"20万平方米\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"CCMT2024展会首次使用上海新国际博览中心全部17个室内展馆，展会总面积达20万平方米\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"专业观众\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"共有来自88个国家和地区的124695名专业观众到会参观采购\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"专业观众到会参观采购\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"共有来自88个国家和地区的124695名专业观众到会参观采购，比CCMT2018增长58.49%\"},\"text_note\":\"页面最新一届为CCMT2024（第十三届），CCMT2026尚未举办，故A组取CCMT2024数据；页面仅给出CCMT2024与CCMT2018的增长率，未给出CCMT2018绝对值，无法填prev_*；展览面积原文为“展会总面积”，按毛面积计。\"}",
+      "text_note": "页面最新一届为CCMT2024（第十三届），CCMT2026尚未举办，故A组取CCMT2024数据；页面仅给出CCMT2024与CCMT2018的增长率，未给出CCMT2018绝对值，无法填prev_*；展览面积原文为“展会总面积”，按毛面积计。",
+      "filled": 5,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "china-daily-goods",
+      "fields": {
+        "visitor_count": {
+          "value": 120000,
+          "method": "llm",
+          "raw_text": "120,000+",
+          "unit": "专业观众",
+          "caliber": "person",
+          "evidence": "120,000+海内外专业观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 5000,
+          "method": "llm",
+          "raw_text": "5000+",
+          "unit": "展商",
+          "caliber": "company",
+          "evidence": "5000+优质展商",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 200000,
+          "method": "llm",
+          "raw_text": "200,000㎡",
+          "unit": "㎡",
+          "caliber": "gross",
+          "evidence": "200,000㎡展示面积",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "提前在展会官方渠道进行预登记→获取观众电子二维码→预登记观众免现场排队填表",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "百货会汇集来自国内外线上线下多渠道买家资源，助力厂家开辟潜在客户与合作伙伴",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":120000,\"raw_text\":\"120,000+\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"120,000+ 海内外专业观众\"},\"exhibitor_count\":{\"value\":5000,\"raw_text\":\"5000+\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"5000+ 优质展商\"},\"exhibition_area\":{\"value\":200000,\"raw_text\":\"200,000㎡\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"200,000㎡ 展示面积\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"提前在展会官方渠道进行预登记→获取观众电子二维码→预登记观众免现场排队填表\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"百货会汇集来自国内外线上线下多渠道买家资源，助力厂家开辟潜在客户与合作伙伴\"},\"text_note\":\"页面主推第120届（2027年）规模数据，但另有“119届展会报告”入口未展开具体数字；120,000+ 原文为“海内外专业观众”，未标“人次”，按人数计；5000+ 原文为“优质展商”，另文有“近五千家知名品牌”，按企业数计；面积原文“200,000㎡”未注明净/毛，按毛面积计。\"}",
+      "text_note": "页面主推第120届（2027年）规模数据，但另有“119届展会报告”入口未展开具体数字；120,000+ 原文为“海内外专业观众”，未标“人次”，按人数计；5000+ 原文为“优质展商”，另文有“近五千家知名品牌”，按企业数计；面积原文“200,000㎡”未注明净/毛，按毛面积计。",
+      "filled": 5,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "china-edu-expo",
+      "fields": {
+        "admission": {
+          "value": "public",
+          "method": "llm",
+          "evidence": "观众免费参观注册",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"public\",\"raw_text\":\"观众免费\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"观众免费\\n参观注册\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"页面仅有'共计吸引了9000多家展商'，属创办以来累计数据，非单届规模，故未填入；'合作国家展团达35个'为展团数量，非展商数；无观众数与面积数据。\"}",
+      "text_note": "页面仅有'共计吸引了9000多家展商'，属创办以来累计数据，非单届规模，故未填入；'合作国家展团达35个'为展团数量，非展商数；无观众数与面积数据。",
+      "filled": 1,
+      "body_src": "rendered",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "china-hardware",
+      "fields": {
+        "visitor_count": {
+          "value": 60000,
+          "method": "llm",
+          "raw_text": "60,000 + 海内外观众",
+          "unit": "观众",
+          "caliber": "person",
+          "evidence": "60,000+海内外观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 3200,
+          "method": "llm",
+          "raw_text": "3,200 + 参展企业(家)",
+          "unit": "参展企业",
+          "caliber": "company",
+          "evidence": "3,200+参展企业(家)",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 170000,
+          "method": "llm",
+          "raw_text": "170,000 展览面积(平米)",
+          "unit": "展览面积",
+          "caliber": "gross",
+          "evidence": "170,000展览面积(平米)",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "是获取展位信息并在线申请展位、专业观众在线申请门票的唯一官方网络渠道",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "汇聚3200余家中外品牌企业参展，数万名专业采购商到会参观洽谈",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":60000,\"raw_text\":\"60,000 + 海内外观众\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"60,000 + 海内外观众\"},\"exhibitor_count\":{\"value\":3200,\"raw_text\":\"3,200 + 参展企业(家)\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"3,200 + 参展企业(家)\"},\"exhibition_area\":{\"value\":170000,\"raw_text\":\"170,000 展览面积(平米)\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"170,000 展览面积(平米)\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"专业观众在线申请门票\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"是获取展位信息并在线申请展位、专业观众在线申请门票的唯一官方网络渠道\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"数万名专业采购商到会参观洽谈\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"汇聚3200余家中外品牌企业参展，数万名专业采购商到会参观洽谈\"},\"text_note\":\"首页规模数字（170,000平米/3,200+家/60,000+观众）未标注届次，按最新一届（第四十届）填入；新闻稿另称'近17万平方米''三千余家'，与首页口径略有差异。观众数原文为'海内外观众'，未注明人次，按人数计。新闻稿中'预计将吸引…数万余名专业采购商'为预测值，未采用。\"}",
+      "text_note": "首页规模数字（170,000平米/3,200+家/60,000+观众）未标注届次，按最新一届（第四十届）填入；新闻稿另称'近17万平方米''三千余家'，与首页口径略有差异。观众数原文为'海内外观众'，未注明人次，按人数计。新闻稿中'预计将吸引…数万余名专业采购商'为预测值，未采用。",
+      "filled": 5,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "chinacoat",
+      "fields": {
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "展览会持续吸引来自中国、亚洲及全球各地的专业观众",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "为供应商和制造商提供展示创新成果、拓展商机的环球贸易平台",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"展览会持续吸引来自中国、亚洲及全球各地的专业观众\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"为供应商和制造商提供展示创新成果、拓展商机的环球贸易平台\"},\"text_note\":\"正文仅含展台租金单价（每平方米420美元等）与展台面积规格（最少9平方米等），均非展览会规模数据；未见任何观众数、参展商数或展览面积统计。\"}",
+      "text_note": "正文仅含展台租金单价（每平方米420美元等）与展台面积规格（最少9平方米等），均非展览会规模数据；未见任何观众数、参展商数或展览面积统计。",
+      "filled": 2,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "chinaplas",
+      "fields": {
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "观众预登记",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"观众预登记\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"观众预登记\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文未出现任何观众数、参展商数或展览面积的具体数字；页面仅有2027年展会时间地点及导航/展商名录信息。admission 依据仅为“观众预登记”入口，属弱依据。\"}",
+      "text_note": "正文未出现任何观众数、参展商数或展览面积的具体数字；页面仅有2027年展会时间地点及导航/展商名录信息。admission 依据仅为“观众预登记”入口，属弱依据。",
+      "filled": 1,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "china-logistics",
+      "fields": {
+        "visitor_count": {
+          "value": 330000,
+          "method": "llm",
+          "raw_text": "330,000+ Professional Visitors",
+          "unit": "Professional",
+          "caliber": "person",
+          "evidence": "330,000+ProfessionalVisitors:Rubshoulderswithdecision-makers,industrialleaders,a",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 2500,
+          "method": "llm",
+          "raw_text": "over 2,500 world-class exhibitors",
+          "unit": "exhibitors",
+          "caliber": "company",
+          "evidence": "Spanningamassive130,000㎡andfeaturingover2,500world-classexhibitors",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 130000,
+          "method": "llm",
+          "raw_text": "130,000㎡",
+          "unit": "㎡",
+          "caliber": "gross",
+          "evidence": "Spanningamassive130,000㎡andfeaturingover2,500world-classexhibitors",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "Wewelcomeprofessionalsacrosstheentirecommercialspectrum,including:",
+          "conf": "low"
+        }
+      },
+      "dropped": {
+        "nature": {
+          "value": "B2B",
+          "why": "依据里没有支持 B2B 的判别词（连弱证据都没有）",
+          "evidence": "Connectwithagileoverseaswarehousing,rapi"
+        }
+      },
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":330000,\"raw_text\":\"330,000+ Professional Visitors\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"330,000+ Professional Visitors: Rub shoulders with decision-makers, industrial leaders, and high-volume cargo owners from every corner of the globe.\"},\"exhibitor_count\":{\"value\":2500,\"raw_text\":\"over 2,500 world-class exhibitors\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"Spanning a massive 130,000㎡ and featuring over 2,500 world-class exhibitors\"},\"exhibition_area\":{\"value\":130000,\"raw_text\":\"130,000㎡\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"Spanning a massive 130,000㎡ and featuring over 2,500 world-class exhibitors\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"We welcome professionals across the entire commercial spectrum, including:\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"Connect with agile overseas warehousing, rapid fulfillment, and bulletproof customs clearance solutions.\"},\"text_note\":\"观众数原文为“330,000+ Professional Visitors”，未标届次，按页面最新一届填入A组；面积未注明净/毛，按gross处理；参展商原文为“over 2,500”，取2500。\"}",
+      "text_note": "观众数原文为“330,000+ Professional Visitors”，未标届次，按页面最新一届填入A组；面积未注明净/毛，按gross处理；参展商原文为“over 2,500”，取2500。",
+      "filled": 4,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "ciff-gz",
+      "fields": {
+        "visitor_count": {
+          "value": 380000,
+          "method": "llm",
+          "raw_text": "专业观众 380000+",
+          "unit": "专业观众",
+          "caliber": "person",
+          "evidence": "展会规模850000㎡展商数量5100+专业观众380000+",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 5100,
+          "method": "llm",
+          "raw_text": "展商数量 5100+",
+          "unit": "展商",
+          "caliber": "company",
+          "evidence": "展会规模850000㎡展商数量5100+专业观众380000+",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 850000,
+          "method": "llm",
+          "raw_text": "展会规模 850000㎡",
+          "unit": "㎡",
+          "caliber": "gross",
+          "evidence": "展会规模850000㎡展商数量5100+专业观众380000+",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "超过38万名国际进出口商、经销商、零售商、品牌连锁店、设计师、建筑师、房地产商等专业观众到会",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "超过38万名国际进出口商、经销商、零售商、品牌连锁店、设计师、建筑师、房地产商等专业观众到会",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":380000,\"raw_text\":\"专业观众 380000+\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"展会规模 850000㎡ 展商数量 5100+ 专业观众 380000+\"},\"exhibitor_count\":{\"value\":5100,\"raw_text\":\"展商数量 5100+\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"展会规模 850000㎡ 展商数量 5100+ 专业观众 380000+\"},\"exhibition_area\":{\"value\":850000,\"raw_text\":\"展会规模 850000㎡\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"展会规模 850000㎡ 展商数量 5100+ 专业观众 380000+\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"超过38万名国际进出口商、经销商、零售商、品牌连锁店、设计师、建筑师、房地产商等专业观众到会\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"超过38万名国际进出口商、经销商、零售商、品牌连锁店、设计师、建筑师、房地产商等专业观众到会\"},\"text_note\":\"页面未标注规模数据所属届次（正文提及第57届展后报告、第59届为2027年展），按最新一届处理；展商数量原文为“5100+”，取5100；观众原文为“380000+”，取380000；面积未注明净/毛，按gross处理。\"}",
+      "text_note": "页面未标注规模数据所属届次（正文提及第57届展后报告、第59届为2027年展），按最新一届处理；展商数量原文为“5100+”，取5100；观众原文为“380000+”，取380000；面积未注明净/毛，按gross处理。",
+      "filled": 5,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cihs",
+      "fields": {
+        "exhibitor_count": {
+          "value": 3000,
+          "method": "llm",
+          "raw_text": "参展企业近3000余家",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "此次展会面积为12万平米，参展企业近3000余家",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 120000,
+          "method": "llm",
+          "raw_text": "展会面积为12万平米",
+          "unit": "平米",
+          "caliber": "gross",
+          "evidence": "此次展会面积为12万平米，参展企业近3000余家",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":3000,\"raw_text\":\"参展企业近3000余家\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"此次展会面积为12万平米，参展企业近3000余家\"},\"exhibition_area\":{\"value\":120000,\"raw_text\":\"展会面积为12万平米\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"此次展会面积为12万平米，参展企业近3000余家\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"参展企业原文为“近3000余家”，取3000为约数；面积原文“12万平米”未注明净/毛，按gross处理；展会概况页另有“稳定在120,000平方米以上”表述，与12万平米一致，未另计。\"}",
+      "text_note": "参展企业原文为“近3000余家”，取3000为约数；面积原文“12万平米”未注明净/毛，按gross处理；展会概况页另有“稳定在120,000平方米以上”表述，与12万平米一致，未另计。",
+      "filled": 2,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "ciie",
+      "fields": {
+        "admission": {
+          "value": "mixed",
+          "method": "llm",
+          "evidence": "第九届进博会社会观众报名开启！",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"mixed\",\"raw_text\":\"第九届进博会社会观众报名开启！\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"第九届进博会社会观众报名开启！\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"页面为第九届进博会官网首页，正文未给出任何观众数、参展商数或展览面积的具体数字；页面同时出现“专业观众注册”与“社会观众报名”，故准入类型判为 mixed，但未见明确的专业日/公众日划分表述。\"}",
+      "text_note": "页面为第九届进博会官网首页，正文未给出任何观众数、参展商数或展览面积的具体数字；页面同时出现“专业观众注册”与“社会观众报名”，故准入类型判为 mixed，但未见明确的专业日/公众日划分表述。",
+      "filled": 1,
+      "body_src": "rendered",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "ciif",
+      "fields": {
+        "visitor_count": {
+          "value": 225896,
+          "method": "llm",
+          "raw_text": "225,896\n人次",
+          "unit": "人次",
+          "caliber": "visit",
+          "evidence": "225,896人次参观次数",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 3247,
+          "method": "llm",
+          "raw_text": "3,247\n家\n参展商",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "3,247家参展商",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 275088,
+          "method": "llm",
+          "raw_text": "275,088\nm²\n展览总面积",
+          "unit": "m²",
+          "caliber": "gross",
+          "evidence": "275,088m²展览总面积",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":225896,\"raw_text\":\"225,896\\n人次\",\"unit\":\"人次\",\"caliber\":\"visit\",\"evidence\":\"225,896\\n人次\\n参观次数\"},\"exhibitor_count\":{\"value\":3247,\"raw_text\":\"3,247\\n家\\n参展商\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"3,247\\n家\\n参展商\"},\"exhibition_area\":{\"value\":275088,\"raw_text\":\"275,088\\nm²\\n展览总面积\",\"unit\":\"m²\",\"caliber\":\"gross\",\"evidence\":\"275,088\\nm²\\n展览总面积\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"页面未标注该组规模数据对应届次（页面日期为2027年9月20-24日，新闻提及2026年第二十六届），按最新一届处理；观众口径原文为“参观次数/人次”，按 visit 计；面积未注明净/毛，按 gross 计。\"}",
+      "text_note": "页面未标注该组规模数据对应届次（页面日期为2027年9月20-24日，新闻提及2026年第二十六届），按最新一届处理；观众口径原文为“参观次数/人次”，按 visit 计；面积未注明净/毛，按 gross 计。",
+      "filled": 3,
+      "body_src": "rendered",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cimt",
+      "fields": {
+        "visitor_count": {
+          "value": 211993,
+          "method": "llm",
+          "raw_text": "专业观众总数211,993人",
+          "unit": "人",
+          "caliber": "person",
+          "evidence": "专业观众总数211,993人，展会总参观人次达416,570人次，创历届新高",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 2449,
+          "method": "llm",
+          "raw_text": "2,449家展商",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "展会吸引了来自全球31个国家和地区的2,449家展商同台亮相",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 310000,
+          "method": "llm",
+          "raw_text": "总展览面积达31万平方米",
+          "unit": "平方米",
+          "caliber": "gross",
+          "evidence": "以“融合创新数智未来”为主题，总展览面积达31万平方米",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":211993,\"raw_text\":\"专业观众总数211,993人\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"专业观众总数211,993人，展会总参观人次达416,570人次，创历届新高\"},\"exhibitor_count\":{\"value\":2449,\"raw_text\":\"2,449家展商\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"展会吸引了来自全球31个国家和地区的2,449家展商同台亮 相\"},\"exhibition_area\":{\"value\":310000,\"raw_text\":\"总展览面积达31万平方米\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"以“融合创新 数智未来”为主题，总展览面积达31万平方米\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"页面最新一届为CIMT2025（第十九届），A组数据取自该届；页面另提CIMT2027“32万平方米”为下届规划面积，未采用。观众数同时给出“专业观众总数211,993人”与“总参观人次416,570人次”，visitor_count取人数口径211993，人次口径未单列字段。\"}",
+      "text_note": "页面最新一届为CIMT2025（第十九届），A组数据取自该届；页面另提CIMT2027“32万平方米”为下届规划面积，未采用。观众数同时给出“专业观众总数211,993人”与“总参观人次416,570人次”，visitor_count取人数口径211993，人次口径未单列字段。",
+      "filled": 3,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cipsc",
+      "fields": {
+        "visitor_count": {
+          "value": 200000,
+          "method": "llm",
+          "raw_text": "200000 + 专业采购商及观众人数",
+          "unit": "采购商",
+          "caliber": "person",
+          "evidence": "200000+专业采购商及观众人数",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "展商注册观众注册团体管理媒体注册",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "200000+专业采购商及观众人数",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "exhibitor_count": {
+          "value": 650,
+          "why": "依据里的量类型是 ['visitor']，不是 ['exhibitor', 'booth']；仅用 raw_text 也依据里的量类型是 ['visitor']，不是 ['exhibitor', 'booth']",
+          "evidence": "650+全球知名企业"
+        }
+      },
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":200000,\"raw_text\":\"200000 + 专业采购商及观众人数\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"200000 + \\n 专业采购商及观众人数\"},\"exhibitor_count\":{\"value\":650,\"raw_text\":\"650 + 全球知名企业\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"650 + \\n 全球知名企业\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"展商注册 \\n \\n \\n 观众注册 \\n \\n \\n 团体管理 \\n \\n \\n 媒体注册\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"200000 + \\n 专业采购商及观众人数\"},\"text_note\":\"页面未标注 650+ 企业与 200000+ 专业采购商及观众对应哪一届（首页同时出现第四届、第五届信息），按最新一届规模处理；观众口径原文为“专业采购商及观众人数”，含采购商与观众，按 person 计。\"}",
+      "text_note": "页面未标注 650+ 企业与 200000+ 专业采购商及观众对应哪一届（首页同时出现第四届、第五届信息），按最新一届规模处理；观众口径原文为“专业采购商及观众人数”，含采购商与观众，按 person 计。",
+      "filled": 3,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cite",
+      "fields": {
+        "visitor_count": {
+          "value": 14000,
+          "method": "llm",
+          "raw_text": "14000 professional visitors",
+          "unit": "professional",
+          "caliber": "person",
+          "evidence": "With350exhibitorsand14000professionalvisitorsfrom112countriesparticipatinginthel",
+          "evidence_span": "evidence",
+          "conf": "low"
+        },
+        "exhibitor_count": {
+          "value": 350,
+          "method": "llm",
+          "raw_text": "350 exhibitors",
+          "unit": "exhibitors",
+          "caliber": "company",
+          "evidence": "With350exhibitorsand14000professionalvisitorsfrom112countriesparticipatinginthel",
+          "evidence_span": "evidence",
+          "conf": "low"
+        },
+        "exhibition_area": {
+          "value": 40000,
+          "method": "llm",
+          "raw_text": "40000 sqm Exhibition space",
+          "unit": "sqm",
+          "caliber": "gross",
+          "evidence": "-40000sqmExhibitionspace",
+          "evidence_span": "evidence",
+          "conf": "low"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "Registernow!http://www.citexpo.com.cn/en/visitor/register_form.php",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "Asaprofessionalinsourcingandmerchandising,youknowtheimportanceofseeingtherealpro",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":14000,\"raw_text\":\"14000 professional visitors\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"With 350 exhibitors and 14000 professional visitors from 112 countries participating in the last edition\"},\"exhibitor_count\":{\"value\":350,\"raw_text\":\"350 exhibitors\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"With 350 exhibitors and 14000 professional visitors from 112 countries participating in the last edition\"},\"exhibition_area\":{\"value\":40000,\"raw_text\":\"40000 sqm Exhibition space\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"- 40000 sqm Exhibition space\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"Register now! http://www.citexpo.com.cn/en/visitor/register_form.php\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"As a professional in sourcing and merchandising, you know the importance of seeing the real product\"},\"text_note\":\"页面最新一届为2027年（第22届），但规模数字仅出现在2018年（第16届）的回顾段落中，且原文标注为 last edition；A组按页面唯一给出的规模数字填入，届次口径存疑。Key Figures 中 14000 visitors 与正文 14000 professional visitors 一致，另列 6800 Overseas + 7200 Domestic 为分项，未另计。\"}",
+      "text_note": "页面最新一届为2027年（第22届），但规模数字仅出现在2018年（第16届）的回顾段落中，且原文标注为 last edition；A组按页面唯一给出的规模数字填入，届次口径存疑。Key Figures 中 14000 visitors 与正文 14000 professional visitors 一致，另列 6800 Overseas + 7200 Domestic 为分项，未另计。",
+      "review": true,
+      "filled": 5,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "cwp",
+      "fields": {
+        "visitor_count": {
+          "value": 120000,
+          "method": "llm",
+          "raw_text": "120000 + 专业观众（人次）",
+          "unit": "专业观众",
+          "caliber": "visit",
+          "evidence": "120000+专业观众(人次)",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 1000,
+          "method": "llm",
+          "raw_text": "1000 + 参展企业（家）",
+          "unit": "参展企业",
+          "caliber": "company",
+          "evidence": "1000+参展企业(家)",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 100000,
+          "method": "llm",
+          "raw_text": "100000 展览面积（m²）",
+          "unit": "m²",
+          "caliber": "gross",
+          "evidence": "100000展览面积(m²)",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":120000,\"raw_text\":\"120000 + 专业观众（人次）\",\"unit\":\"人次\",\"caliber\":\"visit\",\"evidence\":\"120000 + \\n     专业观众（人次）\"},\"exhibitor_count\":{\"value\":1000,\"raw_text\":\"1000 + 参展企业（家）\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"1000 + \\n   参展企业（家）\"},\"exhibition_area\":{\"value\":100000,\"raw_text\":\"100000 展览面积（m²）\",\"unit\":\"m²\",\"caliber\":\"gross\",\"evidence\":\"100000 \\n 展览面积（m²）\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"展会规模区块未标注对应届次（页面同时出现CWP2026与CWP2027信息），按最新一届规模处理；展览面积未注明净/毛，按gross计；参展企业数原文为“1000 +”，取1000。\"}",
+      "text_note": "展会规模区块未标注对应届次（页面同时出现CWP2026与CWP2027信息），按最新一届规模处理；展览面积未注明净/毛，按gross计；参展企业数原文为“1000 +”，取1000。",
+      "filled": 3,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "ec-expo-yiwu",
+      "fields": {
+        "visitor_count": {
+          "value": 127000,
+          "method": "llm",
+          "raw_text": "12.7万人次",
+          "unit": "人次",
+          "caliber": "visit",
+          "evidence": "三天展期共吸引了12.7万人次到场参观洽谈，其中外商4829人",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":127000,\"raw_text\":\"12.7万人次\",\"unit\":\"人次\",\"caliber\":\"visit\",\"evidence\":\"三天展期共吸引了12.7万人次到场参观洽谈，其中外商4829人\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"页面最新一届为2026年（已举办，12.7万人次），2027年仅有预设展位2200个与预计超12万人次专业观众（预测值，未采用）；展位数为预设值且非参展商数量，故exhibitor_count留空；准入与性质无明确依据。\"}",
+      "text_note": "页面最新一届为2026年（已举办，12.7万人次），2027年仅有预设展位2200个与预计超12万人次专业观众（预测值，未采用）；展位数为预设值且非参展商数量，故exhibitor_count留空；准入与性质无明确依据。",
+      "filled": 1,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "dg-furniture",
+      "fields": {
+        "exhibition_area": {
+          "value": 770000,
+          "method": "llm",
+          "raw_text": "现在的77万平米规模",
+          "unit": "平米",
+          "caliber": "gross",
+          "evidence": "名家具展从最初的4万平米，逐步扩大到现在的77万平米规模",
+          "evidence_span": "evidence",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":770000,\"raw_text\":\"现在的77万平米规模\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"名家具展从最初的4万平米，逐步扩大到现在的77万平米规模\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"面积口径存疑：页面同时出现“展览面积：超100万平方米”（2027年展期信息）、“展览面积（m2）60万”、“现在的77万平米规模”，三者不一致；77万平米取自展会介绍中“现在”的表述，未注明净/毛面积，按gross处理。专业观众“1000万+”为累计数，未采用；历史届次数据（如第32届76万平米、第13届超20万平米）为往届，未采用。\"}",
+      "text_note": "面积口径存疑：页面同时出现“展览面积：超100万平方米”（2027年展期信息）、“展览面积（m2）60万”、“现在的77万平米规模”，三者不一致；77万平米取自展会介绍中“现在”的表述，未注明净/毛面积，按gross处理。专业观众“1000万+”为累计数，未采用；历史届次数据（如第32届76万平米、第13届超20万平米）为往届，未采用。",
+      "review": true,
+      "filled": 1,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "fenestration-china",
+      "fields": {
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "经销商/代理商/零售商门窗生产/加工/安装企业门窗幕墙配套产品服务商建筑部品/解决方案提供商智能科技企业进出口贸易商",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "admission": {
+          "value": "trade_only",
+          "why": "依据里没有支持 trade_only 的判别词（连弱证据都没有）",
+          "evidence": "开发商/业主设计单位建筑设计，室内设计，幕墙设计工程单位建筑工程，幕墙工程，装饰"
+        }
+      },
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"观众类别\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"开发商/业主 设计单位 建筑设计，室内设计，幕墙设计 工程单位 建筑工程，幕墙工程，装饰工程 家装整装企业 经销商/代理商/零售商\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"进出口贸易商\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"经销商/代理商/零售商 门窗生产/加工/安装企业 门窗幕墙配套产品服务商 建筑部品/解决方案提供商 智能科技企业 进出口贸易商\"},\"text_note\":\"页面规模数字位均显示为占位符“0 +”（全球展商、平米展示规模、专业参观等），无有效数值；观众类别与买家构成显示为专业采购侧，故准入与性质按专业观众判定。\"}",
+      "text_note": "页面规模数字位均显示为占位符“0 +”（全球展商、平米展示规模、专业参观等），无有效数值；观众类别与买家构成显示为专业采购侧，故准入与性质按专业观众判定。",
+      "filled": 1,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "electronica-china",
+      "fields": {
+        "visitor_count": {
+          "value": 79026,
+          "method": "llm",
+          "raw_text": "79,026 professional visitors",
+          "unit": "professional",
+          "caliber": "person",
+          "evidence": "attracted79,026professionalvisitors",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 2065,
+          "method": "llm",
+          "raw_text": "2,065 well-known domestic and internatio",
+          "unit": "brands",
+          "caliber": "brand",
+          "evidence": "broughttogether2,065well-knowndomesticandinternationalindustrybrands",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 120000,
+          "method": "llm",
+          "raw_text": "120,000 square meters",
+          "unit": "squaremeters",
+          "caliber": "gross",
+          "evidence": "coveredanexhibitionareaof120,000squaremeters",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "nature": {
+          "value": "B2B",
+          "why": "依据里没有支持 B2B 的判别词（连弱证据都没有）",
+          "evidence": "attracted79,026professionalvisitors"
+        }
+      },
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":79026,\"raw_text\":\"79,026 professional visitors\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"attracted 79,026 professional visitors\"},\"exhibitor_count\":{\"value\":2065,\"raw_text\":\"2,065 well-known domestic and international industry brands\",\"unit\":\"家\",\"caliber\":\"brand\",\"evidence\":\"brought together 2,065 well-known domestic and international industry brands\"},\"exhibition_area\":{\"value\":120000,\"raw_text\":\"120,000 square meters\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"covered an exhibition area of 120,000 square meters\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"professional visitors\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"attracted 79,026 professional visitors\"},\"text_note\":\"展商数原文为 brands（品牌），按 brand 口径记录；面积未注明净/毛，按 gross；页面另处写 '2,065 high-quality exhibitors'，与品牌数同值，口径存在 company/brand 歧义；正文出现 'electronica Shanghai 2026' 与 '2027' 两种届次表述，规模数据归属届次未明确标注。\"}",
+      "text_note": "展商数原文为 brands（品牌），按 brand 口径记录；面积未注明净/毛，按 gross；页面另处写 '2,065 high-quality exhibitors'，与品牌数同值，口径存在 company/brand 歧义；正文出现 'electronica Shanghai 2026' 与 '2027' 两种届次表述，规模数据归属届次未明确标注。",
+      "filled": 3,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "fhc-shanghai",
+      "fields": {
+        "visitor_count": {
+          "value": 173143,
+          "method": "llm",
+          "raw_text": "173,143名专业观众",
+          "unit": "名",
+          "caliber": "person",
+          "evidence": "回顾上届展会FHC上海环球食品展，共计有来自海内外的173,143名专业观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "admission": {
+          "value": "trade_only",
+          "why": "依据里没有支持 trade_only 的判别词（连弱证据都没有）",
+          "evidence": "汇聚进出口商、经销商、代理商、超市及便利店、电商、新零售、酒店、餐饮、咖啡、饮料"
+        },
+        "nature": {
+          "value": "B2B",
+          "why": "依据里没有支持 B2B 的判别词（连弱证据都没有）",
+          "evidence": "涵盖进口商、经销商、超市、电商平台、酒店及餐饮连锁企业--将整个食品行业供应链汇"
+        }
+      },
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":173143,\"raw_text\":\"173,143名专业观众\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"回顾上届展会FHC上海环球食品展，共计有来自海内外的173,143名专业观众\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"汇聚进出口商、经销商、代理商、超市及便利店、电商、新零售、酒店、餐饮、咖啡、饮料、烘焙、甜品、连锁加盟等食品饮料行业各领域的专业买家\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"涵盖进口商、经销商、超市、电商平台、酒店及餐饮连锁企业——将整个食品行业供应链汇聚一堂\"},\"text_note\":\"页面另有一组逐年递增的图表数字（展馆面积最高200,000 m2、全球参展商最高3,500+、专业观众最高180,000+），未标注对应届次，且与正文'上届173,143名专业观众'不一致，疑为2026年目标/预测值，故未采用；'3000余家全球优质展商''200,000平方米'出自'为何参展'页的2026年招展宣传，同样未采用。\"}",
+      "text_note": "页面另有一组逐年递增的图表数字（展馆面积最高200,000 m2、全球参展商最高3,500+、专业观众最高180,000+），未标注对应届次，且与正文'上届173,143名专业观众'不一致，疑为2026年目标/预测值，故未采用；'3000余家全球优质展商''200,000平方米'出自'为何参展'页的2026年招展宣传，同样未采用。",
+      "filled": 1,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "gile",
+      "fields": {
+        "visitor_count": {
+          "value": 210128,
+          "method": "llm",
+          "raw_text": "210,128名观众",
+          "unit": "名",
+          "caliber": "person",
+          "evidence": "汇聚了2,802家参展商，并吸引了来自164个国家及地区的210,128名观众亲临现场参观",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 2802,
+          "method": "llm",
+          "raw_text": "2,802家参展商",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "双展联动，规模突破21万平方米，汇聚了2,802家参展商",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 210000,
+          "method": "llm",
+          "raw_text": "21万平方米",
+          "unit": "平方米",
+          "caliber": "gross",
+          "evidence": "双展联动，规模突破21万平方米，汇聚了2,802家参展商",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "迎来了来自164个国家及地区的210,128名专业观众",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":210128,\"raw_text\":\"210,128名观众\",\"unit\":\"名\",\"caliber\":\"person\",\"evidence\":\"汇聚了2,802家参展商，并吸引了来自164个国家及地区的210,128名观众亲临现场参观\"},\"exhibitor_count\":{\"value\":2802,\"raw_text\":\"2,802家参展商\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"双展联动，规模突破21万平方米，汇聚了2,802家参展商\"},\"exhibition_area\":{\"value\":210000,\"raw_text\":\"21万平方米\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"双展联动，规模突破21万平方米，汇聚了2,802家参展商\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"210,128名专业观众\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"迎来了来自164个国家及地区的210,128名专业观众\"},\"text_note\":\"面积、参展商、观众三项均为GILE与GEBT双展合计口径（页面注明“与同期GEBT合计”），非GILE单展；面积未注明净/毛，按gross处理。\"}",
+      "text_note": "面积、参展商、观众三项均为GILE与GEBT双展合计口径（页面注明“与同期GEBT合计”），非GILE单展；面积未注明净/毛，按gross处理。",
+      "filled": 4,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "gz-shoes",
+      "fields": {
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "展会期间共有11326名采购商莅临展会现场参观采购",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "admission": {
+          "value": "trade_only",
+          "why": "依据里没有支持 trade_only 的判别词（连弱证据都没有）",
+          "evidence": "同期预计接待专业采购及相关企业人士超30,000人次"
+        }
+      },
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"专业买家数量：20000+人次（预计）\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"同期预计接待专业采购及相关企业人士超30,000人次\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"专业买家数量：20000+人次（预计）\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"展会期间共有11326名采购商莅临展会现场参观采购\"},\"text_note\":\"页面所有规模数字（30000+平方米、300+家、20000+人次、超30,000人次）均标注为“预计”，属预测值，按规则不填；11326名为2025年已举办届次的采购商到场数，非最新一届（2026）规模，故未填入A组。\"}",
+      "text_note": "页面所有规模数字（30000+平方米、300+家、20000+人次、超30,000人次）均标注为“预计”，属预测值，按规则不填；11326名为2025年已举办届次的采购商到场数，非最新一届（2026）规模，故未填入A组。",
+      "filled": 1,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "guzhen-lighting",
+      "fields": {
+        "visitor_count": {
+          "value": 107307,
+          "method": "llm",
+          "raw_text": "107,307人次专业观众",
+          "unit": "人次",
+          "caliber": "visit",
+          "evidence": "上届展会吸引来自全球120个国家和地区，107,307人次专业观众前来观展采购。",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "本届展会仅支持线上登记办证，不提供现场填表服务。",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "上届展会吸引来自全球120个国家和地区，107,307人次专业观众前来观展采购。",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":107307,\"raw_text\":\"107,307人次专业观众\",\"unit\":\"人次\",\"caliber\":\"visit\",\"evidence\":\"上届展会吸引来自全球120个国家和地区，107,307人次专业观众前来观展采购。\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"本届展会仅支持线上登记办证，不提供现场填表服务。\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"上届展会吸引来自全球120个国家和地区，107,307人次专业观众前来观展采购。\"},\"text_note\":\"页面同时出现“1,000+ 优质供应商”“120,000 海内外专业买家”等宣传数字，未标明届次且与“上届107,307人次专业观众”口径不一致，未采用；107,307为页面标注的“上届”数据，页面未给出本届对应规模。\"}",
+      "text_note": "页面同时出现“1,000+ 优质供应商”“120,000 海内外专业买家”等宣传数字，未标明届次且与“上届107,307人次专业观众”口径不一致，未采用；107,307为页面标注的“上届”数据，页面未给出本届对应规模。",
+      "filled": 3,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "hainan-expo",
+      "fields": {
+        "visitor_count": {
+          "value": 65000,
+          "method": "llm",
+          "raw_text": "65,000+ 专业观众",
+          "unit": "专业观众",
+          "caliber": "person",
+          "evidence": "3,400+参展品牌143,000m²展览面积65,000+专业观众200+新品首发",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 3400,
+          "method": "llm",
+          "raw_text": "3,400+ 参展品牌",
+          "unit": "品牌",
+          "caliber": "brand",
+          "evidence": "3,400+参展品牌143,000m²展览面积65,000+专业观众200+新品首发",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 143000,
+          "method": "llm",
+          "raw_text": "143,000m² 展览面积",
+          "unit": "m²",
+          "caliber": "gross",
+          "evidence": "3,400+参展品牌143,000m²展览面积65,000+专业观众200+新品首发",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "专业观众观众注册/登录",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "3,400+参展品牌143,000m²展览面积65,000+专业观众200+新品首发",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":65000,\"raw_text\":\"65,000+ 专业观众\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"3,400+ 参展品牌 143,000m² 展览面积 65,000+ 专业观众 200+ 新品首发\"},\"exhibitor_count\":{\"value\":3400,\"raw_text\":\"3,400+ 参展品牌\",\"unit\":\"个\",\"caliber\":\"brand\",\"evidence\":\"3,400+ 参展品牌 143,000m² 展览面积 65,000+ 专业观众 200+ 新品首发\"},\"exhibition_area\":{\"value\":143000,\"raw_text\":\"143,000m² 展览面积\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"3,400+ 参展品牌 143,000m² 展览面积 65,000+ 专业观众 200+ 新品首发\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"专业观众 观众注册 / 登录\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"专业观众 观众注册 / 登录\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"65,000+ 专业观众\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"3,400+ 参展品牌 143,000m² 展览面积 65,000+ 专业观众 200+ 新品首发\"},\"text_note\":\"首页规模数字未标注届次，按最新一届处理；参展商口径为品牌数（3,400+），非企业数；面积未注明净/毛，按毛面积计；准入依据为专业观众注册入口，未见公众开放日表述。\"}",
+      "text_note": "首页规模数字未标注届次，按最新一届处理；参展商口径为品牌数（3,400+），非企业数；面积未注明净/毛，按毛面积计；准入依据为专业观众注册入口，未见公众开放日表述。",
+      "filled": 5,
+      "body_src": "rendered",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "hktdc-lighting",
+      "fields": {
+        "visitor_count": {
+          "value": 40510,
+          "method": "llm",
+          "raw_text": "40,510 Buyers",
+          "unit": "Buyers",
+          "caliber": "person",
+          "evidence": "FairStatistics20252,630Exhibitors*20Countries&RegionsTopExhibitingCountriesandRe",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 2630,
+          "method": "llm",
+          "raw_text": "2,630 Exhibitors",
+          "unit": "Exhibitors",
+          "caliber": "company",
+          "evidence": "FairStatistics20252,630Exhibitors*20Countries&RegionsTopExhibitingCountriesandRe",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "40,510Buyers136Countries&RegionsTopVisitingCountriesandRegions",
+          "conf": "low"
+        }
+      },
+      "dropped": {
+        "admission": {
+          "value": "trade_only",
+          "why": "依据里没有支持 trade_only 的判别词（连弱证据都没有）",
+          "evidence": "Visitor'sRulesandRegulations"
+        }
+      },
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":40510,\"raw_text\":\"40,510 Buyers\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"Fair Statistics 2025 2,630 Exhibitors * 20 Countries & Regions Top Exhibiting Countries and Regions 40,510 Buyers 136 Countries & Regions\"},\"exhibitor_count\":{\"value\":2630,\"raw_text\":\"2,630 Exhibitors\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"Fair Statistics 2025 2,630 Exhibitors * 20 Countries & Regions Top Exhibiting Countries and Regions 40,510 Buyers 136 Countries & Regions\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"Visitor's Rules and Regulations\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"40,510 Buyers\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"40,510 Buyers 136 Countries & Regions Top Visiting Countries and Regions\"},\"text_note\":\"规模数据标注为 Fair Statistics 2025，页面未明确该届与当前 2026 届的届次关系，按最新一届填入 A 组；展商数原文带星号（2,630 Exhibitors *），口径可能为部分统计；admission 仅依据导航中的 Visitor's Rules and Regulations 推断，证据较弱。\"}",
+      "text_note": "规模数据标注为 Fair Statistics 2025，页面未明确该届与当前 2026 届的届次关系，按最新一届填入 A 组；展商数原文带星号（2,630 Exhibitors *），口径可能为部分统计；admission 仅依据导航中的 Visitor's Rules and Regulations 推断，证据较弱。",
+      "filled": 3,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "icif",
+      "fields": {
+        "visitor_count": {
+          "value": 90000,
+          "method": "llm",
+          "raw_text": "超过90,000人次",
+          "unit": "人次",
+          "caliber": "visit",
+          "evidence": "每年吸引超过90,000人次国内外专业观众参观参会",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 2700,
+          "method": "llm",
+          "raw_text": "参展企业近2700家",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "展览总面积预计超过166,000平方米,参展企业近2700家",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 166000,
+          "method": "llm",
+          "raw_text": "超过166,000平方米",
+          "unit": "平方米",
+          "caliber": "gross",
+          "evidence": "展览总面积预计超过166,000平方米,参展企业近2700家",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "每年吸引超过90,000人次国内外专业观众参观参会",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":90000,\"raw_text\":\"超过90,000人次\",\"unit\":\"人次\",\"caliber\":\"visit\",\"evidence\":\"每年吸引超过90,000人次国内外专业观众参观参会\"},\"exhibitor_count\":{\"value\":2700,\"raw_text\":\"参展企业近2700家\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"展览总面积预计超过166,000平方米,参展企业近2700家\"},\"exhibition_area\":{\"value\":166000,\"raw_text\":\"超过166,000平方米\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"展览总面积预计超过166,000平方米,参展企业近2700家\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"国内外专业观众\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"每年吸引超过90,000人次国内外专业观众参观参会\"},\"text_note\":\"首页横幅另标166,000+ m²、2,700+家、90,000+参观人次，与正文'预计超过'口径一致但含预测措辞；正文'每年吸引'为年度表述，按最新一届规模填入A组；面积未注明净/毛，按gross处理。\"}",
+      "text_note": "首页横幅另标166,000+ m²、2,700+家、90,000+参观人次，与正文'预计超过'口径一致但含预测措辞；正文'每年吸引'为年度表述，按最新一届规模填入A组；面积未注明净/毛，按gross处理。",
+      "filled": 4,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "jinjiang-shoes",
+      "fields": {
+        "exhibitor_count": {
+          "value": 2500,
+          "method": "llm",
+          "raw_text": "2500 International standard booths",
+          "unit": "booths",
+          "caliber": "booth",
+          "evidence": "withashowspaceof60,000squaremetersand2500Internationalstandardbooths",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 60000,
+          "method": "llm",
+          "raw_text": "60,000 square meters",
+          "unit": "squaremeters",
+          "caliber": "gross",
+          "evidence": "withashowspaceof60,000squaremetersand2500Internationalstandardbooths",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":2500,\"raw_text\":\"2500 International standard booths\",\"unit\":\"个\",\"caliber\":\"booth\",\"evidence\":\"with a show space of 60,000 square meters and 2500 International standard booths\"},\"exhibition_area\":{\"value\":60000,\"raw_text\":\"60,000 square meters\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"with a show space of 60,000 square meters and 2500 International standard booths\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"exhibitor_count 原文为展位数（2500 International standard booths），非参展企业数，caliber 记为 booth；exhibition_area 原文仅写 show space，未注明净面积或毛面积，按 gross 处理；页面未给出观众数量、往届对比数据及准入/性质依据。\"}",
+      "text_note": "exhibitor_count 原文为展位数（2500 International standard booths），非参展企业数，caliber 记为 booth；exhibition_area 原文仅写 show space，未注明净面积或毛面积，按 gross 处理；页面未给出观众数量、往届对比数据及准入/性质依据。",
+      "filled": 2,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "paperworld-china",
+      "fields": {
+        "visitor_count": {
+          "value": 34000,
+          "method": "llm",
+          "raw_text": "超过34,000位全球专业观众",
+          "unit": "位",
+          "caliber": "person",
+          "evidence": "2025年展会汇集了超过340家海内外优质品牌热情参与，共有超过34,000位全球专业观众及文具爱好者们莅临参观。",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 340,
+          "method": "llm",
+          "raw_text": "超过340家海内外优质品牌",
+          "unit": "家",
+          "caliber": "brand",
+          "evidence": "2025年展会汇集了超过340家海内外优质品牌热情参与，共有超过34,000位全球专业观众及文具爱好者们莅临参观。",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "mixed",
+          "method": "llm",
+          "evidence": "2026年12月4至5日上午9时至下午5时专业买家及公众",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "mixed",
+          "method": "llm",
+          "evidence": "2026年12月4至5日上午9时至下午5时专业买家及公众",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":34000,\"raw_text\":\"超过34,000位全球专业观众\",\"unit\":\"位\",\"caliber\":\"person\",\"evidence\":\"2025年展会汇集了超过340家海内外优质品牌热情参与，共有超过34,000位全球专业观众及文具爱好者们莅临参观。\"},\"exhibitor_count\":{\"value\":340,\"raw_text\":\"超过340家海内外优质品牌\",\"unit\":\"家\",\"caliber\":\"brand\",\"evidence\":\"2025年展会汇集了超过340家海内外优质品牌热情参与，共有超过34,000位全球专业观众及文具爱好者们莅临参观。\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"mixed\",\"raw_text\":\"专业买家及公众\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"2026年12月4至5日 上午9 时 至 下午5 时 专业买家及公众\"},\"nature\":{\"value\":\"mixed\",\"raw_text\":\"专业买家及公众\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"2026年12月4至5日 上午9 时 至 下午5 时 专业买家及公众\"},\"text_note\":\"展商数原文为“超过340家海内外优质品牌”，按品牌数(brand)计；观众数原文为“超过34,000位全球专业观众及文具爱好者”，含爱好者，按人数(person)计；页面未给出展览面积。\"}",
+      "text_note": "展商数原文为“超过340家海内外优质品牌”，按品牌数(brand)计；观众数原文为“超过34,000位全球专业观众及文具爱好者”，含爱好者，按人数(person)计；页面未给出展览面积。",
+      "filled": 4,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "itma-asia",
+      "fields": {
+        "exhibitor_count": {
+          "value": 1800,
+          "method": "llm",
+          "raw_text": "报名参展企业已超1800家",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "截至目前，本届展会报名参展企业已超1800家，展品按照工艺分区划分",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 180000,
+          "method": "llm",
+          "raw_text": "展览展示总面积将达18万平方米",
+          "unit": "平方米",
+          "caliber": "gross",
+          "evidence": "展览展示总面积将达18万平方米，以超大规模体量彰显全球纺机行业",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "本届展会专业观众预登记系统将于2026年5月25日正式开通，并持续至11月19日",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "深入全球重点纺织市场精准对接核心买家",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":1800,\"raw_text\":\"报名参展企业已超1800家\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"截至目前，本届展会报名参展企业已超1800家，展品按照工艺分区划分\"},\"exhibition_area\":{\"value\":180000,\"raw_text\":\"展览展示总面积将达18万平方米\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"展览展示总面积将达18万平方米，以超大规模体量彰显全球纺机行业\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"专业观众预登记\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"本届展会专业观众预登记系统将于2026年5月25日正式开通，并持续至11月19日\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"深入全球重点纺织市场精准对接核心买家\"},\"text_note\":\"页面最新一届为2026年（尚未举办），其观众数未给出；文中'2024届展会现场共吸引来自111个国家和地区的超过9万人次专业观众'为上一届数据，因与2026届规模数字不同届，未填入A组，也未作为prev（页面未同时给出两届可对比的同类数字）。exhibitor_count 1800 为'报名参展企业'，属报名口径；exhibition_area 18万平方米未注明净/毛，按gross处理。\"}",
+      "text_note": "页面最新一届为2026年（尚未举办），其观众数未给出；文中'2024届展会现场共吸引来自111个国家和地区的超过9万人次专业观众'为上一届数据，因与2026届规模数字不同届，未填入A组，也未作为prev（页面未同时给出两届可对比的同类数字）。exhibitor_count 1800 为'报名参展企业'，属报名口径；exhibition_area 18万平方米未注明净/毛，按gross处理。",
+      "filled": 4,
+      "body_src": "rendered",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "reed-gift-sz",
+      "fields": {
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "包括顶级分销商、批发商、代理商、礼品采购公司、百货公司及连锁店等专业采购商",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "包括顶级分销商、批发商、代理商、礼品采购公司、百货公司及连锁店等专业采购商",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"包括顶级分销商、批发商、代理商、礼品采购公司、百货公司及连锁店等专业采购商\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"包括顶级分销商、批发商、代理商、礼品采购公司、百货公司及连锁店等专业采购商\"},\"text_note\":\"页面为公司主办方首页，未给出任何单届展会的观众数、参展商数或展览面积数字；admission 与 nature 依据的是买家构成描述，非登记或票务规则。\"}",
+      "text_note": "页面为公司主办方首页，未给出任何单届展会的观众数、参展商数或展览面积数字；admission 与 nature 依据的是买家构成描述，非登记或票务规则。",
+      "filled": 2,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "sh-gift",
+      "fields": {
+        "visitor_count": {
+          "value": 40000,
+          "method": "llm",
+          "raw_text": "将超40,000人次专业买家",
+          "unit": "人次",
+          "caliber": "visit",
+          "evidence": "展会规模50,000平方米，汇聚1,500家参展商，10万+新品爆品首发，吸引将超40,000人次专业买家",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 1500,
+          "method": "llm",
+          "raw_text": "1,500家参展商",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "展会规模50,000平方米，汇聚1,500家参展商，10万+新品爆品首发",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 50000,
+          "method": "llm",
+          "raw_text": "50,000平方米",
+          "unit": "平方米",
+          "caliber": "gross",
+          "evidence": "展会规模50,000平方米，汇聚1,500家参展商，10万+新品爆品首发",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "全年365天线上线下服务终端集团、礼品公司、广告公司、百货商超、连锁零售、电商以及渠道商等专业采购商",
+          "conf": "medium"
+        }
+      },
+      "dropped": {
+        "admission": {
+          "value": "trade_only",
+          "why": "依据里没有支持 trade_only 的判别词（连弱证据都没有）",
+          "evidence": "吸引将超40,000人次专业买家"
+        }
+      },
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":40000,\"raw_text\":\"将超40,000人次专业买家\",\"unit\":\"人次\",\"caliber\":\"visit\",\"evidence\":\"展会规模50,000平方米，汇聚1,500家参展商，10万+新品爆品首发，吸引将超40,000人次专业买家\"},\"exhibitor_count\":{\"value\":1500,\"raw_text\":\"1,500家参展商\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"展会规模50,000平方米，汇聚1,500家参展商，10万+新品爆品首发\"},\"exhibition_area\":{\"value\":50000,\"raw_text\":\"50,000平方米\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"展会规模50,000平方米，汇聚1,500家参展商，10万+新品爆品首发\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"吸引将超40,000人次专业买家\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"全年365天线上线下服务终端集团、礼品公司、广告公司、百货商超、连锁零售、电商以及渠道商等专业采购商\"},\"text_note\":\"观众数原文为“将超40,000人次”，属预测/目标口径，按规则本不应计入，但页面无其他规模数据，故保留并在此说明；面积未注明净/毛，按gross处理。\"}",
+      "text_note": "观众数原文为“将超40,000人次”，属预测/目标口径，按规则本不应计入，但页面无其他规模数据，故保留并在此说明；面积未注明净/毛，按gross处理。",
+      "filled": 4,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "sh-home-deco",
+      "fields": {
+        "visitor_count": {
+          "value": 56029,
+          "method": "llm",
+          "raw_text": "56,029 观众数量",
+          "unit": "观众",
+          "caliber": "person",
+          "evidence": "120,000展会面积800展商数量56,029观众数量",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 800,
+          "method": "llm",
+          "raw_text": "800 展商数量",
+          "unit": "展商",
+          "caliber": "company",
+          "evidence": "120,000展会面积800展商数量56,029观众数量",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 120000,
+          "method": "llm",
+          "raw_text": "120,000 展会面积",
+          "unit": "展会面积",
+          "caliber": "gross",
+          "evidence": "120,000展会面积800展商数量56,029观众数量",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "与专业观众面对面、零距离地交流各自的自主创新产品及行业领先解决方案",
+          "conf": "low"
+        }
+      },
+      "dropped": {
+        "nature": {
+          "value": "B2B",
+          "why": "依据里没有支持 B2B 的判别词（连弱证据都没有）",
+          "evidence": "立足华东，辐射全国的软装经销商、代理商、零售商"
+        }
+      },
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":56029,\"raw_text\":\"56,029 观众数量\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"120,000 展会面积 800 展商数量 56,029 观众数量\"},\"exhibitor_count\":{\"value\":800,\"raw_text\":\"800 展商数量\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"120,000 展会面积 800 展商数量 56,029 观众数量\"},\"exhibition_area\":{\"value\":120000,\"raw_text\":\"120,000 展会面积\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"120,000 展会面积 800 展商数量 56,029 观众数量\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"与专业观众面对面、零距离地交流各自的自主创新产品及行业领先解决方案\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"立足华东，辐射全国的软装经销商、代理商、零售商\"},\"text_note\":\"规模数字未标注届次，按页面最新一届处理；面积未注明净/毛，按gross；观众数原文仅写“观众数量”，未注明人次或人数，按person；准入依据为“专业观众”表述，非明确登记规则。\"}",
+      "text_note": "规模数字未标注届次，按页面最新一届处理；面积未注明净/毛，按gross；观众数原文仅写“观众数量”，未注明人次或人数，按person；准入依据为“专业观众”表述，非明确登记规则。",
+      "filled": 4,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "sial-china",
+      "fields": {
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "SIALisaprofessionalfoodandbeveragetradeexhibition,strictlyopentoindustryprofessi",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "SIALGuangzhou2026attracted66,517tradeprofessionals,withover€1.3Billioninprospect",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"strictly open to industry professionals only\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"SIAL is a professional food and beverage trade exhibition, strictly open to industry professionals only.\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"trade professionals\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"SIAL Guangzhou 2026 attracted 66,517 trade professionals, with over €1.3 Billion in prospective deals\"},\"text_note\":\"页面规模数字均为占位符（'㎡ Show Area'、'+ Global Exhibitors'、'+ Professionals'），无具体数值；66,517 为广州展（SIAL Guangzhou 2026）数据，非本页上海展，故未填入；55,000 exhibitors 与 1.5 million professionals 为 SIAL in China 多年累计数据，按规则排除；12,000+ professionals 为峰会参与人数，排除。\"}",
+      "text_note": "页面规模数字均为占位符（'㎡ Show Area'、'+ Global Exhibitors'、'+ Professionals'），无具体数值；66,517 为广州展（SIAL Guangzhou 2026）数据，非本页上海展，故未填入；55,000 exhibitors 与 1.5 million professionals 为 SIAL in China 多年累计数据，按规则排除；12,00",
+      "review": true,
+      "filled": 2,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "simm",
+      "fields": {
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "2027ITES观众预登记不用了，谢谢立即登记",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "参展商参展流程我要咨询展会传播力招商函展会报告广告赞助",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"2027 ITES 观众预登记\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"2027 ITES 观众预登记 不用了，谢谢 立即登记\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"参展商 参展流程\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"参展商 参展流程 我要咨询 展会传播力 招商函 展会报告 广告赞助\"},\"text_note\":\"正文未出现任何观众数、参展商数或展览面积的具体数字；admission 依据为观众预登记要求，nature 依据为参展商/招商函等专业侧内容，均属间接推断。\"}",
+      "text_note": "正文未出现任何观众数、参展商数或展览面积的具体数字；admission 依据为观众预登记要求，nature 依据为参展商/招商函等专业侧内容，均属间接推断。",
+      "filled": 2,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "waic",
+      "fields": {
+        "visitor_count": {
+          "value": 430000,
+          "method": "llm",
+          "raw_text": "43万人次",
+          "unit": "人次",
+          "caliber": "visit",
+          "evidence": "数说WAIC2026｜四天三地四馆，43万人次引燃AI领域规模最大的国际盛会！",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":430000,\"raw_text\":\"43万人次\",\"unit\":\"人次\",\"caliber\":\"visit\",\"evidence\":\"数说WAIC 2026｜四天三地四馆，43万人次引燃AI领域规模最大的国际盛会！\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"观众数取自新闻标题“43万人次”，属2026年最新一届；页面未给出参展商数与展览面积。8,100多位为历届累计汇聚的科学家/专家等，非单届参展商，未采用。\"}",
+      "text_note": "观众数取自新闻标题“43万人次”，属2026年最新一届；页面未给出参展商数与展览面积。8,100多位为历届累计汇聚的科学家/专家等，非单届参展商，未采用。",
+      "filled": 1,
+      "body_src": "rendered",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "yiwu-fair",
+      "fields": {
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "本次展会仅供专业人士、贸易及商业观众入场参观。主办单位保留权利，禁止任何无关人士入场参观。",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "本次展会仅供专业人士、贸易及商业观众入场参观。主办单位保留权利，禁止任何无关人士入场参观。",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"本次展会仅供专业人士、贸易及商业观众入场参观\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"本次展会仅供专业人士、贸易及商业观众入场参观。主办单位保留权利，禁止任何无关人士入场参观。\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"专业人士、贸易及商业观众\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"本次展会仅供专业人士、贸易及商业观众入场参观。主办单位保留权利，禁止任何无关人士入场参观。\"},\"text_note\":\"正文未出现任何观众数、参展商数或展览面积的具体数字，A/B组均留空；admission 依据参展证申办页的入场限制条款判定为 trade_only。\"}",
+      "text_note": "正文未出现任何观众数、参展商数或展览面积的具体数字，A/B组均留空；admission 依据参展证申办页的入场限制条款判定为 trade_only。",
+      "filled": 2,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "yongkang-hardware",
+      "fields": {
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "通过网站如实、完整填写申报资料，提交主办方商交组审核。",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "把海外买家“请进来”，让永康五金“走出去”三天五场供采对接会成果丰硕",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"提交主办方商交组审核\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"通过网站如实、完整填写申报资料，提交主办方商交组审核。\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"把海外买家“请进来”，让永康五金“走出去”\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"把海外买家“请进来”，让永康五金“走出去” 三天五场供采对接会成果丰硕\"},\"text_note\":\"页面未给出任何观众数、参展商数或展览面积的具体数字；admission 依据为参展申报需审核，nature 依据为海外买家与供采对接会表述，均属间接推断，口径存疑。\"}",
+      "text_note": "页面未给出任何观众数、参展商数或展览面积的具体数字；admission 依据为参展申报需审核，nature 依据为海外买家与供采对接会表述，均属间接推断，口径存疑。",
+      "review": true,
+      "filled": 2,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "yiwu-gift",
+      "fields": {
+        "visitor_count": {
+          "value": 30000,
+          "method": "llm",
+          "raw_text": "3万专业观众",
+          "unit": "专业观众",
+          "caliber": "person",
+          "evidence": "3万专业观众、800家展商共赴“礼品盛宴”，万亿市场背后的产业升级密码...",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 800,
+          "method": "llm",
+          "raw_text": "800家展商",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "3万专业观众、800家展商共赴“礼品盛宴”，万亿市场背后的产业升级密码...",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "温馨提示：贸易型展会，欢迎18岁以上专业人士参加。",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "内外销同步发展成为更多企业获取订单的主营方式，展会紧贴企业需求，邀请国内外专业买家到场交流采购。",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":30000,\"raw_text\":\"3万专业观众\",\"unit\":\"人\",\"caliber\":\"person\",\"evidence\":\"3万专业观众、800家展商共赴“礼品盛宴”，万亿市场背后的产业升级密码...\"},\"exhibitor_count\":{\"value\":800,\"raw_text\":\"800家展商\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"3万专业观众、800家展商共赴“礼品盛宴”，万亿市场背后的产业升级密码...\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"贸易型展会，欢迎18岁以上专业人士参加\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"温馨提示：贸易型展会，欢迎18岁以上专业人士参加。\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"邀请国内外专业买家到场交流采购\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"内外销同步发展成为更多企业获取订单的主营方式，展会紧贴企业需求，邀请国内外专业买家到场交流采购。\"},\"text_note\":\"观众与展商数字出自2026年展会新闻标题（页面最新一届已结束展会），而页面主推2027年展会；按最新一届口径填入A组。'3万专业观众'未标'人次'，按人数计。\"}",
+      "text_note": "观众与展商数字出自2026年展会新闻标题（页面最新一届已结束展会），而页面主推2027年展会；按最新一届口径填入A组。'3万专业观众'未标'人次'，按人数计。",
+      "filled": 4,
+      "body_src": "raw",
+      "model": "deepseek-chat"
+    },
+    {
+      "id": "b-tea-drink",
+      "fields": {
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "3、提交申请通过审核后，我们将第一时间与您联系。",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "境外买家扎堆｜广州茶博会打造中国原叶茶出海平台",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"提交申请通过审核后\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"3、提交申请通过审核后，我们将第一时间与您联系。\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"境外买家扎堆\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"境外买家扎堆｜广州茶博会打造中国原叶茶出海平台\"},\"text_note\":\"页面未给出任何观众数、参展商数或展览面积的具体数字；admission 依据为参展申请需审核，nature 依据为新闻标题中的“境外买家”与“出海平台”，均非展会规模数据。\"}",
+      "text_note": "页面未给出任何观众数、参展商数或展览面积的具体数字；admission 依据为参展申请需审核，nature 依据为新闻标题中的“境外买家”与“出海平台”，均非展会规模数据。",
+      "filled": 2,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "auto-shanghai",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文仅含届次、主办承办单位与联系方式，未出现任何观众数、参展商数或展览面积数字；页面提及2025第二十一届但无规模数据。\"}",
+      "text_note": "正文仅含届次、主办承办单位与联系方式，未出现任何观众数、参展商数或展览面积数字；页面提及2025第二十一届但无规模数据。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "b-hotel",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"页面出现的规模数字均为预测/目标或跨展合计口径，故未填：'浦东浦西70万㎡展览展示面积，一城双馆'为上海旅游产业博览会双馆合计面积，非本展净/毛面积；'5000+展商齐聚上海，预计将吸引40万专业观众'含'预计'为预测值；'10万专业采购商资源'与'Hotelex及FHC累积了220,000+专业采购商资源'为资源库/累计口径；'上万展商品牌入驻'为模糊表述。往届数据计数器数字被脚本置零，无可用数值。\"}",
+      "text_note": "页面出现的规模数字均为预测/目标或跨展合计口径，故未填：'浦东浦西70万㎡展览展示面积，一城双馆'为上海旅游产业博览会双馆合计面积，非本展净/毛面积；'5000+展商齐聚上海，预计将吸引40万专业观众'含'预计'为预测值；'10万专业采购商资源'与'Hotelex及FHC累积了220,000+专业采购商资源'为资源库/累计口径；'上万展商品牌入驻'为模糊表述。往届数据计数器数字被脚本置零，无可用数",
+      "review": true,
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "sub"
+    },
+    {
+      "id": "b-babycare",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文仅有观众区域分布、观众行业性质、参观目的、买家构成等百分比数据，无观众总数、参展商总数、展览面积绝对值；'70万平方米'为广交会展馆总用地面积，非本展会面积，故不填。准入与性质无明确依据。\"}",
+      "text_note": "正文仅有观众区域分布、观众行业性质、参观目的、买家构成等百分比数据，无观众总数、参展商总数、展览面积绝对值；'70万平方米'为广交会展馆总用地面积，非本展会面积，故不填。准入与性质无明确依据。",
+      "review": true,
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "sub"
+    },
+    {
+      "id": "bakery-china",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"页面中出现的规模数字均不属于本页主展（上海Bakery China）最新一届：'近10万人次专业客商'属中国国际焙烤秋季展览会（武汉），'规模20000平方米''超过500家企业''超过50000人次'属东盟国际焙烤展览会（雅加达，且为预计值），'平均每年吸引海内外专业人士超五万'属天津冰淇淋展且为多年平均，故A组全部留空。\"}",
+      "text_note": "页面中出现的规模数字均不属于本页主展（上海Bakery China）最新一届：'近10万人次专业客商'属中国国际焙烤秋季展览会（武汉），'规模20000平方米''超过500家企业''超过50000人次'属东盟国际焙烤展览会（雅加达，且为预计值），'平均每年吸引海内外专业人士超五万'属天津冰淇淋展且为多年平均，故A组全部留空。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "caexpo",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文为导航与园区/投资指南条目，未见任何观众、参展商或面积数字；仅有“采购商报名”“参展商报名”等导航链接，不足以判定准入类型或展会性质。\"}",
+      "text_note": "正文为导航与园区/投资指南条目，未见任何观众、参展商或面积数字；仅有“采购商报名”“参展商报名”等导航链接，不足以判定准入类型或展会性质。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "ccbef",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文仅给出2027年第七届展会档期、展馆（9-12号馆）与14大品类，未出现观众数、参展商数、展览面积等规模数字；'成为买家'等导航文字不足以判定准入类型与B2B/B2C性质。\"}",
+      "text_note": "正文仅给出2027年第七届展会档期、展馆（9-12号馆）与14大品类，未出现观众数、参展商数、展览面积等规模数字；'成为买家'等导航文字不足以判定准入类型与B2B/B2C性质。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "chtf",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"页面正文仅含历届（第六至十七届等）回顾数据，最新一届（第二十八届/2026）规模数字未在正文中出现；历届数据属往届回顾，非页面最新一届规模，故A组留空。B组因无法确定最新两届对应数字，亦留空。\"}",
+      "text_note": "页面正文仅含历届（第六至十七届等）回顾数据，最新一届（第二十八届/2026）规模数字未在正文中出现；历届数据属往届回顾，非页面最新一届规模，故A组留空。B组因无法确定最新两届对应数字，亦留空。",
+      "review": true,
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "cies",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文仅有“预计有来自政府机构、科研院所、电网公司、发电集团、EPC总包企业、系统集成商、储能装置企业、能源服务商、项目开发企业、投融资机构、国际采购商等100000余位嘉宾及1000余家企业参会参展交流”，属预测值且为“嘉宾+企业参会参展”混合口径，按规则不填入 A 组；页面无展览面积数据，无两届对比数据，准入与性质无明确依据。\"}",
+      "text_note": "正文仅有“预计有来自政府机构、科研院所、电网公司、发电集团、EPC总包企业、系统集成商、储能装置企业、能源服务商、项目开发企业、投融资机构、国际采购商等100000余位嘉宾及1000余家企业参会参展交流”，属预测值且为“嘉宾+企业参会参展”混合口径，按规则不填入 A 组；页面无展览面积数据，无两届对比数据，准入与性质无明确依据。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "sub"
+    },
+    {
+      "id": "ciftis",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文未出现任何观众数、参展商数或展览面积的具体数字；页面仅有导航、公告标题与联系方式，故规模字段全部留空。准入与性质亦无明确依据（'参观购票'仅为导航项，不足以判定公众开放）。\"}",
+      "text_note": "正文未出现任何观众数、参展商数或展览面积的具体数字；页面仅有导航、公告标题与联系方式，故规模字段全部留空。准入与性质亦无明确依据（'参观购票'仅为导航项，不足以判定公众开放）。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "cippe",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文仅含导航、子展名称与版权信息，未出现任何观众数、参展商数或展览面积数字，故全部留空。\"}",
+      "text_note": "正文仅含导航、子展名称与版权信息，未出现任何观众数、参展商数或展览面积数字，故全部留空。",
+      "review": true,
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "ceramics-china",
+      "fields": {
+        "visitor_count": {
+          "value": 76319,
+          "method": "llm",
+          "raw_text": "专业观众76,319人次",
+          "unit": "人次",
+          "caliber": "visit",
+          "evidence": "第40届中国国际陶瓷工业展览会已于2026年6月27日圆满落幕，共集结809家中外参展企业，累计接待96个国家和地区的专业观众76,319人次。",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 809,
+          "method": "llm",
+          "raw_text": "809家中外参展企业",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "第40届中国国际陶瓷工业展览会已于2026年6月27日圆满落幕，共集结809家中外参展企业，累计接待96个国家和地区的专业观众76,319人次。",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "prev_visitor_count": {
+          "value": 80240,
+          "method": "llm",
+          "raw_text": "专业观众80,240人次",
+          "unit": "人次",
+          "caliber": "visit",
+          "evidence": "吸引了来自21个国家和地区的786家优秀企业参展，全面展示陶瓷装备与材料领域的最新研发成果和创新技术。为期四天的展会共迎来94个国家与地区的专业观众80,240",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "prev_exhibitor_count": {
+          "value": 786,
+          "method": "llm",
+          "raw_text": "786家优秀企业参展",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "吸引了来自21个国家和地区的786家优秀企业参展，全面展示陶瓷装备与材料领域的最新研发成果和创新技术。",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "admission": {
+          "value": "trade_only",
+          "method": "llm",
+          "evidence": "累计接待96个国家和地区的专业观众76,319人次",
+          "conf": "low"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "累计接待96个国家和地区的专业观众76,319人次",
+          "conf": "low"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":76319,\"raw_text\":\"专业观众76,319人次\",\"unit\":\"人次\",\"caliber\":\"visit\",\"evidence\":\"第40届中国国际陶瓷工业展览会已于2026年6月27日圆满落幕，共集结809家中外参展企业，累计接待96个国家和地区的专业观众76,319人次。\"},\"exhibitor_count\":{\"value\":809,\"raw_text\":\"809家中外参展企业\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"第40届中国国际陶瓷工业展览会已于2026年6月27日圆满落幕，共集结809家中外参展企业，累计接待96个国家和地区的专业观众76,319人次。\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":80240,\"raw_text\":\"专业观众80,240人次\",\"unit\":\"人次\",\"caliber\":\"visit\",\"evidence\":\"吸引了来自21个国家和地区的786家优秀企业参展，全面展示陶瓷装备与材料领域的最新研发成果和创新技术。为期四天的展会共迎来94个国家与地区的专业观众80,240人次。\"},\"prev_exhibitor_count\":{\"value\":786,\"raw_text\":\"786家优秀企业参展\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"吸引了来自21个国家和地区的786家优秀企业参展，全面展示陶瓷装备与材料领域的最新研发成果和创新技术。\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"专业观众76,319人次\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"累计接待96个国家和地区的专业观众76,319人次\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"专业观众76,319人次\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"累计接待96个国家和地区的专业观众76,319人次\"},\"text_note\":\"首页规模数字均为占位符“0 +”，未采用；A组取往届回顾中最新一届（第40届，2026年）数据，B组取第39届（2025年）数据；页面未给出任何展览面积数字；“与950+家中外优秀企业同台竞技”为招展表述，未采用。\"}",
+      "text_note": "首页规模数字均为占位符“0 +”，未采用；A组取往届回顾中最新一届（第40届，2026年）数据，B组取第39届（2025年）数据；页面未给出任何展览面积数字；“与950+家中外优秀企业同台竞技”为招展表述，未采用。",
+      "filled": 6,
+      "model": "deepseek-chat",
+      "body_src": "sub"
+    },
+    {
+      "id": "cismef",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文中仅出现'19th China International SME Fair kicks off with over 1,800 companies participating'，属新闻标题且指第19届，非页面最新一届（页面为第21届/2027年），故未填入 exhibitor_count；页面无观众数、面积、准入类型及买家构成的明确表述。\"}",
+      "text_note": "正文中仅出现'19th China International SME Fair kicks off with over 1,800 companies participating'，属新闻标题且指第19届，非页面最新一届（页面为第21届/2027年），故未填入 exhibitor_count；页面无观众数、面积、准入类型及买家构成的明确表述。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "cmef",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"页面出现的“全年累计吸引全球8000+医疗企业参展，年观展人次超80万”为年度累计/多展合计口径，按规则不填；另有“20万+ 行业观众”“5000+ 参展企业”未标明届次与统计口径，且与年度累计数据并存，无法确认是否为单届规模，故未采用。\"}",
+      "text_note": "页面出现的“全年累计吸引全球8000+医疗企业参展，年观展人次超80万”为年度累计/多展合计口径，按规则不填；另有“20万+ 行业观众”“5000+ 参展企业”未标明届次与统计口径，且与年度累计数据并存，无法确认是否为单届规模，故未采用。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "humen-fashion",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"页面仅有展馆自身数据（室内展览面积约10,000平方米、可提供500多个标准摊位），属场馆介绍而非某一届展会规模，故未填入；页面未给出任何一届展会的观众数、参展商数或展会面积。\"}",
+      "text_note": "页面仅有展馆自身数据（室内展览面积约10,000平方米、可提供500多个标准摊位），属场馆介绍而非某一届展会规模，故未填入；页面未给出任何一届展会的观众数、参展商数或展会面积。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "sub"
+    },
+    {
+      "id": "foshan-ceramics",
+      "fields": {},
+      "dropped": {
+        "admission": {
+          "value": "trade_only",
+          "why": "依据不在正文中",
+          "evidence": "申请佛山陶博会电子门票真实姓名行业角色手机号码验证码"
+        },
+        "nature": {
+          "value": "B2B",
+          "why": "依据里没有支持 B2B 的判别词（连弱证据都没有）",
+          "evidence": "陶瓷卫浴品牌加盟严选，陶瓷卫浴新品发布平台"
+        }
+      },
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":\"trade_only\",\"raw_text\":\"申请佛山陶博会电子门票\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"申请佛山陶博会电子门票 真实姓名 行业角色 手机号码 验证码\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"陶瓷卫浴品牌加盟严选\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"陶瓷卫浴品牌加盟严选，陶瓷卫浴新品发布平台\"},\"text_note\":\"正文未出现任何观众数、参展商数或展览面积的具体数字；准入依据为需实名申请电子门票并填写行业角色，性质依据为品牌加盟/代理招商导向。\"}",
+      "text_note": "正文未出现任何观众数、参展商数或展览面积的具体数字；准入依据为需实名申请电子门票并填写行业角色，性质依据为品牌加盟/代理招商导向。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "intertextile",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文仅含展会名称、展期与场馆信息，未出现任何观众数、参展商数或展览面积数字；admission 与 nature 亦无登记要求、票务或买家构成描述可依据。\"}",
+      "text_note": "正文仅含展会名称、展期与场馆信息，未出现任何观众数、参展商数或展览面积数字；admission 与 nature 亦无登记要求、票务或买家构成描述可依据。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "iot-expo",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"2025届线下观展人次突破5万、近400家企业参展，但2026届规模均为预计值（超5万平方米、400余家、超万名专业观众），按规则预测值不填；累计数据（100万+参会参展人数、5000+累计参展企业）为多年合计，不填。\"}",
+      "text_note": "2025届线下观展人次突破5万、近400家企业参展，但2026届规模均为预计值（超5万平方米、400余家、超万名专业观众），按规则预测值不填；累计数据（100万+参会参展人数、5000+累计参展企业）为多年合计，不填。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "pharmchina",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文仅有会议活动描述（几十个论坛、百余场报告、上千场社交活动），非展会规模数据；无观众、展商、面积数字，故全部留空。\"}",
+      "text_note": "正文仅有会议活动描述（几十个论坛、百余场报告、上千场社交活动），非展会规模数据；无观众、展商、面积数字，故全部留空。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "ningbo-lighting",
+      "fields": {
+        "visitor_count": {
+          "value": 60000,
+          "method": "llm",
+          "raw_text": "60000 人次",
+          "unit": "人次",
+          "caliber": "visit",
+          "evidence": "60000人次专业观众",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibitor_count": {
+          "value": 2000,
+          "method": "llm",
+          "raw_text": "2000 家",
+          "unit": "家",
+          "caliber": "company",
+          "evidence": "2000家参展企业",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "exhibition_area": {
+          "value": 60000,
+          "method": "llm",
+          "raw_text": "60000 平方米",
+          "unit": "平方米",
+          "caliber": "gross",
+          "evidence": "60000平方米展会面积",
+          "evidence_span": "evidence",
+          "conf": "medium"
+        },
+        "nature": {
+          "value": "B2B",
+          "method": "llm",
+          "evidence": "预计将吸引60000+专业观众，其中61%为进出口商，约七成以上观众具有采购决策权",
+          "conf": "medium"
+        }
+      },
+      "dropped": {},
+      "ok": true,
+      "raw": "{\"visitor_count\":{\"value\":60000,\"raw_text\":\"60000 人次\",\"unit\":\"人次\",\"caliber\":\"visit\",\"evidence\":\"60000 人次 专业观众\"},\"exhibitor_count\":{\"value\":2000,\"raw_text\":\"2000 家\",\"unit\":\"家\",\"caliber\":\"company\",\"evidence\":\"2000 家 参展企业\"},\"exhibition_area\":{\"value\":60000,\"raw_text\":\"60000 平方米\",\"unit\":\"平方米\",\"caliber\":\"gross\",\"evidence\":\"60000 平方米 展会面积\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":\"B2B\",\"raw_text\":\"60000+专业观众，其中61%为进出口商\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"预计将吸引60000+专业观众，其中61%为进出口商，约七成以上观众具有采购决策权\"},\"text_note\":\"展会介绍段为预测口径（预展出面积60000+㎡、近1500家企业、预计60000+专业观众），而页面数据模块给出60000平方米/2000家/60000人次，两处参展商数不一致（近1500家 vs 2000家），已取数据模块的明确数值；面积未注明净/毛，按gross处理；观众原文为“人次”，按visit计。\"}",
+      "text_note": "展会介绍段为预测口径（预展出面积60000+㎡、近1500家企业、预计60000+专业观众），而页面数据模块给出60000平方米/2000家/60000人次，两处参展商数不一致（近1500家 vs 2000家），已取数据模块的明确数值；面积未注明净/毛，按gross处理；观众原文为“人次”，按visit计。",
+      "filled": 4,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "pcb-china",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文仅含倒计时、脚本、友情链接与备案信息，未出现任何观众数、参展商数或展览面积数字，故全部留空。\"}",
+      "text_note": "正文仅含倒计时、脚本、友情链接与备案信息，未出现任何观众数、参展商数或展览面积数字，故全部留空。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "scie",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文中出现的数字（约600名中德代表、PMI 49.3%、9月5日等）均为新闻或日程信息，非本展会规模数据；页面未给出观众数、参展商数、展览面积，故全部留空。'社会观众报名'入口暗示向公众开放，但无明确准入表述，admission 未填。\"}",
+      "text_note": "正文中出现的数字（约600名中德代表、PMI 49.3%、9月5日等）均为新闻或日程信息，非本展会规模数据；页面未给出观众数、参展商数、展览面积，故全部留空。'社会观众报名'入口暗示向公众开放，但无明确准入表述，admission 未填。",
+      "review": true,
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "sinoces",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"页面仅出现“预计展示面积 6 万平方米”，属预测值，按规则不填 exhibition_area；未见观众数、参展商数及两届对比数据。\"}",
+      "text_note": "页面仅出现“预计展示面积 6 万平方米”，属预测值，按规则不填 exhibition_area；未见观众数、参展商数及两届对比数据。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "sub"
+    },
+    {
+      "id": "sino-dental",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文仅含导航、通知标题与展会简介，未出现任何观众数、参展商数或展览面积的具体数字；简介中“亚太地区颇具影响力”为定性表述，无数字依据。\"}",
+      "text_note": "正文仅含导航、通知标题与展会简介，未出现任何观众数、参展商数或展览面积的具体数字；简介中“亚太地区颇具影响力”为定性表述，无数字依据。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "snec",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"正文仅含导航、备案号与脚本代码，未见任何规模数字或准入/性质表述，故全部留空。\"}",
+      "text_note": "正文仅含导航、备案号与脚本代码，未见任何规模数字或准入/性质表述，故全部留空。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "main"
+    },
+    {
+      "id": "tea-expo",
+      "fields": {},
+      "dropped": {},
+      "ok": false,
+      "raw": "{\"visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"exhibition_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_visitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_exhibitor_count\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"prev_area\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"admission\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"nature\":{\"value\":null,\"raw_text\":\"\",\"unit\":\"\",\"caliber\":\"\",\"evidence\":\"\"},\"text_note\":\"页面仅有集团年度累计/多展合计数据（2021年20场茶博会共31950个展位、9248家品牌企业、参观人数70万+；每年办展面积100万+m²；专业买家150万+），均非单届单展规模，按规则不填入 A/B 组。页面未给出任何单届展会的观众、展商、面积数字。\"}",
+      "text_note": "页面仅有集团年度累计/多展合计数据（2021年20场茶博会共31950个展位、9248家品牌企业、参观人数70万+；每年办展面积100万+m²；专业买家150万+），均非单届单展规模，按规则不填入 A/B 组。页面未给出任何单届展会的观众、展商、面积数字。",
+      "filled": 0,
+      "model": "deepseek-chat",
+      "body_src": "sub"
+    }
+  ]
+}

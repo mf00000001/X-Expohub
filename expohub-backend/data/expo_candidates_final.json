@@ -1,0 +1,2731 @@
+{
+  "version": "v2",
+  "created": "2026-11-03",
+  "note": "批次 0 候选名单。layer: trunk=18品类×4主干 / cross=综合跨界 / boundary=边界加压。tier: head=头部, mid=腰部, niche=垂类或区域, cross=品类交叉, control=对照组。conf: 对 url 的把握程度, 空 url 表示尚未确定官网。 v2: 经 WebSearch 查证后合并，verify 字段记录证据强度；prev_url 为被推翻的旧猜测，official_name 为查证到的真实全称。",
+  "layers": {
+    "trunk": 72,
+    "cross": 8,
+    "boundary": 20
+  },
+  "expos": [
+    {
+      "id": "awe",
+      "layer": "trunk",
+      "category": "电子及家电",
+      "tier": "head",
+      "name": "中国家电及消费电子博览会",
+      "short": "AWE",
+      "city": "上海",
+      "url": "https://www.awe.com.cn/",
+      "conf": "high",
+      "kw": [
+        "家电",
+        "AWE",
+        "消费电子"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "页面标题即 AWE 中国家电及消费电子博览会，主办中国家用电器协会；旧猜 awe-site.com 无效",
+      "prev_url": "https://www.awe-site.com/",
+      "needs_verify": false,
+      "official_name": "中国家电及消费电子博览会（AWE）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "AWE中国家电及消费电子博览会|上海家电展|智能家居展|小家电展|消费电子展"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "electronica-china",
+      "layer": "trunk",
+      "category": "电子及家电",
+      "tier": "mid",
+      "name": "慕尼黑上海电子展",
+      "short": "electronica China",
+      "city": "上海",
+      "url": "https://www.electronica-china.com/",
+      "conf": "high",
+      "kw": [
+        "electronica",
+        "慕尼黑",
+        "电子"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "Semiconductors_Industrial Electronics_Embedded systems-electronica Shanghai"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "cite",
+      "layer": "trunk",
+      "category": "电子及家电",
+      "tier": "mid",
+      "name": "中国国际电子信息博览会",
+      "short": "CITE",
+      "city": "深圳",
+      "url": "http://www.citexpo.com.cn/",
+      "conf": "medium",
+      "kw": [
+        "电子信息",
+        "CITE",
+        "博览会"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "China International Tire Expo"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "sinoces",
+      "layer": "trunk",
+      "category": "电子及家电",
+      "tier": "niche",
+      "name": "中国国际消费电子博览会",
+      "short": "SINOCES",
+      "city": "青岛",
+      "url": "https://sinoces.com/",
+      "conf": "high",
+      "kw": [
+        "消费电子",
+        "SINOCES",
+        "青岛"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "官网新闻页自述 2026 电博会 9 月 4 日开幕，主办山东省人民政府；备用域名 cice-expo.com",
+      "prev_url": "http://www.sinoces.com/",
+      "needs_verify": false,
+      "official_name": "中国国际消费电子博览会（电博会 CICE）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": ""
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "gile",
+      "layer": "trunk",
+      "category": "照明",
+      "tier": "head",
+      "name": "广州国际照明展览会",
+      "short": "光亚展 GILE",
+      "city": "广州",
+      "url": "http://gile.gymf.com.cn/",
+      "conf": "high",
+      "kw": [
+        "照明",
+        "GILE",
+        "光亚"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "主办广州光亚法兰克福展览，站内文末标注官网 gile.gymf.com.cn；gile-china.com 非官方",
+      "prev_url": "https://www.gile-china.com/",
+      "needs_verify": false,
+      "official_name": "广州国际照明展览会（光亚展 GILE）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "2027广州国际照明展览会-光亚展(GILE)_照明及LED产业风向标"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "guzhen-lighting",
+      "layer": "trunk",
+      "category": "照明",
+      "tier": "niche",
+      "name": "中国古镇国际灯饰博览会",
+      "short": "古镇灯博会",
+      "city": "中山",
+      "url": "https://www.gzlightingfair.com/",
+      "conf": "high",
+      "kw": [
+        "灯饰",
+        "古镇"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "主办中国照明电器协会、承办中山古镇灯都博览有限公司，页脚即本域名",
+      "needs_verify": false,
+      "official_name": "中国·古镇国际灯饰博览会",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "古镇灯博会 &#8211; 【第35届古镇灯博会】以“专业化、市场化、国际化”为定位，打造展店联动、展网融合的一站式新品采购盛会。"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "hktdc-lighting",
+      "layer": "trunk",
+      "category": "照明",
+      "tier": "mid",
+      "name": "香港国际秋季灯饰展",
+      "short": "香港灯饰展",
+      "city": "香港",
+      "url": "https://hklightingfairae.hktdc.com/",
+      "conf": "high",
+      "kw": [
+        "Lighting",
+        "灯饰",
+        "HKTDC"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "主办香港贸发局；旧路径 /hklightingfairae/en 已改版",
+      "prev_url": "https://www.hktdc.com/hklightingfairae/en",
+      "needs_verify": false,
+      "official_name": "香港国际秋季灯饰展",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "error",
+        "title": "HKTDC Hong Kong International Lighting Fair (Autumn Edition)"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "ningbo-lighting",
+      "layer": "trunk",
+      "category": "照明",
+      "tier": "niche",
+      "name": "宁波国际照明展览会",
+      "short": "宁波照明展",
+      "city": "宁波",
+      "url": "https://nb.yishengexpo.com/",
+      "conf": "medium",
+      "kw": [
+        "照明",
+        "宁波"
+      ],
+      "verify": "medium",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "承办上海易盛展览，官方公众号明示官网为 yishengexpo.com 宁波频道",
+      "needs_verify": false,
+      "official_name": "宁波国际照明展览会",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "2027宁波国际照明展"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "auto-shanghai",
+      "layer": "trunk",
+      "category": "车辆及配件",
+      "tier": "head",
+      "name": "上海国际汽车工业展览会",
+      "short": "上海车展",
+      "city": "上海",
+      "url": "https://www.autoshanghai.org/",
+      "conf": "medium",
+      "kw": [
+        "汽车",
+        "车展",
+        "autoshanghai"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "第二十二届上海国际汽车工业展览会"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "auto-china",
+      "layer": "trunk",
+      "category": "车辆及配件",
+      "tier": "head",
+      "name": "北京国际汽车展览会",
+      "short": "北京车展",
+      "city": "北京",
+      "url": "https://www.autochinashow.org/",
+      "conf": "high",
+      "kw": [
+        "汽车",
+        "车展",
+        "北京"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "车展秘书处稿件明示官方网址 autochinashow.org；旧猜 .com 为非官方",
+      "prev_url": "http://www.autochinashow.com/",
+      "needs_verify": false,
+      "official_name": "北京国际汽车展览会（Auto China）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "2027北京国际新质汽车及未来智慧出行展览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "auto-guangzhou",
+      "layer": "trunk",
+      "category": "车辆及配件",
+      "tier": "mid",
+      "name": "广州国际汽车展览会",
+      "short": "广州车展",
+      "city": "广州",
+      "url": "https://www.autoguangzhou.com.cn/",
+      "conf": "medium",
+      "kw": [
+        "汽车",
+        "车展",
+        "广州"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "广州国际车展"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "automechanika-sh",
+      "layer": "trunk",
+      "category": "车辆及配件",
+      "tier": "niche",
+      "name": "上海国际汽车零配件维修检测设备展",
+      "short": "Automechanika Shanghai",
+      "city": "上海",
+      "url": "https://automechanika-shanghai.hk.messefrankfurt.com/",
+      "conf": "medium",
+      "kw": [
+        "Automechanika",
+        "零配件",
+        "汽配"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "上海国际汽车零配件、维修检测诊断设备及服务用品展览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "cihs",
+      "layer": "trunk",
+      "category": "五金工具",
+      "tier": "head",
+      "name": "中国国际五金展",
+      "short": "CIHS",
+      "city": "上海",
+      "url": "http://www.cihs.com.cn/",
+      "conf": "medium",
+      "kw": [
+        "五金",
+        "CIHS"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "中国国际五金展官方网站"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "china-hardware",
+      "layer": "trunk",
+      "category": "五金工具",
+      "tier": "mid",
+      "name": "中国国际五金博览会",
+      "short": "五金博览会",
+      "city": "上海",
+      "url": "https://hardware-fair.com/",
+      "conf": "high",
+      "kw": [
+        "五金",
+        "博览会"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "站内声明唯一官网为 hardware-fair.com，主办中国五金交电化工商业协会",
+      "prev_url": "http://www.hardwarefair.cn/",
+      "needs_verify": false,
+      "official_name": "中国国际五金博览会（CIHF）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "中国国际五金博览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "yongkang-hardware",
+      "layer": "trunk",
+      "category": "五金工具",
+      "tier": "niche",
+      "name": "中国永康五金博览会",
+      "short": "永康五金展",
+      "city": "永康",
+      "url": "https://www.chhwf.com/",
+      "conf": "high",
+      "kw": [
+        "五金",
+        "永康"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "页脚标注唯一指定官网；官方名称是'中国五金博览会'而非'中国永康五金博览会'",
+      "needs_verify": false,
+      "official_name": "中国五金博览会（永康）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "五金博览会-唯一指定官网网站"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "cimt",
+      "layer": "trunk",
+      "category": "五金工具",
+      "tier": "cross",
+      "name": "中国国际机床展览会",
+      "short": "CIMT",
+      "city": "北京",
+      "url": "https://www.cimtshow.com/",
+      "conf": "high",
+      "kw": [
+        "机床",
+        "CIMT"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "第二十届中国国际机床展览会"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "ciif",
+      "layer": "trunk",
+      "category": "机械",
+      "tier": "head",
+      "name": "中国国际工业博览会",
+      "short": "工博会 CIIF",
+      "city": "上海",
+      "url": "https://www.ciif-expo.com/",
+      "conf": "high",
+      "kw": [
+        "工业博览会",
+        "CIIF",
+        "工博会"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "官网标题'中国工博会'，主办上海东浩兰生会展集团体系",
+      "needs_verify": false,
+      "official_name": "中国国际工业博览会（中国工博会 CIIF）",
+      "check": {
+        "result": "ok_by_host",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": ""
+      },
+      "status": "needs_render"
+    },
+    {
+      "id": "chinaplas",
+      "layer": "trunk",
+      "category": "机械",
+      "tier": "head",
+      "name": "中国国际塑料橡胶工业展览会",
+      "short": "Chinaplas",
+      "city": "上海",
+      "url": "https://www.chinaplasonline.com/",
+      "conf": "high",
+      "kw": [
+        "塑料",
+        "橡胶",
+        "Chinaplas"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "CHINAPLAS 2027 | 全球领先的国际塑料橡胶展"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "simm",
+      "layer": "trunk",
+      "category": "机械",
+      "tier": "mid",
+      "name": "深圳国际机械制造工业展览会",
+      "short": "SIMM",
+      "city": "深圳",
+      "url": "https://www.iteschina.com/",
+      "conf": "high",
+      "kw": [
+        "机械制造",
+        "SIMM",
+        "深圳"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "展会已更名 ITES，主办深圳市机械行业协会；旧猜 simmexpo.com 仅存 2004 年旧内容",
+      "prev_url": "http://www.simmexpo.com/",
+      "needs_verify": false,
+      "official_name": "ITES 深圳国际工业制造技术及设备展览会（原 SIMM）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "ITES深圳工业展-深圳机械展_机床展_自动化展_机器人展"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "ccmt",
+      "layer": "trunk",
+      "category": "机械",
+      "tier": "niche",
+      "name": "中国数控机床展览会",
+      "short": "CCMT",
+      "city": "上海",
+      "url": "https://www.ccmtshow.com/",
+      "conf": "medium",
+      "kw": [
+        "数控机床",
+        "CCMT"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "第十四届中国数控机床展览会"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "cbd-fair",
+      "layer": "trunk",
+      "category": "建材",
+      "tier": "head",
+      "name": "中国国际建筑装饰博览会",
+      "short": "建博会 CBD Fair",
+      "city": "广州",
+      "url": "https://www.cbdfair-gz.com/",
+      "conf": "high",
+      "kw": [
+        "建筑装饰",
+        "建博会",
+        "CBD"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "主办中国对外贸易中心集团+中国建筑装饰协会，官方物料印 cbdfair-gz.com；旧猜 cbd-fair.com 已无法访问",
+      "prev_url": "https://www.cbd-fair.com/",
+      "needs_verify": false,
+      "official_name": "中国建博会（广州）CBD Fair",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "中国建博会（广州）| 广州建材展"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "fenestration-china",
+      "layer": "trunk",
+      "category": "建材",
+      "tier": "mid",
+      "name": "中国国际门窗幕墙博览会",
+      "short": "Fenestration China",
+      "city": "北京",
+      "url": "https://fenestration.com.cn/",
+      "conf": "high",
+      "kw": [
+        "门窗",
+        "幕墙"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "主办中联慕尼（北京）国际会展运营，京ICP备17015006号-2",
+      "needs_verify": false,
+      "official_name": "中国国际门窗幕墙博览会（FBC）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "国际门窗幕墙博览会 FENESTRATION BAU CHINA"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "foshan-ceramics",
+      "layer": "trunk",
+      "category": "建材",
+      "tier": "niche",
+      "name": "佛山陶博会",
+      "short": "佛山陶博会",
+      "city": "佛山",
+      "url": "https://www.cerambath.org/",
+      "conf": "high",
+      "kw": [
+        "陶瓷",
+        "佛山",
+        "陶博会"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "站内公告写明佛山陶博会官方网站为 cerambath.org",
+      "needs_verify": false,
+      "official_name": "中国（佛山）国际陶瓷及卫浴博览交易会",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "error",
+        "title": "陶瓷卫浴品牌加盟严选，陶瓷卫浴新品发布平台 - 线上陶博会,线上展会,佛山陶博会,博览会,陶瓷,卫浴,展会,陶博会"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "ceramics-china",
+      "layer": "trunk",
+      "category": "建材",
+      "tier": "cross",
+      "name": "中国国际陶瓷工业展览会",
+      "short": "Ceramics China",
+      "city": "广州",
+      "url": "http://www.ceramicschina.com.cn/",
+      "conf": "low",
+      "kw": [
+        "陶瓷工业",
+        "Ceramics"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "广州陶瓷工业展|陶瓷展|广州陶瓷展|陶瓷工业展|陶瓷装备材料展"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "chinacoat",
+      "layer": "trunk",
+      "category": "化工产品",
+      "tier": "head",
+      "name": "中国国际涂料展",
+      "short": "Chinacoat",
+      "city": "广州",
+      "url": "https://www.chinacoat.net/",
+      "conf": "medium",
+      "kw": [
+        "涂料",
+        "Chinacoat"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "CHINACOAT"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "icif",
+      "layer": "trunk",
+      "category": "化工产品",
+      "tier": "mid",
+      "name": "中国国际化工展览会",
+      "short": "ICIF China",
+      "city": "上海",
+      "url": "http://www.icif.cn/",
+      "conf": "medium",
+      "kw": [
+        "化工",
+        "ICIF"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "中国国际化工展览会—官网"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "china-adhesive",
+      "layer": "trunk",
+      "category": "化工产品",
+      "tier": "niche",
+      "name": "中国国际胶粘剂及密封剂展览会",
+      "short": "胶粘剂展",
+      "city": "上海",
+      "url": "https://www.chinaadhesive2000.com/",
+      "conf": "high",
+      "kw": [
+        "胶粘剂",
+        "密封剂"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "主办中国胶粘剂和胶粘带工业协会+贸促会化工行业分会，首页为第29届信息",
+      "needs_verify": false,
+      "official_name": "中国国际胶粘剂及密封剂展览会（ASE CHINA）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "首页 | 国际胶粘剂及密封剂展"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "pcb-china",
+      "layer": "trunk",
+      "category": "化工产品",
+      "tier": "cross",
+      "name": "中国国际电子电路展览会",
+      "short": "CPCA Show",
+      "city": "上海",
+      "url": "http://www.cpcashow.com/",
+      "conf": "high",
+      "kw": [
+        "电子电路",
+        "CPCA"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "中国电子电路行业协会主办展会官网，官方展商手册指向 cpcashow.com",
+      "needs_verify": false,
+      "official_name": "国际电子电路（上海）展览会（CPCA SHOW）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "上海颖展展览服务有限公司"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "snec",
+      "layer": "trunk",
+      "category": "能源",
+      "tier": "head",
+      "name": "国际太阳能光伏与智慧能源大会暨展览会",
+      "short": "SNEC",
+      "city": "上海",
+      "url": "https://www.snec.org.cn/",
+      "conf": "medium",
+      "kw": [
+        "光伏",
+        "太阳能",
+        "SNEC"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "SNEC光.储.氢产业融合协和发展系列展览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "cippe",
+      "layer": "trunk",
+      "category": "能源",
+      "tier": "mid",
+      "name": "中国国际石油石化技术装备展览会",
+      "short": "cippe",
+      "city": "北京",
+      "url": "http://www.cippe.com.cn/",
+      "conf": "medium",
+      "kw": [
+        "石油",
+        "石化",
+        "cippe"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "中国国际石油石化技术装备展览会|振威展览"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "cwp",
+      "layer": "trunk",
+      "category": "能源",
+      "tier": "niche",
+      "name": "北京国际风能大会暨展览会",
+      "short": "CWP",
+      "city": "北京",
+      "url": "https://www.chinawind.org.cn/",
+      "conf": "high",
+      "kw": [
+        "风能",
+        "CWP"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "历届招展书与公众号均标注大会官网 chinawind.org.cn",
+      "needs_verify": false,
+      "official_name": "北京国际风能大会暨展览会（CWP）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "CWP北京国际风能大会暨展览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "cies",
+      "layer": "trunk",
+      "category": "能源",
+      "tier": "cross",
+      "name": "中国国际储能大会暨展览会",
+      "short": "CIES",
+      "city": "深圳",
+      "url": "http://www.ciessummit.cn/",
+      "conf": "medium",
+      "kw": [
+        "储能",
+        "CIES"
+      ],
+      "verify": "medium",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "主办中国化学与物理电源行业协会；注意近年固定在杭州举办，非深圳",
+      "needs_verify": false,
+      "official_name": "中国国际储能大会暨展览会（CIES）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "储能大会暨展览会 CIES"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "ecf",
+      "layer": "trunk",
+      "category": "日用消费品",
+      "tier": "head",
+      "name": "华东进出口商品交易会",
+      "short": "华交会",
+      "city": "上海",
+      "url": "http://www.ecf.org.cn/",
+      "conf": "low",
+      "kw": [
+        "华东",
+        "进出口",
+        "华交会"
+      ],
+      "check": {
+        "result": "net_err",
+        "verdict": null,
+        "http": null,
+        "robots": "error",
+        "title": ""
+      },
+      "status": "dead"
+    },
+    {
+      "id": "yiwu-fair",
+      "layer": "trunk",
+      "category": "日用消费品",
+      "tier": "head",
+      "name": "中国义乌国际小商品博览会",
+      "short": "义博会",
+      "city": "义乌",
+      "url": "http://www.yiwufair.com/",
+      "conf": "medium",
+      "kw": [
+        "义乌",
+        "小商品",
+        "义博会"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "义乌国际小商品博览会（义博会）官方网站"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "china-daily-goods",
+      "layer": "trunk",
+      "category": "日用消费品",
+      "tier": "mid",
+      "name": "中国日用百货商品交易会",
+      "short": "百货会",
+      "city": "上海",
+      "url": "https://cdatf.com/",
+      "conf": "high",
+      "kw": [
+        "日用百货"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "中国百货商业协会与励展华百主办；baihuozhanhui.com 等为代理/仿站",
+      "needs_verify": false,
+      "official_name": "中国日用百货商品交易会（百货会 CDATF）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "百货会|第120届上海百货会|百货展-日用百货商品交易会|华百官网"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "ningbo-consumer",
+      "layer": "trunk",
+      "category": "日用消费品",
+      "tier": "niche",
+      "name": "中国国际日用消费品博览会",
+      "short": "宁波消博会",
+      "city": "宁波",
+      "url": "https://www.cceecexpo.org/",
+      "conf": "medium",
+      "kw": [
+        "日用消费品",
+        "宁波"
+      ],
+      "verify": "medium",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "该展 2019 年升格并入中东欧博览会，原独立站 cicgf.com 已停更（末次 2019）",
+      "needs_verify": false,
+      "official_name": "中国—中东欧国家博览会暨国际消费品博览会（原宁波消博会）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "中东欧国家博览会暨国际消费品博览会"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "reed-gift-sz",
+      "layer": "trunk",
+      "category": "礼品",
+      "tier": "head",
+      "name": "深圳国际礼品及家居用品展览会",
+      "short": "深圳礼品展",
+      "city": "深圳",
+      "url": "https://www.reedhuabo.com/",
+      "conf": "medium",
+      "kw": [
+        "礼品",
+        "家居用品",
+        "深圳"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "深圳礼品展、深圳消费电子展、深圳包装展、国内知名的|礼品展|家居展|包装展|消费电子展|礼品包装及印刷展|的主办方-励展华博"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "sh-gift",
+      "layer": "trunk",
+      "category": "礼品",
+      "tier": "mid",
+      "name": "上海国际礼品及促销品展览会",
+      "short": "上海礼品展",
+      "city": "上海",
+      "url": "https://july.rxhuabo.com.cn/",
+      "conf": "medium",
+      "kw": [
+        "礼品",
+        "促销品"
+      ],
+      "verify": "medium",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "励展华博官网原文'上海国际礼业博览会（原上海国际礼品及促销品展览会）'",
+      "needs_verify": false,
+      "official_name": "上海国际礼业博览会（原上海国际礼品及促销品展览会）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "上海国际礼业博览会&mdash;Gift &amp; Home上海礼博会&mdash;励展华博"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "yiwu-gift",
+      "layer": "trunk",
+      "category": "礼品",
+      "tier": "niche",
+      "name": "义乌国际礼品及家居用品展",
+      "short": "义乌礼品展",
+      "city": "义乌",
+      "url": "https://yiwu.rxhuabo.com.cn/",
+      "conf": "high",
+      "kw": [
+        "礼品",
+        "义乌"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "官网载明励展华博、义乌中国小商品城展览、义乌工艺礼品行业协会主办",
+      "needs_verify": false,
+      "official_name": "义乌礼品、时尚用品及家庭用品展览会",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "2027年义乌礼品、时尚用品及家庭用品展览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "gz-gift",
+      "layer": "trunk",
+      "category": "礼品",
+      "tier": "cross",
+      "name": "广州国际礼品及家居用品展",
+      "short": "广州礼品展",
+      "city": "广州",
+      "url": "https://gz.cghe-expo.com/",
+      "conf": "medium",
+      "kw": [
+        "礼品",
+        "广州"
+      ],
+      "verify": "medium",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "华礼展 CGHE 体系广州站官网，主办上海雅辉展览/广州创尔森展览",
+      "needs_verify": false,
+      "official_name": "广州国际礼品及家居用品展览会（华礼展广州站）",
+      "check": {
+        "result": "net_err",
+        "verdict": null,
+        "http": null,
+        "robots": "error",
+        "title": ""
+      },
+      "status": "dead"
+    },
+    {
+      "id": "intertextile",
+      "layer": "trunk",
+      "category": "纺织服装",
+      "tier": "head",
+      "name": "中国国际纺织面料及辅料博览会",
+      "short": "Intertextile",
+      "city": "上海",
+      "url": "http://www.intertextile.com.cn/",
+      "conf": "high",
+      "kw": [
+        "纺织",
+        "面料",
+        "Intertextile"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_AB.json",
+      "evidence": "2026 招展书写明'官网 intertextile.com.cn 是唯一展位申请方式'；原 messefrankfurt 子域是单季页",
+      "prev_url": "https://intertextile-shanghai-apparel-fabrics.hk.messefrankfurt.com/",
+      "needs_verify": false,
+      "official_name": "中国国际纺织面料及辅料博览会",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "Intertextile中国国际纺织面料及辅料博览会 - 官方网站"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "chic",
+      "layer": "trunk",
+      "category": "纺织服装",
+      "tier": "head",
+      "name": "中国国际服装服饰博览会",
+      "short": "CHIC",
+      "city": "上海",
+      "url": "http://www.chicfair.com/",
+      "conf": "medium",
+      "kw": [
+        "服装",
+        "CHIC"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "CHIC中国国际服装服饰博览会2026（秋季）"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "itma-asia",
+      "layer": "trunk",
+      "category": "纺织服装",
+      "tier": "niche",
+      "name": "中国国际纺织机械展览会",
+      "short": "ITMA ASIA + CITME",
+      "city": "上海",
+      "url": "https://www.citme.com.cn/",
+      "conf": "high",
+      "kw": [
+        "纺织机械",
+        "ITMA"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_C.json",
+      "evidence": "中国纺织机械协会/贸促会纺织分会与CEMATEX主办方官网，稿件明确列出官网 www.citme.com.cn 与 www.itmaasia.com",
+      "needs_verify": false,
+      "official_name": "中国国际纺织机械展览会暨ITMA亚洲展览会（ITMA ASIA + CITME）",
+      "check": {
+        "result": "ok_by_host",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "首页"
+      },
+      "status": "needs_render"
+    },
+    {
+      "id": "humen-fashion",
+      "layer": "trunk",
+      "category": "纺织服装",
+      "tier": "cross",
+      "name": "虎门国际服装交易会",
+      "short": "虎门服交会",
+      "city": "东莞",
+      "url": "http://www.hmcec.com/",
+      "conf": "medium",
+      "kw": [
+        "服装",
+        "虎门"
+      ],
+      "verify": "medium",
+      "verify_source": "agent_urls_C.json",
+      "evidence": "虎门会展网为该展组委会/会展中心站点，页面即服交会专区；动态主要在公众号",
+      "needs_verify": false,
+      "official_name": "中国（虎门）国际服装交易会",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "虎门会展网"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "china-shoes",
+      "layer": "trunk",
+      "category": "鞋类",
+      "tier": "head",
+      "name": "中国国际鞋类展览会",
+      "short": "中国鞋展",
+      "city": "上海",
+      "url": "https://ilse.com.cn/",
+      "conf": "medium",
+      "kw": [
+        "鞋类",
+        "鞋"
+      ],
+      "verify": "medium",
+      "verify_source": "agent_urls_C.json",
+      "evidence": "真实展名不是'中国国际鞋类展览会'，上海鞋展为上海雅辉主办的 SISE",
+      "needs_verify": false,
+      "official_name": "上海国际鞋业博览会（SISE）",
+      "check": {
+        "result": "net_err",
+        "verdict": null,
+        "http": null,
+        "robots": "error",
+        "title": ""
+      },
+      "status": "dead"
+    },
+    {
+      "id": "gz-shoes",
+      "layer": "trunk",
+      "category": "鞋类",
+      "tier": "mid",
+      "name": "广州国际鞋类展览会",
+      "short": "广州鞋展",
+      "city": "广州",
+      "url": "http://www.slfchinafair.com/",
+      "conf": "medium",
+      "kw": [
+        "鞋",
+        "广州"
+      ],
+      "verify": "medium",
+      "verify_source": "agent_urls_C.json",
+      "evidence": "主办广州广旅展览策划，站点同时承载厦门国际鞋业博览会",
+      "needs_verify": false,
+      "official_name": "广州国际鞋业展览会（CISE）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "2026厦门国际鞋业博览会2026年11月13-15日福建厦门"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "jinjiang-shoes",
+      "layer": "trunk",
+      "category": "鞋类",
+      "tier": "niche",
+      "name": "中国晋江国际鞋业博览会",
+      "short": "晋江鞋博会",
+      "city": "晋江",
+      "url": "https://www.cn-jif.com/",
+      "conf": "high",
+      "kw": [
+        "鞋业",
+        "晋江",
+        "Footwear",
+        "cn-jif",
+        "JIF"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_C.json",
+      "evidence": "晋江市展务有限公司运营，含组织单位、参展申请、往届回顾",
+      "needs_verify": false,
+      "official_name": "中国（晋江）国际鞋业暨国际体育产业博览会",
+      "check": {
+        "result": "ok_by_host",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "Footwear, Shoe Materials, Footwear Machinery, Outdoor Sport Gear, Media Advertis"
+      },
+      "status": "needs_render"
+    },
+    {
+      "id": "wenzhou-shoes",
+      "layer": "trunk",
+      "category": "鞋类",
+      "tier": "cross",
+      "name": "温州国际鞋类皮革展",
+      "short": "温州鞋展",
+      "city": "温州",
+      "url": "https://www.chinashoetech.cn/",
+      "conf": "high",
+      "kw": [
+        "鞋",
+        "皮革",
+        "温州"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_C.json",
+      "evidence": "官网公告 2026 年已更名去掉'国际'，主办温州市鞋革行业协会",
+      "needs_verify": false,
+      "official_name": "中国（温州）皮革、鞋材、鞋机展览会",
+      "check": {
+        "result": "http_err",
+        "verdict": null,
+        "http": 403,
+        "robots": "allow",
+        "title": ""
+      },
+      "status": "blocked_by_site"
+    },
+    {
+      "id": "furniture-china",
+      "layer": "trunk",
+      "category": "家居装饰品",
+      "tier": "head",
+      "name": "中国国际家具展览会",
+      "short": "Furniture China",
+      "city": "上海",
+      "url": "https://www.furniture-china.cn/",
+      "conf": "high",
+      "kw": [
+        "家具",
+        "Furniture"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_C.json",
+      "evidence": "中国家具协会与上海博华主办；正确域名为 .cn，原猜的 .com.cn 非其官网",
+      "prev_url": "https://www.furniture-china.com.cn/",
+      "needs_verify": false,
+      "official_name": "中国国际家具展览会（Furniture China）",
+      "suspicious": "furniture-china.cn 现跳转 jiagle.com（华夏家博会，B2C 消费展），非中国国际家具展",
+      "check": {
+        "result": "ok_no_kw",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": ""
+      },
+      "status": "suspicious"
+    },
+    {
+      "id": "ciff-gz",
+      "layer": "trunk",
+      "category": "家居装饰品",
+      "tier": "head",
+      "name": "中国广州国际家具博览会",
+      "short": "CIFF 广州",
+      "city": "广州",
+      "url": "https://www.ciff-gz.com/",
+      "conf": "medium",
+      "kw": [
+        "家具",
+        "CIFF"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "中国（广州）国际家具博览会"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "dg-furniture",
+      "layer": "trunk",
+      "category": "家居装饰品",
+      "tier": "niche",
+      "name": "东莞国际名家具展览会",
+      "short": "名家具展",
+      "city": "东莞",
+      "url": "https://www.gde3f.com/",
+      "conf": "high",
+      "kw": [
+        "家具",
+        "东莞"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_C.json",
+      "evidence": "主办广东现代会展管理有限公司官网，贸促会登记网址亦为此域名",
+      "needs_verify": false,
+      "official_name": "国际名家具（东莞）展览会（3F）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "名家具展官网_家居行业风向标_国际名家具（东莞）展览会"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "sh-home-deco",
+      "layer": "trunk",
+      "category": "家居装饰品",
+      "tier": "cross",
+      "name": "上海国际家居装饰展览会",
+      "short": "上海家居装饰展",
+      "city": "上海",
+      "url": "https://www.hd-asia.net/",
+      "conf": "medium",
+      "kw": [
+        "家居",
+        "装饰"
+      ],
+      "verify": "medium",
+      "verify_source": "agent_urls_C.json",
+      "evidence": "主办上海万耀企龙+德国斯图加特展览；名录中'上海国际家居装饰展览会'即指此展",
+      "needs_verify": false,
+      "official_name": "HD+ Asia 亚洲家居装饰及生活方式展",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "HD+ Asia 亚洲家居装饰及生活方式展-上海万耀企龙展览有限公司"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "paperworld-china",
+      "layer": "trunk",
+      "category": "办公箱包及休闲用品",
+      "tier": "head",
+      "name": "中国国际文具及办公用品展览会",
+      "short": "Paperworld China",
+      "city": "上海",
+      "url": "https://paperworldchina.hk.messefrankfurt.com/",
+      "conf": "medium",
+      "kw": [
+        "文具",
+        "办公用品",
+        "Paperworld"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "中国国际文具及办公用品展览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "china-bags",
+      "layer": "trunk",
+      "category": "办公箱包及休闲用品",
+      "tier": "mid",
+      "name": "中国国际箱包手袋展览会",
+      "short": "中国箱包展",
+      "city": "上海",
+      "url": "https://www.cshbox.com/",
+      "conf": "medium",
+      "kw": [
+        "箱包",
+        "手袋"
+      ],
+      "verify": "medium",
+      "verify_source": "agent_urls_C.json",
+      "evidence": "中国皮革协会等主办、上海能博会展承办的官方站",
+      "needs_verify": false,
+      "official_name": "上海国际箱包手袋皮具展览会",
+      "check": {
+        "result": "http_err",
+        "verdict": null,
+        "http": 403,
+        "robots": "error",
+        "title": ""
+      },
+      "status": "blocked_by_site"
+    },
+    {
+      "id": "cile",
+      "layer": "trunk",
+      "category": "办公箱包及休闲用品",
+      "tier": "niche",
+      "name": "中国国际体育用品博览会",
+      "short": "体博会",
+      "city": "上海",
+      "url": "http://www.sportshow.com.cn/",
+      "conf": "low",
+      "kw": [
+        "体育用品",
+        "体博会"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "中国国际体育用品博览会"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "china-outdoor",
+      "layer": "trunk",
+      "category": "办公箱包及休闲用品",
+      "tier": "cross",
+      "name": "中国国际户外用品展览会",
+      "short": "户外用品展",
+      "city": "南京",
+      "url": "",
+      "conf": "none",
+      "kw": [
+        "户外",
+        "露营"
+      ],
+      "verify": "none",
+      "verify_source": "agent_urls_C.json",
+      "evidence": "2019 年后再无举办记录，原站 asian-outdoor.com 已无法访问；南京现为 ISPO 体系，名称与该条不符",
+      "unresolved": true,
+      "check": {
+        "result": "no_url",
+        "verdict": null,
+        "http": null,
+        "robots": "n/a",
+        "title": ""
+      },
+      "status": "no_url"
+    },
+    {
+      "id": "sial-china",
+      "layer": "trunk",
+      "category": "食品",
+      "tier": "head",
+      "name": "中国国际食品和饮料展览会",
+      "short": "SIAL 中食展",
+      "city": "上海",
+      "url": "https://www.sialchina.com/",
+      "conf": "medium",
+      "kw": [
+        "食品",
+        "饮料",
+        "SIAL"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "International Food and Beverage Exhibition 2027 | SIAL China"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "bakery-china",
+      "layer": "trunk",
+      "category": "食品",
+      "tier": "head",
+      "name": "中国国际焙烤展览会",
+      "short": "Bakery China",
+      "city": "上海",
+      "url": "https://www.bakerychina.com/",
+      "conf": "medium",
+      "kw": [
+        "焙烤",
+        "烘焙",
+        "Bakery"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "焙烤展|2027上海烘焙展|国际烘焙展|中国烘焙展-焙烤展览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "tangjiu",
+      "layer": "trunk",
+      "category": "食品",
+      "tier": "mid",
+      "name": "全国糖酒商品交易会",
+      "short": "糖酒会",
+      "city": "轮换",
+      "url": "https://www.qgtjh.org.cn/",
+      "conf": "high",
+      "kw": [
+        "糖酒"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_C.json",
+      "evidence": "官方参展商手册写明这是唯一官网，主办中国糖业酒类集团、承办中粮会展",
+      "needs_verify": false,
+      "official_name": "全国糖酒商品交易会（CFDF）",
+      "check": {
+        "result": "http_err",
+        "verdict": null,
+        "http": 403,
+        "robots": "error",
+        "title": ""
+      },
+      "status": "blocked_by_site"
+    },
+    {
+      "id": "tea-expo",
+      "layer": "trunk",
+      "category": "食品",
+      "tier": "niche",
+      "name": "中国国际茶叶博览会",
+      "short": "茶博会",
+      "city": "杭州",
+      "url": "https://www.goodtea.cc/",
+      "conf": "medium",
+      "kw": [
+        "茶叶",
+        "茶博"
+      ],
+      "verify": "medium",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "贸促会展览服务网登记官网即 goodtea.cc（承办方华巨臣）；旧域 china-teaexpo.com 已 404",
+      "needs_verify": false,
+      "official_name": "中国国际茶叶博览会",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "华巨臣茶博会-深圳茶博会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "cmef",
+      "layer": "trunk",
+      "category": "医药及医疗保健",
+      "tier": "head",
+      "name": "中国国际医疗器械博览会",
+      "short": "CMEF",
+      "city": "上海",
+      "url": "https://www.cmef.com.cn/",
+      "conf": "high",
+      "kw": [
+        "医疗器械",
+        "CMEF"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "CMEF医博会-国药励展展览有限责任公司"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "pharmchina",
+      "layer": "trunk",
+      "category": "医药及医疗保健",
+      "tier": "mid",
+      "name": "全国药品交易会",
+      "short": "药交会",
+      "city": "轮换",
+      "url": "https://www.pharmchina.com.cn/",
+      "conf": "high",
+      "kw": [
+        "药品",
+        "药交会"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "站内即药交会官网，主办国药励展",
+      "needs_verify": false,
+      "official_name": "全国药品交易会（PHARMCHINA）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "全国药品交易会"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "api-china",
+      "layer": "trunk",
+      "category": "医药及医疗保健",
+      "tier": "niche",
+      "name": "中国国际医药原料药中间体包装设备交易会",
+      "short": "API China",
+      "city": "轮换",
+      "url": "https://www.apichina.com.cn/",
+      "conf": "high",
+      "kw": [
+        "原料药",
+        "API"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "展商入口/观众注册齐全，主办国药励展",
+      "needs_verify": false,
+      "official_name": "中国国际医药原料药/中间体/包装/设备交易会（API China）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "API"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "sino-dental",
+      "layer": "trunk",
+      "category": "医药及医疗保健",
+      "tier": "cross",
+      "name": "北京国际口腔设备器材展览会",
+      "short": "Sino-Dental",
+      "city": "北京",
+      "url": "https://www.sinodent.com.cn/",
+      "conf": "high",
+      "kw": [
+        "口腔",
+        "牙科"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "组委会为国家卫健委国际交流与合作中心，京ICP备09065753号-2",
+      "needs_verify": false,
+      "official_name": "中国国际口腔设备材料展览会（Sino-Dental）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "Sino-Dental 北京国际口腔展"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "waic",
+      "layer": "trunk",
+      "category": "AI/科技",
+      "tier": "head",
+      "name": "世界人工智能大会",
+      "short": "WAIC",
+      "city": "上海",
+      "url": "https://www.worldaic.com.cn/",
+      "conf": "medium",
+      "kw": [
+        "人工智能",
+        "WAIC"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "世界人工智能大会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "chtf",
+      "layer": "trunk",
+      "category": "AI/科技",
+      "tier": "head",
+      "name": "中国国际高新技术成果交易会",
+      "short": "高交会",
+      "city": "深圳",
+      "url": "https://www.chtf.com/",
+      "conf": "medium",
+      "kw": [
+        "高新技术",
+        "高交会"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "首页_中国国际高新技术成果交易会_高交会官方网站"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "scie",
+      "layer": "trunk",
+      "category": "AI/科技",
+      "tier": "niche",
+      "name": "中国国际智能产业博览会",
+      "short": "智博会",
+      "city": "重庆",
+      "url": "https://www.smartchina-expo.cn/",
+      "conf": "high",
+      "kw": [
+        "智能",
+        "智博会"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "组委会官方站，2024 年起升级为世界智能产业博览会，域名未变",
+      "needs_verify": false,
+      "official_name": "世界智能产业博览会（原智博会）",
+      "check": {
+        "result": "ok_by_host",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": ""
+      },
+      "status": "needs_render"
+    },
+    {
+      "id": "iot-expo",
+      "layer": "trunk",
+      "category": "AI/科技",
+      "tier": "cross",
+      "name": "中国国际物联网博览会",
+      "short": "物联网博览会",
+      "city": "无锡",
+      "url": "https://www.wiotexpo.cn/",
+      "conf": "high",
+      "kw": [
+        "物联网"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "官网自述 2016 年至今落地无锡",
+      "needs_verify": false,
+      "official_name": "世界物联网博览会（WIoT）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "世界物联网博览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "ciftis",
+      "layer": "trunk",
+      "category": "综合服务",
+      "tier": "head",
+      "name": "中国国际服务贸易交易会",
+      "short": "服贸会",
+      "city": "北京",
+      "url": "https://www.ciftis.org/",
+      "conf": "medium",
+      "kw": [
+        "服务贸易",
+        "服贸会"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "中国国际服务贸易交易会_服贸会"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "china-logistics",
+      "layer": "trunk",
+      "category": "综合服务",
+      "tier": "mid",
+      "name": "中国国际物流与供应链博览会",
+      "short": "物博会",
+      "city": "深圳",
+      "url": "https://www.scmfair.com/",
+      "conf": "high",
+      "kw": [
+        "物流",
+        "供应链",
+        "Logistic",
+        "物博"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "中物联/深圳物流与供应链管理协会主办方站点",
+      "needs_verify": false,
+      "official_name": "中国（深圳）国际物流与供应链博览会（CILF）",
+      "check": {
+        "result": "ok_by_host",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "Maintenance - International Logistics,Transportation Exhibition,CILF,SCM,China,A"
+      },
+      "status": "needs_render"
+    },
+    {
+      "id": "ec-expo-yiwu",
+      "layer": "trunk",
+      "category": "综合服务",
+      "tier": "niche",
+      "name": "中国国际电子商务博览会",
+      "short": "电商博览会",
+      "city": "义乌",
+      "url": "https://www.ecfair.cn/",
+      "conf": "medium",
+      "kw": [
+        "电子商务",
+        "电商"
+      ],
+      "verify": "medium",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "义乌电商博览会官网，主办浙江省商务厅、义乌市政府",
+      "needs_verify": false,
+      "official_name": "浙江国际电子商务博览会（原中国国际电子商务博览会）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "error",
+        "title": "浙江电子商务博览会（电商博览会）官方网站"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "china-edu-expo",
+      "layer": "trunk",
+      "category": "综合服务",
+      "tier": "cross",
+      "name": "中国国际教育展",
+      "short": "教育展",
+      "city": "北京",
+      "url": "https://www.chinaeducationexpo.com/",
+      "conf": "high",
+      "kw": [
+        "教育",
+        "CEE",
+        "Education"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "教育部指导、中国教育国际交流协会主办",
+      "needs_verify": false,
+      "official_name": "中国国际教育展（CEE）",
+      "check": {
+        "result": "ok_by_host",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "CEE - China Education Expo"
+      },
+      "status": "needs_render"
+    },
+    {
+      "id": "canton-fair",
+      "layer": "cross",
+      "category": "日用消费品",
+      "tier": "cross",
+      "name": "中国进出口商品交易会",
+      "short": "广交会",
+      "city": "广州",
+      "url": "https://www.cantonfair.org.cn/",
+      "conf": "high",
+      "kw": [
+        "广交会",
+        "Canton",
+        "进出口商品交易会"
+      ],
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "首页 - 中国进出口商品交易会（广交会官方网站）"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "ciie",
+      "layer": "cross",
+      "category": "综合服务",
+      "tier": "cross",
+      "name": "中国国际进口博览会",
+      "short": "进博会",
+      "city": "上海",
+      "url": "https://www.ciie.org/",
+      "conf": "high",
+      "kw": [
+        "进口博览",
+        "进博会",
+        "CIIE"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "页脚载商务部/上海市人民政府主办；原 URL 正确，未匹配关键词是前端渲染",
+      "needs_verify": false,
+      "official_name": "中国国际进口博览会（CIIE）",
+      "check": {
+        "result": "ok_by_host",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": ""
+      },
+      "status": "needs_render"
+    },
+    {
+      "id": "ccbef",
+      "layer": "cross",
+      "category": "综合服务",
+      "tier": "cross",
+      "name": "中国跨境电商交易会",
+      "short": "跨境电商展",
+      "city": "深圳",
+      "url": "https://www.ccbec-shenzhen.com/",
+      "conf": "high",
+      "kw": [
+        "跨境电商"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "法兰克福展览新闻稿明确刊载该域名",
+      "needs_verify": false,
+      "official_name": "中国（深圳）跨境电商展览会（CCBEC）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "深圳跨境电商展览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "caexpo",
+      "layer": "cross",
+      "category": "日用消费品",
+      "tier": "cross",
+      "name": "中国—东盟博览会",
+      "short": "东博会",
+      "city": "南宁",
+      "url": "https://www.caexpo.org.cn/",
+      "conf": "high",
+      "kw": [
+        "东盟",
+        "CAEXPO"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "中国与东盟10国政府经贸主管部门共同主办，新版站点为 .org.cn",
+      "prev_url": "https://www.caexpo.org/",
+      "needs_verify": false,
+      "official_name": "中国—东盟博览会（CAEXPO）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": ""
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "cismef",
+      "layer": "cross",
+      "category": "综合服务",
+      "tier": "cross",
+      "name": "中国国际中小企业博览会",
+      "short": "中博会",
+      "city": "广州",
+      "url": "https://www.cismef.com.cn/",
+      "conf": "high",
+      "kw": [
+        "中小企业",
+        "中博会"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "中国国际商会广州商会通知载明展会官网，主办工信部",
+      "needs_verify": false,
+      "official_name": "中国国际中小企业博览会（中博会）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "中国国际中小企业博览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "hainan-expo",
+      "layer": "cross",
+      "category": "日用消费品",
+      "tier": "cross",
+      "name": "中国国际消费品博览会",
+      "short": "消博会",
+      "city": "海口",
+      "url": "https://www.hainanexpo.org.cn/",
+      "conf": "high",
+      "kw": [
+        "消费品",
+        "消博会"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "商务部、海南省人民政府主办",
+      "needs_verify": false,
+      "official_name": "中国国际消费品博览会（消博会）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "中国国际消费品博览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "cipsc",
+      "layer": "cross",
+      "category": "综合服务",
+      "tier": "cross",
+      "name": "中国国际供应链促进博览会",
+      "short": "链博会",
+      "city": "北京",
+      "url": "https://www.cisce.org.cn/",
+      "conf": "high",
+      "kw": [
+        "供应链",
+        "链博会"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "贸促会主办、中展集团承办",
+      "needs_verify": false,
+      "official_name": "中国国际供应链促进博览会（链博会）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "首页_链博会"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "fhc-shanghai",
+      "layer": "cross",
+      "category": "食品",
+      "tier": "cross",
+      "name": "上海国际食品饮料及餐饮设备展",
+      "short": "FHC",
+      "city": "上海",
+      "url": "https://www.fhcchina.com/",
+      "conf": "high",
+      "kw": [
+        "食品",
+        "餐饮",
+        "FHC"
+      ],
+      "verify": "high",
+      "verify_source": "agent_urls_D.json",
+      "evidence": "上海市餐饮烹饪行业协会、上海博华主办",
+      "needs_verify": false,
+      "official_name": "FHC上海环球食品展",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "FHC上海环球食品展 - Homepage of FHC Shanghai Global Food Trade Show - FHC上海环球食品展"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "b-muying",
+      "layer": "boundary",
+      "category": "日用消费品",
+      "tier": "control",
+      "name": "中国国际婴童用品展览会",
+      "short": "母婴展",
+      "city": "上海",
+      "url": "https://cbmexpo.com/",
+      "conf": "high",
+      "kw": [
+        "婴童",
+        "母婴"
+      ],
+      "boundary": "near",
+      "verify": "high",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "Informa Markets 主办母婴全品类旗舰B2B展",
+      "needs_verify": false,
+      "official_name": "CBME国际孕婴童展",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "孕婴童用品展-上海母婴展-儿童玩具食品童装新品展览会-2027CBME国际孕婴童展官网"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "b-pet",
+      "layer": "boundary",
+      "category": "日用消费品",
+      "tier": "control",
+      "name": "中国国际宠物水族用品展",
+      "short": "宠物展",
+      "city": "上海",
+      "url": "https://www.petfairasia.com/",
+      "conf": "high",
+      "kw": [
+        "宠物",
+        "水族"
+      ],
+      "boundary": "near",
+      "verify": "high",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "亚太最大宠物用品B2B展，2600+展商/32万㎡",
+      "needs_verify": false,
+      "official_name": "亚洲宠物展 Pet Fair Asia",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "亚洲宠物展"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "b-hotel",
+      "layer": "boundary",
+      "category": "综合服务",
+      "tier": "control",
+      "name": "中国国际酒店用品博览会",
+      "short": "酒店用品展",
+      "city": "上海",
+      "url": "https://www.hotelex.cn/",
+      "conf": "high",
+      "kw": [
+        "酒店用品"
+      ],
+      "boundary": "near",
+      "verify": "high",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "国内最大酒店用品与餐饮设备展，40万㎡",
+      "needs_verify": false,
+      "official_name": "HOTELEX 上海国际酒店及餐饮业博览会",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "HOTELEX-上海国际酒店用品及餐饮业博览会系列展-上海酒店展-上海餐饮展-上海酒店用品展-上海咖啡美食节"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "b-coffee",
+      "layer": "boundary",
+      "category": "食品",
+      "tier": "control",
+      "name": "中国国际咖啡展览会",
+      "short": "咖啡展",
+      "city": "上海",
+      "url": "https://www.cafeex.com.cn/",
+      "conf": "medium",
+      "kw": [
+        "咖啡"
+      ],
+      "boundary": "near",
+      "verify": "medium",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "专注咖啡与饮品全产业链，上海/深圳/杭州三站",
+      "needs_verify": false,
+      "official_name": "CAFEEX 咖啡与饮品展览会",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "CAFEEX 咖啡与饮品展览会/咖啡节官网"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "b-retail",
+      "layer": "boundary",
+      "category": "综合服务",
+      "tier": "control",
+      "name": "中国国际零售业博览会",
+      "short": "零售展",
+      "city": "上海",
+      "url": "https://www.chinashop.cc/",
+      "conf": "medium",
+      "kw": [
+        "零售"
+      ],
+      "boundary": "near",
+      "verify": "medium",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "中国连锁经营协会主办，亚洲最大零售专业展，巡回举办",
+      "needs_verify": false,
+      "official_name": "中国零售业博览会 CHINASHOP",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "中国零售业博览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "b-camping",
+      "layer": "boundary",
+      "category": "办公箱包及休闲用品",
+      "tier": "control",
+      "name": "中国国际露营生活展",
+      "short": "露营展",
+      "city": "上海",
+      "url": "https://hweexpo.cn/",
+      "conf": "medium",
+      "kw": [
+        "露营",
+        "户外"
+      ],
+      "boundary": "near",
+      "verify": "medium",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "上海新国际博览中心每年7月，约2万㎡",
+      "needs_verify": false,
+      "official_name": "OCE 上海国际户外露营生活展",
+      "suspicious": "hweexpo.cn 实际是 SVE 上海国际休闲运动车展，不是户外露营展",
+      "check": {
+        "result": "ok_by_host",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "2027SVE上海国际休闲运动车展览会展|观光车展|休闲车展|休闲运动展"
+      },
+      "status": "suspicious"
+    },
+    {
+      "id": "b-tea-drink",
+      "layer": "boundary",
+      "category": "食品",
+      "tier": "control",
+      "name": "中国国际茶饮设备与原料展",
+      "short": "茶饮设备展",
+      "city": "上海",
+      "url": "https://www.teaexpo.cn/",
+      "conf": "medium",
+      "kw": [
+        "茶饮",
+        "茶博",
+        "teaexpo"
+      ],
+      "boundary": "near",
+      "verify": "medium",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "20年老牌茶展，2026起设新式茶饮与茶楼供应链专区",
+      "needs_verify": false,
+      "official_name": "中国（广州）国际茶业博览会",
+      "check": {
+        "result": "ok_by_host",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "广州茶博会官网_益武展览"
+      },
+      "status": "needs_render"
+    },
+    {
+      "id": "b-fitness",
+      "layer": "boundary",
+      "category": "办公箱包及休闲用品",
+      "tier": "control",
+      "name": "中国国际健身器材展览会",
+      "short": "健身器材展",
+      "city": "上海",
+      "url": "https://www.ciwf.com.cn/",
+      "conf": "high",
+      "kw": [
+        "健身"
+      ],
+      "boundary": "near",
+      "verify": "high",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "亚太健身器材旗舰展，8.5万㎡/1000+品牌",
+      "needs_verify": false,
+      "official_name": "IWF 上海国际健身展",
+      "check": {
+        "result": "http_err",
+        "verdict": null,
+        "http": 403,
+        "robots": "allow",
+        "title": ""
+      },
+      "status": "blocked_by_site"
+    },
+    {
+      "id": "b-babycare",
+      "layer": "boundary",
+      "category": "医药及医疗保健",
+      "tier": "control",
+      "name": "中国国际孕婴童健康展",
+      "short": "孕婴童展",
+      "city": "广州",
+      "url": "https://mch.ihe-china.com/",
+      "conf": "medium",
+      "kw": [
+        "孕婴童"
+      ],
+      "boundary": "near",
+      "verify": "medium",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "广交会展馆，孕产护理/婴童洗护/母婴健康",
+      "needs_verify": false,
+      "official_name": "广州国际妇幼健康产业博览会",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "MCH 广州国际妇幼健康产业博览会将于2025年6月12-14日在广交会馆举办"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "b-houseware",
+      "layer": "boundary",
+      "category": "家居装饰品",
+      "tier": "control",
+      "name": "中国国际家居用品博览会",
+      "short": "家居用品展",
+      "city": "上海",
+      "url": "https://www.cdatf.com/",
+      "conf": "high",
+      "kw": [
+        "家居用品"
+      ],
+      "boundary": "near",
+      "verify": "high",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "20万㎡/5000+展商，90%为生产企业",
+      "needs_verify": false,
+      "official_name": "中国日用百货商品交易会（上海百货会）",
+      "duplicate_of": "china-daily-goods",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "百货会|第120届上海百货会|百货展-日用百货商品交易会|华百官网"
+      },
+      "status": "duplicate"
+    },
+    {
+      "id": "b-crossborder",
+      "layer": "boundary",
+      "category": "综合服务",
+      "tier": "control",
+      "name": "中国国际跨境电商供应链展",
+      "short": "跨境供应链展",
+      "city": "杭州",
+      "url": "https://www.ccbecexpo.com/",
+      "conf": "high",
+      "kw": [
+        "跨境电商"
+      ],
+      "boundary": "fuzzy",
+      "verify": "high",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "8万㎡/1500展商，供货商占比超88%",
+      "needs_verify": false,
+      "official_name": "CCBEC 中国（深圳）跨境电商展览会",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "CCBEC_2027深圳跨境电商展览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "b-premium-gift",
+      "layer": "boundary",
+      "category": "礼品",
+      "tier": "control",
+      "name": "中国国际高端礼品定制展",
+      "short": "高端礼品展",
+      "city": "上海",
+      "url": "https://www.rxhuabo.com.cn/",
+      "conf": "medium",
+      "kw": [
+        "礼品",
+        "定制"
+      ],
+      "boundary": "fuzzy",
+      "verify": "medium",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "励展华博主办、UFI认证，近30万㎡/4500展商",
+      "needs_verify": false,
+      "official_name": "中国（深圳）国际礼品及家居用品展览会",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "深圳礼品展、深圳消费电子展、深圳包装展、国内知名的|礼品展|家居展|包装展|消费电子展|礼品包装及印刷展|的主办方-励展华博"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "b-general-consumer",
+      "layer": "boundary",
+      "category": "日用消费品",
+      "tier": "control",
+      "name": "中国国际综合消费品博览会",
+      "short": "综合消费品展",
+      "city": "上海",
+      "url": "https://www.cantonfair.org.cn/",
+      "conf": "medium",
+      "kw": [
+        "消费品",
+        "广交会",
+        "Canton"
+      ],
+      "boundary": "fuzzy",
+      "verify": "medium",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "商务部主办综合消费品展；定位出口撮合，内销属性弱",
+      "needs_verify": false,
+      "official_name": "中国进出口商品交易会（广交会）",
+      "duplicate_of": "canton-fair",
+      "check": {
+        "result": "ok_by_host",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "首页 - 中国进出口商品交易会（广交会官方网站）"
+      },
+      "status": "duplicate"
+    },
+    {
+      "id": "b-domestic-trade",
+      "layer": "boundary",
+      "category": "日用消费品",
+      "tier": "control",
+      "name": "外贸转内销商品博览会",
+      "short": "转内销展",
+      "city": "东莞",
+      "url": "https://www.gqpe.com.cn/",
+      "conf": "high",
+      "kw": [
+        "外贸",
+        "转内销"
+      ],
+      "boundary": "fuzzy",
+      "verify": "high",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "广东省商务厅指导，定位内外贸一体化/转内销；2026年1501家粤企、成交87.6亿",
+      "needs_verify": false,
+      "official_name": "广东优品展览会",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "error",
+        "title": "广东优品展览会"
+      },
+      "status": "crawlable_if_std"
+    },
+    {
+      "id": "b-catering",
+      "layer": "boundary",
+      "category": "食品",
+      "tier": "control",
+      "name": "中国国际餐饮业博览会",
+      "short": "餐饮展",
+      "city": "上海",
+      "url": "https://www.sialchina.cn/",
+      "conf": "medium",
+      "kw": [
+        "餐饮"
+      ],
+      "boundary": "fuzzy",
+      "verify": "medium",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "世界三大食品展之一，同期设餐饮供应链展",
+      "needs_verify": false,
+      "official_name": "SIAL 西雅国际食品和饮料展览会（上海）",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "SIAL西雅展官网 - SIAL 西雅国际食品展 2026 | 国际食品和饮料展览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "b-machine-tool",
+      "layer": "boundary",
+      "category": "机械",
+      "tier": "control",
+      "name": "中国国际机床工具展览会",
+      "short": "机床工具展",
+      "city": "北京",
+      "url": "https://www.ccmtshow.com/",
+      "conf": "high",
+      "kw": [
+        "机床"
+      ],
+      "boundary": "far",
+      "verify": "high",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "中国机床工具工业协会主办，CIMT姊妹展，20.2万㎡",
+      "needs_verify": false,
+      "official_name": "CCMT 中国数控机床展览会",
+      "duplicate_of": "ccmt",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "第十四届中国数控机床展览会"
+      },
+      "status": "duplicate"
+    },
+    {
+      "id": "b-medical-device",
+      "layer": "boundary",
+      "category": "医药及医疗保健",
+      "tier": "control",
+      "name": "中国国际医疗装备展览会",
+      "short": "医疗装备展",
+      "city": "上海",
+      "url": "https://www.cmef.com.cn/",
+      "conf": "high",
+      "kw": [
+        "医疗"
+      ],
+      "boundary": "far",
+      "verify": "high",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "国药励展主办，同期ICMD面向医疗器械制造端",
+      "needs_verify": false,
+      "official_name": "CMEF 中国国际医疗器械博览会（同期 ICMD）",
+      "duplicate_of": "cmef",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "CMEF医博会-国药励展展览有限责任公司"
+      },
+      "status": "duplicate"
+    },
+    {
+      "id": "b-textile-machinery",
+      "layer": "boundary",
+      "category": "纺织服装",
+      "tier": "control",
+      "name": "中国国际纺织机械器材展",
+      "short": "纺机展",
+      "city": "上海",
+      "url": "https://www.citme.com.cn/",
+      "conf": "high",
+      "kw": [
+        "纺织机械"
+      ],
+      "boundary": "far",
+      "verify": "high",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "CEMATEX与中国纺机协会主办，18万㎡/1800+展商",
+      "needs_verify": false,
+      "official_name": "中国国际纺织机械展览会暨ITMA亚洲展览会",
+      "duplicate_of": "itma-asia",
+      "check": {
+        "result": "ok_by_host",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "首页"
+      },
+      "status": "duplicate"
+    },
+    {
+      "id": "b-furniture-wood",
+      "layer": "boundary",
+      "category": "建材",
+      "tier": "control",
+      "name": "中国国际木工机械展览会",
+      "short": "木工机械展",
+      "city": "广州",
+      "url": "https://www.woodworkfair.com/",
+      "conf": "high",
+      "kw": [
+        "木工",
+        "机械"
+      ],
+      "boundary": "far",
+      "verify": "high",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "1986年创办，与CIFF上海同期，400+展商",
+      "needs_verify": false,
+      "official_name": "WMF 中国（上海）国际家具生产设备及木工机械展览会",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "allow",
+        "title": "首页 - WMF 2026 | 家具生产设备及木工机械展览会"
+      },
+      "status": "crawlable"
+    },
+    {
+      "id": "b-hardware-industrial",
+      "layer": "boundary",
+      "category": "五金工具",
+      "tier": "control",
+      "name": "中国国际工业五金零部件展",
+      "short": "工业五金展",
+      "city": "上海",
+      "url": "https://www.cihs.com.cn/",
+      "conf": "high",
+      "kw": [
+        "五金",
+        "零部件"
+      ],
+      "boundary": "far",
+      "verify": "high",
+      "verify_source": "agent_urls_E.json",
+      "evidence": "中国五金制品协会与科隆展览合办，12万㎡/近3000展商",
+      "needs_verify": false,
+      "official_name": "中国国际五金展 CIHS",
+      "duplicate_of": "cihs",
+      "check": {
+        "result": "ok",
+        "verdict": null,
+        "http": 200,
+        "robots": "missing",
+        "title": "中国国际五金展官方网站"
+      },
+      "status": "duplicate"
+    }
+  ]
+}

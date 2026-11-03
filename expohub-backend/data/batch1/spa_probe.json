@@ -1,0 +1,314 @@
+{
+  "probed_at": "2026-11-03 15:04:54",
+  "records": [
+    {
+      "id": "auto-shanghai",
+      "url": "https://www.autoshanghai.org/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 8382,
+      "text_chars": 971,
+      "scripts": 5,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "external_js": [
+        "https://r.autoshanghai.org/res/jquery-3.6.4.min.js",
+        "/libs/cui.min.js?v=3",
+        "/script/visit.js?v=2",
+        "/autosh2027/js/lib.min.js?v=2",
+        "/./autosh2027/dist/bundle-80689c257072a2ffe4d3.js?v=pJCI5DSDbcJoF32HYIRZKvIcftOMcNVaT_wxhwaReYA"
+      ]
+    },
+    {
+      "id": "auto-guangzhou",
+      "url": "https://www.autoguangzhou.com.cn/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 814,
+      "text_chars": 6,
+      "scripts": 1,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "external_js": [
+        "./assets/index-WlMR7Zbu.js"
+      ]
+    },
+    {
+      "id": "ciif",
+      "url": "https://www.ciif-expo.com/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 4485,
+      "text_chars": 0,
+      "scripts": 8,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "external_js": []
+    },
+    {
+      "id": "cbd-fair",
+      "url": "https://www.cbdfair-gz.com/",
+      "kind": "ssr_embedded",
+      "notes": [],
+      "http": 200,
+      "html_chars": 92610,
+      "text_chars": 974,
+      "scripts": 4,
+      "markers": [
+        "nuxt",
+        "jsdata"
+      ],
+      "embedded_json_chars": 16459,
+      "external_js": [
+        "/_nuxt/BG7DfB48.js"
+      ]
+    },
+    {
+      "id": "pcb-china",
+      "url": "http://www.cpcashow.com/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 10500,
+      "text_chars": 395,
+      "scripts": 2,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "other_hosts": [
+        "http://beian.miit.gov.cn"
+      ],
+      "external_js": []
+    },
+    {
+      "id": "snec",
+      "url": "https://www.snec.org.cn/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 8152,
+      "text_chars": 216,
+      "scripts": 6,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "other_hosts": [
+        "https://www.globalenergy.cn"
+      ],
+      "external_js": [
+        "/javascripts/jquery1.7.1.min.js",
+        "/javascripts/jquery.nivo.slider.js",
+        "/javascripts/jquery.agilebins-v1.0.3.min.js",
+        "/javascripts/lightcase.js",
+        "/javascripts/html5media.min.js"
+      ]
+    },
+    {
+      "id": "cippe",
+      "url": "http://www.cippe.com.cn/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 8938,
+      "text_chars": 383,
+      "scripts": 3,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "external_js": [
+        "/public/alinana/js/jquery.min.js"
+      ]
+    },
+    {
+      "id": "intertextile",
+      "url": "http://www.intertextile.com.cn/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 6320,
+      "text_chars": 655,
+      "scripts": 5,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "other_hosts": [
+        "http://beian.miit.gov.cn"
+      ],
+      "external_js": [
+        "/Templates/green/js/jquery.min.js",
+        "/js/indexpair_2026index0715.js?t=26072901"
+      ]
+    },
+    {
+      "id": "itma-asia",
+      "url": "https://www.citme.com.cn/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 246,
+      "text_chars": 2,
+      "scripts": 1,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "external_js": []
+    },
+    {
+      "id": "api-china",
+      "url": "https://www.apichina.com.cn/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 5419,
+      "text_chars": 103,
+      "scripts": 4,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "external_js": []
+    },
+    {
+      "id": "sino-dental",
+      "url": "https://www.sinodent.com.cn/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 1425,
+      "text_chars": 19,
+      "scripts": 4,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "external_js": [
+        "/static/index.a8a1c962.js",
+        "/script/jquery.js?v=1434340076",
+        "/script/jsencryptJs.js?v=1434340076"
+      ]
+    },
+    {
+      "id": "waic",
+      "url": "https://www.worldaic.com.cn/",
+      "kind": "ssr_embedded",
+      "notes": [],
+      "http": 200,
+      "html_chars": 96322,
+      "text_chars": 809,
+      "scripts": 6,
+      "markers": [
+        "nuxt",
+        "jsdata"
+      ],
+      "embedded_json_chars": 2189,
+      "external_js": [
+        "https://static.worldaic.com.cn/other2021/online/20210630/static/video/mudu.js",
+        "https://static.worldaic.com.cn/2026/web/static/_nuxt/CIU0xjVT.js"
+      ]
+    },
+    {
+      "id": "scie",
+      "url": "https://www.smartchina-expo.cn/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 106,
+      "text_chars": 0,
+      "scripts": 1,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "external_js": []
+    },
+    {
+      "id": "iot-expo",
+      "url": "https://www.wiotexpo.cn/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 1211,
+      "text_chars": 8,
+      "scripts": 2,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "external_js": [
+        "/assets/index-v5itTCmj.js",
+        "./swiper/js/swiper.min.js"
+      ]
+    },
+    {
+      "id": "ciftis",
+      "url": "https://www.ciftis.org/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 133917,
+      "text_chars": 15,
+      "scripts": 10,
+      "markers": [
+        "nuxt"
+      ],
+      "embedded_json_chars": 0,
+      "external_js": [
+        "https://navi-portal.ciftis.org/Ynavi.js?_t=1789465092790",
+        "https://business-oss.ciftis.org/sunshine-portal/d0ab8c7.js",
+        "https://business-oss.ciftis.org/sunshine-portal/d8d7881.js",
+        "https://business-oss.ciftis.org/sunshine-portal/6d26450.js",
+        "https://business-oss.ciftis.org/sunshine-portal/071514c.js",
+        "https://business-oss.ciftis.org/sunshine-portal/dc7d6a2.js"
+      ]
+    },
+    {
+      "id": "china-edu-expo",
+      "url": "https://www.chinaeducationexpo.com/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 2308,
+      "text_chars": 26,
+      "scripts": 2,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "external_js": [
+        "/jquery/1.11.3/jquery.min.js"
+      ]
+    },
+    {
+      "id": "canton-fair",
+      "url": "https://www.cantonfair.org.cn/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 1944,
+      "text_chars": 24,
+      "scripts": 4,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "external_js": [
+        "https://cdn.cantonfair.org.cn/appFiles/js/track-sdk.global.js",
+        "https://www.cantonfair.org.cn/webInfo/assets/index-6CJUlspL.js"
+      ]
+    },
+    {
+      "id": "ciie",
+      "url": "https://www.ciie.org/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 267,
+      "text_chars": 0,
+      "scripts": 0,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "external_js": []
+    },
+    {
+      "id": "hainan-expo",
+      "url": "https://www.hainanexpo.org.cn/",
+      "kind": "shell_only",
+      "notes": [],
+      "http": 200,
+      "html_chars": 861,
+      "text_chars": 10,
+      "scripts": 2,
+      "markers": [],
+      "embedded_json_chars": 0,
+      "external_js": [
+        "/assets/index-DsBHGQI4.js"
+      ]
+    }
+  ]
+}

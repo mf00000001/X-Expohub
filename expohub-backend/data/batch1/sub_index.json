@@ -1,0 +1,246 @@
+{
+  "b-babycare": {
+    "urls": [
+      "https://mch.ihe-china.com/cn/Invitation/16.MCH/2025/",
+      "https://mch.ihe-china.com/cn/ExpoFigures/"
+    ],
+    "chars": 8120,
+    "hits": [
+      "关于展会",
+      "展会数据"
+    ],
+    "error": null
+  },
+  "b-coffee": {
+    "urls": [
+      "https://www.cafeex.com.cn/About.aspx?ClassID=25"
+    ],
+    "chars": 1147,
+    "hits": [
+      "展会概况"
+    ],
+    "error": null
+  },
+  "b-catering": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "no_keyword_links"
+  },
+  "b-domestic-trade": {
+    "urls": [
+      "https://www.gqpe.com.cn/h-col-128.html"
+    ],
+    "chars": 1097,
+    "hits": [
+      "展会介绍"
+    ],
+    "error": null
+  },
+  "b-muying": {
+    "urls": [
+      "https://www.cbmexpo.com/cn/about",
+      "https://www.cbmexpo.com/cn/review"
+    ],
+    "chars": 7665,
+    "hits": [
+      "展会介绍",
+      "上届回顾"
+    ],
+    "error": null
+  },
+  "b-hotel": {
+    "urls": [
+      "https://www.hotelex.cn/shanghai/aboutsh"
+    ],
+    "chars": 3061,
+    "hits": [
+      "关于展会"
+    ],
+    "error": null
+  },
+  "b-premium-gift": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "no_keyword_links"
+  },
+  "b-tea-drink": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "no_keyword_links"
+  },
+  "caexpo": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "spa_shell_no_links"
+  },
+  "bakery-china": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "spa_shell_no_links"
+  },
+  "ccbef": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "no_keyword_links"
+  },
+  "ceramics-china": {
+    "urls": [
+      "http://www.ceramicschina.com.cn/portal/about/introduce",
+      "http://www.ceramicschina.com.cn/portal/about/review"
+    ],
+    "chars": 3555,
+    "hits": [
+      "关于展会",
+      "往届回顾"
+    ],
+    "error": null
+  },
+  "chinacoat": {
+    "urls": [
+      "https://www.chinacoat.net/?route=about_exhibition_1"
+    ],
+    "chars": 2423,
+    "hits": [
+      "展览会简介"
+    ],
+    "error": null
+  },
+  "chinaplas": {
+    "urls": [
+      "https://www.chinaplasonline.com/CPS/information/FactsFigures/simp"
+    ],
+    "chars": 3773,
+    "hits": [
+      "展会规模"
+    ],
+    "error": null
+  },
+  "chtf": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "no_keyword_links"
+  },
+  "cies": {
+    "urls": [
+      "http://www.ciessummit.cn/Article/detail/id/698.html",
+      "http://www.ciessummit.cn/article/detail/id/1190.html"
+    ],
+    "chars": 10556,
+    "hits": [
+      "关于展会",
+      "上届回顾"
+    ],
+    "error": null
+  },
+  "cismef": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "spa_shell_no_links"
+  },
+  "cmef": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "no_keyword_links"
+  },
+  "fenestration-china": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "no_keyword_links"
+  },
+  "foshan-ceramics": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "subpages_empty_or_unreachable"
+  },
+  "gz-shoes": {
+    "urls": [
+      "http://www.slfchinafair.com/cnt_exbIntro.html"
+    ],
+    "chars": 2371,
+    "hits": [
+      "展会介绍"
+    ],
+    "error": null
+  },
+  "humen-fashion": {
+    "urls": [
+      "http://www.hmcec.com/humen/list_270.html"
+    ],
+    "chars": 940,
+    "hits": [
+      "展会介绍"
+    ],
+    "error": null
+  },
+  "ningbo-lighting": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "no_keyword_links"
+  },
+  "pharmchina": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "no_keyword_links"
+  },
+  "reed-gift-sz": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "no_keyword_links"
+  },
+  "sial-china": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "no_keyword_links"
+  },
+  "simm": {
+    "urls": [
+      "https://www.iteschina.com/zh-cn/about"
+    ],
+    "chars": 4308,
+    "hits": [
+      "展会概览"
+    ],
+    "error": null
+  },
+  "sinoces": {
+    "urls": [
+      "https://sinoces.com/about"
+    ],
+    "chars": 1592,
+    "hits": [
+      "展会概况"
+    ],
+    "error": null
+  },
+  "tea-expo": {
+    "urls": [
+      "https://www.goodtea.cc/about-us"
+    ],
+    "chars": 4546,
+    "hits": [
+      "关于华巨臣茶博会 About Tea Fair"
+    ],
+    "error": null
+  },
+  "yiwu-fair": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "error": "no_keyword_links"
+  }
+}

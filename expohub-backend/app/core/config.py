@@ -49,6 +49,11 @@ class Settings(BaseSettings):
     # 默认 SQLite（零配置），生产环境设置 DATABASE_URL 为 MySQL 连接串
     DATABASE_URL: str = "sqlite:///./expohub.db"
 
+    # ---- 画像库（独立库，与主库完全隔离）----
+    # 画像数据来自爬取/人工录入，可随时重建，因此不进 alembic、不写主库。
+    # 主库对本模块只读：只 SELECT exhibitions，不 INSERT/UPDATE。
+    PERSONA_DATABASE_URL: str = "sqlite:///./persona.db"
+
     # ---- 多租户（P2：默认单租户模式，X-Tenant-Id 缺省回落默认租户）----
     TENANT_DEFAULT: str = "default"
     # 是否强制校验 X-Tenant-Id（False = 向后兼容，不传即默认租户）

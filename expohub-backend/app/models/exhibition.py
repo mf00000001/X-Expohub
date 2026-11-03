@@ -28,6 +28,12 @@ class Exhibition(Base):
     title: Mapped[str] = mapped_column(
         String(200), nullable=False, index=True, comment="展会标题"
     )
+    # 品类：画像 E1（客群可得性）/ E2（竞争密度）的前置字段。
+    # 之前前端一直在传、后端一直没有这一列，Pydantic 默认 extra=ignore
+    # 把字段静默吞掉，表现为"填了品类但保存后没了"。
+    category: Mapped[Optional[str]] = mapped_column(
+        String(50), nullable=True, index=True, comment="展会品类（如 机床工具 / 医疗器械）"
+    )
     description: Mapped[Optional[str]] = mapped_column(
         Text, nullable=True, comment="展会描述"
     )

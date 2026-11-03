@@ -1,0 +1,2393 @@
+{
+  "checked_at": "2026-11-03 13:50:52",
+  "total": 100,
+  "results": [
+    {
+      "id": "awe",
+      "layer": "trunk",
+      "category": "电子及家电",
+      "name": "中国家电及消费电子博览会",
+      "short": "AWE",
+      "city": "上海",
+      "url": "https://www.awe.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.awe.com.cn/",
+      "title": "AWE中国家电及消费电子博览会|上海家电展|智能家居展|小家电展|消费电子展",
+      "elapsed": 0.29,
+      "kw_hits": [
+        "家电",
+        "AWE",
+        "消费电子"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 家电、AWE、消费电子",
+      "robots": "allow",
+      "robots_rules": [
+        "/SiteServer/",
+        "/SiteFiles/",
+        "/home/"
+      ]
+    },
+    {
+      "id": "electronica-china",
+      "layer": "trunk",
+      "category": "电子及家电",
+      "name": "慕尼黑上海电子展",
+      "short": "electronica China",
+      "city": "上海",
+      "url": "https://www.electronica-china.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.electronicachina.com.cn/en",
+      "title": "Semiconductors_Industrial Electronics_Embedded systems-electronica Shanghai",
+      "elapsed": 1.11,
+      "kw_hits": [
+        "electronica"
+      ],
+      "host_same": false,
+      "result": "ok",
+      "detail": "命中 electronica",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "cite",
+      "layer": "trunk",
+      "category": "电子及家电",
+      "name": "中国国际电子信息博览会",
+      "short": "CITE",
+      "city": "深圳",
+      "url": "http://www.citexpo.com.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.citexpo.com.cn//",
+      "title": "China International Tire Expo",
+      "elapsed": 5.23,
+      "kw_hits": [
+        "CITE"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 CITE",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "sinoces",
+      "layer": "trunk",
+      "category": "电子及家电",
+      "name": "中国国际消费电子博览会",
+      "short": "SINOCES",
+      "city": "青岛",
+      "url": "https://sinoces.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://sinoces.com/",
+      "title": "",
+      "elapsed": 2.0,
+      "kw_hits": [
+        "消费电子",
+        "SINOCES",
+        "青岛"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 消费电子、SINOCES、青岛",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "gile",
+      "layer": "trunk",
+      "category": "照明",
+      "name": "广州国际照明展览会",
+      "short": "光亚展 GILE",
+      "city": "广州",
+      "url": "http://gile.gymf.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://gile.gymf.com.cn/",
+      "title": "2027广州国际照明展览会-光亚展(GILE)_照明及LED产业风向标",
+      "elapsed": 0.27,
+      "kw_hits": [
+        "照明",
+        "GILE",
+        "光亚"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 照明、GILE、光亚",
+      "robots": "allow",
+      "robots_rules": [
+        ""
+      ]
+    },
+    {
+      "id": "guzhen-lighting",
+      "layer": "trunk",
+      "category": "照明",
+      "name": "中国古镇国际灯饰博览会",
+      "short": "古镇灯博会",
+      "city": "中山",
+      "url": "https://www.gzlightingfair.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://gzlightingfair.denggle.com/",
+      "title": "古镇灯博会 &#8211; 【第35届古镇灯博会】以“专业化、市场化、国际化”为定位，打造展店联动、展网融合的一站式新品采购盛会。",
+      "elapsed": 0.24,
+      "kw_hits": [
+        "灯饰",
+        "古镇"
+      ],
+      "host_same": false,
+      "result": "ok",
+      "detail": "命中 灯饰、古镇",
+      "robots": "allow",
+      "robots_rules": [
+        "/wp-admin/"
+      ]
+    },
+    {
+      "id": "hktdc-lighting",
+      "layer": "trunk",
+      "category": "照明",
+      "name": "香港国际秋季灯饰展",
+      "short": "香港灯饰展",
+      "city": "香港",
+      "url": "https://hklightingfairae.hktdc.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.hktdc.com/event/hklightingfairae/en",
+      "title": "HKTDC Hong Kong International Lighting Fair (Autumn Edition)",
+      "elapsed": 0.58,
+      "ssl_note": "证书/握手异常，已降级重试",
+      "kw_hits": [
+        "Lighting",
+        "HKTDC"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 Lighting、HKTDC",
+      "robots": "error",
+      "robots_rules": [
+        "robots 取不到(URLError) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "ningbo-lighting",
+      "layer": "trunk",
+      "category": "照明",
+      "name": "宁波国际照明展览会",
+      "short": "宁波照明展",
+      "city": "宁波",
+      "url": "https://nb.yishengexpo.com/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://nb.yishengexpo.com/",
+      "title": "2027宁波国际照明展",
+      "elapsed": 0.19,
+      "kw_hits": [
+        "照明",
+        "宁波"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 照明、宁波",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "auto-shanghai",
+      "layer": "trunk",
+      "category": "车辆及配件",
+      "name": "上海国际汽车工业展览会",
+      "short": "上海车展",
+      "city": "上海",
+      "url": "https://www.autoshanghai.org/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.autoshanghai.org/",
+      "title": "第二十二届上海国际汽车工业展览会",
+      "elapsed": 0.18,
+      "kw_hits": [
+        "汽车",
+        "车展",
+        "autoshanghai"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 汽车、车展、autoshanghai",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "auto-china",
+      "layer": "trunk",
+      "category": "车辆及配件",
+      "name": "北京国际汽车展览会",
+      "short": "北京车展",
+      "city": "北京",
+      "url": "https://www.autochinashow.org/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.autochinashow.org/",
+      "title": "2027北京国际新质汽车及未来智慧出行展览会",
+      "elapsed": 0.24,
+      "kw_hits": [
+        "汽车",
+        "车展",
+        "北京"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 汽车、车展、北京",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "auto-guangzhou",
+      "layer": "trunk",
+      "category": "车辆及配件",
+      "name": "广州国际汽车展览会",
+      "short": "广州车展",
+      "city": "广州",
+      "url": "https://www.autoguangzhou.com.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.autoguangzhou.com.cn/",
+      "title": "广州国际车展",
+      "elapsed": 0.1,
+      "kw_hits": [
+        "车展",
+        "广州"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 车展、广州",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "automechanika-sh",
+      "layer": "trunk",
+      "category": "车辆及配件",
+      "name": "上海国际汽车零配件维修检测设备展",
+      "short": "Automechanika Shanghai",
+      "city": "上海",
+      "url": "https://automechanika-shanghai.hk.messefrankfurt.com/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://automechanika-shanghai.hk.messefrankfurt.com/shanghai/zh-cn.html",
+      "title": "上海国际汽车零配件、维修检测诊断设备及服务用品展览会",
+      "elapsed": 5.41,
+      "kw_hits": [
+        "Automechanika",
+        "零配件",
+        "汽配"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 Automechanika、零配件、汽配",
+      "robots": "allow",
+      "robots_rules": [
+        "/*.json$",
+        "/*/_jcr_content/*",
+        "/*/tools/*",
+        "/*?*wcmmode=disabled*"
+      ]
+    },
+    {
+      "id": "cihs",
+      "layer": "trunk",
+      "category": "五金工具",
+      "name": "中国国际五金展",
+      "short": "CIHS",
+      "city": "上海",
+      "url": "http://www.cihs.com.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "http://www.cihs.com.cn/",
+      "title": "中国国际五金展官方网站",
+      "elapsed": 0.22,
+      "kw_hits": [
+        "五金",
+        "CIHS"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 五金、CIHS",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "china-hardware",
+      "layer": "trunk",
+      "category": "五金工具",
+      "name": "中国国际五金博览会",
+      "short": "五金博览会",
+      "city": "上海",
+      "url": "https://hardware-fair.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://hardware-fair.com/",
+      "title": "中国国际五金博览会",
+      "elapsed": 0.26,
+      "kw_hits": [
+        "五金",
+        "博览会"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 五金、博览会",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "yongkang-hardware",
+      "layer": "trunk",
+      "category": "五金工具",
+      "name": "中国永康五金博览会",
+      "short": "永康五金展",
+      "city": "永康",
+      "url": "https://www.chhwf.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.chhwf.com/",
+      "title": "五金博览会-唯一指定官网网站",
+      "elapsed": 0.16,
+      "kw_hits": [
+        "五金",
+        "永康"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 五金、永康",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "cimt",
+      "layer": "trunk",
+      "category": "五金工具",
+      "name": "中国国际机床展览会",
+      "short": "CIMT",
+      "city": "北京",
+      "url": "https://www.cimtshow.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.cimtshow.com/",
+      "title": "第二十届中国国际机床展览会",
+      "elapsed": 0.17,
+      "kw_hits": [
+        "机床",
+        "CIMT"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 机床、CIMT",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "ciif",
+      "layer": "trunk",
+      "category": "机械",
+      "name": "中国国际工业博览会",
+      "short": "工博会 CIIF",
+      "city": "上海",
+      "url": "https://www.ciif-expo.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.ciif-expo.com/",
+      "title": "",
+      "elapsed": 0.28,
+      "kw_hits": [],
+      "host_same": true,
+      "result": "ok_by_host",
+      "detail": "域名未变，但正文未匹配（标题为空，疑为JS渲染）",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "chinaplas",
+      "layer": "trunk",
+      "category": "机械",
+      "name": "中国国际塑料橡胶工业展览会",
+      "short": "Chinaplas",
+      "city": "上海",
+      "url": "https://www.chinaplasonline.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.chinaplasonline.com/",
+      "title": "CHINAPLAS 2027 | 全球领先的国际塑料橡胶展",
+      "elapsed": 0.84,
+      "kw_hits": [
+        "塑料",
+        "橡胶",
+        "Chinaplas"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 塑料、橡胶、Chinaplas",
+      "robots": "allow",
+      "robots_rules": [
+        "/CPS/visitor-preregistration/payment/",
+        "/cps/visitor-preregistration/payment/",
+        "/CPS/visitor-preregistration/success/",
+        "/cps/visitor-preregistration/success/",
+        "/CPS/visitor-preregistration/preregistrationsuccess/"
+      ]
+    },
+    {
+      "id": "simm",
+      "layer": "trunk",
+      "category": "机械",
+      "name": "深圳国际机械制造工业展览会",
+      "short": "SIMM",
+      "city": "深圳",
+      "url": "https://www.iteschina.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.iteschina.com/",
+      "title": "ITES深圳工业展-深圳机械展_机床展_自动化展_机器人展",
+      "elapsed": 1.25,
+      "kw_hits": [
+        "SIMM",
+        "深圳"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 SIMM、深圳",
+      "robots": "allow",
+      "robots_rules": [
+        "Allow:"
+      ]
+    },
+    {
+      "id": "ccmt",
+      "layer": "trunk",
+      "category": "机械",
+      "name": "中国数控机床展览会",
+      "short": "CCMT",
+      "city": "上海",
+      "url": "https://www.ccmtshow.com/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.ccmtshow.com/",
+      "title": "第十四届中国数控机床展览会",
+      "elapsed": 0.16,
+      "kw_hits": [
+        "数控机床",
+        "CCMT"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 数控机床、CCMT",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "cbd-fair",
+      "layer": "trunk",
+      "category": "建材",
+      "name": "中国国际建筑装饰博览会",
+      "short": "建博会 CBD Fair",
+      "city": "广州",
+      "url": "https://www.cbdfair-gz.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.cbdfair-gz.com/",
+      "title": "中国建博会（广州）| 广州建材展",
+      "elapsed": 0.09,
+      "kw_hits": [
+        "建筑装饰",
+        "建博会",
+        "CBD"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 建筑装饰、建博会、CBD",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "fenestration-china",
+      "layer": "trunk",
+      "category": "建材",
+      "name": "中国国际门窗幕墙博览会",
+      "short": "Fenestration China",
+      "city": "北京",
+      "url": "https://fenestration.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://fenestration.com.cn/",
+      "title": "国际门窗幕墙博览会 FENESTRATION BAU CHINA",
+      "elapsed": 0.25,
+      "kw_hits": [
+        "门窗",
+        "幕墙"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 门窗、幕墙",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "foshan-ceramics",
+      "layer": "trunk",
+      "category": "建材",
+      "name": "佛山陶博会",
+      "short": "佛山陶博会",
+      "city": "佛山",
+      "url": "https://www.cerambath.org/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.cerambath.org/",
+      "title": "陶瓷卫浴品牌加盟严选，陶瓷卫浴新品发布平台 - 线上陶博会,线上展会,佛山陶博会,博览会,陶瓷,卫浴,展会,陶博会",
+      "elapsed": 0.59,
+      "ssl_note": "证书/握手异常，已降级重试",
+      "kw_hits": [
+        "陶瓷",
+        "佛山",
+        "陶博会"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 陶瓷、佛山、陶博会",
+      "robots": "error",
+      "robots_rules": [
+        "robots 取不到(URLError) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "ceramics-china",
+      "layer": "trunk",
+      "category": "建材",
+      "name": "中国国际陶瓷工业展览会",
+      "short": "Ceramics China",
+      "city": "广州",
+      "url": "http://www.ceramicschina.com.cn/",
+      "conf": "low",
+      "http": 200,
+      "final_url": "http://www.ceramicschina.com.cn/",
+      "title": "广州陶瓷工业展|陶瓷展|广州陶瓷展|陶瓷工业展|陶瓷装备材料展",
+      "elapsed": 0.49,
+      "kw_hits": [
+        "陶瓷工业",
+        "Ceramics"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 陶瓷工业、Ceramics",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "chinacoat",
+      "layer": "trunk",
+      "category": "化工产品",
+      "name": "中国国际涂料展",
+      "short": "Chinacoat",
+      "city": "广州",
+      "url": "https://www.chinacoat.net/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.chinacoat.net/",
+      "title": "CHINACOAT",
+      "elapsed": 3.22,
+      "kw_hits": [
+        "涂料",
+        "Chinacoat"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 涂料、Chinacoat",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "icif",
+      "layer": "trunk",
+      "category": "化工产品",
+      "name": "中国国际化工展览会",
+      "short": "ICIF China",
+      "city": "上海",
+      "url": "http://www.icif.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "http://www.icif.cn/",
+      "title": "中国国际化工展览会—官网",
+      "elapsed": 0.16,
+      "kw_hits": [
+        "化工",
+        "ICIF"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 化工、ICIF",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "china-adhesive",
+      "layer": "trunk",
+      "category": "化工产品",
+      "name": "中国国际胶粘剂及密封剂展览会",
+      "short": "胶粘剂展",
+      "city": "上海",
+      "url": "https://www.chinaadhesive2000.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.adhesiveshow.com/zh-cn",
+      "title": "首页 | 国际胶粘剂及密封剂展",
+      "elapsed": 1.62,
+      "kw_hits": [
+        "胶粘剂",
+        "密封剂"
+      ],
+      "host_same": false,
+      "result": "ok",
+      "detail": "命中 胶粘剂、密封剂",
+      "robots": "allow",
+      "robots_rules": [
+        "/tmp/",
+        "/private/"
+      ]
+    },
+    {
+      "id": "pcb-china",
+      "layer": "trunk",
+      "category": "化工产品",
+      "name": "中国国际电子电路展览会",
+      "short": "CPCA Show",
+      "city": "上海",
+      "url": "http://www.cpcashow.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "http://www.cpcashow.com/",
+      "title": "上海颖展展览服务有限公司",
+      "elapsed": 0.21,
+      "kw_hits": [
+        "CPCA"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 CPCA",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "snec",
+      "layer": "trunk",
+      "category": "能源",
+      "name": "国际太阳能光伏与智慧能源大会暨展览会",
+      "short": "SNEC",
+      "city": "上海",
+      "url": "https://www.snec.org.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.snec.org.cn/",
+      "title": "SNEC光.储.氢产业融合协和发展系列展览会",
+      "elapsed": 0.18,
+      "kw_hits": [
+        "SNEC"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 SNEC",
+      "robots": "allow",
+      "robots_rules": [
+        "/exhibitionHallIndex",
+        "/exHallList",
+        "/exHallList?",
+        "/companyDetail/"
+      ]
+    },
+    {
+      "id": "cippe",
+      "layer": "trunk",
+      "category": "能源",
+      "name": "中国国际石油石化技术装备展览会",
+      "short": "cippe",
+      "city": "北京",
+      "url": "http://www.cippe.com.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "http://www.cippe.com.cn/",
+      "title": "中国国际石油石化技术装备展览会|振威展览",
+      "elapsed": 0.11,
+      "kw_hits": [
+        "石油",
+        "石化",
+        "cippe"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 石油、石化、cippe",
+      "robots": "allow",
+      "robots_rules": [
+        "/plus/",
+        "/templets",
+        "/data",
+        "/include",
+        "/plus"
+      ]
+    },
+    {
+      "id": "cwp",
+      "layer": "trunk",
+      "category": "能源",
+      "name": "北京国际风能大会暨展览会",
+      "short": "CWP",
+      "city": "北京",
+      "url": "https://www.chinawind.org.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.chinawind.org.cn/",
+      "title": "CWP北京国际风能大会暨展览会",
+      "elapsed": 0.3,
+      "kw_hits": [
+        "风能",
+        "CWP"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 风能、CWP",
+      "robots": "allow",
+      "robots_rules": [
+        ""
+      ]
+    },
+    {
+      "id": "cies",
+      "layer": "trunk",
+      "category": "能源",
+      "name": "中国国际储能大会暨展览会",
+      "short": "CIES",
+      "city": "深圳",
+      "url": "http://www.ciessummit.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "http://www.ciessummit.cn/",
+      "title": "储能大会暨展览会 CIES",
+      "elapsed": 0.18,
+      "kw_hits": [
+        "储能",
+        "CIES"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 储能、CIES",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "ecf",
+      "layer": "trunk",
+      "category": "日用消费品",
+      "name": "华东进出口商品交易会",
+      "short": "华交会",
+      "city": "上海",
+      "url": "http://www.ecf.org.cn/",
+      "conf": "low",
+      "result": "net_err",
+      "detail": "ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。",
+      "elapsed": 0.08,
+      "robots": "error",
+      "robots_rules": [
+        "robots 取不到(ConnectionResetError) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "yiwu-fair",
+      "layer": "trunk",
+      "category": "日用消费品",
+      "name": "中国义乌国际小商品博览会",
+      "short": "义博会",
+      "city": "义乌",
+      "url": "http://www.yiwufair.com/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "http://www.yiwufair.com/",
+      "title": "义乌国际小商品博览会（义博会）官方网站",
+      "elapsed": 0.27,
+      "kw_hits": [
+        "义乌",
+        "小商品",
+        "义博会"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 义乌、小商品、义博会",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "china-daily-goods",
+      "layer": "trunk",
+      "category": "日用消费品",
+      "name": "中国日用百货商品交易会",
+      "short": "百货会",
+      "city": "上海",
+      "url": "https://cdatf.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.cdatf.com:443/",
+      "title": "百货会|第120届上海百货会|百货展-日用百货商品交易会|华百官网",
+      "elapsed": 1.2,
+      "kw_hits": [
+        "日用百货"
+      ],
+      "host_same": false,
+      "result": "ok",
+      "detail": "命中 日用百货",
+      "robots": "allow",
+      "robots_rules": [
+        "/*error-pages",
+        "/cdn-cgi/"
+      ]
+    },
+    {
+      "id": "ningbo-consumer",
+      "layer": "trunk",
+      "category": "日用消费品",
+      "name": "中国国际日用消费品博览会",
+      "short": "宁波消博会",
+      "city": "宁波",
+      "url": "https://www.cceecexpo.org/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.cceecexpo.org/",
+      "title": "中东欧国家博览会暨国际消费品博览会",
+      "elapsed": 1.88,
+      "kw_hits": [
+        "宁波"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 宁波",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "reed-gift-sz",
+      "layer": "trunk",
+      "category": "礼品",
+      "name": "深圳国际礼品及家居用品展览会",
+      "short": "深圳礼品展",
+      "city": "深圳",
+      "url": "https://www.reedhuabo.com/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.rxhuabo.com.cn/",
+      "title": "深圳礼品展、深圳消费电子展、深圳包装展、国内知名的|礼品展|家居展|包装展|消费电子展|礼品包装及印刷展|的主办方-励展华博",
+      "elapsed": 0.4,
+      "kw_hits": [
+        "礼品",
+        "家居用品",
+        "深圳"
+      ],
+      "host_same": false,
+      "result": "ok",
+      "detail": "命中 礼品、家居用品、深圳",
+      "robots": "allow",
+      "robots_rules": [
+        ""
+      ]
+    },
+    {
+      "id": "sh-gift",
+      "layer": "trunk",
+      "category": "礼品",
+      "name": "上海国际礼品及促销品展览会",
+      "short": "上海礼品展",
+      "city": "上海",
+      "url": "https://july.rxhuabo.com.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://july.rxhuabo.com.cn/",
+      "title": "上海国际礼业博览会&mdash;Gift &amp; Home上海礼博会&mdash;励展华博",
+      "elapsed": 0.27,
+      "kw_hits": [
+        "礼品"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 礼品",
+      "robots": "allow",
+      "robots_rules": [
+        ""
+      ]
+    },
+    {
+      "id": "yiwu-gift",
+      "layer": "trunk",
+      "category": "礼品",
+      "name": "义乌国际礼品及家居用品展",
+      "short": "义乌礼品展",
+      "city": "义乌",
+      "url": "https://yiwu.rxhuabo.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://yiwu.rxhuabo.com.cn/",
+      "title": "2027年义乌礼品、时尚用品及家庭用品展览会",
+      "elapsed": 0.12,
+      "kw_hits": [
+        "礼品",
+        "义乌"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 礼品、义乌",
+      "robots": "allow",
+      "robots_rules": [
+        ""
+      ]
+    },
+    {
+      "id": "gz-gift",
+      "layer": "trunk",
+      "category": "礼品",
+      "name": "广州国际礼品及家居用品展",
+      "short": "广州礼品展",
+      "city": "广州",
+      "url": "https://gz.cghe-expo.com/",
+      "conf": "medium",
+      "result": "net_err",
+      "detail": "SSLError: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1010)",
+      "elapsed": 0.2,
+      "robots": "error",
+      "robots_rules": [
+        "robots 取不到(URLError) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "intertextile",
+      "layer": "trunk",
+      "category": "纺织服装",
+      "name": "中国国际纺织面料及辅料博览会",
+      "short": "Intertextile",
+      "city": "上海",
+      "url": "http://www.intertextile.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "http://www.intertextile.com.cn/",
+      "title": "Intertextile中国国际纺织面料及辅料博览会 - 官方网站",
+      "elapsed": 0.11,
+      "kw_hits": [
+        "纺织",
+        "面料",
+        "Intertextile"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 纺织、面料、Intertextile",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "chic",
+      "layer": "trunk",
+      "category": "纺织服装",
+      "name": "中国国际服装服饰博览会",
+      "short": "CHIC",
+      "city": "上海",
+      "url": "http://www.chicfair.com/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "http://www.chicfair.com/",
+      "title": "CHIC中国国际服装服饰博览会2026（秋季）",
+      "elapsed": 0.45,
+      "kw_hits": [
+        "服装",
+        "CHIC"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 服装、CHIC",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "itma-asia",
+      "layer": "trunk",
+      "category": "纺织服装",
+      "name": "中国国际纺织机械展览会",
+      "short": "ITMA ASIA + CITME",
+      "city": "上海",
+      "url": "https://www.citme.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.citme.com.cn/",
+      "title": "首页",
+      "elapsed": 0.54,
+      "kw_hits": [],
+      "host_same": true,
+      "result": "ok_by_host",
+      "detail": "域名未变，但正文未匹配",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "humen-fashion",
+      "layer": "trunk",
+      "category": "纺织服装",
+      "name": "虎门国际服装交易会",
+      "short": "虎门服交会",
+      "city": "东莞",
+      "url": "http://www.hmcec.com/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "http://www.hmcec.com/",
+      "title": "虎门会展网",
+      "elapsed": 0.19,
+      "kw_hits": [
+        "服装",
+        "虎门"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 服装、虎门",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "china-shoes",
+      "layer": "trunk",
+      "category": "鞋类",
+      "name": "中国国际鞋类展览会",
+      "short": "中国鞋展",
+      "city": "上海",
+      "url": "https://ilse.com.cn/",
+      "conf": "medium",
+      "result": "net_err",
+      "detail": "SSLError: [SSL: TLSV1_ALERT_INTERNAL_ERROR] tlsv1 alert internal error (_ssl.c:1010)",
+      "elapsed": 0.28,
+      "robots": "error",
+      "robots_rules": [
+        "robots 取不到(URLError) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "gz-shoes",
+      "layer": "trunk",
+      "category": "鞋类",
+      "name": "广州国际鞋类展览会",
+      "short": "广州鞋展",
+      "city": "广州",
+      "url": "http://www.slfchinafair.com/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "http://www.slfchinafair.com/",
+      "title": "2026厦门国际鞋业博览会2026年11月13-15日福建厦门",
+      "elapsed": 0.16,
+      "kw_hits": [
+        "鞋",
+        "广州"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 鞋、广州",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "jinjiang-shoes",
+      "layer": "trunk",
+      "category": "鞋类",
+      "name": "中国晋江国际鞋业博览会",
+      "short": "晋江鞋博会",
+      "city": "晋江",
+      "url": "https://www.cn-jif.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.cn-jif.com/",
+      "title": "Footwear, Shoe Materials, Footwear Machinery, Outdoor Sport Gear, Media Advertising Manufacturers and Suppliers - China Factory - Jinjiang International Chamber of Commerce",
+      "elapsed": 3.52,
+      "kw_hits": [],
+      "host_same": true,
+      "result": "ok_by_host",
+      "detail": "域名未变，但正文未匹配",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "wenzhou-shoes",
+      "layer": "trunk",
+      "category": "鞋类",
+      "name": "温州国际鞋类皮革展",
+      "short": "温州鞋展",
+      "city": "温州",
+      "url": "https://www.chinashoetech.cn/",
+      "conf": "high",
+      "result": "http_err",
+      "http": 403,
+      "detail": "HTTP 403",
+      "elapsed": 0.63,
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "furniture-china",
+      "layer": "trunk",
+      "category": "家居装饰品",
+      "name": "中国国际家具展览会",
+      "short": "Furniture China",
+      "city": "上海",
+      "url": "https://www.furniture-china.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.jiagle.com/jiaju_furniturechina/",
+      "title": "",
+      "elapsed": 0.71,
+      "kw_hits": [],
+      "host_same": false,
+      "result": "ok_no_kw",
+      "detail": "跳转到 jiagle.com，未见展会关键词",
+      "robots": "allow",
+      "robots_rules": [
+        "/dengshi_register/",
+        "/dengshi_login/",
+        "/dengshi_usercenter/",
+        "/jiaju_usercenter/",
+        "/xiuxian_usercenter/"
+      ]
+    },
+    {
+      "id": "ciff-gz",
+      "layer": "trunk",
+      "category": "家居装饰品",
+      "name": "中国广州国际家具博览会",
+      "short": "CIFF 广州",
+      "city": "广州",
+      "url": "https://www.ciff-gz.com/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.ciff-gz.com/",
+      "title": "中国（广州）国际家具博览会",
+      "elapsed": 0.58,
+      "kw_hits": [
+        "家具"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 家具",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "dg-furniture",
+      "layer": "trunk",
+      "category": "家居装饰品",
+      "name": "东莞国际名家具展览会",
+      "short": "名家具展",
+      "city": "东莞",
+      "url": "https://www.gde3f.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.gde3f.com/",
+      "title": "名家具展官网_家居行业风向标_国际名家具（东莞）展览会",
+      "elapsed": 0.31,
+      "kw_hits": [
+        "家具",
+        "东莞"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 家具、东莞",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "sh-home-deco",
+      "layer": "trunk",
+      "category": "家居装饰品",
+      "name": "上海国际家居装饰展览会",
+      "short": "上海家居装饰展",
+      "city": "上海",
+      "url": "https://www.hd-asia.net/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.hd-asia.net/",
+      "title": "HD+ Asia 亚洲家居装饰及生活方式展-上海万耀企龙展览有限公司",
+      "elapsed": 0.16,
+      "kw_hits": [
+        "家居",
+        "装饰"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 家居、装饰",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "paperworld-china",
+      "layer": "trunk",
+      "category": "办公箱包及休闲用品",
+      "name": "中国国际文具及办公用品展览会",
+      "short": "Paperworld China",
+      "city": "上海",
+      "url": "https://paperworldchina.hk.messefrankfurt.com/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://paperworldchina.hk.messefrankfurt.com/shanghai/zh-cn.html",
+      "title": "中国国际文具及办公用品展览会",
+      "elapsed": 5.11,
+      "kw_hits": [
+        "文具",
+        "办公用品",
+        "Paperworld"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 文具、办公用品、Paperworld",
+      "robots": "allow",
+      "robots_rules": [
+        "/*.json$",
+        "/*/_jcr_content/*",
+        "/*/tools/*",
+        "/*?*wcmmode=disabled*"
+      ]
+    },
+    {
+      "id": "china-bags",
+      "layer": "trunk",
+      "category": "办公箱包及休闲用品",
+      "name": "中国国际箱包手袋展览会",
+      "short": "中国箱包展",
+      "city": "上海",
+      "url": "https://www.cshbox.com/",
+      "conf": "medium",
+      "result": "http_err",
+      "http": 403,
+      "detail": "HTTP 403",
+      "elapsed": 0.24,
+      "robots": "error",
+      "robots_rules": [
+        "robots 取不到(URLError) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "cile",
+      "layer": "trunk",
+      "category": "办公箱包及休闲用品",
+      "name": "中国国际体育用品博览会",
+      "short": "体博会",
+      "city": "上海",
+      "url": "http://www.sportshow.com.cn/",
+      "conf": "low",
+      "http": 200,
+      "final_url": "https://www.sportshow.com.cn/",
+      "title": "中国国际体育用品博览会",
+      "elapsed": 0.57,
+      "kw_hits": [
+        "体育用品",
+        "体博会"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 体育用品、体博会",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(500) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "china-outdoor",
+      "layer": "trunk",
+      "category": "办公箱包及休闲用品",
+      "name": "中国国际户外用品展览会",
+      "short": "户外用品展",
+      "city": "南京",
+      "url": "",
+      "conf": "none",
+      "result": "no_url",
+      "detail": "尚未确定官网",
+      "robots": "n/a"
+    },
+    {
+      "id": "sial-china",
+      "layer": "trunk",
+      "category": "食品",
+      "name": "中国国际食品和饮料展览会",
+      "short": "SIAL 中食展",
+      "city": "上海",
+      "url": "https://www.sialchina.com/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.sialchina.com/",
+      "title": "International Food and Beverage Exhibition 2027 | SIAL China",
+      "elapsed": 3.16,
+      "kw_hits": [
+        "SIAL"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 SIAL",
+      "robots": "allow",
+      "robots_rules": [
+        ""
+      ]
+    },
+    {
+      "id": "bakery-china",
+      "layer": "trunk",
+      "category": "食品",
+      "name": "中国国际焙烤展览会",
+      "short": "Bakery China",
+      "city": "上海",
+      "url": "https://www.bakerychina.com/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.bakerychina.com/",
+      "title": "焙烤展|2027上海烘焙展|国际烘焙展|中国烘焙展-焙烤展览会",
+      "elapsed": 0.23,
+      "kw_hits": [
+        "焙烤",
+        "烘焙",
+        "Bakery"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 焙烤、烘焙、Bakery",
+      "robots": "allow",
+      "robots_rules": [
+        "Sitemap:https://www.bakerychina.com/sitemap.xml"
+      ]
+    },
+    {
+      "id": "tangjiu",
+      "layer": "trunk",
+      "category": "食品",
+      "name": "全国糖酒商品交易会",
+      "short": "糖酒会",
+      "city": "轮换",
+      "url": "https://www.qgtjh.org.cn/",
+      "conf": "high",
+      "result": "http_err",
+      "http": 403,
+      "detail": "HTTP 403",
+      "elapsed": 0.4,
+      "robots": "error",
+      "robots_rules": [
+        "robots 取不到(URLError) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "tea-expo",
+      "layer": "trunk",
+      "category": "食品",
+      "name": "中国国际茶叶博览会",
+      "short": "茶博会",
+      "city": "杭州",
+      "url": "https://www.goodtea.cc/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.goodtea.cc/",
+      "title": "华巨臣茶博会-深圳茶博会",
+      "elapsed": 0.38,
+      "kw_hits": [
+        "茶博"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 茶博",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "cmef",
+      "layer": "trunk",
+      "category": "医药及医疗保健",
+      "name": "中国国际医疗器械博览会",
+      "short": "CMEF",
+      "city": "上海",
+      "url": "https://www.cmef.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.cmef.com.cn/",
+      "title": "CMEF医博会-国药励展展览有限责任公司",
+      "elapsed": 1.89,
+      "kw_hits": [
+        "医疗器械",
+        "CMEF"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 医疗器械、CMEF",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "pharmchina",
+      "layer": "trunk",
+      "category": "医药及医疗保健",
+      "name": "全国药品交易会",
+      "short": "药交会",
+      "city": "轮换",
+      "url": "https://www.pharmchina.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.pharmchina.com.cn/",
+      "title": "全国药品交易会",
+      "elapsed": 0.41,
+      "kw_hits": [
+        "药品"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 药品",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "api-china",
+      "layer": "trunk",
+      "category": "医药及医疗保健",
+      "name": "中国国际医药原料药中间体包装设备交易会",
+      "short": "API China",
+      "city": "轮换",
+      "url": "https://www.apichina.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.apichina.com.cn/",
+      "title": "API",
+      "elapsed": 0.14,
+      "kw_hits": [
+        "API"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 API",
+      "robots": "allow",
+      "robots_rules": [
+        "/api/",
+        "/map/",
+        "/application/",
+        "/ApiShowpdf/"
+      ]
+    },
+    {
+      "id": "sino-dental",
+      "layer": "trunk",
+      "category": "医药及医疗保健",
+      "name": "北京国际口腔设备器材展览会",
+      "short": "Sino-Dental",
+      "city": "北京",
+      "url": "https://www.sinodent.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.sinodent.com.cn/",
+      "title": "Sino-Dental 北京国际口腔展",
+      "elapsed": 0.17,
+      "kw_hits": [
+        "口腔"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 口腔",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "waic",
+      "layer": "trunk",
+      "category": "AI/科技",
+      "name": "世界人工智能大会",
+      "short": "WAIC",
+      "city": "上海",
+      "url": "https://www.worldaic.com.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.worldaic.com.cn/",
+      "title": "世界人工智能大会",
+      "elapsed": 0.49,
+      "kw_hits": [
+        "人工智能",
+        "WAIC"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 人工智能、WAIC",
+      "robots": "allow",
+      "robots_rules": [
+        "Sitemap:"
+      ]
+    },
+    {
+      "id": "chtf",
+      "layer": "trunk",
+      "category": "AI/科技",
+      "name": "中国国际高新技术成果交易会",
+      "short": "高交会",
+      "city": "深圳",
+      "url": "https://www.chtf.com/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.chtf.com/",
+      "title": "首页_中国国际高新技术成果交易会_高交会官方网站",
+      "elapsed": 0.12,
+      "kw_hits": [
+        "高新技术",
+        "高交会"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 高新技术、高交会",
+      "robots": "allow",
+      "robots_rules": [
+        ""
+      ]
+    },
+    {
+      "id": "scie",
+      "layer": "trunk",
+      "category": "AI/科技",
+      "name": "中国国际智能产业博览会",
+      "short": "智博会",
+      "city": "重庆",
+      "url": "https://www.smartchina-expo.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.smartchina-expo.cn/",
+      "title": "",
+      "elapsed": 0.27,
+      "kw_hits": [],
+      "host_same": true,
+      "result": "ok_by_host",
+      "detail": "域名未变，但正文未匹配（标题为空，疑为JS渲染）",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "iot-expo",
+      "layer": "trunk",
+      "category": "AI/科技",
+      "name": "中国国际物联网博览会",
+      "short": "物联网博览会",
+      "city": "无锡",
+      "url": "https://www.wiotexpo.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.wiotexpo.cn/",
+      "title": "世界物联网博览会",
+      "elapsed": 0.26,
+      "kw_hits": [
+        "物联网"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 物联网",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "ciftis",
+      "layer": "trunk",
+      "category": "综合服务",
+      "name": "中国国际服务贸易交易会",
+      "short": "服贸会",
+      "city": "北京",
+      "url": "https://www.ciftis.org/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.ciftis.org/",
+      "title": "中国国际服务贸易交易会_服贸会",
+      "elapsed": 0.21,
+      "kw_hits": [
+        "服务贸易",
+        "服贸会"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 服务贸易、服贸会",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "china-logistics",
+      "layer": "trunk",
+      "category": "综合服务",
+      "name": "中国国际物流与供应链博览会",
+      "short": "物博会",
+      "city": "深圳",
+      "url": "https://www.scmfair.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://scmfair.com/",
+      "title": "Maintenance - International Logistics,Transportation Exhibition,CILF,SCM,China,Asia",
+      "elapsed": 3.64,
+      "kw_hits": [],
+      "host_same": true,
+      "result": "ok_by_host",
+      "detail": "域名未变，但正文未匹配",
+      "robots": "allow",
+      "robots_rules": [
+        "Sitemap:"
+      ]
+    },
+    {
+      "id": "ec-expo-yiwu",
+      "layer": "trunk",
+      "category": "综合服务",
+      "name": "中国国际电子商务博览会",
+      "short": "电商博览会",
+      "city": "义乌",
+      "url": "https://www.ecfair.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.ecfair.cn/",
+      "title": "浙江电子商务博览会（电商博览会）官方网站",
+      "elapsed": 1.0,
+      "ssl_note": "证书/握手异常，已降级重试",
+      "kw_hits": [
+        "电子商务",
+        "电商"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 电子商务、电商",
+      "robots": "error",
+      "robots_rules": [
+        "robots 取不到(URLError) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "china-edu-expo",
+      "layer": "trunk",
+      "category": "综合服务",
+      "name": "中国国际教育展",
+      "short": "教育展",
+      "city": "北京",
+      "url": "https://www.chinaeducationexpo.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.chinaeducationexpo.com/",
+      "title": "CEE - China Education Expo",
+      "elapsed": 0.15,
+      "kw_hits": [],
+      "host_same": true,
+      "result": "ok_by_host",
+      "detail": "域名未变，但正文未匹配",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "canton-fair",
+      "layer": "cross",
+      "category": "日用消费品",
+      "name": "中国进出口商品交易会",
+      "short": "广交会",
+      "city": "广州",
+      "url": "https://www.cantonfair.org.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.cantonfair.org.cn/",
+      "title": "首页 - 中国进出口商品交易会（广交会官方网站）",
+      "elapsed": 0.14,
+      "kw_hits": [
+        "广交会",
+        "进出口商品交易会"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 广交会、进出口商品交易会",
+      "robots": "allow",
+      "robots_rules": [
+        "/supplier/",
+        "/purchase/",
+        "/platform/"
+      ]
+    },
+    {
+      "id": "ciie",
+      "layer": "cross",
+      "category": "综合服务",
+      "name": "中国国际进口博览会",
+      "short": "进博会",
+      "city": "上海",
+      "url": "https://www.ciie.org/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.ciie.org/",
+      "title": "",
+      "elapsed": 0.1,
+      "kw_hits": [],
+      "host_same": true,
+      "result": "ok_by_host",
+      "detail": "域名未变，但正文未匹配（标题为空，疑为JS渲染）",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "ccbef",
+      "layer": "cross",
+      "category": "综合服务",
+      "name": "中国跨境电商交易会",
+      "short": "跨境电商展",
+      "city": "深圳",
+      "url": "https://www.ccbec-shenzhen.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.ccbec-shenzhen.com/",
+      "title": "深圳跨境电商展览会",
+      "elapsed": 0.19,
+      "kw_hits": [
+        "跨境电商"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 跨境电商",
+      "robots": "allow",
+      "robots_rules": [
+        ""
+      ]
+    },
+    {
+      "id": "caexpo",
+      "layer": "cross",
+      "category": "日用消费品",
+      "name": "中国—东盟博览会",
+      "short": "东博会",
+      "city": "南宁",
+      "url": "https://www.caexpo.org.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.caexpo.org.cn/",
+      "title": "",
+      "elapsed": 0.25,
+      "kw_hits": [
+        "东盟",
+        "CAEXPO"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 东盟、CAEXPO",
+      "robots": "allow",
+      "robots_rules": [
+        "/admin/",
+        "/cgi-bin/",
+        "/tmp/",
+        "/private/"
+      ]
+    },
+    {
+      "id": "cismef",
+      "layer": "cross",
+      "category": "综合服务",
+      "name": "中国国际中小企业博览会",
+      "short": "中博会",
+      "city": "广州",
+      "url": "https://www.cismef.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.cismef.com.cn/zbh-cms/template-pc/index.html",
+      "title": "中国国际中小企业博览会",
+      "elapsed": 0.32,
+      "kw_hits": [
+        "中小企业",
+        "中博会"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 中小企业、中博会",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "hainan-expo",
+      "layer": "cross",
+      "category": "日用消费品",
+      "name": "中国国际消费品博览会",
+      "short": "消博会",
+      "city": "海口",
+      "url": "https://www.hainanexpo.org.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.hainanexpo.org.cn/",
+      "title": "中国国际消费品博览会",
+      "elapsed": 0.07,
+      "kw_hits": [
+        "消费品"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 消费品",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "cipsc",
+      "layer": "cross",
+      "category": "综合服务",
+      "name": "中国国际供应链促进博览会",
+      "short": "链博会",
+      "city": "北京",
+      "url": "https://www.cisce.org.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.cisce.org.cn/",
+      "title": "首页_链博会",
+      "elapsed": 0.35,
+      "kw_hits": [
+        "供应链",
+        "链博会"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 供应链、链博会",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "fhc-shanghai",
+      "layer": "cross",
+      "category": "食品",
+      "name": "上海国际食品饮料及餐饮设备展",
+      "short": "FHC",
+      "city": "上海",
+      "url": "https://www.fhcchina.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.fhcchina.com/",
+      "title": "FHC上海环球食品展 - Homepage of FHC Shanghai Global Food Trade Show - FHC上海环球食品展",
+      "elapsed": 0.14,
+      "kw_hits": [
+        "食品",
+        "餐饮",
+        "FHC"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 食品、餐饮、FHC",
+      "robots": "allow",
+      "robots_rules": [
+        "/furniture_usercenter/",
+        "/liveshow/",
+        "/admin/",
+        "/api/"
+      ]
+    },
+    {
+      "id": "b-muying",
+      "layer": "boundary",
+      "category": "日用消费品",
+      "name": "中国国际婴童用品展览会",
+      "short": "母婴展",
+      "city": "上海",
+      "url": "https://cbmexpo.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.cbmexpo.com/",
+      "title": "孕婴童用品展-上海母婴展-儿童玩具食品童装新品展览会-2027CBME国际孕婴童展官网",
+      "elapsed": 1.17,
+      "kw_hits": [
+        "婴童",
+        "母婴"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 婴童、母婴",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "b-pet",
+      "layer": "boundary",
+      "category": "日用消费品",
+      "name": "中国国际宠物水族用品展",
+      "short": "宠物展",
+      "city": "上海",
+      "url": "https://www.petfairasia.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.petfairasia.com/",
+      "title": "亚洲宠物展",
+      "elapsed": 0.95,
+      "kw_hits": [
+        "宠物"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 宠物",
+      "robots": "allow",
+      "robots_rules": [
+        ""
+      ]
+    },
+    {
+      "id": "b-hotel",
+      "layer": "boundary",
+      "category": "综合服务",
+      "name": "中国国际酒店用品博览会",
+      "short": "酒店用品展",
+      "city": "上海",
+      "url": "https://www.hotelex.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.hotelex.cn/",
+      "title": "HOTELEX-上海国际酒店用品及餐饮业博览会系列展-上海酒店展-上海餐饮展-上海酒店用品展-上海咖啡美食节",
+      "elapsed": 0.07,
+      "kw_hits": [
+        "酒店用品"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 酒店用品",
+      "robots": "allow",
+      "robots_rules": [
+        "/wp-admin/"
+      ]
+    },
+    {
+      "id": "b-coffee",
+      "layer": "boundary",
+      "category": "食品",
+      "name": "中国国际咖啡展览会",
+      "short": "咖啡展",
+      "city": "上海",
+      "url": "https://www.cafeex.com.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.cafeex.com.cn/",
+      "title": "CAFEEX 咖啡与饮品展览会/咖啡节官网",
+      "elapsed": 0.3,
+      "kw_hits": [
+        "咖啡"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 咖啡",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "b-retail",
+      "layer": "boundary",
+      "category": "综合服务",
+      "name": "中国国际零售业博览会",
+      "short": "零售展",
+      "city": "上海",
+      "url": "https://www.chinashop.cc/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.chinashop.cc/",
+      "title": "中国零售业博览会",
+      "elapsed": 0.52,
+      "kw_hits": [
+        "零售"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 零售",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "b-camping",
+      "layer": "boundary",
+      "category": "办公箱包及休闲用品",
+      "name": "中国国际露营生活展",
+      "short": "露营展",
+      "city": "上海",
+      "url": "https://hweexpo.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://hweexpo.cn/",
+      "title": "2027SVE上海国际休闲运动车展览会展|观光车展|休闲车展|休闲运动展",
+      "elapsed": 0.32,
+      "kw_hits": [],
+      "host_same": true,
+      "result": "ok_by_host",
+      "detail": "域名未变，但正文未匹配",
+      "robots": "allow",
+      "robots_rules": [
+        "/ad*",
+        "/admin/",
+        "/static/",
+        "/api/"
+      ]
+    },
+    {
+      "id": "b-tea-drink",
+      "layer": "boundary",
+      "category": "食品",
+      "name": "中国国际茶饮设备与原料展",
+      "short": "茶饮设备展",
+      "city": "上海",
+      "url": "https://www.teaexpo.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.teaexpo.cn/",
+      "title": "广州茶博会官网_益武展览",
+      "elapsed": 0.1,
+      "kw_hits": [],
+      "host_same": true,
+      "result": "ok_by_host",
+      "detail": "域名未变，但正文未匹配",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "b-fitness",
+      "layer": "boundary",
+      "category": "办公箱包及休闲用品",
+      "name": "中国国际健身器材展览会",
+      "short": "健身器材展",
+      "city": "上海",
+      "url": "https://www.ciwf.com.cn/",
+      "conf": "high",
+      "result": "http_err",
+      "http": 403,
+      "detail": "HTTP 403",
+      "elapsed": 0.12,
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "b-babycare",
+      "layer": "boundary",
+      "category": "医药及医疗保健",
+      "name": "中国国际孕婴童健康展",
+      "short": "孕婴童展",
+      "city": "广州",
+      "url": "https://mch.ihe-china.com/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://mch.ihe-china.com/",
+      "title": "MCH 广州国际妇幼健康产业博览会将于2025年6月12-14日在广交会馆举办",
+      "elapsed": 0.09,
+      "kw_hits": [
+        "孕婴童"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 孕婴童",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "b-houseware",
+      "layer": "boundary",
+      "category": "家居装饰品",
+      "name": "中国国际家居用品博览会",
+      "short": "家居用品展",
+      "city": "上海",
+      "url": "https://www.cdatf.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.cdatf.com/",
+      "title": "百货会|第120届上海百货会|百货展-日用百货商品交易会|华百官网",
+      "elapsed": 0.13,
+      "kw_hits": [
+        "家居用品"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 家居用品",
+      "robots": "allow",
+      "robots_rules": [
+        "/*error-pages",
+        "/cdn-cgi/"
+      ]
+    },
+    {
+      "id": "b-crossborder",
+      "layer": "boundary",
+      "category": "综合服务",
+      "name": "中国国际跨境电商供应链展",
+      "short": "跨境供应链展",
+      "city": "杭州",
+      "url": "https://www.ccbecexpo.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.ccbecexpo.com/",
+      "title": "CCBEC_2027深圳跨境电商展览会",
+      "elapsed": 0.36,
+      "kw_hits": [
+        "跨境电商"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 跨境电商",
+      "robots": "allow",
+      "robots_rules": [
+        "/wp-admin/"
+      ]
+    },
+    {
+      "id": "b-premium-gift",
+      "layer": "boundary",
+      "category": "礼品",
+      "name": "中国国际高端礼品定制展",
+      "short": "高端礼品展",
+      "city": "上海",
+      "url": "https://www.rxhuabo.com.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.rxhuabo.com.cn/",
+      "title": "深圳礼品展、深圳消费电子展、深圳包装展、国内知名的|礼品展|家居展|包装展|消费电子展|礼品包装及印刷展|的主办方-励展华博",
+      "elapsed": 0.08,
+      "kw_hits": [
+        "礼品"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 礼品",
+      "robots": "allow",
+      "robots_rules": [
+        ""
+      ]
+    },
+    {
+      "id": "b-general-consumer",
+      "layer": "boundary",
+      "category": "日用消费品",
+      "name": "中国国际综合消费品博览会",
+      "short": "综合消费品展",
+      "city": "上海",
+      "url": "https://www.cantonfair.org.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.cantonfair.org.cn/",
+      "title": "首页 - 中国进出口商品交易会（广交会官方网站）",
+      "elapsed": 0.08,
+      "kw_hits": [],
+      "host_same": true,
+      "result": "ok_by_host",
+      "detail": "域名未变，但正文未匹配",
+      "robots": "allow",
+      "robots_rules": [
+        "/supplier/",
+        "/purchase/",
+        "/platform/"
+      ]
+    },
+    {
+      "id": "b-domestic-trade",
+      "layer": "boundary",
+      "category": "日用消费品",
+      "name": "外贸转内销商品博览会",
+      "short": "转内销展",
+      "city": "东莞",
+      "url": "https://www.gqpe.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.gqpe.com.cn/",
+      "title": "广东优品展览会",
+      "elapsed": 0.34,
+      "ssl_note": "证书/握手异常，已降级重试",
+      "kw_hits": [
+        "外贸"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 外贸",
+      "robots": "error",
+      "robots_rules": [
+        "robots 取不到(URLError) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "b-catering",
+      "layer": "boundary",
+      "category": "食品",
+      "name": "中国国际餐饮业博览会",
+      "short": "餐饮展",
+      "city": "上海",
+      "url": "https://www.sialchina.cn/",
+      "conf": "medium",
+      "http": 200,
+      "final_url": "https://www.sialchina.cn/",
+      "title": "SIAL西雅展官网 - SIAL 西雅国际食品展 2026 | 国际食品和饮料展览会",
+      "elapsed": 0.35,
+      "kw_hits": [
+        "餐饮"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 餐饮",
+      "robots": "allow",
+      "robots_rules": [
+        ""
+      ]
+    },
+    {
+      "id": "b-machine-tool",
+      "layer": "boundary",
+      "category": "机械",
+      "name": "中国国际机床工具展览会",
+      "short": "机床工具展",
+      "city": "北京",
+      "url": "https://www.ccmtshow.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.ccmtshow.com/",
+      "title": "第十四届中国数控机床展览会",
+      "elapsed": 1.17,
+      "kw_hits": [
+        "机床"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 机床",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "b-medical-device",
+      "layer": "boundary",
+      "category": "医药及医疗保健",
+      "name": "中国国际医疗装备展览会",
+      "short": "医疗装备展",
+      "city": "上海",
+      "url": "https://www.cmef.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.cmef.com.cn/",
+      "title": "CMEF医博会-国药励展展览有限责任公司",
+      "elapsed": 0.75,
+      "kw_hits": [
+        "医疗"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 医疗",
+      "robots": "allow",
+      "robots_rules": []
+    },
+    {
+      "id": "b-textile-machinery",
+      "layer": "boundary",
+      "category": "纺织服装",
+      "name": "中国国际纺织机械器材展",
+      "short": "纺机展",
+      "city": "上海",
+      "url": "https://www.citme.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.citme.com.cn/",
+      "title": "首页",
+      "elapsed": 0.11,
+      "kw_hits": [],
+      "host_same": true,
+      "result": "ok_by_host",
+      "detail": "域名未变，但正文未匹配",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    },
+    {
+      "id": "b-furniture-wood",
+      "layer": "boundary",
+      "category": "建材",
+      "name": "中国国际木工机械展览会",
+      "short": "木工机械展",
+      "city": "广州",
+      "url": "https://www.woodworkfair.com/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.woodworkfair.com/WMF/idx/simp",
+      "title": "首页 - WMF 2026 | 家具生产设备及木工机械展览会",
+      "elapsed": 1.21,
+      "kw_hits": [
+        "木工",
+        "机械"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 木工、机械",
+      "robots": "allow",
+      "robots_rules": [
+        "/*/Maintenance",
+        "/*/turk",
+        "/*/indo",
+        "/*/viet",
+        "/*/thai"
+      ]
+    },
+    {
+      "id": "b-hardware-industrial",
+      "layer": "boundary",
+      "category": "五金工具",
+      "name": "中国国际工业五金零部件展",
+      "short": "工业五金展",
+      "city": "上海",
+      "url": "https://www.cihs.com.cn/",
+      "conf": "high",
+      "http": 200,
+      "final_url": "https://www.cihs.com.cn/",
+      "title": "中国国际五金展官方网站",
+      "elapsed": 1.15,
+      "kw_hits": [
+        "五金"
+      ],
+      "host_same": true,
+      "result": "ok",
+      "detail": "命中 五金",
+      "robots": "missing",
+      "robots_rules": [
+        "无 robots.txt(404) → 按规则视为不允许"
+      ]
+    }
+  ]
+}
