@@ -37,6 +37,7 @@ BATCH_DIR = ROOT / "data" / "batch1"
 RAW_DIR = BATCH_DIR / "raw"
 RENDERED_DIR = BATCH_DIR / "rendered"
 SUB_DIR = BATCH_DIR / "sub"          # 批次 2b 补采的子页（展会概况/上届回顾）
+REPORT_DIR = BATCH_DIR / "report"    # E1 缺口定向补采（历届回顾/展后报告/新闻稿）
 SKELETON = BATCH_DIR / "skeleton.json"
 OUT = BATCH_DIR / "llm_extract.json"
 
@@ -116,17 +117,20 @@ def load_body(rid: str) -> str | None:
     if p is None:
         return None
     base = p.read_text(encoding="utf-8")
-    s = SUB_DIR / f"{rid}.txt"
-    if not s.exists():
-        return base
-    added = []
-    for seg in s.read_text(encoding="utf-8").split("\n\n---- "):
-        seg = seg.strip()
-        if len(seg) < 60:
+    # sub/（批次 2b）与 report/（E1 缺口定向补采）都按"增量"处理，
+    # 顺序无所谓：后面那层是专门冲规模数字去的，去重规则一致就不会互相打架。
+    added: list[str] = []
+    for d in (SUB_DIR, REPORT_DIR):
+        f = d / f"{rid}.txt"
+        if not f.exists():
             continue
-        if _flat(seg)[:150] and _flat(seg)[:150] in _flat(base):
-            continue
-        added.append(seg)
+        for seg in f.read_text(encoding="utf-8").split("\n\n---- "):
+            seg = seg.strip()
+            if len(seg) < 60:
+                continue
+            if _flat(seg)[:150] and _flat(seg)[:150] in _flat(base):
+                continue
+            added.append(seg)
     if not added:
         return base
     return base + "\n\n[补充子页]\n" + "\n\n".join(added)
@@ -140,19 +144,39 @@ def all_ids() -> list[str]:
 def _slices(text: str, kws: tuple[str, ...] | None = None, tail: int = 11000) -> str:
     """正文最长 4 万字，全发既贵又容易让模型分心。
 
-    留头部 6000 字（标题+首屏，展期和场馆基本都在这），
-    再挑几段最相关的上下文补到 1 万字。
+    留头部（标题+首屏，展期和场馆基本都在这），再挑几段最相关的上下文补足。
 
     kws 必须按**任务**换：日期要从"截止/主办"附近找，规模数据在页面深处的
     "展会规模 / Fair Statistics"里，用日期的关键词去找规模等于没找。
+
+    **[补充子页] 段优先占用预算**，这条是补采跑了之后才发现的：原来头部
+    6000 字之后按关键词各取一段、总长封顶，而补采来的子页是拼在正文**末尾**的，
+    于是"专门为了找规模数字抓回来的那一大段"永远挤不进去。实测 chinaplas
+    正文 40k + 补采 26k，模型只看到前 12k——补采等于白抓。
     """
     kws = kws or ("截止", "主办单位", "展馆", "举办时间", "参展")
-    head = text[:6000]
-    extra = []
+    supp = ""
+    marker = "\n\n[补充子页]\n"
+    if marker in text:
+        main, supp = text.split(marker, 1)
+    else:
+        main = text
+
+    head = main[:5000]
+    budget = tail - len(head) - 20
+    extra: list[str] = []
+    if supp:
+        take = supp[:max(0, budget)]
+        extra.append(take)
+        budget -= len(take)
     for kw in kws:
-        i = text.find(kw, 6000)
+        if budget <= 200:
+            break
+        i = main.find(kw, 5000)
         if i > 0:
-            extra.append(text[max(0, i - 250): i + 700])
+            seg = main[max(0, i - 250): i + 700]
+            extra.append(seg)
+            budget -= len(seg)
     return (head + "\n...[略]...\n" + "\n...\n".join(extra))[:tail]
 
 

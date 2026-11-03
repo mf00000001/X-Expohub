@@ -1,0 +1,689 @@
+{
+  "chtf": {
+    "urls": [
+      "https://www.chtf.com/liaojiegaojiaohui/lijiehuigu/gailan/"
+    ],
+    "chars": 4918,
+    "hits": [
+      "高交会历届回顾"
+    ],
+    "signals": 0,
+    "via": "static",
+    "error": null
+  },
+  "cmef": {
+    "urls": [
+      "https://www.cmef.com.cn/information/?cid=29",
+      "https://www.cmef.com.cn/Content/html/info.html"
+    ],
+    "chars": 6679,
+    "hits": [
+      "历届回顾",
+      "关于我们"
+    ],
+    "signals": 2,
+    "via": "static",
+    "error": null
+  },
+  "chinaplas": {
+    "urls": [
+      "https://www.chinaplasonline.com/CPS/information/FactsFigures/simp",
+      "https://www.chinaplasonline.com/CPS/information/PastEditions/simp",
+      "https://www.chinaplasonline.com/CPS/information/pasteditions/simp",
+      "https://www.chinaplasonline.com/CPS/information/AboutUs/simp"
+    ],
+    "chars": 25791,
+    "hits": [
+      "展会规模",
+      "历届展会",
+      "关于我们"
+    ],
+    "signals": 6,
+    "via": "static",
+    "error": null
+  },
+  "sial-china": {
+    "urls": [
+      "https://www.sialchina.com/topics/all"
+    ],
+    "chars": 3580,
+    "hits": [
+      "Media Center"
+    ],
+    "signals": 0,
+    "via": "static+news_fallback",
+    "error": null
+  },
+  "auto-guangzhou": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "render_links",
+    "error": "no_keyword_links(a=1)"
+  },
+  "auto-shanghai": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "render_links",
+    "error": "no_keyword_links(a=0)"
+  },
+  "b-babycare": {
+    "urls": [
+      "https://mch.ihe-china.com/cn/ExpoFigures/",
+      "https://mch.ihe-china.com/cn/Invitation/16.MCH/2025/",
+      "https://mch.ihe-china.com/cn/AboutUs/"
+    ],
+    "chars": 10139,
+    "hits": [
+      "展会数据",
+      "关于展会",
+      "关于我们"
+    ],
+    "signals": 2,
+    "via": "static",
+    "error": null
+  },
+  "b-fitness": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "home_HTTPError: HTTP Error 403: Forbidden"
+  },
+  "b-catering": {
+    "urls": [
+      "https://www.sialchina.cn/topics/all.html"
+    ],
+    "chars": 2877,
+    "hits": [
+      "媒体中心"
+    ],
+    "signals": 0,
+    "via": "static+news_fallback",
+    "error": null
+  },
+  "b-domestic-trade": {
+    "urls": [
+      "https://www.gqpe.com.cn/h-col-128.html"
+    ],
+    "chars": 1097,
+    "hits": [
+      "展会介绍"
+    ],
+    "signals": 1,
+    "via": "static",
+    "error": null
+  },
+  "b-hotel": {
+    "urls": [
+      "https://www.hotelex.cn/shanghai/aboutsh"
+    ],
+    "chars": 3061,
+    "hits": [
+      "关于展会"
+    ],
+    "signals": 0,
+    "via": "static",
+    "error": null
+  },
+  "b-crossborder": {
+    "urls": [
+      "https://www.ccbecexpo.com/about"
+    ],
+    "chars": 2974,
+    "hits": [
+      "展会简介"
+    ],
+    "signals": 2,
+    "via": "static",
+    "error": null
+  },
+  "b-coffee": {
+    "urls": [
+      "https://www.cafeex.com.cn/About.aspx?ClassID=25",
+      "https://www.cafeex.com.cn/aboutus.aspx?ClassID=2"
+    ],
+    "chars": 2931,
+    "hits": [
+      "展会概况",
+      "关于我们"
+    ],
+    "signals": 0,
+    "via": "static",
+    "error": null
+  },
+  "b-premium-gift": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "no_keyword_links(a=26)"
+  },
+  "b-tea-drink": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "no_keyword_links(a=65)"
+  },
+  "caexpo": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "render_links",
+    "error": "no_keyword_links(a=15)"
+  },
+  "canton-fair": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "render_links",
+    "error": "no_keyword_links(a=0)"
+  },
+  "ccbef": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "render_links",
+    "error": "no_keyword_links(a=4)"
+  },
+  "bakery-china": {
+    "urls": [
+      "https://www.bakerychina.com/page/about-us"
+    ],
+    "chars": 2829,
+    "hits": [
+      "关于我们"
+    ],
+    "signals": 1,
+    "via": "static",
+    "error": null
+  },
+  "china-adhesive": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "robots_denied"
+  },
+  "b-pet": {
+    "urls": [
+      "https://www.petfairasia.com/about.html"
+    ],
+    "chars": 2331,
+    "hits": [
+      "关于我们"
+    ],
+    "signals": 0,
+    "via": "static",
+    "error": null
+  },
+  "china-bags": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "home_HTTPError: HTTP Error 403: Forbidden"
+  },
+  "china-edu-expo": {
+    "urls": [
+      "https://www.chinaeducationexpo.com/chinese/cee/cee.html"
+    ],
+    "chars": 1353,
+    "hits": [
+      "关于我们"
+    ],
+    "signals": 0,
+    "via": "render_links",
+    "error": null
+  },
+  "chic": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "home_HTTPError: HTTP Error 502: Bad Gateway"
+  },
+  "china-shoes": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "robots_unreachable"
+  },
+  "b-muying": {
+    "urls": [
+      "https://www.cbmexpo.com/cn/review",
+      "https://www.cbmexpo.com/cn/about"
+    ],
+    "chars": 7665,
+    "hits": [
+      "上届回顾",
+      "展会介绍"
+    ],
+    "signals": 2,
+    "via": "static",
+    "error": null
+  },
+  "ciftis": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "render_links",
+    "error": "no_keyword_links(a=0)"
+  },
+  "cies": {
+    "urls": [
+      "http://www.ciessummit.cn/article/detail/id/1190.html",
+      "http://www.ciessummit.cn/Article/detail/id/698.html"
+    ],
+    "chars": 10556,
+    "hits": [
+      "上届回顾",
+      "关于展会"
+    ],
+    "signals": 0,
+    "via": "static",
+    "error": null
+  },
+  "ciie": {
+    "urls": [
+      "https://www.ciie.org/zbh/cn/19us/ciie/review/",
+      "https://www.ciie.org/digital/release/country/previousOtherPavilion/1",
+      "https://www.ciie.org/zbh/cn/19SA/pe/review/",
+      "https://www.ciie.org/zbh/cn/19SA/review/"
+    ],
+    "chars": 10787,
+    "hits": [
+      "往届回顾"
+    ],
+    "signals": 11,
+    "via": "render_links",
+    "error": null
+  },
+  "cihs": {
+    "urls": [
+      "http://www.cihs.com.cn/single-data.jsp?mid=17",
+      "http://www.cihs.com.cn/single-data.jsp?mid=14"
+    ],
+    "chars": 6259,
+    "hits": [
+      "历届展会",
+      "展会概况"
+    ],
+    "signals": 73,
+    "via": "static",
+    "error": null
+  },
+  "cile": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "robots_unreachable"
+  },
+  "cippe": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "render_links",
+    "error": "no_keyword_links(a=2)"
+  },
+  "cipsc": {
+    "urls": [
+      "https://www.cisce.org.cn/review/index.html"
+    ],
+    "chars": 1298,
+    "hits": [
+      "往届回顾"
+    ],
+    "signals": 0,
+    "via": "static",
+    "error": null
+  },
+  "cismef": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": " render_Error"
+  },
+  "dg-furniture": {
+    "urls": [
+      "https://www.gde3f.com/exhibition/010001.html",
+      "https://www.gde3f.com/exhibition.html",
+      "https://www.gde3f.com/about/007001.html",
+      "https://www.gde3f.com/about/007001001.html"
+    ],
+    "chars": 25512,
+    "hits": [
+      "展后报告",
+      "展会回顾",
+      "展会概况",
+      "展会介绍"
+    ],
+    "signals": 2,
+    "via": "static",
+    "error": null
+  },
+  "fenestration-china": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "no_keyword_links(a=20)"
+  },
+  "ec-expo-yiwu": {
+    "urls": [
+      "https://www.ecfair.cn/about/zhjs/",
+      "https://www.ecfair.cn/about/gywm/"
+    ],
+    "chars": 5967,
+    "hits": [
+      "电商博览会概况",
+      "关于我们"
+    ],
+    "signals": 1,
+    "via": "static",
+    "error": null
+  },
+  "fhc-shanghai": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "no_keyword_links(a=36)"
+  },
+  "foshan-ceramics": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "subpages_empty"
+  },
+  "furniture-china": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "robots_unreachable"
+  },
+  "guzhen-lighting": {
+    "urls": [
+      "https://gzlightingfair.denggle.com/"
+    ],
+    "chars": 5263,
+    "hits": [
+      "展会简介"
+    ],
+    "signals": 1,
+    "via": "static",
+    "error": null
+  },
+  "ecf": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "robots_unreachable"
+  },
+  "gz-shoes": {
+    "urls": [
+      "http://www.slfchinafair.com/cntlist_exbReview_1.html",
+      "http://www.slfchinafair.com/cnt_exbIntro.html"
+    ],
+    "chars": 3456,
+    "hits": [
+      "历届回顾",
+      "展会介绍"
+    ],
+    "signals": 4,
+    "via": "static",
+    "error": null
+  },
+  "intertextile": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "no_keyword_links(a=15)"
+  },
+  "itma-asia": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "render_links",
+    "error": "no_keyword_links(a=77)"
+  },
+  "humen-fashion": {
+    "urls": [
+      "http://www.hmcec.com/humen/list_65.html",
+      "http://www.hmcec.com/humen/list_270.html"
+    ],
+    "chars": 2252,
+    "hits": [
+      "展会回顾",
+      "展会介绍"
+    ],
+    "signals": 0,
+    "via": "static",
+    "error": null
+  },
+  "iot-expo": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": " render_TimeoutError"
+  },
+  "ningbo-consumer": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "robots_denied"
+  },
+  "pcb-china": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "no_keyword_links(a=16)"
+  },
+  "reed-gift-sz": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "no_keyword_links(a=26)"
+  },
+  "gz-gift": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "robots_unreachable"
+  },
+  "pharmchina": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "no_keyword_links(a=12)"
+  },
+  "jinjiang-shoes": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "no_keyword_links(a=97)"
+  },
+  "scie": {
+    "urls": [
+      "https://www.smartchina-expo.cn/zbh/wjhg/index.html"
+    ],
+    "chars": 8429,
+    "hits": [
+      "往届回顾"
+    ],
+    "signals": 1,
+    "via": "render_links",
+    "error": null
+  },
+  "sino-dental": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "render_links",
+    "error": "no_keyword_links(a=0)"
+  },
+  "snec": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "render_links",
+    "error": "no_keyword_links(a=1)"
+  },
+  "chinacoat": {
+    "urls": [
+      "https://www.chinacoat.net/?route=about_exhibition_1"
+    ],
+    "chars": 2423,
+    "hits": [
+      "展览会简介"
+    ],
+    "signals": 0,
+    "via": "static",
+    "error": null
+  },
+  "tangjiu": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "robots_denied"
+  },
+  "simm": {
+    "urls": [
+      "https://www.iteschina.com/zh-cn/about"
+    ],
+    "chars": 4308,
+    "hits": [
+      "展会概览"
+    ],
+    "signals": 1,
+    "via": "static",
+    "error": null
+  },
+  "sinoces": {
+    "urls": [
+      "https://sinoces.com/media/newsInfo/1474",
+      "https://sinoces.com/about/abouthg",
+      "https://sinoces.com/about"
+    ],
+    "chars": 27852,
+    "hits": [
+      "2025电博会精彩落幕 展会规模、品牌展商、首发新品数量均创新高",
+      "展会回顾",
+      "展会概况"
+    ],
+    "signals": 0,
+    "via": "static",
+    "error": null
+  },
+  "wenzhou-shoes": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "home_HTTPError: HTTP Error 403: Forbidden"
+  },
+  "waic": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "render_links",
+    "error": "no_keyword_links(a=2)"
+  },
+  "tea-expo": {
+    "urls": [
+      "https://www.goodtea.cc/about-us"
+    ],
+    "chars": 4546,
+    "hits": [
+      "关于华巨臣茶博会 About Tea Fair"
+    ],
+    "signals": 0,
+    "via": "static",
+    "error": null
+  },
+  "yiwu-fair": {
+    "urls": [],
+    "chars": 0,
+    "hits": [],
+    "signals": 0,
+    "via": "static",
+    "error": "no_keyword_links(a=42)"
+  },
+  "yongkang-hardware": {
+    "urls": [
+      "https://www.chhwf.com/zhjs.php?zid=6"
+    ],
+    "chars": 9297,
+    "hits": [
+      "历届回顾"
+    ],
+    "signals": 26,
+    "via": "static",
+    "error": null
+  },
+  "automechanika-sh": {
+    "urls": [
+      "https://automechanika-shanghai.hk.messefrankfurt.com/shanghai/zh-cn/press/press-releases.html",
+      "https://automechanika-shanghai.hk.messefrankfurt.com/shanghai/zh-cn/press/press-releases/2026/AMS26_PR2.html"
+    ],
+    "chars": 33962,
+    "hits": [
+      "新闻稿"
+    ],
+    "signals": 16,
+    "via": "static+news_fallback",
+    "error": null
+  }
+}

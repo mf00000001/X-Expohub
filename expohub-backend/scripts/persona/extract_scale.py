@@ -78,6 +78,11 @@ PROMPT = """从展会网页正文中抽取规模与属性字段。**只抽文中
 4. 这三个字段填页面给出的**最新一届**规模：不管是本届、刚结束的一届，
    还是页面标注为"上届"的那一届——**只要它是页面上最新的一届，就填这里**。
    页面只有一个规模数字且没标届次，同样填这里。
+   · 若页面同时出现「已举办过的一届实际数据」与「下一届的预估/预计数字」，
+     A 组填**已举办的那一届实际数据**。预估那个数不填，但它存在
+     **不能成为放弃实际数据的理由**——"最新一届"指办过的，不是要办的。
+   · 若某组数字与一个具体届次/展期写在同一段里（例如"20万+ 行业观众
+     5000+ 参展企业 2026年10月21-24日"），视为该届数据，可以填。
 
 【B 组：对比基线——只在能分清两届时填】
 5. prev_visitor_count / prev_exhibitor_count / prev_area
@@ -188,13 +193,20 @@ _UNIT_ALT = ("平方米|平米|平方|sq\\.?\\s?m\\.?|sqft|square\\s?met(?:er|re
 # "5000个展位" 会变成 间隔="个展" + 单位="位"（当成观众数），
 # 而不是 间隔="" + 单位="个"。这个 bug 只在有干扰词时出现，很难肉眼发现。
 _GAP_CN = r"[\u4e00-\u9fff]{0,5}?"
+# 第二个分支专门对付"数字与名词之间夹了一整句定语"的写法：
+#   "汇聚2,977来自全球16个国家和地区的参展企业"
+# 数字到"参展企业"中间隔了 11 个字，短间隔匹配不到，2,977 被漏掉，
+# 中间的"16个"反而被当 unknown —— 依据里就只剩 ['area','unknown']，
+# 模型给的 2977 被判成"类型不对"。这是 cihs 展商数填不进去的真正原因。
+# 只要求"的"紧贴名词，比"数字附近出现过该名词"这种宽松复核精确得多。
+_GAP_CN_LONG = r"[\u4e00-\u9fff0-9,、]{0,14}?的"
 _GAP_EN = r"(?:[A-Za-z][A-Za-z\-'’]*\s+){0,6}?"
 
 # 末尾的 (?![A-Za-z]) 不能省：没有它，"2500 standard booths" 里的
 # standard 会被当成 stand 命中（这里碰巧蒙对），"minutes" 会被当成 "min"。
 _QTY = re.compile(
     r"(\d[\d,]*(?:\.\d+)?)\s*(千|万|亿|thousand|million|billion|k)?\s*[+＋]?\s*"
-    r"(?:" + _GAP_CN + "|" + _GAP_EN + ")"
+    r"(?:(?:" + _GAP_CN + "|" + _GAP_CN_LONG + r")|" + _GAP_EN + r")"
     r"(" + _UNIT_ALT + r")(?![A-Za-z])",
     re.I)
 
@@ -238,6 +250,10 @@ def parse_quantities(text: str) -> list[dict]:
     # 括号先去掉："170,000展览面积(平米)" 的单位裹在括号里，
     # 不去掉就永远配不上。这里只用于匹配，不影响落库原文。
     flat = re.sub(r"[（()）]", "", _norm_sep(text))
+    # 数字被空白切断：PDF/表格转 HTML 的站很常见，实测 cihs 的"77,01 6"。
+    # 不修的话依据里只算得出 7701 和 6，模型的 77016 会被判成"数值对不上"。
+    # 只在右侧是 1~3 位数字时合并——"2026 2027" 这种年份并列（右侧 4 位）不受影响。
+    flat = re.sub(r"(?<=[\d,])\s+(?=\d{1,3}(?!\d))", "", flat)
     out: list[dict] = []
 
     for m in _QTY.finditer(flat):
@@ -420,6 +436,35 @@ def _cat_ok(value: str, ev_flat: str, table: tuple[dict, dict],
 _LOCK = threading.Lock()
 
 
+def keep_lost_fields(new_rec: dict, old_rec: dict | None) -> list[str]:
+    """新一轮没抽到、但上一轮抽到过的字段——保留，不丢。
+
+    这条不是"兜底"，是承认一个实测事实：**模型在 0 温度下仍会摇摆**。
+    cmef 的"20万+ 行业观众 / 5000+ 参展企业"第一轮给了、改完切片逻辑后
+    又不给了，两轮的依据都逐字存在于正文、都站得住。抽不到 ≠ 原文没有，
+    如果按"后跑的覆盖先跑的"，数据的有无就由随机性决定了。
+
+    只在旧值是 medium（依据被闸门验过）时才保留，并把来源标进 note，
+    免得以后有人把它当成这一轮的抽取结果。
+    """
+    kept: list[str] = []
+    fields = new_rec.setdefault("fields", {})
+    for k, cell in (old_rec or {}).get("fields", {}).items():
+        if k in fields or not isinstance(cell, dict):
+            continue
+        if cell.get("conf") != "medium":
+            continue
+        fields[k] = dict(cell, kept_from="prev_run")
+        kept.append(k)
+    if kept:
+        tag = "（本轮未抽到，沿用上一轮已核验结果：%s）" % "/".join(kept)
+        new_rec["text_note"] = ((new_rec.get("text_note") or "") + tag)[:260]
+        new_rec["kept_fields"] = kept
+        new_rec["filled"] = len(fields)
+        new_rec["ok"] = True
+    return kept
+
+
 def shape(rid: str, body: str, raw: str) -> dict:
     """解析 + 核验。不联网，可离线重跑。"""
     data = _json_of(raw)
@@ -499,6 +544,23 @@ def shape(rid: str, body: str, raw: str) -> dict:
                     ok, why, qs, span = True, "", qs2, "raw_text"
                 else:
                     why = f"{why}；仅用 raw_text 也{why2}"
+
+        # 第三个兜底：模型抄依据时**把结尾的单位词抄掉了**。
+        # 实测 cihs：正文是"汇聚2,977来自全球16个国家和地区的参展企业"，
+        # 模型给的 evidence 截到"…16个国家和地区"就断了，"参展企业"没抄进来，
+        # 于是依据里算不出"这是企业数"。
+        # 但 evidence 是正文的**逐字前缀**，往后多读 40 字仍然是正文原话，
+        # 不是无中生有——锚点没变，只是没在模型随手停下的地方停。
+        if not ok:
+            idx = body_flat.find(ev_flat)
+            if idx >= 0:
+                ext = body_flat[idx: idx + len(ev_flat) + 40]
+                qs3 = parse_quantities(ext)
+                ok3, why3 = _num_ok(num, qs3, want)
+                if ok3:
+                    ok, why, qs, span = True, "", qs3, "extended"
+                else:
+                    why = f"{why}；后延 40 字也{why3}"
         if not ok:
             out["dropped"][k] = {"value": v, "why": why, "evidence": ev_flat[:40]}
             continue
@@ -588,9 +650,11 @@ def main() -> int:
         return 0
 
     done: dict[str, dict] = {}
+    prev_all: dict[str, dict] = {}
     if OUT.exists():
         try:
             prev = json.loads(OUT.read_text(encoding="utf-8"))
+            prev_all = {r["id"]: r for r in prev.get("records", [])}
             sel = set(ids)
             if args.force:
                 # --force 只对**本次选中的**展会重抽。选择之外的记录必须原样保留：
@@ -626,14 +690,16 @@ def main() -> int:
                      "error": f"{type(ex).__name__}: {str(ex)[:60]}"}
             src = "sub" if (SUB_DIR / f"{rid}.txt").exists() else "main"
             r["body_src"] = src
+            kept = keep_lost_fields(r, prev_all.get(rid))
             with _LOCK:
                 results.append(r)
                 OUT.write_text(json.dumps(
                     {"model": provider._model,
                      "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                      "records": results}, ensure_ascii=False, indent=2), encoding="utf-8")
-            print("  [%3d/%3d] %d/8 %-20s %s" % (n, len(todo), r.get("filled", 0), rid,
-                                                 r.get("error", "")))
+            print("  [%3d/%3d] %d/8 %-20s %s%s" % (
+                n, len(todo), r.get("filled", 0), rid, r.get("error", ""),
+                (" 沿用上一轮:" + ",".join(kept)) if kept else ""))
 
     ok = [r for r in results if r.get("ok")]
     fill = {k: sum(1 for r in ok if k in r["fields"]) for k in FIELDS}
@@ -649,7 +715,7 @@ def main() -> int:
 
 def _one(provider: OpenAICompatProvider, rid: str) -> dict:
     body = load_body(rid) or ""
-    raw = provider.complete_full(PROMPT % _slices(body, kws=SCALE_KWS, tail=12000),
+    raw = provider.complete_full(PROMPT % _slices(body, kws=SCALE_KWS, tail=16000),
                                  system=SYSTEM, temperature=0.0, max_tokens=700)
     r = shape(rid, body, raw)
     r["model"] = provider._model
