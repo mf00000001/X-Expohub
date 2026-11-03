@@ -162,6 +162,9 @@ from app.modules.ai.routes import router as ai_router
 app.include_router(ai_router, prefix="/api")
 from app.modules.platform.routes import router as platform_router
 app.include_router(platform_router, prefix="/api")
+# ---- 展会画像（独立 persona.db，只读出口）----
+from app.modules.persona.routes import router as persona_router
+app.include_router(persona_router, prefix="/api")
 # ---- 首页公开统计（无需登录；对外数字必须可验证）----
 from app.modules.analytics.public_stats import router as public_stats_router
 app.include_router(public_stats_router, prefix="/api")

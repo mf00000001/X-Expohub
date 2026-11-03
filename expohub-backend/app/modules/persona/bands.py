@@ -248,7 +248,11 @@ def booth_window(
     return {"days_left": days_left, "band": band, "deadline": deadline_iso, "note": note}
 
 
-def booth_window_by_start(start_iso: Optional[str], today: Optional[date] = None) -> dict:
+def booth_window_by_start(
+    start_iso: Optional[str],
+    today: Optional[date] = None,
+    end_date_iso: Optional[str] = None,
+) -> dict:
     """
     E4 单因子版：只按「距开展天数」分档，不依赖截止日。
 
@@ -261,6 +265,12 @@ def booth_window_by_start(start_iso: Optional[str], today: Optional[date] = None
       advisory —— 其余全部是提示，不得否决
     往届日期算出来的 days_left 是负数，如果直接进档位会得到 closed，
     等于用"去年已经办完了"去否决"今年还去不去"——这是最坏的一类假否决。
+
+    end_date_iso 用来区分**正在办**和**已办完**。两者对展位来说都是 gate
+    （开过幕就不能订本届展位了），但对用户是两回事：
+    "进行中"是还能赶去逛的信息，"已结束"不是。合并成一个 closed 会
+    把最有行动价值的一批展抹掉——广交会 10-15 开展、11-04 闭幕，
+    中间这 20 天正是最该被推荐的时候。
     """
     today = today or date.today()
     if not start_iso:
@@ -280,8 +290,18 @@ def booth_window_by_start(start_iso: Optional[str], today: Optional[date] = None
         return {"days_left": None, "band": "unknown", "role": "advisory",
                 "start_date": start_iso,
                 "note": f"开展日已过去 {-days_left} 天，属往届，仅供参考"}
-    # 已开展但未满 90 天：展已经办完了，不能当"紧张"，只能当 closed
+    # 已开展但未满 90 天：先看是不是还在展期内
     if days_left < 0:
+        end = None
+        if end_date_iso:
+            try:
+                end = date.fromisoformat(end_date_iso[:10])
+            except ValueError:
+                end = None
+        if end is not None and end >= today:
+            return {"days_left": days_left, "band": "ongoing", "role": "gate",
+                    "start_date": start_iso,
+                    "note": f"展会进行中（至 {end.isoformat()}），本届展位已不可订"}
         return {"days_left": days_left, "band": "closed", "role": "gate",
                 "start_date": start_iso, "note": "已开展，本届无法再订展位"}
 
@@ -327,6 +347,7 @@ def compute_all(
     today: Optional[date] = None,
     last_soldout_days_before: Optional[int] = None,
     start_date_iso: Optional[str] = None,
+    end_date_iso: Optional[str] = None,
     dates_status: Optional[str] = None,
     ratio_source: str = "official",
 ) -> dict:
@@ -360,7 +381,7 @@ def compute_all(
         e4["role"] = "gate"
         e4.setdefault("source", "deadline")
     elif start_date_iso and dates_status != "past":
-        e4 = booth_window_by_start(start_date_iso, today)
+        e4 = booth_window_by_start(start_date_iso, today, end_date_iso=end_date_iso)
         e4["source"] = "start_date"
     else:
         e4 = {"days_left": None, "band": "unknown", "role": "advisory",
@@ -456,6 +477,18 @@ def self_check() -> list[str]:
         fails.append(f"往届日期应为 unknown/advisory（不得否决），实为 {r['band']}/{r['role']}")
     if r["days_left"] is not None:
         fails.append("往届日期不应给出 days_left")
+
+    # 进行中 vs 已结束：两者都是 gate（开过幕就不能订本届展位），
+    # 但对用户是两回事。合并成 closed 会把正在办的展从推荐里抹掉。
+    r = booth_window_by_start("2026-10-15", d, end_date_iso="2026-11-04")   # 今天在展期内
+    if r["band"] != "ongoing" or r["role"] != "gate":
+        fails.append(f"展期内应为 ongoing/gate，实为 {r['band']}/{r['role']}")
+    r = booth_window_by_start("2026-10-15", d, end_date_iso="2026-10-25")   # 已闭幕
+    if r["band"] != "closed" or r["role"] != "gate":
+        fails.append(f"已闭幕应为 closed/gate，实为 {r['band']}/{r['role']}")
+    r = booth_window_by_start("2026-10-15", d)                              # 无 end_date，退回保守
+    if r["band"] != "closed":
+        fails.append(f"无 end_date 应退回 closed，实为 {r['band']}")
 
     # ---- 季节先验 ----
     s = season_prior("2025-04-21", d)                   # 19 个月前，仍在 24 个月容忍期内

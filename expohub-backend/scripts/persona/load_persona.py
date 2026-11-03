@@ -113,6 +113,17 @@ def build() -> tuple[list[dict], list[dict], dict]:
             put(src_key, cell, col, _edition if src_key == "edition" else None,
                 weigh=src_key not in ("admission", "nature"))
 
+        # 品类写在记录**顶层**（m["category"]），不在 fields 子字典里。
+        # 上面那个循环只遍历 fields，所以漏了一整层——primary_category 曾长期 0/94，
+        # 数据其实一直都在（94/94 有值），纯粹是这里没取。
+        # 词表与 app.models.category.EXHIBITION_CATEGORIES 逐字一致（18/18 已核），
+        # 不需要再做名称映射。
+        cat = m.get("category")
+        if cat:
+            row["primary_category"] = cat
+            row["categories_json"] = json.dumps(
+                [{"name": cat, "weight": 1.0}], ensure_ascii=False)
+
         for f in ("visitor_count", "exhibitor_count", "exhibition_area"):
             cell = sf.get(f)
             if not cell:
@@ -188,6 +199,7 @@ def build() -> tuple[list[dict], list[dict], dict]:
         "with_visitor": sum(1 for r in rows if r.get("visitor_count")),
         "with_exhibitor": sum(1 for r in rows if r.get("exhibitor_count")),
         "with_area": sum(1 for r in rows if r.get("exhibit_area_sqm")),
+        "with_category": sum(1 for r in rows if r.get("primary_category")),
         "observation": len(obs),
     }
     return rows, obs, summary
@@ -199,9 +211,10 @@ def main() -> int:
     args = ap.parse_args()
 
     rows, obs, summary = build()
-    print("待写入：%d 个展｜其中 有日期 %d / 有观众数 %d / 有展商数 %d / 有面积 %d｜观测 %d 条"
+    print("待写入：%d 个展｜其中 有日期 %d / 有观众数 %d / 有展商数 %d / 有面积 %d / 有品类 %d｜观测 %d 条"
           % (summary["expo"], summary["with_date"], summary["with_visitor"],
-             summary["with_exhibitor"], summary["with_area"], summary["observation"]))
+             summary["with_exhibitor"], summary["with_area"], summary["with_category"],
+             summary["observation"]))
     if args.dry_run:
         for r in rows[:3]:
             print(" ", {k: v for k, v in r.items() if v is not None})

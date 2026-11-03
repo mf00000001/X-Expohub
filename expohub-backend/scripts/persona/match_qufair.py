@@ -76,7 +76,10 @@ _GENERIC = (
     "global", "world", "asia", "the",
 )
 _BRACKET = re.compile(r"[（(][^)）]*[)）]")
-_EDITION = re.compile(r"第\s*\d+\s*届")
+# 届次要同时认阿拉伯数字和中文数字："第22届" 和 "第三十五届" 都得剥。
+# 原先只写 \d+，"第三十五届上海国际酒店及餐饮业博览会" 归一后还带着"第三十五届"，
+# b-hotel 因此只拿到 0.93（靠包含关系 + 城市加分凑过去）而不是 1.00。结果没错，但错得侥幸。
+_EDITION = re.compile(r"第\s*[\d一二三四五六七八九十百千零〇]+\s*[届期]")
 _YEAR = re.compile(r"20\d{2}\s*年?")
 _NONWORD = re.compile(r"[^0-9a-z\u4e00-\u9fff]+")
 _CJK = re.compile(r"[\u4e00-\u9fff]")

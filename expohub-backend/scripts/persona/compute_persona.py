@@ -73,15 +73,31 @@ def calibrate(con: sqlite3.Connection) -> None:
             r["slug"], r["v"], r["e"], adj(r), r["vc"]))
 
 
-def _dates_status(start_iso, today: date) -> str:
-    """expo 表没存 dates_status，按开展日反推。和采集层的三态口径一致。"""
+def _dates_status(start_iso, today: date, end_iso=None) -> str:
+    """
+    expo 表没存 dates_status，按开展日反推。和采集层的三态口径一致。
+
+    **必须看 end_date**：只比 start_date 会把"正在办的展"判成 past。
+    广交会 2026-10-15 开展、11-04 闭幕，11-03 去看时 start 已过 19 天，
+    但它还在展期里——这恰恰是用户最需要看到的一个展，判成 past 会让它
+    掉进"无本届可用日期"分支、E4 显示 unknown，等于把它从推荐里抹掉。
+
+    没有 end_date 时才退回用 start_date 判断（偏保守：宁可少列，不要误列）。
+    """
     if not start_iso:
         return "none"
-    try:
-        d = date.fromisoformat(start_iso[:10])
-    except ValueError:
+
+    def _d(s):
+        try:
+            return date.fromisoformat(s[:10])
+        except (ValueError, TypeError):
+            return None
+
+    start = _d(start_iso)
+    if start is None:
         return "none"
-    return "past" if d < today else "current"
+    end = _d(end_iso) or start
+    return "past" if end < today else "current"
 
 
 def main() -> int:
@@ -105,11 +121,12 @@ def main() -> int:
     stat = {"ample": 0, "normal": 0, "thin": 0, "severe": 0, "unknown": 0}
     gate = 0
     for r in rows:
-        ds = _dates_status(r["start_date"], today)
+        ds = _dates_status(r["start_date"], today, r["end_date"])
         p = bands.compute_all(
             visitor_count=r["visitor_count"], exhibitor_count=r["exhibitor_count"],
             visitor_caliber=r["visitor_caliber"], deadline_iso=r["booth_deadline"],
-            today=today, start_date_iso=r["start_date"], dates_status=ds,
+            today=today, start_date_iso=r["start_date"], end_date_iso=r["end_date"],
+            dates_status=ds,
             # 去展网等第三方来源的规模数，比值照算但要留痕：
             # 实测第三方观众数比官网低 20~25%，档位会跟着偏低。
             ratio_source="thirdparty" if (r["scale_source"] or "") == "qufair" else "official",
