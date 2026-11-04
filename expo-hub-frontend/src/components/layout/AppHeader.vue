@@ -71,6 +71,11 @@ const quickLinks = computed(() => {
       <nav class="header-nav" aria-label="公开目录">
         <router-link
           class="header-nav-link"
+          :class="{ 'is-active': route.path.startsWith('/expo-intel') }"
+          :to="{ name: 'expo-intel' }"
+        >展会评估</router-link>
+        <router-link
+          class="header-nav-link"
           :class="{ 'is-active': isCatalogActive('exhibitors') }"
           :to="{ name: 'catalog-exhibitors' }"
         >展商名录</router-link>

@@ -11,6 +11,9 @@ const routes: RouteRecordRaw[] = [
   { path: '/onboarding', name: 'onboarding', component: () => import('@/views/OnboardingView.vue'), meta: { title: '选择兴趣领域', requiresAuth: true, showFooter: false } },
   { path: '/exhibitions', name: 'exhibition-list', component: () => import('@/views/exhibition/ExhibitionListView.vue'), meta: { title: '展会列表', requiresAuth: false, showFooter: true } },
   { path: '/exhibitions/:id', name: 'exhibition-detail', component: () => import('@/views/exhibition/ExhibitionDetailView.vue'), meta: { title: '展会详情', requiresAuth: false, showFooter: true } },
+  // 展会评估（画像层）：回答"这个展值不值得去"，与 /exhibitions 的"有哪些展"是两件事
+  { path: '/expo-intel', name: 'expo-intel', component: () => import('@/views/persona/ExpoIntelListView.vue'), meta: { title: '展会评估', requiresAuth: false, showFooter: true } },
+  { path: '/expo-intel/:slug', name: 'expo-intel-detail', component: () => import('@/views/persona/ExpoIntelDetailView.vue'), meta: { title: '展会评估详情', requiresAuth: false, showFooter: true } },
   // V3.1: 展馆信息
   { path: '/venues', name: 'venue-list', component: () => import('@/views/VenueListView.vue'), meta: { title: '展馆名录', requiresAuth: false, showFooter: true } },
   { path: '/venues/:id', name: 'venue-detail', component: () => import('@/views/VenueDetailView.vue'), meta: { title: '展馆信息', requiresAuth: false, showFooter: true } },

@@ -379,11 +379,11 @@ def get_expo(slug: str, db: Session = Depends(get_persona_db)):
         "listing_completeness": expo.listing_completeness,
         "sample_group": expo.sample_group,
         "observations": observations,
-        "calibration": {
-            "version": RATIO_CALIBRATION["version"],
-            "basis": RATIO_CALIBRATION["basis"],
-            "n": RATIO_CALIBRATION["n"],
-        },
+        # 整份标定下发（含 p25/p50/p75 与 superseded）：
+        # 详情页要展示"阈值在哪"，否则用户看到的 severe 只是一个没有刻度的标签。
+        # 只给 version/n 时前端只能写"见 /api/persona/params"——把 API 路径
+        # 暴露给用户是设计事故。
+        "calibration": dict(RATIO_CALIBRATION),
     })
     return _ok(card)
 
