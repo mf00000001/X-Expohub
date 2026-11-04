@@ -20,9 +20,56 @@ export type E4Band =
 /** 数据来源。qufair = 去展网第三方源，观众数实测偏低 20~25%。 */
 export type ScaleSource = 'official' | 'qufair' | null
 
+/** 规模数的取值来源：measured = 采到的，estimated = 算出来的，null = 两者都没有 */
+export type FieldOrigin = 'measured' | 'estimated' | null
+
+/** 一条估算：值 + 区间 + 置信度 + 证据链。绝不冒充实测。 */
+export interface EstimateInfo {
+  value: number
+  lo: number
+  hi: number
+  confidence: 'low' | 'medium' | 'high'
+  /** 每路证据是怎么算的（"观众 3.9 万 ÷ 比值 62 人/家…"） */
+  evidence: { path: string; value: number; basis: string }[]
+  note: string | null
+  bench_version: string
+}
+
+/** 自然语言解析出的一个维度 */
+export interface ParseChip {
+  key: 'industry' | 'category' | 'city' | 'month' | 'budget' | 'scale'
+  label: string
+  /** false = 抽不出来，显示「未提供」而不是猜 */
+  provided: boolean
+  value: unknown
+  display: string
+  /** 原文命中片段，点开 chip 能看到为什么这么读 */
+  evidence: string | null
+  /** 可枚举维度给出全部选项（改 chip 用） */
+  options?: string[]
+}
+
+export interface ParseQueryResult {
+  query: string
+  chips: ParseChip[]
+  /** 可直接喂给 getExpos 的筛选条件 */
+  filters: {
+    category?: string
+    city?: string
+    month_from?: number
+    month_to?: number
+    scale?: string
+  }
+  understood: number
+  unmatched: string[]
+  note: string
+}
+
 export interface E1Info {
   /** 观众/展商比。null 表示两个数没同时拿到，算不出来——不等于 0。 */
   ratio: number | null
+  /** 这个比值是纯实测算的还是踩了估算输入——影响它该被信几分 */
+  ratio_origin: FieldOrigin
   band: E1Band
   label: string
   hint: string
@@ -55,13 +102,20 @@ export interface ExpoPersonaItem {
   biz_type: string | null
   audience_access: string | null
   visitor_count: number | null
+  visitor_origin: FieldOrigin
   visitor_caliber: string | null
   exhibitor_count: number | null
+  exhibitor_origin: FieldOrigin
   exhibitor_caliber: string | null
   exhibit_area_sqm: number | null
+  area_origin: FieldOrigin
   area_caliber: string | null
   scale_source: ScaleSource
   scale_source_label: string
+  /** 估算详情（区间 + 置信度 + 证据链），只在有估算值的字段出现 */
+  estimates: Record<string, EstimateInfo>
+  /** origin 的中文说法（实测/估算），文案与后端同源 */
+  estimate_origins: Record<string, string>
   e1: E1Info
   e4: E4Info
   data_status: 'full' | 'partial' | 'skeleton'
@@ -106,6 +160,9 @@ export interface PersonaListParams {
   e4_band?: E4Band
   scale_source?: 'official' | 'qufair'
   has_dates?: boolean
+  /** 开展月份区间（1-12），无日期的展不参与筛选 */
+  month_from?: number
+  month_to?: number
   /** 只要尚未闭幕的展。默认按开展日升序时，已闭幕的会排最前，与"下一个去哪"正好相反 */
   upcoming?: boolean
   sort?: 'start_date' | 'ratio' | 'name' | 'category'
@@ -206,6 +263,11 @@ export const personaApi = {
       expo_slug: expoSlug ?? null,
       states,
     }) as unknown as Promise<E5Verdict>
+  },
+
+  /** 自然语言找展：一句话拆成结构化筛选条件 + 六维 chips */
+  parseQuery(query: string) {
+    return http.post('/persona/parse-query', { query }) as unknown as Promise<ParseQueryResult>
   },
 }
 

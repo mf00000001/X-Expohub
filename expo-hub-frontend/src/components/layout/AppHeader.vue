@@ -71,6 +71,11 @@ const quickLinks = computed(() => {
       <nav class="header-nav" aria-label="公开目录">
         <router-link
           class="header-nav-link"
+          :class="{ 'is-active': route.path.startsWith('/expo-find') }"
+          :to="{ name: 'expo-find' }"
+        >找展</router-link>
+        <router-link
+          class="header-nav-link"
           :class="{ 'is-active': route.path.startsWith('/expo-intel') }"
           :to="{ name: 'expo-intel' }"
         >展会评估</router-link>
@@ -122,7 +127,13 @@ const quickLinks = computed(() => {
 .header-nav-link{font-size:var(--font-sm);line-height:1.4;color:var(--ink-500);text-decoration:none;padding:4px 8px;border-radius:6px;white-space:nowrap;transition:color .15s ease,background .15s ease}
 .header-nav-link:hover{color:var(--brand-700);background:var(--brand-50)}
 .header-nav-link.is-active{color:var(--brand-700);font-weight:600;background:var(--brand-50)}
-@media (max-width: 768px){.header-nav{display:none}}
+@media (max-width: 768px){
+  /* 不再 display:none——手机上隐藏导航等于让 /expo-intel、/expo-find 没有入口。
+     改成横向滑动：窄屏挤不下 4 个链接时可滑，页面仍然可达。 */
+  .header-nav{overflow-x:auto;flex-wrap:nowrap;max-width:100%;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .header-nav::-webkit-scrollbar{display:none}
+  .header-nav-link{flex-shrink:0}
+}
 .back-btn{background:none;border:none;font-size:18px;cursor:pointer;padding:4px 8px;color:var(--color-text)}
 .login-btn{font-size:13px;border:1px solid var(--color-border);padding:4px 12px;border-radius:6px;background:none;cursor:pointer}
 .header-icons{display:flex;gap:2px}

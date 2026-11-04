@@ -51,6 +51,18 @@ class Expo(PersonaBase):
 
     name_cn: Mapped[str] = mapped_column(String(200), nullable=False, comment="展会名称（中）")
     name_en: Mapped[Optional[str]] = mapped_column(String(200), nullable=True, comment="展会名称（英）")
+    # 查证过的规范全称（来自 data/expo_candidates_final.json 的 official_name）。
+    # 与 name_cn 分开存：name_cn 往往是官网 H1，带届次和宣传语（"第 35 届…"），
+    # 展示时有真实感；name_official 用于搜索和去重，两者用途不同，不能互相覆盖。
+    name_official: Mapped[Optional[str]] = mapped_column(
+        String(200), nullable=True, comment="规范全称（已查证）"
+    )
+    # 被抓错时的原始标题留档。出现过抓成"上海颖展展览服务有限公司"（公司名）、
+    # "Maintenance - International…"（404 页）、"虎门会展网"（站点名）的情况，
+    # 覆盖 name_cn 前必须留底，否则以后无法判断哪次改动是修错还是改错。
+    name_raw: Mapped[Optional[str]] = mapped_column(
+        String(300), nullable=True, comment="修正前的原始标题"
+    )
 
     # ---- L0/L1 基本盘 ----
     city: Mapped[Optional[str]] = mapped_column(String(50), nullable=True, index=True, comment="举办城市")
@@ -118,6 +130,16 @@ class Expo(PersonaBase):
     data_status: Mapped[str] = mapped_column(
         String(20), nullable=False, default="draft", index=True,
         comment="draft / pending_verify / verified / excluded（三源冲突进 pending_verify，不进计算集）"
+    )
+    # 数据体检结论。与 data_status 分开：data_status 说的是"这条记录走到哪一步"，
+    # data_quality 说的是"里面的数字可不可信"。
+    # 实测过面积填 100 万㎡（广东现代国际展览中心室内只有约 13 万㎡）的情况——
+    # 这种值不能不动声色地留着，它会污染密度基准，把整批估算带偏。
+    data_quality: Mapped[Optional[str]] = mapped_column(
+        String(20), nullable=True, index=True, comment="ok / suspect / pending_verify"
+    )
+    quality_note: Mapped[Optional[str]] = mapped_column(
+        String(300), nullable=True, comment="体检发现的问题说明"
     )
     confidence_overall: Mapped[Optional[str]] = mapped_column(
         String(5), nullable=True, comment="high / mid / low"
@@ -285,6 +307,57 @@ class ExpoPersona(PersonaBase):
     note: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
 
 
+class ExpoEstimate(PersonaBase):
+    """
+    规模字段的估算结果（与实测严格分表）
+
+    ## 为什么不直接写进 expo 表
+
+    一旦估算值进了 `expo.visitor_count`，它就和主办方公布的数字长得一模一样。
+    三个月后没人能分清"这个 12 万是官网写的还是我们算的"，而这两者的
+    可信度差着量级——估算值会被拿去做参展决策，实测值不会出这种问题。
+
+    分表之后规则变成结构性的：`expo` 里的数**永远是采到的**，
+    `expo_estimate` 里的**永远是算的**，读的时候由调用方显式选择用哪个。
+    这比在字段上打标记可靠，因为标记会被后来的脚本覆盖掉。
+
+    ## bench_version
+
+    基准（密度、比值）每次重算都可能变。带上版本号才能回答
+    "这条估算是按哪一版基准算的"，也才能在重算时按版本清理旧记录，
+    而不是把历史估算堆成一片谁也说不清的数据。
+
+    对应模块：app/modules/persona/estimate.py
+    """
+
+    __tablename__ = "expo_estimate"
+    __table_args__ = (
+        UniqueConstraint("expo_id", "field_key", "bench_version", name="uq_est_expo_field_ver"),
+    )
+
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    expo_id: Mapped[int] = mapped_column(ForeignKey("expo.id", ondelete="CASCADE"), index=True)
+
+    field_key: Mapped[str] = mapped_column(
+        String(40), nullable=False, index=True,
+        comment="visitor_count / exhibitor_count / exhibit_area_sqm",
+    )
+    value: Mapped[int] = mapped_column(Integer, nullable=False, comment="点估（已在脚本里按量级取整）")
+    lo: Mapped[int] = mapped_column(Integer, nullable=False, comment="区间下限")
+    hi: Mapped[int] = mapped_column(Integer, nullable=False, comment="区间上限")
+    confidence: Mapped[str] = mapped_column(
+        String(5), nullable=False, comment="high / mid / low（由多路证据的收敛度决定）"
+    )
+    evidence_json: Mapped[Optional[str]] = mapped_column(
+        Text, nullable=True, comment="[{path, value, basis}] —— 每路证据的推算过程"
+    )
+    note: Mapped[Optional[str]] = mapped_column(String(300), nullable=True)
+    bench_version: Mapped[str] = mapped_column(
+        String(40), nullable=False, index=True, comment="基准版本，如 v1-2026-11-04"
+    )
+    created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
+
+
 class PersonaParam(PersonaBase):
     """
     可调参数（全系统只有 3 个，见维度清单 10.8）
@@ -326,6 +399,7 @@ ALL_TABLES = [
     ExpoExhibitor,
     ExpoHistory,
     ExpoPersona,
+    ExpoEstimate,
     PersonaParam,
     ImportBatch,
 ]

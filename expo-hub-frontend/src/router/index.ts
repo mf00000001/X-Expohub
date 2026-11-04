@@ -14,6 +14,8 @@ const routes: RouteRecordRaw[] = [
   // 展会评估（画像层）：回答"这个展值不值得去"，与 /exhibitions 的"有哪些展"是两件事
   { path: '/expo-intel', name: 'expo-intel', component: () => import('@/views/persona/ExpoIntelListView.vue'), meta: { title: '展会评估', requiresAuth: false, showFooter: true } },
   { path: '/expo-intel/:slug', name: 'expo-intel-detail', component: () => import('@/views/persona/ExpoIntelDetailView.vue'), meta: { title: '展会评估详情', requiresAuth: false, showFooter: true } },
+  // 找展：自然语言一句话 → 结构化筛选 + 候选结果（入口页，比 /expo-intel 更省事）
+  { path: '/expo-find', name: 'expo-find', component: () => import('@/views/persona/ExpoSearchView.vue'), meta: { title: '找展', requiresAuth: false, showFooter: true } },
   // V3.1: 展馆信息
   { path: '/venues', name: 'venue-list', component: () => import('@/views/VenueListView.vue'), meta: { title: '展馆名录', requiresAuth: false, showFooter: true } },
   { path: '/venues/:id', name: 'venue-detail', component: () => import('@/views/VenueDetailView.vue'), meta: { title: '展馆信息', requiresAuth: false, showFooter: true } },

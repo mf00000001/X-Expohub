@@ -32,6 +32,7 @@
 
 from __future__ import annotations
 
+import json
 from datetime import date
 from typing import Any, Optional
 
@@ -54,7 +55,8 @@ from app.modules.persona.e5 import (
     VERDICT_TEXT,
     evaluate,
 )
-from app.modules.persona.models import Expo, ExpoObservation, ExpoPersona
+from app.modules.persona.models import Expo, ExpoEstimate, ExpoObservation, ExpoPersona
+from app.modules.persona.parse import parse_query
 
 router = APIRouter(prefix="/persona", tags=["展会画像"])
 
@@ -156,9 +158,86 @@ def _latest_persona_join():
 # 序列化
 # ============================================================
 
-def _serialize_card(expo: Expo, p: Optional[ExpoPersona]) -> dict:
-    """列表卡片：只放"值不值得去"判断要用到的字段。"""
+ESTIMATE_ORIGIN_TEXT = {
+    "measured": "实测",
+    "estimated": "估算",
+}
+
+
+def _load_estimates(db: Session, expo_ids: list[int]) -> dict[int, dict[str, dict]]:
+    """
+    批量取估算值：{expo_id: {field_key: {...}}}。
+
+    只取最新 bench_version——基准重算后旧估算就作废了，留着只会让前端
+    不知道该显示哪一版。同字段多版本时按 bench_version 字典序取后者
+    （版本号带日期，字典序=时间序）。
+    """
+    if not expo_ids:
+        return {}
+    rows = db.execute(
+        select(ExpoEstimate).where(ExpoEstimate.expo_id.in_(expo_ids))
+    ).scalars().all()
+    best: dict[tuple[int, str], ExpoEstimate] = {}
+    for e in rows:
+        key = (e.expo_id, e.field_key)
+        cur = best.get(key)
+        if cur is None or (e.bench_version or "") > (cur.bench_version or ""):
+            best[key] = e
+
+    out: dict[int, dict[str, dict]] = {}
+    for (eid, field), e in best.items():
+        evidence = []
+        if e.evidence_json:
+            try:
+                evidence = json.loads(e.evidence_json)
+            except ValueError:
+                evidence = []
+        out.setdefault(eid, {})[field] = {
+            "value": e.value,
+            "lo": e.lo,
+            "hi": e.hi,
+            "confidence": e.confidence,
+            "evidence": evidence,
+            "note": e.note,
+            "bench_version": e.bench_version,
+        }
+    return out
+
+
+def _serialize_card(
+    expo: Expo,
+    p: Optional[ExpoPersona],
+    estimates: Optional[dict[str, dict]] = None,
+) -> dict:
+    """
+    列表卡片：只放"值不值得去"判断要用到的字段。
+
+    规模三件套**实测优先、估算兜底**：`*_origin` 标出每个数是实测还是估算，
+    估算值连区间一起下发。绝不把估算值塞进 `visitor_count` 冒充实测——
+    两者可信度差着量级，混在一个字段里等于把估算伪装成事实。
+    """
+    estimates = estimates or {}
     ratio = p.visitor_exhibitor_ratio if p else None
+
+    def _eff(measured, field):
+        """实测优先；缺了用估算顶上，但 origin 必须跟着值走。"""
+        if measured:
+            return measured, "measured"
+        est = estimates.get(field)
+        if est:
+            return est["value"], "estimated"
+        return None, None
+
+    visitor_eff, visitor_origin = _eff(expo.visitor_count, "visitor_count")
+    exhib_eff, exhib_origin = _eff(expo.exhibitor_count, "exhibitor_count")
+    area_eff, area_origin = _eff(expo.exhibit_area_sqm, "exhibit_area_sqm")
+
+    # 比值是不是踩在估算输入上算出来的——必须让下游知道
+    ratio_origin = None
+    if ratio is not None:
+        used = {visitor_origin, exhib_origin}
+        ratio_origin = "estimated" if "estimated" in used else "measured"
+
     return {
         "slug": expo.slug,
         "name_cn": expo.name_cn,
@@ -173,18 +252,26 @@ def _serialize_card(expo: Expo, p: Optional[ExpoPersona]) -> dict:
         "audience_access": expo.audience_access,
 
         # 规模三件套 + 来源（来源必须随数下发，见模块 docstring）
-        "visitor_count": expo.visitor_count,
+        # *_count 是"给用户看的有效值"（实测优先、估算兜底），
+        # *_origin 说明这个数是哪来的，estimates 里放估算的区间与证据链。
+        "visitor_count": visitor_eff,
+        "visitor_origin": visitor_origin,
         "visitor_caliber": expo.visitor_caliber,
-        "exhibitor_count": expo.exhibitor_count,
+        "exhibitor_count": exhib_eff,
+        "exhibitor_origin": exhib_origin,
         "exhibitor_caliber": expo.exhibitor_caliber,
-        "exhibit_area_sqm": expo.exhibit_area_sqm,
+        "exhibit_area_sqm": area_eff,
+        "area_origin": area_origin,
         "area_caliber": expo.area_caliber,
         "scale_source": expo.scale_source,
         "scale_source_label": SCALE_SOURCE_TEXT.get(expo.scale_source or "", "来源未标注"),
+        "estimates": estimates,
+        "estimate_origins": ESTIMATE_ORIGIN_TEXT,
 
         # E1 客群可得性
         "e1": {
             "ratio": round(ratio, 1) if ratio is not None else None,
+            "ratio_origin": ratio_origin,
             **_band_pair(p.ratio_band if p else None, RATIO_TEXT),
             "target_lo": p.e1_lo if p else None,
             "target_mid": p.e1_mid if p else None,
@@ -221,6 +308,8 @@ def list_expos(
     e4_band: Optional[str] = Query(None, description="E4 档位"),
     scale_source: Optional[str] = Query(None, description="规模数据来源：official/qufair"),
     has_dates: bool = Query(False, description="只要已知开展日期的展"),
+    month_from: Optional[int] = Query(None, ge=1, le=12, description="开展月份下限（1-12）"),
+    month_to: Optional[int] = Query(None, ge=1, le=12, description="开展月份上限（1-12）"),
     upcoming: bool = Query(
         False,
         description="只要未结束的展（end_date 为空时退化用 start_date）。"
@@ -274,6 +363,18 @@ def list_expos(
         stmt = stmt.where(Expo.scale_source == scale_source)
     if has_dates:
         stmt = stmt.where(Expo.start_date.is_not(None), Expo.start_date != "")
+    if month_from or month_to:
+        # ISO 日期 'YYYY-MM-DD' 的第 6~7 位就是月份，字符串比较即可（零填充）。
+        # 无日期的展**不滤掉**：月份对它是未知，不是不匹配——把它和"11 月外的展"
+        # 一起排除等于把"没采到日期"当成"不在 11 月办"。它排在结果末尾（NULL 恒排后）。
+        m_col = func.substr(Expo.start_date, 6, 2)
+        lo = f"{month_from or 1:02d}"
+        hi = f"{month_to or 12:02d}"
+        date_cond = (m_col >= lo) & (m_col <= hi) if lo <= hi else or_(m_col >= lo, m_col <= hi)
+        stmt = stmt.where(or_(
+            and_(Expo.start_date.is_not(None), Expo.start_date != "", date_cond),
+            or_(Expo.start_date.is_(None), Expo.start_date == ""),
+        ))
     if upcoming:
         # ISO 日期串可以直接按字典序比较，不必先转 date。
         # end_date 缺失时退化用 start_date 判断——这是已知偏差（跨多天的展可能被提前算成已结束），
@@ -324,7 +425,8 @@ def list_expos(
         stmt = stmt.order_by(null_flag.asc(), sort_col.asc(), Expo.id.asc())
 
     rows = db.execute(stmt.offset((page - 1) * page_size).limit(page_size)).all()
-    items = [_serialize_card(e, p) for e, p in rows]
+    est_map = _load_estimates(db, [e.id for e, _ in rows])
+    items = [_serialize_card(e, p, est_map.get(e.id)) for e, p in rows]
 
     return _ok({
         "items": items,
@@ -368,7 +470,8 @@ def get_expo(slug: str, db: Session = Depends(get_persona_db)):
         {"source_type": st or "unknown", "count": n} for st, n in obs_rows
     ]
 
-    card = _serialize_card(expo, p)
+    est_map = _load_estimates(db, [expo.id])
+    card = _serialize_card(expo, p, est_map.get(expo.id))
     card.update({
         "note": p.note if p else None,
         "params_version": p.params_version if p else None,
@@ -426,6 +529,36 @@ def overview(db: Session = Depends(get_persona_db)):
         ).scalar_one()
         return {"filled": n, "total": total, "rate": round(n / total, 3) if total else 0}
 
+    # 覆盖率必须拆两栏：实测多少 + 估算多少。合成一个数字会让人误以为
+    # "95% 覆盖"都是采来的——估算值的可信度和实测差着量级。
+    def _cov_split(field: str):
+        measured = db.execute(
+            select(func.count(Expo.id)).where(
+                getattr(Expo, field).is_not(None), getattr(Expo, field) != ""
+            )
+        ).scalar_one()
+        est_ids = {
+            eid for (eid,) in db.execute(
+                select(ExpoEstimate.expo_id).where(ExpoEstimate.field_key == field)
+            ).all()
+        }
+        # 只有实测为空的才算"估算补上的"，实测在时估算不会顶上来
+        measured_ids = {
+            eid for (eid,) in db.execute(
+                select(Expo.id).where(getattr(Expo, field).is_not(None), getattr(Expo, field) != "")
+            ).all()
+        }
+        estimated = len(est_ids - measured_ids)
+        effective = measured + estimated
+        return {
+            "measured": measured,
+            "estimated": estimated,
+            "filled": effective,
+            "total": total,
+            "rate": round(effective / total, 3) if total else 0,
+            "measured_rate": round(measured / total, 3) if total else 0,
+        }
+
     category_rows = db.execute(
         select(Expo.primary_category, func.count())
         .group_by(Expo.primary_category)
@@ -437,9 +570,9 @@ def overview(db: Session = Depends(get_persona_db)):
         "e1_distribution": _dist(ratio_rows, RATIO_TEXT),
         "e4_distribution": _dist(e4_rows, E4_TEXT),
         "coverage": {
-            "visitor_count": _cov(Expo.visitor_count),
-            "exhibitor_count": _cov(Expo.exhibitor_count),
-            "exhibit_area_sqm": _cov(Expo.exhibit_area_sqm),
+            "visitor_count": _cov_split("visitor_count"),
+            "exhibitor_count": _cov_split("exhibitor_count"),
+            "exhibit_area_sqm": _cov_split("exhibit_area_sqm"),
             "start_date": _cov(Expo.start_date),
             "primary_category": _cov(Expo.primary_category),
             "booth_price_standard": _cov(Expo.booth_price_standard),
@@ -597,3 +730,20 @@ def e5_evaluate(req: E5EvaluateRequest):
         "note": "" if verdict != "pass_with_cost"
                 else "这几项的钱要算进 E3 成本后再决定去不去，别只看展位费。",
     })
+
+
+class ParseQueryRequest(BaseModel):
+    query: str = Field(..., min_length=1, max_length=200, description="自然语言找展需求")
+
+
+@router.post("/parse-query", summary="自然语言找展需求解析")
+def parse_query_endpoint(req: ParseQueryRequest):
+    """
+    把一句话需求拆成六个筛选维度（行业/品类/地域/时间/预算/规模）。
+
+    规则化抽取，抽不出的维度**保持「未提供」而不是猜**——
+    "找个便宜点的展"里的"便宜"不是预算数，不该编出一个金额来。
+    每个维度都带 evidence（原文命中片段），用户点开 chip 能看到为什么这么读。
+    """
+    result = parse_query(req.query)
+    return _ok(result)

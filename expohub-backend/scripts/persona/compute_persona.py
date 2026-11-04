@@ -116,20 +116,45 @@ def main() -> int:
 
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     rows = list(con.execute("SELECT * FROM expo"))
+
+    # 估算表：实测缺失时兜底。key=(expo_id, field_key)，同字段取最新 bench_version。
+    est_map: dict[tuple[int, str], sqlite3.Row] = {}
+    for e in con.execute("SELECT * FROM expo_estimate ORDER BY bench_version"):
+        est_map[(e["expo_id"], e["field_key"])] = e
+
+    def _effective(r: sqlite3.Row, field: str, caliber_field: str):
+        """实测优先，估算兜底。返回 (值, 口径, 是否估算)。"""
+        if r[field]:
+            return r[field], r[caliber_field], False
+        e = est_map.get((r["id"], field))
+        if e:
+            # 估算值本身就是折算后的人数/企业数，口径按标准口径记，
+            # 否则 normalize 会对着"未知口径"再拒一次，等于白估。
+            std_caliber = "person" if field == "visitor_count" else "company"
+            return e["value"], std_caliber, True
+        return None, None, False
+
     con.execute("DELETE FROM expo_persona")
 
     stat = {"ample": 0, "normal": 0, "thin": 0, "severe": 0, "unknown": 0}
     gate = 0
     for r in rows:
         ds = _dates_status(r["start_date"], today, r["end_date"])
+        visitor, v_caliber, v_est = _effective(r, "visitor_count", "visitor_caliber")
+        exhibitor, e_caliber, e_est = _effective(r, "exhibitor_count", "exhibitor_caliber")
+        est_fields = [f for f, flag in (
+            ("visitor_count", v_est), ("exhibitor_count", e_est)) if flag]
+
         p = bands.compute_all(
-            visitor_count=r["visitor_count"], exhibitor_count=r["exhibitor_count"],
-            visitor_caliber=r["visitor_caliber"], deadline_iso=r["booth_deadline"],
+            visitor_count=visitor, exhibitor_count=exhibitor,
+            visitor_caliber=v_caliber, deadline_iso=r["booth_deadline"],
             today=today, start_date_iso=r["start_date"], end_date_iso=r["end_date"],
             dates_status=ds,
             # 去展网等第三方来源的规模数，比值照算但要留痕：
             # 实测第三方观众数比官网低 20~25%，档位会跟着偏低。
-            ratio_source="thirdparty" if (r["scale_source"] or "") == "qufair" else "official",
+            # 估算兜底再叠一层：这个比值是算出来的不是报出来的。
+            ratio_source="estimated" if est_fields else (
+                "thirdparty" if (r["scale_source"] or "") == "qufair" else "official"),
         )
         stat[p["ratio_band"]] = stat.get(p["ratio_band"], 0) + 1
         if p["e4_role"] == "gate":
@@ -137,6 +162,7 @@ def main() -> int:
         note = " | ".join(x for x in (
             "ratio_basis=" + p["ratio_basis"],
             "ratio_source=" + p["ratio_source"],
+            "scale_estimated=" + ",".join(est_fields) if est_fields else "",
             "e4_role=" + p["e4_role"],
             "e4_source=" + str(p["e4_source"]),
             "e4:" + (p["e4_note"] or p["e4_band"]),

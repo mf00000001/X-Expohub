@@ -238,7 +238,11 @@ def _year_of(iso: str | None) -> int | None:
 def score(expo: dict, cand: dict) -> tuple[float, list[str]]:
     """返回 (分数, 否决/降级理由)。"""
     why: list[str] = []
-    s = similarity(norm_name(expo["name_cn"]), norm_name(cand["title"]))
+    # 匹配优先用查证过的规范全称：name_cn 常是官网 H1，带"第三十五届""2027"
+    # 这类届次前缀，norm_name 剥不干净会把分数压低（实测有展因为"第三十五届"
+    # 三个字卡在 0.78 反而不匹配）。name_official 已去掉届次和宣传语。
+    probe = expo.get("name_official") or expo["name_cn"]
+    s = similarity(norm_name(probe), norm_name(cand["title"]))
     if expo.get("name_en"):
         s = max(s, similarity(norm_name(expo["name_en"]), norm_name(cand["title"])) * 0.9)
     if s <= 0:
@@ -296,7 +300,7 @@ def sanity(cand: dict) -> str:
 def load_expos(con: sqlite3.Connection) -> list[dict]:
     con.row_factory = sqlite3.Row
     return [dict(r) for r in con.execute(
-        "SELECT id, slug, name_cn, name_en, city, start_date,"
+        "SELECT id, slug, name_cn, name_official, name_en, city, start_date,"
         " visitor_count, exhibitor_count, exhibit_area_sqm, scale_source FROM expo")]
 
 
