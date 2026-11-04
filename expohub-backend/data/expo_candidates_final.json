@@ -65,17 +65,17 @@
     {
       "id": "cite",
       "layer": "trunk",
-      "category": "电子及家电",
+      "category": "车辆及配件",
       "tier": "mid",
-      "name": "中国国际电子信息博览会",
+      "name": "China International Tire Expo",
       "short": "CITE",
-      "city": "深圳",
+      "city": "上海",
       "url": "http://www.citexpo.com.cn/",
       "conf": "medium",
       "kw": [
-        "电子信息",
-        "CITE",
-        "博览会"
+        "轮胎",
+        "Tire",
+        "CITExpo"
       ],
       "check": {
         "result": "ok",
@@ -84,7 +84,8 @@
         "robots": "missing",
         "title": "China International Tire Expo"
       },
-      "status": "crawlable_if_std"
+      "status": "crawlable_if_std",
+      "note_fixed": "候选名单误标为中国国际电子信息博览会(深圳)，按 check.title 修正为轮胎展(上海)"
     },
     {
       "id": "sinoces",

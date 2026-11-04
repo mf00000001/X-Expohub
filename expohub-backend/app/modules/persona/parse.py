@@ -94,7 +94,9 @@ CATEGORY_KEYWORDS: dict[str, list[str]] = {
              "塑料机械", "橡塑", "包装机械", "印刷", "铸造", "焊接"],
     "车辆及配件": ["汽车配件", "汽车零部件", "零部件", "汽配", "汽车", "车展",
               "商用车", "新能源车", "轮胎", "摩托车", "电动车"],
-    "电子及家电": ["消费电子", "电子元器件", "家电", "电器", "电子", "半导体",
+    "电子及家电": ["消费电子", "手机配件", "手机", "数码", "电脑", "笔记本电脑",
+              "平板电脑", "智能硬件", "可穿戴", "无人机", "耳机", "电子元器件",
+              "家电", "小家电", "电器", "电视", "冰箱", "洗衣机", "电子", "半导体",
               "集成电路", "芯片", "PCB", "电路板", "连接器"],
     "五金工具": ["五金", "工具", "紧固件", "轴承", "刃具", "磨料", "锁具"],
     "建材": ["建材", "建筑装饰", "门窗", "幕墙", "陶瓷", "卫浴", "石材", "涂料",
@@ -210,27 +212,76 @@ def _find_budget(text: str) -> tuple[Optional[float], Optional[str]]:
     """
     返回 (万元, 原文)。
 
-    只认带"预算/费用/花费"上下文的数字，或者带"万/w"单位的。
-    裸数字不认——"我要 3 个展位"里的 3 不是预算。
+    只认两类：
+    1. 带"预算/费用/花费"上下文的数字（"预算 8 万"、"预算100000元"）
+    2. 带**明确货币单位**的数字（"8万元预算"、"8w"、"100000元"）
+       裸"万/千"不认——"8万平方米"里的 8 万是面积，不是钱。
+
+    单位归一到万元：万/w=原值，千/k=÷10，元/块钱=÷10000。
+    裸数字（带上下文但没写单位）拿展位预算的物理区间 [0.1, 500] 万当裁判：
+    "预算8"→万读法 8 万 ✓、元读法 0.0008 万 ✗，取 8 万；
+    "预算8000"→万读法 8000 万 ✗、元读法 0.8 万 ✓，取 0.8 万；
+    "预算800"→两个读法都出界，不猜、不抽。
     """
-    patterns = [
-        r"(?:预算|费用|花费|投入|准备花)\D{0,6}?(\d+(?:\.\d+)?)\s*(万|w|W|千|k|K)?",
-        r"(\d+(?:\.\d+)?)\s*(?:万元|万块|w|W)\b",
-    ]
-    for pat in patterns:
-        m = re.search(pat, text)
-        if not m:
-            continue
-        value = float(m.group(1))
-        unit = (m.group(2) or "万").lower() if m.lastindex and m.lastindex >= 2 else "万"
-        if unit in ("千", "k"):
-            value = value / 10.0      # 8000千元 = 800万元，千元→万元除以 10
-        # 只带数字没单位、又不是"预算"引导的，忽略
-        if m.lastindex and m.lastindex < 2 and "预算" not in m.group(0):
-            continue
-        if not (0 < value <= 5000):
-            continue
-        return round(value, 1), m.group(0).strip()
+
+    # 展位预算的物理区间（万元）：最低 1000 元的标摊，最高 500 万的大型定制馆。
+    # 拿它当单位歧义的裁判，比"≥10000 就当元"的拍脑袋阈值可解释。
+    BUDGET_FLOOR, BUDGET_CEIL = 0.1, 500.0
+
+    def to_wan(value: float, unit: Optional[str]) -> float:
+        u = (unit or "").lower()
+        if u in ("千", "k", "千元", "千块"):
+            return value / 10.0        # 5千 = 0.5 万
+        if u in ("元", "块钱", "元钱"):
+            return value / 10000.0     # 100000 元 = 10 万
+        return value                    # 万 / w / 裸数字按万
+
+    # 裸数字后面跟量词的不是钱："预算 8 个展位"的 8 是展位数。
+    MEASURE = "个台套家人位张件批场平㎡米亩吨"
+
+    # 1) 上下文在前："预算 8 万" / "预算100000元" / "费用5千"
+    #    逐个匹配取第一个能定值的——"预算8000，预算10万"里 8000 定不了值，
+    #    不能让它把后面能定的 10 万挡掉。
+    pat_ctx = (
+        r"(?:预算|费用|花费|投入|准备花)\D{0,6}?(\d+(?:\.\d+)?)\s*"
+        r"(万元|万块|千元|千块|万|千|w|W|k|K|元钱|块钱|元)?"
+    )
+    for m in re.finditer(pat_ctx, text):
+        raw = float(m.group(1))
+        unit = m.group(2) if m.lastindex and m.lastindex >= 2 and m.group(2) else None
+        if unit:
+            wan = to_wan(raw, unit)
+            ok = 0.1 <= wan <= 5000
+        else:
+            if m.end() < len(text) and text[m.end()] in MEASURE:
+                continue               # "预算 8 个展位"——是数量不是钱
+            cands = [c for c in (raw, raw / 10000.0)
+                     if BUDGET_FLOOR <= c <= BUDGET_CEIL]
+            wan = cands[0] if len(cands) == 1 else None
+            ok = wan is not None
+        if ok:
+            return round(wan, 1), m.group(0).strip()
+
+    # 2) 上下文在后或没有："8万元预算" / "8w" / "100000元"
+    #    只收带完整货币单位的写法，裸"万/千"不收（防"8万平方米"当预算）。
+    #    尾部 (?![\dA-Za-z/每]) 替代 \b——中文字符全是 \w，
+    #    "8万元预算"里元和预之间根本没有词边界，旧版 \b 让这路永远匹配不上。
+    pat_unit = (
+        r"(\d+(?:\.\d+)?)\s*(万元|万块|千元|千块|w|W|k|K|元钱|块钱|元)"
+        r"(?![\dA-Za-z/每])"
+    )
+    for m in re.finditer(pat_unit, text):
+        wan = to_wan(float(m.group(1)), m.group(2))
+        if 0.1 <= wan <= 5000:
+            return round(wan, 1), m.group(0).strip()
+
+    # 3) 裸"万/千" + 后置上下文："8万预算" / "10万的费用"
+    #    紧跟预算词能证明这是钱不是面积（"8万"孤立出现才有面积嫌疑）。
+    pat_tail = r"(\d+(?:\.\d+)?)\s*(万|千)\s*的?(?:预算|费用|花费|投入)"
+    for m in re.finditer(pat_tail, text):
+        wan = to_wan(float(m.group(1)), m.group(2))
+        if 0.1 <= wan <= 5000:
+            return round(wan, 1), m.group(0).strip()
     return None, None
 
 
@@ -436,6 +487,49 @@ def self_check() -> list[str]:
     got5 = {c["key"]: c for c in r5["chips"]}
     if got5["month"]["value"] != {"from": 7, "to": 12}:
         issues.append(f"下半年应解析为 7-12 月，实际 {got5['month']['value']}")
+
+    # 预算单位归一：元 / 千元 / 后置上下文 / 裸数字定单位
+    for q, want in [
+        ("预算100000元", 10.0),        # 元 → ÷10000（截图实测曾漏抽）
+        ("预算 8 万", 8.0),
+        ("8万元预算", 8.0),            # 上下文在后
+        ("8w预算", 8.0),
+        ("费用5千", 0.5),
+        ("预算100000", 10.0),          # 裸数字大额按元读
+        ("预算8", 8.0),                # 裸数字小额按万读
+        ("100000元", 10.0),            # 元单位本身无歧义，无上下文也认
+    ]:
+        b = [c for c in parse_query(q)["chips"] if c["key"] == "budget"][0]
+        if b["value"] != want:
+            issues.append(f"{q!r} 预算应为 {want} 万，实际 {b['value']!r}")
+
+    # 不能把面积/数量当预算
+    for q in ["8万平方米的展", "预算 8 个展位", "找个 8 万左右的展", "预算800"]:
+        b = [c for c in parse_query(q)["chips"] if c["key"] == "budget"][0]
+        if b["provided"]:
+            issues.append(f"{q!r} 不该抽出预算，实际 {b['value']!r}")
+
+    # 采购句三件套：品类+地域+预算（用户截图实测句，曾只识别出地域）
+    r6 = parse_query("我想买100部手机，地点上海附近，预算100000元")
+    got6 = {c["key"]: c for c in r6["chips"]}
+    if got6["category"]["value"] != "电子及家电":
+        issues.append(f"手机应归电子及家电，实际 {got6['category']['value']}")
+    if got6["city"]["value"] != "上海":
+        issues.append(f"地域应为上海，实际 {got6['city']['value']}")
+    if got6["budget"]["value"] != 10.0:
+        issues.append(f"预算应为 10 万，实际 {got6['budget']['value']}")
+    if got6["industry"]["value"] != "手机":
+        issues.append(f"行业应保留原词手机，实际 {got6['industry']['value']}")
+
+    # 设计稿原句："我要采购 激光切割机，预算 50 万，地点 深圳"
+    r7 = parse_query("我要采购 激光切割机，预算 50 万，地点 深圳")
+    got7 = {c["key"]: c for c in r7["chips"]}
+    if got7["category"]["value"] != "机械":
+        issues.append(f"激光切割机应归机械，实际 {got7['category']['value']}")
+    if got7["budget"]["value"] != 50.0:
+        issues.append(f"预算应为 50 万，实际 {got7['budget']['value']}")
+    if got7["city"]["value"] != "深圳":
+        issues.append(f"地域应为深圳，实际 {got7['city']['value']}")
 
     # 未提供必须是 None，不能是 0 / 空串
     for c in r2["chips"]:
