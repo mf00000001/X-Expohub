@@ -36,6 +36,7 @@ from datetime import date
 from typing import Any, Optional
 
 from fastapi import APIRouter, Depends, Query
+from pydantic import BaseModel, Field
 from sqlalchemy import and_, func, or_, select
 from sqlalchemy.orm import Session
 
@@ -46,6 +47,13 @@ from app.modules.persona.bands import (
     RATIO_CALIBRATION,
 )
 from app.modules.persona.db import get_persona_db
+from app.modules.persona.e5 import (
+    CHECKLIST_BY_ID,
+    E5_CHECKLIST,
+    VALID_STATES,
+    VERDICT_TEXT,
+    evaluate,
+)
 from app.modules.persona.models import Expo, ExpoObservation, ExpoPersona
 
 router = APIRouter(prefix="/persona", tags=["展会画像"])
@@ -468,4 +476,124 @@ def params():
         "scale_sources": [
             {"source": k, "label": v} for k, v in SCALE_SOURCE_TEXT.items()
         ],
+    })
+
+
+# ============================================================
+# E5 交付可行性（用户自评清单，无数据依赖）
+# ============================================================
+
+class E5EvaluateRequest(BaseModel):
+    """
+    三态自评答案。
+
+    `states` 里没出现的项一律按 `unknown` 处理——**漏填不等于满足**。
+    这条不能放宽：默认值一旦是 ok，用户填一半就会拿到"通过"。
+    """
+
+    expo_slug: Optional[str] = Field(None, description="可选，仅用于回显上下文，不参与判定")
+    states: dict[str, str] = Field(
+        default_factory=dict,
+        description="条目 id → ok / short / unknown。非法值按 unknown 处理。",
+    )
+
+
+@router.get("/e5/checklist", summary="E5 交付可行性核查清单")
+def e5_checklist(
+    db: Session = Depends(get_persona_db),
+    slug: Optional[str] = Query(None, description="可选，带上展会上下文（名称/城市/展馆/日期）"),
+):
+    """
+    八条核查项 + **该向主办方问什么**。
+
+    这是 E5 的全部价值：层高承重、货运通道、供电容量、消防吊点这些数
+    主办方不公开、我们抓不到，但第一次参展的人根本不知道该问。
+    把"注意层高"翻译成"问：标准展位限高多少？特装限高多少？展馆净高多少？"
+    ——问对了，答案自己会说话。
+
+    **不打分**：每条只收 ok/short/unknown，结论由 evaluate 拼。
+    """
+    context = None
+    if slug:
+        expo = db.execute(select(Expo).where(Expo.slug == slug)).scalar_one_or_none()
+        if expo is None:
+            raise NotFound(f"未找到展会：{slug}")
+        context = {
+            "slug": expo.slug,
+            "name_cn": expo.name_cn,
+            "city": expo.city,
+            "venue_name": expo.venue_name,
+            "start_date": expo.start_date,
+            "end_date": expo.end_date,
+        }
+
+    return _ok({
+        "expo": context,
+        "total": len(E5_CHECKLIST),
+        "items": [
+            {
+                "id": it.id,
+                "name": it.name,
+                "kind": it.kind,
+                "unit": it.unit or None,
+                "requirement_label": it.requirement_label or None,
+                "capability_label": it.capability_label or None,
+                "ask": it.ask,
+                "why": it.why,
+                "typical": it.typical or None,
+                "short_consequence": it.short_consequence,
+                "fallback": it.fallback or None,
+                # 只有特装专属项允许标 na。标摊展商不用管层高承重，
+                # 但进场时间/供电/消防谁都躲不开，所以那三项强制要答。
+                "na_allowed": it.na_allowed,
+            }
+            for it in E5_CHECKLIST
+        ],
+        "valid_states": list(VALID_STATES),
+        "note": "任一条判 blocked 即整单不可行，不做加权——约束不是偏好，"
+                "不存在「其他项都不错所以这条能凑合」。",
+    })
+
+
+@router.post("/e5/evaluate", summary="E5 交付可行性判定")
+def e5_evaluate(req: E5EvaluateRequest):
+    """
+    把八条三态答案拼成结论。**无状态、不落库**。
+
+    不落库是刻意的：这些是某一次参展的具体条件（我的设备多高、我要多少电），
+    不是展会本身的属性。存进展会表会让下一个人看到别人的答案并当成事实。
+    前端存本地即可。
+
+    结论只有四档，优先级 blocked > incomplete > pass_with_cost > pass。
+    """
+    result = evaluate(req.states)
+    verdict = result["verdict"]
+    label, hint = VERDICT_TEXT[verdict]
+
+    # 把需要行动的那几条连问题一起返回，省得前端再拼一次
+    def _detail(ids: list[str]) -> list[dict]:
+        return [
+            {
+                "id": i,
+                "name": CHECKLIST_BY_ID[i].name,
+                "ask": CHECKLIST_BY_ID[i].ask,
+                "why": CHECKLIST_BY_ID[i].why,
+                "fallback": CHECKLIST_BY_ID[i].fallback or None,
+            }
+            for i in ids
+            if i in CHECKLIST_BY_ID
+        ]
+
+    return _ok({
+        "expo_slug": req.expo_slug,
+        "verdict": verdict,
+        "label": label,
+        "hint": hint,
+        "blocked": _detail(result["blocked"]),
+        "extra_cost": _detail(result["extra_cost"]),
+        "unresolved": _detail(result["unresolved"]),
+        "not_applicable": result["not_applicable"],
+        "states": result["states"],
+        "note": "" if verdict != "pass_with_cost"
+                else "这几项的钱要算进 E3 成本后再决定去不去，别只看展位费。",
     })
